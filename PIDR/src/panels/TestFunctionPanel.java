@@ -29,6 +29,7 @@ public class TestFunctionPanel extends JPanel{
 		
 		//Mise en place de la partie fixe : nom de la fonction pour correspondre à ce qui était
 		//mis en place dans l'interface précédente.
+		//En 2D, il n'y a que (x). En 3D, il faudrait ajouter y : (x,y).
 		this.function = new JLabel("φ(x) = ");
 		//Placement
 		gbc.gridx = 0;

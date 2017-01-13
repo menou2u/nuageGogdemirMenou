@@ -1,15 +1,16 @@
 package panels;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 /**
  * Contient la fonction calculée.
  * Ce panel devra donc se mettre à jour ou se remplacer de lui-même lorsqu'on cliquera sur le bouton
@@ -34,20 +35,25 @@ public class CalculatedFunctionPanel extends JPanel { //frederic.neurohr@cpc57.f
 	//Bouton de calcul
 	private JButton calcul;
 	//Résultat du calcul
-	private JTextField calculatedPoint;
+	private JTextArea calculatedPoint;
 	//Nom de l'entrée à calculer
 	private JLabel pointName;
 	//Nom du résultat
 	private JLabel calculatedPointName;
+	
+	private Dimension oneCell;
 	
 	
 	
 	//TODO : Pourquoi quand je test ça donne un truc chelou? :D
 	public CalculatedFunctionPanel()
 	{
+		oneCell = new Dimension((int)(this.getWidth()/10),(int)(this.getHeight()/10));
+		
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
 		this.setLayout(gbl);
+		gbc.insets = new Insets(2,2,2,2);
 		
 		functionName = new JLabel();
 		functionName.setText("f(x) = ");
@@ -61,6 +67,7 @@ public class CalculatedFunctionPanel extends JPanel { //frederic.neurohr@cpc57.f
 		functionCalculated.setBackground(Color.WHITE);
 		functionCalculated.setRows(4);
 		functionCalculated.setLineWrap(true);
+		functionCalculated.setSize(400,400);
 		gbc.gridx=1;
 		gbc.gridy=0;
 		gbc.gridheight=5;
@@ -77,15 +84,17 @@ public class CalculatedFunctionPanel extends JPanel { //frederic.neurohr@cpc57.f
 		this.add(pointName,gbc);
 		
 		point = new JTextArea();
+		point.setLineWrap(true);
+		gbc.anchor = gbc.WEST;
 		point.setText("");
 		point.setBackground(Color.WHITE);
-		point.setRows(1);
-		point.setLineWrap(false);
+		point.setSize(100,100);
 		gbc.gridx=3;
 		this.add(point,gbc);
 		
 		calcul = new JButton();
 		calcul.setText("Calcul");
+		gbc.anchor = gbc.CENTER;
 		gbc.gridx=4;
 		this.add(calcul,gbc);
 		
@@ -94,9 +103,12 @@ public class CalculatedFunctionPanel extends JPanel { //frederic.neurohr@cpc57.f
 		gbc.gridx=5;
 		this.add(calculatedPointName,gbc);
 		
-		calculatedPoint = new JTextField();
+		calculatedPoint = new JTextArea();
+		calculatedPoint.setLineWrap(true);
+		gbc.anchor = gbc.WEST;
 		calculatedPoint.setText("");
 		calculatedPoint.setBackground(Color.WHITE);
+		calculatedPoint.setSize(100,100);
 		gbc.gridx=6;
 		this.add(calculatedPoint,gbc);
 	}
@@ -118,8 +130,7 @@ public class CalculatedFunctionPanel extends JPanel { //frederic.neurohr@cpc57.f
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridheight = gbc.REMAINDER;
-		gbc.gridwidth = gbc.REMAINDER;
+		paneltest.setSize(test.getWidth(),test.getHeight());
 		test.add(paneltest,gbc);
 		test.setVisible(true);
 	}

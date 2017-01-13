@@ -45,7 +45,7 @@ public class CalculatedFunctionPanel extends JPanel { //frederic.neurohr@cpc57.f
 	
 	
 	
-	//TODO : Pourquoi quand je test ça donne un truc chelou? :D
+	//TODO : Mettre toutes les dimensions en adéquationavec le reste de la fenêtre.
 	public CalculatedFunctionPanel()
 	{
 		oneCell = new Dimension((int)(this.getWidth()/10),(int)(this.getHeight()/10));

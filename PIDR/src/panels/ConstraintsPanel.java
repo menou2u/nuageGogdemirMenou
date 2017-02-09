@@ -22,9 +22,9 @@ public class ConstraintsPanel extends JPanel {
         
         data = new Object[1][3];
        
-        data[0][0] = 0;
-        data[0][1] = "xi";
-        data[0][2] = "yi";
+        //data[0][0] = 0;
+        //data[0][1] = "xi";
+        //data[0][2] = "yi";
 
         final JTable table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -32,38 +32,6 @@ public class ConstraintsPanel extends JPanel {
         
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
-        
-        table.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-        });
 
         //Add the scroll pane to this panel.
         add(scrollPane);

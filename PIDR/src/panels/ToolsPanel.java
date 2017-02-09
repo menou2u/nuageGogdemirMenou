@@ -1,11 +1,13 @@
 package panels;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.ComboBoxEditor;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,7 +16,7 @@ public class ToolsPanel extends JPanel{
 	
 	private JButton close;
 	private JButton neww;
-	private JButton open;
+	private JButton openButton;
 	private JButton register;
 	private JButton registerAs;
 	private JButton info;
@@ -23,7 +25,8 @@ public class ToolsPanel extends JPanel{
 	private JButton print;
 	private JButton preview;
 	private JButton execute;
-	private JButton lastOpened;
+	private String lastOpened[];
+	private JComboBox<String> open;
 	private JPanel file;
 	private JPanel infos;
 	private JPanel datas;
@@ -52,8 +55,7 @@ public class ToolsPanel extends JPanel{
 	
 	private GridBagLayout executinggbl;
 	private GridBagConstraints executinggbc;
-	
-	//TODO : Remplacer lastOpened qui est un "V" par un sélecteur des derniers fichiers ouverts.
+
 	public ToolsPanel(){
 		
 		globalgbl = new GridBagLayout();
@@ -75,20 +77,27 @@ public class ToolsPanel extends JPanel{
 		filegbc.gridx = 1;
 		file.add(neww,filegbc);
 		
-		open = new JButton("Ouvrir");
+		openButton = new JButton("Ouvrir");
+		lastOpened = new String[6];
+		//open.addItem(openButton);
+		open = new JComboBox<String>();
+		open.addItem("Ouvrir");
+		for (int i=0;i<5;i++)
+		{
+			lastOpened[i+1] = new String("Fichiertroplong n°"+(i+1));
+			open.addItem(lastOpened[i+1]);
+		}
 		filegbc.gridx = 2;
 		file.add(open,filegbc);
 		
-		lastOpened = new JButton("V");
-		filegbc.gridx = 3;
-		file.add(lastOpened,filegbc);
+
 
 		register = new JButton("Enregistrer");
-		filegbc.gridx = 4;
+		filegbc.gridx = 3;
 		file.add(register,filegbc);
 		
 		registerAs = new JButton("Enregistrer Sous...");
-		filegbc.gridx = 5;
+		filegbc.gridx = 4;
 		file.add(registerAs,filegbc);
 		
 		nameFile = new JLabel("Fichier");

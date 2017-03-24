@@ -14,12 +14,12 @@ public class TestFunction extends Observable {
 	
 	public TestFunction(){
 		
-		function = new JLabel("φ(x) = ");
+		function = new JLabel("<html>&phi; "+getParamString()+" = </html>", JLabel.CENTER);
 		//TODO : Gérer la taille en fonction de la fenêtre.
 		text = new JTextArea(value);
 		//Première valeur = largeur, deuxième = hauteur.
 		//Hauteur inutile...?
-		text.setSize(800,400);
+//		text.setSize(800,400);
 		//3 colonnes de texte disponibles nativement, s'étend au besoin.
 		text.setRows(3);
 		//Renvoie à la ligne si manque de place
@@ -45,6 +45,7 @@ public class TestFunction extends Observable {
 	public JTextArea getText() {
 		return text;
 	}
-
-	
+	public String getParamString() {
+		return "(x)";
+	}
 }

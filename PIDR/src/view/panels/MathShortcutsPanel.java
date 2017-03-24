@@ -96,7 +96,6 @@ public class MathShortcutsPanel extends JPanel{
 		add(math.getInteg(),gbc);
 		
 		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
-
 	}
 	
 	//main pour test

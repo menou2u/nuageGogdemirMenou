@@ -1,19 +1,23 @@
 package view.panels;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import model.TestFunction;
 
 @SuppressWarnings("serial")
 public class TestFunctionPanel extends JPanel{
 		
+	private static final int NB_LIGNE = 4;
+
 	public TestFunctionPanel(TestFunction testFunction)	{
 		//Mise en place de la dimension minimum dans le cadre d'un test
 		//dans une fenêtre seule.
@@ -21,7 +25,7 @@ public class TestFunctionPanel extends JPanel{
 		//TODO : Gérer la taille en fonction de la fenêtre.
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
-		setSize(new Dimension(1000,500));
+		gbc.fill = GridBagConstraints.BOTH;
 		setLayout(gbl);
 		
 		//Mise en place de la partie fixe : nom de la fonction pour correspondre à ce qui était
@@ -30,21 +34,28 @@ public class TestFunctionPanel extends JPanel{
 		//Placement
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.weightx = 0.1;
+		gbc.weightx = 0;
+		gbc.weighty =0;
 		//On centre le texte
-		gbc.anchor = GridBagConstraints.CENTER;
-		add(testFunction.getFunction(), gbc);
+		//gbc.anchor = GridBagConstraints.CENTER;
+		JLabel label = testFunction.getFunction();
+		gbc.ipadx = label.getFontMetrics(label.getFont()).stringWidth(testFunction.getParamString())+20;
+		add(label, gbc);
 		
 		
 		//Mise en place de la zone de saisie. Dimension à gérer.
+		JTextArea textArea = testFunction.getText();
 		//Placement
 		gbc.gridx=1;
+		gbc.gridheight=2;
+		gbc.ipady=(textArea.getFontMetrics(textArea.getFont()).getHeight()+1)*NB_LIGNE;
 		gbc.weightx = 1;
-		gbc.gridheight = 3;
-		gbc.gridwidth = 3;
 		//Remplissage de la ligne
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		add(testFunction.getText(), gbc);
+		
+		JScrollPane panelText = new JScrollPane(textArea);
+		panelText.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		panelText.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		add(panelText, gbc);
 
 		//TODO : Ajouter éventuellement des marges sur les pour l'esthétique.
 		

@@ -1,11 +1,20 @@
 package model;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import pidr.mag.sample.api.DefaultMenuModelHandler;
+import pidr.mag.sample.api.MenuOpenerButton;
+import pidr.mag.sample.api.RotativeMenuModel;
+import pidr.mag.sample.api.SimpleMenuModelItem;
+import pidr.mag.sample.implementation.FileItemRenderer;
+import pidr.mag.sample.implementation.FileItemRendererConstraint;
+import pidr.mag.sample.implementation.FilePopupMenuOpener;
 
 public class Tools extends Observable {
 
@@ -20,8 +29,7 @@ public class Tools extends Observable {
 	private JButton print;
 	private JButton preview;
 	private JButton execute;
-	private String lastOpened[];
-	private JComboBox<String> open;
+	private JButton open;
 	private JPanel file;
 	private JPanel infos;
 	private JPanel datas;
@@ -32,124 +40,142 @@ public class Tools extends Observable {
 	private JLabel nameDatas;
 	private JLabel namePrinting;
 	private JLabel nameExecuting;
-	
-	public Tools(){
-		
+	private String lastOpened[];
+	private DefaultMenuModelHandler openModel;
+	private MenuOpenerButton menuOpener;
+
+	public Tools() {
+
 		close = new JButton("Fermer");
-		
+
 		neww = new JButton("Nouveau");
-		
-		openButton = new JButton("Ouvrir");
+
 		lastOpened = new String[6];
-		//open.addItem(openButton);
-		open = new JComboBox<String>();
-		open.addItem("Ouvrir");
+		// open.addItem(openButton);
+		open = new JButton("Ouvrir");
+		openModel = new DefaultMenuModelHandler();
+		openModel.setModel(new RotativeMenuModel<SimpleMenuModelItem>(openModel));
+		openModel.setCommonConstraint(new FileItemRendererConstraint(20, 7)); //TODO : Check size
+		openModel.setItemRenderer(new FileItemRenderer());
+		generateInitialModel();
+		menuOpener = new MenuOpenerButton(new FilePopupMenuOpener(openModel), open);
 
 		register = new JButton("Enregistrer");
-		
+
 		registerAs = new JButton("Enregistrer Sous...");
-		
+
 		info = new JButton("Infos");
-		
+
 		export = new JButton("Exporter");
-		
+
 		importt = new JButton("Importer");
-		
+
 		print = new JButton("Imprimer");
-		
+
 		preview = new JButton("Prévisualiser");
-		
+
 		execute = new JButton("Exécuter");
-		
+
 		infos = new JPanel();
-		
+
 		datas = new JPanel();
-		
+
 		printing = new JPanel();
-		
+
 		executing = new JPanel();
-		
+
 		nameFile = new JLabel("Fichier");
-		
-		nameInfos = new JLabel("Info."); 
-		
+
+		nameInfos = new JLabel("Info.");
+
 		nameDatas = new JLabel("Données");
-		
+
 		namePrinting = new JLabel("Impression");
-		
+
 		nameExecuting = new JLabel("Exécution");
+	}
+
+	private void generateInitialModel() {
+		// TODO Récupérer l'historique des fichiers ouverts récemment
+		openModel.add("DefaultItemRenderer.java", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("item 1");
+			}
+		});
+		openModel.add("C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\Frame.java", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("item 2");
+			}
+		});
+		openModel.add("C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\implementation\\FileItemRendererConstraint.java", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("item 3");
+			}
+		});
+		openModel.add("C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\TestFile.java", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("item 4");
+			}
+		});
 	}
 
 	public JButton getClose() {
 		return close;
 	}
+	public JPanel getDatas() {
+		return datas;
+	}
+	
 
-	public JButton getNeww() {
-		return neww;
+	public JButton getExecute() {
+		return execute;
 	}
 
-	public JButton getOpenButton() {
-		return openButton;
-	}
-
-	public JButton getRegister() {
-		return register;
-	}
-
-	public JButton getRegisterAs() {
-		return registerAs;
-	}
-
-	public JButton getInfo() {
-		return info;
+	public JPanel getExecuting() {
+		return executing;
 	}
 
 	public JButton getExport() {
 		return export;
 	}
 
+	public JPanel getFile() {
+		return file;
+	}
+
 	public JButton getImportt() {
 		return importt;
 	}
 
-	public JButton getPrint() {
-		return print;
-	}
-
-	public JButton getPreview() {
-		return preview;
-	}
-
-	public JButton getExecute() {
-		return execute;
-	}
-
-	public String[] getLastOpened() {
-		return lastOpened;
-	}
-
-	public JComboBox<String> getOpen() {
-		return open;
-	}
-
-	public JPanel getFile() {
-		return file;
+	public JButton getInfo() {
+		return info;
 	}
 
 	public JPanel getInfos() {
 		return infos;
 	}
 
-	public JPanel getDatas() {
-		return datas;
+	public String[] getLastOpened() {
+		return lastOpened;
 	}
 
-	public JPanel getPrinting() {
-		return printing;
+	/**
+	 * @return the menuOpener
+	 */
+	public MenuOpenerButton getMenuOpener() {
+		return menuOpener;
 	}
 
-	public JPanel getExecuting() {
-		return executing;
+	public JLabel getNameDatas() {
+		return nameDatas;
+	}
+
+	public JLabel getNameExecuting() {
+		return nameExecuting;
 	}
 
 	public JLabel getNameFile() {
@@ -160,21 +186,67 @@ public class Tools extends Observable {
 		return nameInfos;
 	}
 
-	public JLabel getNameDatas() {
-		return nameDatas;
-	}
-
 	public JLabel getNamePrinting() {
 		return namePrinting;
 	}
 
-	public JLabel getNameExecuting() {
-		return nameExecuting;
+	public JButton getNeww() {
+		return neww;
+	}
+
+	public JButton getOpen() {
+		return open;
+	}
+
+	public JButton getOpenButton() {
+		return openButton;
+	}
+
+	/**
+	 * @return the openModel
+	 */
+	public DefaultMenuModelHandler getOpenModel() {
+		return openModel;
+	}
+
+	public JButton getPreview() {
+		return preview;
+	}
+
+	public JButton getPrint() {
+		return print;
+	}
+
+	public JPanel getPrinting() {
+		return printing;
+	}
+
+	public JButton getRegister() {
+		return register;
+	}
+
+	public JButton getRegisterAs() {
+		return registerAs;
 	}
 
 	public void setFile(JPanel file) {
 		this.file = file;
 	}
-	
-	
+
+	/**
+	 * @param menuOpener
+	 *            the menuOpener to set
+	 */
+	public void setMenuOpener(MenuOpenerButton menuOpener) {
+		this.menuOpener = menuOpener;
+	}
+
+	/**
+	 * @param openModel
+	 *            the openModel to set
+	 */
+	public void setOpenModel(DefaultMenuModelHandler openModel) {
+		this.openModel = openModel;
+	}
+
 }

@@ -1,114 +1,87 @@
-package panels;
+package view.panels;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Rectangle;
 
-import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
-public class DisplayPanel extends JPanel{
+import model.DisplaySettings;
 
-	private JCheckBox pointCloud;
-	private JCheckBox constraintPoints;
-	private JCheckBox function[];
-	private JCheckBox limited;
-	private JLabel abs;
-	private JLabel ord;
-	private JLabel hei;
-	private JTextArea absText;
-	private JTextArea ordText;
-	private JTextArea heiText;
-	private JPanel displayZone;
-	//>>>>>>private zoneDeDisplay<<<<<<
-	
-	public DisplayPanel(){
+@SuppressWarnings("serial")
+public class DisplaySettingsPanel extends JPanel{
+
+	@SuppressWarnings("static-access")
+	public DisplaySettingsPanel(DisplaySettings displaySettings){
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(1,1,1,1);
 		gbc.anchor = gbc.WEST;
-		this.setLayout(gbl);
+		setLayout(gbl);
 		
-		pointCloud = new JCheckBox("Nuage de points");
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 2;
-		this.add(pointCloud, gbc);
+		add(displaySettings.getPointCloud(), gbc);
 		
-		constraintPoints = new JCheckBox("Point(s) contraint(s)");
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.gridwidth = 2;
-		this.add(constraintPoints,gbc);
+		add(displaySettings.getConstraintPoints(),gbc);
 		
-		function = new JCheckBox[5];
-		function[0] = new JCheckBox("f(x,y)");
-		for (int i=0; i<function.length;i++)
+		for (int i=0; i<displaySettings.getFunction().length;i++)
 		{
-			if (function[i]!=null)
+			JCheckBox temp = displaySettings.getFunction()[i];
+			if (temp!=null)
 			{
 				gbc.gridy = gbc.gridy+1;
-				this.add(function[i],gbc);
+				add(temp,gbc);
 			}
 		}		
 		
-		limited = new JCheckBox("Limité");
 		gbc.gridy = gbc.gridy+1;
-		this.add(limited,gbc);
+		add(displaySettings.getLimited(),gbc);
 		
-		abs = new JLabel("Abscisses : ");
 		gbc.gridy+=1;
 		gbc.gridwidth =1;
-		this.add(abs,gbc);
+		add(displaySettings.getAbs(),gbc);
 		
-		absText = new JTextArea("x");
-		absText.setColumns(8);
 		gbc.gridx=1;
-		this.add(absText,gbc);
+		add(displaySettings.getAbsText(),gbc);
 		
-		ord = new JLabel("Ordonnées : ");
 		gbc.gridx =0;
 		gbc.gridy +=1;
-		this.add(ord,gbc);
+		add(displaySettings.getOrd(),gbc);
 		
-		ordText = new JTextArea("y");
-		ordText.setColumns(8);
 		gbc.gridx=1;
-		this.add(ordText,gbc);
+		add(displaySettings.getOrdText(),gbc);
 		
-		hei = new JLabel("Cote : ");
 		gbc.gridx=0;
 		gbc.gridy+=1;
-		this.add(hei,gbc);
+		add(displaySettings.getHei(),gbc);
 		
-		heiText = new JTextArea("z");
-		heiText.setColumns(8);
 		gbc.gridx=1;
-		this.add(heiText,gbc);
+		add(displaySettings.getHeiText(),gbc);
 		
-		//Le panel qu'il faut remplir avec la courbe du monsieur.
-		displayZone = new JPanel();
-		Dimension dim = new Dimension(400,600);
-		displayZone.setSize(dim);
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		gbc.gridheight = 20;
 		gbc.gridwidth = 20;
 		gbc.fill = gbc.BOTH;
-		this.add(displayZone,gbc);
+		add(displaySettings.getDisplayZone(),gbc);
+		
+		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 	
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        DisplayPanel newContentPane = new DisplayPanel();
+        DisplaySettings ds = new DisplaySettings();
+        DisplaySettingsPanel newContentPane = new DisplaySettingsPanel(ds);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

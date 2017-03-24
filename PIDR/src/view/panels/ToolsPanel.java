@@ -1,62 +1,39 @@
-package panels;
+package view.panels;
 
-import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.ComboBoxEditor;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.Tools;
+
+@SuppressWarnings("serial")
 public class ToolsPanel extends JPanel{
 	
-	private JButton close;
-	private JButton neww;
-	private JButton openButton;
-	private JButton register;
-	private JButton registerAs;
-	private JButton info;
-	private JButton export;
-	private JButton importt;
-	private JButton print;
-	private JButton preview;
-	private JButton execute;
-	private String lastOpened[];
-	private JComboBox<String> open;
-	private JPanel file;
-	private JPanel infos;
-	private JPanel datas;
-	private JPanel printing;
-	private JPanel executing;
-	private JLabel nameFile;
-	private JLabel nameInfos;
-	private JLabel nameDatas;
-	private JLabel namePrinting;
-	private JLabel nameExecuting;
-	
-	private GridBagLayout globalgbl;
-	private GridBagConstraints globalgbc;
-	
-	private GridBagLayout filegbl;
-	private GridBagConstraints filegbc;
-	
-	private GridBagLayout infosgbl;
-	private GridBagConstraints infosgbc;
-	
-	private GridBagLayout datasgbl;
-	private GridBagConstraints datasgbc;
-	
-	private GridBagLayout printinggbl;
-	private GridBagConstraints printinggbc;
-	
-	private GridBagLayout executinggbl;
-	private GridBagConstraints executinggbc;
-
-	public ToolsPanel(){
+	@SuppressWarnings("static-access")
+	public ToolsPanel(Tools tools){
+		
+		GridBagLayout globalgbl;
+		GridBagConstraints globalgbc;
+		
+		GridBagLayout filegbl;
+		GridBagConstraints filegbc;
+		
+		GridBagLayout infosgbl;
+		GridBagConstraints infosgbc;
+		
+		GridBagLayout datasgbl;
+		GridBagConstraints datasgbc;
+		
+		GridBagLayout printinggbl;
+		GridBagConstraints printinggbc;
+		
+		GridBagLayout executinggbl;
+		GridBagConstraints executinggbc;
 		
 		globalgbl = new GridBagLayout();
 		globalgbc = new GridBagConstraints();
@@ -65,152 +42,127 @@ public class ToolsPanel extends JPanel{
 		filegbl = new GridBagLayout();
 		filegbc = new GridBagConstraints();
 		filegbc.insets = new Insets(1,1,1,1);
-		file = new JPanel(filegbl);
-		file.setName("Fichier");
+		tools.setFile(new JPanel(filegbl));
+		tools.getFile().setName("Fichier");
 		
-		close = new JButton("Fermer");
 		filegbc.gridx = 0;
 		filegbc.gridy = 0;
-		file.add(close,filegbc);
+		tools.getFile().add(tools.getClose(),filegbc);
 		
-		neww = new JButton("Nouveau");
 		filegbc.gridx = 1;
-		file.add(neww,filegbc);
+		tools.getFile().add(tools.getNeww(),filegbc);
 		
-		openButton = new JButton("Ouvrir");
-		lastOpened = new String[6];
-		//open.addItem(openButton);
-		open = new JComboBox<String>();
-		open.addItem("Ouvrir");
 		for (int i=0;i<5;i++)
 		{
-			lastOpened[i+1] = new String("Fichiertroplong n°"+(i+1));
-			open.addItem(lastOpened[i+1]);
+			String lastOpened = tools.getLastOpened()[i+1];
+			lastOpened = new String("Fichiertroplong n°"+(i+1));
+			tools.getOpen().addItem(lastOpened);
 		}
 		filegbc.gridx = 2;
-		file.add(open,filegbc);
+		tools.getFile().add(tools.getOpen(),filegbc);
 		
-
-
-		register = new JButton("Enregistrer");
 		filegbc.gridx = 3;
-		file.add(register,filegbc);
+		tools.getFile().add(tools.getRegister(),filegbc);
 		
-		registerAs = new JButton("Enregistrer Sous...");
 		filegbc.gridx = 4;
-		file.add(registerAs,filegbc);
+		tools.getFile().add(tools.getRegisterAs(),filegbc);
 		
-		nameFile = new JLabel("Fichier");
 		filegbc.gridx = 2;
 		filegbc.gridwidth = 2;
 		filegbc.gridy = 1;
 		filegbc.fill = filegbc.CENTER;
-		file.add(nameFile,filegbc);
+		tools.getFile().add(tools.getNameFile(),filegbc);
 
 		globalgbc.gridx = 0;
 		globalgbc.gridy = 0;
-		this.add(file, globalgbc);
+		add(tools.getFile(), globalgbc);
 		
 		infosgbl = new GridBagLayout();
 		infosgbc = new GridBagConstraints();
 		infosgbc.insets = new Insets(1,1,1,1);
 		
-		infos = new JPanel();
-		infos.setLayout(infosgbl);
+		tools.getInfos().setLayout(infosgbl);
 		
-		info = new JButton("Infos");
 		infosgbc.gridx = 0;
 		infosgbc.gridy = 0;
-		infos.add(info, infosgbc);
+		tools.getInfos().add(tools.getInfo(), infosgbc);
 		
-		nameInfos = new JLabel("Info."); 
 		infosgbc.gridx = 0;
 		infosgbc.gridy = 1;
-		infos.add(nameInfos,infosgbc);
+		tools.getInfos().add(tools.getNameInfos(),infosgbc);
 		
 		globalgbc.gridx = 1;
-		this.add(infos);
+		add(tools.getInfos());
 		
 		datasgbl = new GridBagLayout();
 		datasgbc = new GridBagConstraints();
 		datasgbc.insets = new Insets(1,1,1,1);
 		
-		datas = new JPanel();
-		datas.setLayout(datasgbl);
+		tools.getDatas().setLayout(datasgbl);
 		
-		export = new JButton("Exporter");
 		datasgbc.gridx = 0;
 		datasgbc.gridy = 0;
-		datas.add(export, datasgbc);
+		tools.getDatas().add(tools.getExport(), datasgbc);
 		
-		importt = new JButton("Importer");
 		datasgbc.gridx = 1;
-		datas.add(importt,datasgbc);
+		tools.getDatas().add(tools.getImportt(),datasgbc);
 		
-		nameDatas = new JLabel("Données");
 		datasgbc.gridx = 0;
 		datasgbc.gridy = 1;
 		datasgbc.gridwidth = 2;
 		datasgbc.anchor = datasgbc.CENTER;
-		datas.add(nameDatas,datasgbc);
+		tools.getDatas().add(tools.getNameDatas(),datasgbc);
 		
 		globalgbc.gridx = 2; 
-		this.add(datas);
+		add(tools.getDatas());
 		
 		printinggbl = new GridBagLayout();
 		printinggbc = new GridBagConstraints();
 		printinggbc.insets = new Insets(1,1,1,1);
 		
-		printing = new JPanel();
-		printing.setLayout(printinggbl);
+		tools.getPrinting().setLayout(printinggbl);
 		
-		print = new JButton("Imprimer");
 		printinggbc.gridx = 0;
 		printinggbc.gridy = 0;
-		printing.add(print, printinggbc);
+		tools.getPrinting().add(tools.getPrint(), printinggbc);
 		
-		preview = new JButton("Prévisualiser");
 		printinggbc.gridx = 1;
-		printing.add(preview,printinggbc);
+		tools.getPrinting().add(tools.getPreview(),printinggbc);
 		
-		namePrinting = new JLabel("Impression");
 		printinggbc.gridx = 0;
 		printinggbc.gridy = 1;
 		printinggbc.gridwidth = 2;
 		printinggbc.anchor = printinggbc.CENTER;
-		printing.add(namePrinting,printinggbc);
+		tools.getPrinting().add(tools.getNamePrinting(),printinggbc);
 		
 		globalgbc.gridx = 3;
-		this.add(printing,globalgbc);
+		add(tools.getPrinting(),globalgbc);
 		
 		executinggbl = new GridBagLayout();
 		executinggbc = new GridBagConstraints();
 		executinggbc.insets = new Insets(1,1,1,1);
 		
-		executing = new JPanel();
-		executing.setLayout(executinggbl);
+		tools.getExecuting().setLayout(executinggbl);
 		
-		execute = new JButton("Exécuter");
 		executinggbc.gridx = 0;
 		executinggbc.gridy = 0;
-		executing.add(execute, executinggbc);
+		tools.getExecuting().add(tools.getExecute(), executinggbc);
 		
-		nameExecuting = new JLabel("Exécution");
 		executinggbc.gridx = 0;
 		executinggbc.gridy = 1;
 		executinggbc.anchor = executinggbc.CENTER;
-		executing.add(nameExecuting,executinggbc);
+		tools.getExecuting().add(tools.getNameExecuting(),executinggbc);
 		
 		globalgbc.gridx = 4;
-		this.add(executing,globalgbc);
-				
+		add(tools.getExecuting(),globalgbc);
 	}
 	
 	//main pour test
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(1300, 1300);
-		ToolsPanel paneltest = new ToolsPanel();
+		Tools tools = new Tools();
+		ToolsPanel paneltest = new ToolsPanel(tools);
 		test.add(paneltest,null);
 		test.setVisible(true);
 	}

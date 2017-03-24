@@ -1,145 +1,110 @@
-package panels;
+package view.panels;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.MathShortcuts;
+
+@SuppressWarnings("serial")
 public class MathShortcutsPanel extends JPanel{
 
-	private JButton sin;
-	private JButton cos;
-	private JButton tan;
-	private JButton sinh;
-	private JButton cosh;
-	private JButton tanh;
-	private JButton asin;
-	private JButton acos;
-	private JButton atan;
-	private JButton asinh;
-	private JButton acosh;
-	private JButton atanh;
-	private JButton abs;
-	private JButton pi;
-	private JButton pow;
-	private JButton log10;
-	private JButton ln;
-	private JButton exp;
-	private JButton fact;
-	private JButton inv;
-	private JButton sqrt;
-	private JButton integ;
 	
-	public MathShortcutsPanel(){
+	@SuppressWarnings("static-access")
+	public MathShortcutsPanel(MathShortcuts math){
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setLayout(gbl);
+		setLayout(gbl);
 		
 		gbc.fill = gbc.BOTH;
 		gbc.insets = new Insets(1,1,1,1);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		sin = new JButton("sin");
-		this.add(sin,gbc);
+		add(math.getSin(),gbc);
 		
 		gbc.gridx = 1;
-		cos = new JButton("cos");
-		this.add(cos,gbc);
+		add(math.getCos(),gbc);
 
 		gbc.gridx = 2;
-		tan = new JButton("tan");
-		this.add(tan,gbc);
+		add(math.getTan(),gbc);
 		
 		gbc.gridx = 3;
-		sinh = new JButton("sinh");
-		this.add(sinh,gbc);
+		add(math.getSinh(),gbc);
 		
 		gbc.gridx = 4;
-		cosh = new JButton("cosh");
-		this.add(cosh,gbc);
+		add(math.getCosh(),gbc);
 		
 		gbc.gridx = 5;
-		tanh = new JButton("tanh");
-		this.add(tanh,gbc);
+		add(math.getTanh(),gbc);
 		
 		gbc.gridy = 1;
 		gbc.gridx = 0;
-		asin = new JButton("asin");
-		this.add(asin,gbc);
+		add(math.getAsin(),gbc);
 		
 		gbc.gridx = 1;
-		acos = new JButton("acos");
-		this.add(acos,gbc);
+		add(math.getAcos(),gbc);
 		
 		gbc.gridx = 2;
-		atan = new JButton("atan");
-		this.add(atan,gbc);
+		add(math.getAtan(),gbc);
 		
 		gbc.gridx = 3;
-		asinh = new JButton("asinh");
-		this.add(asinh,gbc);
+		add(math.getAsinh(),gbc);
 		
 		gbc.gridx = 4;
-		acosh = new JButton("acosh");
-		this.add(acosh,gbc);
+		add(math.getAcosh(),gbc);
 		
 		gbc.gridx = 5;
-		atanh = new JButton("atanh");
-		this.add(atanh,gbc);
+		add(math.getAtanh(),gbc);
 		
 		gbc.gridy = 2;
 		gbc.gridx = 0;
-		abs = new JButton("abs");
-		this.add(abs,gbc);
+		add(math.getAbs(),gbc);
 		
 		gbc.gridx = 1;
-		pi = new JButton("pi");
-		this.add(pi,gbc);
+		add(math.getPi(),gbc);
 		
 		gbc.gridx = 2;
-		pow = new JButton("^");
-		this.add(pow,gbc);
+		add(math.getPow(),gbc);
 		
 		gbc.gridx = 3;
-		log10 = new JButton("log10");
-		this.add(log10,gbc);
+		add(math.getLog10(),gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		ln = new JButton("ln");
-		this.add(ln,gbc);
+		add(math.getLn(),gbc);
 		
 		gbc.gridx = 1;
-		exp = new JButton("exp");
-		this.add(exp,gbc);
+		add(math.getExp(),gbc);
 		
 		gbc.gridx = 2;
-		fact = new JButton("!");
-		this.add(fact,gbc);
+		add(math.getFact(),gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		inv = new JButton("1/x");
-		this.add(inv,gbc);
+		add(math.getInv(),gbc);
 		
 		gbc.gridx = 1;
-		sqrt = new JButton("sqrt");
-		this.add(sqrt,gbc);
+		add(math.getSqrt(),gbc);
 		
 		gbc.gridx = 2;
-		integ = new JButton("Ent.");
-		this.add(integ,gbc);
+		add(math.getInteg(),gbc);
+		
+		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+
 	}
 	
 	//main pour test
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(300, 500);
-		MathShortcutsPanel paneltest = new MathShortcutsPanel();
+		MathShortcuts math = new MathShortcuts();
+		MathShortcutsPanel paneltest = new MathShortcutsPanel(math);
 		test.add(paneltest,null);
 		test.setVisible(true);
 	}

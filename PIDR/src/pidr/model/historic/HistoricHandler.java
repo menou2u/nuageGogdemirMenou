@@ -22,6 +22,7 @@ public class HistoricHandler {
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			jaxbMarshaller.marshal(data, file);
+			return data;
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}

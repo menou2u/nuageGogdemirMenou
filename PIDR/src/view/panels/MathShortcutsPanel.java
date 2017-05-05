@@ -1,14 +1,12 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import model.MathShortcuts;
+import model.swing.MathShortcuts;
 
 @SuppressWarnings("serial")
 public class MathShortcutsPanel extends JPanel{
@@ -94,7 +92,7 @@ public class MathShortcutsPanel extends JPanel{
 		gbc.gridx = 2;
 		add(math.getInteg(),gbc);
 		
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+		//setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 	
 	//main pour test

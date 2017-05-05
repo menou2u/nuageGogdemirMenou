@@ -7,7 +7,7 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.Tools;
+import model.swing.Tools;
 
 @SuppressWarnings("serial")
 public class ToolsPanel extends JPanel{

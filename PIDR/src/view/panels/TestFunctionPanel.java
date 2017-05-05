@@ -1,17 +1,15 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import model.TestFunction;
+import model.swing.TestFunction;
 
 @SuppressWarnings("serial")
 public class TestFunctionPanel extends JPanel{
@@ -59,7 +57,7 @@ public class TestFunctionPanel extends JPanel{
 
 		//TODO : Ajouter éventuellement des marges sur les pour l'esthétique.
 		
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+		//setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}	
 	
 	//main pour test

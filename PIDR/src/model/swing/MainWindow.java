@@ -1,10 +1,8 @@
-package model;
+package model.swing;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.util.Observable;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import view.panels.CalculatedFunctionPanel;
@@ -123,7 +121,7 @@ public class MainWindow extends Observable {
 
 	public Component getVisualisationPanel() {
 		JPanel p = new JPanel();
-		p.setBorder(BorderFactory.createLineBorder(Color.black));
+		//p.setBorder(BorderFactory.createLineBorder(Color.black));
 		return p;
 	}
 

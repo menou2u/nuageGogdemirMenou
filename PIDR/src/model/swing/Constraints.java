@@ -1,4 +1,4 @@
-package model;
+package model.swing;
 
 import java.awt.Dimension;
 import java.util.Observable;

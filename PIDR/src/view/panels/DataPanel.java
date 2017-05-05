@@ -1,13 +1,11 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.Data;
+import model.swing.Data;
 
 @SuppressWarnings("serial")
 public class DataPanel extends JPanel {
@@ -19,7 +17,7 @@ public class DataPanel extends JPanel {
         //Add the scroll pane to this panel.
         add(d.getScrollPane());
         
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+        //setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
     }
 
     public static void main(String[] args) {

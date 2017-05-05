@@ -1,13 +1,11 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.Constraints;
+import model.swing.Constraints;
 
 
 //Ajouter un bouton pour ajouter des contraintes :)
@@ -18,7 +16,7 @@ public class ConstraintsPanel extends JPanel {
         super(new GridLayout(1,0));
         //Add the scroll pane to this panel.
         add(c.getScrollPane());
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+        //setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
     }
 
     public static void main(String[] args) {

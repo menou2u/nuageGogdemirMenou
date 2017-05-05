@@ -1,16 +1,14 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import model.CalculatedFunction;
+import model.swing.CalculatedFunction;
 
 /**
  * Contient la fonction calculée. Ce panel devra donc se mettre à jour ou se
@@ -74,7 +72,7 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getCalculatedPoint(), gbc);
 
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+		//setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 
 	// main pour test

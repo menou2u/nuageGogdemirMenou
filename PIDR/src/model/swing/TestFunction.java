@@ -1,10 +1,12 @@
-package model;
+package model.swing;
 
 import java.awt.Color;
 import java.util.Observable;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+
+import controller.CursorForFunctionListener;
 
 public class TestFunction extends Observable {
 
@@ -26,9 +28,13 @@ public class TestFunction extends Observable {
 		text.setLineWrap(true);
 		//Coloration
 		text.setBackground(Color.WHITE);
+		text.addCaretListener(new CursorForFunctionListener(this));
 		
 	}
 	
+	//TODO si on efface à la main, ça ne change pas value
+	//TODO ne pas insérer des fonctions au milieu de fonctions, e.g : tan() => cos()tan() ou tan()cos() ou tan(cos()) mais c'est tout.
+	//text.getCaretPosition() permet de récupérer la position du curseur
 	public void warnMainWindowFrame(String content) {
 		if (value.equals("")){
 			value = ((String) content) + "()";

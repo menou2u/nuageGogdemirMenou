@@ -1,4 +1,4 @@
-package model;
+package model.swing;
 
 import java.awt.Color;
 import java.awt.Dimension;

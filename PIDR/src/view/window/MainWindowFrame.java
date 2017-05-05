@@ -9,7 +9,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
-import model.MainWindow;
+import model.swing.MainWindow;
 
 @SuppressWarnings("serial")
 public class MainWindowFrame extends JFrame implements Observer {

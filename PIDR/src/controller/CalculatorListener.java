@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import model.MathShortcuts;
+import model.swing.MathShortcuts;
 
 public class CalculatorListener implements ActionListener{
 

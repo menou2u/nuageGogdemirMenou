@@ -1,13 +1,12 @@
 package tests;
 
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class SimpleTableDemo extends JPanel {
     private boolean DEBUG = false;

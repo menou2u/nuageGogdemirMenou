@@ -17,6 +17,7 @@ import view.panels.ToolsPanel;
 
 public class MainWindow extends Observable {
 	
+	private Menu menu;
 	private Tools tools;
 	private Data data;
 	private Constraints constraints;
@@ -34,12 +35,13 @@ public class MainWindow extends Observable {
 	private JPanel contentPanel;
 	
 	public MainWindow() {
+		menu = new Menu();
 		tools = new Tools();
 		data = new Data();
 		constraints = new Constraints();
 		testFunction = new TestFunction();
-		mathShortcuts = new MathShortcuts();
 		calculatedFunction = new CalculatedFunction();
+		mathShortcuts = new MathShortcuts(testFunction);
 		display = new DisplaySettings();
 		toolsPanel = new ToolsPanel(tools);
 		dataPanel = new DataPanel(data);
@@ -49,6 +51,14 @@ public class MainWindow extends Observable {
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
 		displayPanel = new DisplaySettingsPanel(display);
 		contentPanel = new JPanel();
+	}
+	
+	public void setCalculatedFunctionPanel(CalculatedFunctionPanel calculatedFunctionPanel) {
+		this.calculatedFunctionPanel = calculatedFunctionPanel;
+	}
+	
+	public Menu getMenu() {
+		return menu;
 	}
 
 	public JPanel getContentPanel() {

@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.MathShortcuts;
@@ -99,12 +98,12 @@ public class MathShortcutsPanel extends JPanel{
 	}
 	
 	//main pour test
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(300, 500);
 		MathShortcuts math = new MathShortcuts();
 		MathShortcutsPanel paneltest = new MathShortcutsPanel(math);
 		test.add(paneltest,null);
 		test.setVisible(true);
-	}
+	}*/
 }

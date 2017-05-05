@@ -29,6 +29,24 @@ public class TestFunction extends Observable {
 		
 	}
 	
+	public void warnMainWindowFrame(String content) {
+		if (value.equals("")){
+			value = ((String) content) + "()";
+			text.setText(value);
+			System.out.println("oin");
+		}
+		else {
+			String formula = value;
+			formula = formula + (String) content + "()";
+			value = formula;
+			text.setText(value);
+			System.out.println("pouet");
+		}
+		setChanged();
+		notifyObservers();
+		System.out.println("COUCOU");
+	}
+	
 	//Un setter de la valeur à mettre dans la partie textuelle quand on clique sur les raccourcis.
 	public void setValue(String newValue) {
 		value = newValue;

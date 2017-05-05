@@ -116,6 +116,7 @@ public class CalculatedFunction extends Observable {
 	public void setValue(String newValue) {
 		value = newValue;
 	}
+
 	
 	
 }

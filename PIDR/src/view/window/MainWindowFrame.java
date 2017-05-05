@@ -13,11 +13,13 @@ import model.MainWindow;
 
 @SuppressWarnings("serial")
 public class MainWindowFrame extends JFrame implements Observer {
-
+	
 	public MainWindowFrame(MainWindow mainWindow) {
-
+		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.setJMenuBar(mainWindow.getMenu().getMenuBar());
+		
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
@@ -59,12 +61,14 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.weightx = 0;
 		gbc.weighty = 0;
 		add(mainWindow.getMathShortcutsPanel(), gbc);
+		//mainWindow.getMathShortcuts().addObserver(this);
 
 		// Fonction f
 		gbc.gridx += gbc.gridwidth;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
 		add(mainWindow.getCalculatedFunctionPanel(), gbc);
+		mainWindow.getCalculatedFunction().addObserver(this);
 
 		// Panel de visualisation du graphe
 		gbc.gridx = 1;
@@ -86,8 +90,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public static void main(String[] args) {

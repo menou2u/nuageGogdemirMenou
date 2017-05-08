@@ -3,10 +3,14 @@ package model.swing;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Observable;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import controller.Datas2DFactory;
 
 public class Data extends Observable {
 
@@ -14,6 +18,7 @@ public class Data extends Observable {
 	private final JTable table;
 	private String[] columnNames;
 	private JScrollPane scrollPane;
+	String path = "home/miron/Bureau/comparatif telephones.xlsx";
 	
 	public Data(){
 		
@@ -29,7 +34,7 @@ public class Data extends Observable {
         
         //Create the scroll pane and add the table to it.
         scrollPane = new JScrollPane(table);
-        //A voir à quoi ça sert, sinon créer un MouseListener particulier
+        //A voir ï¿½ quoi ï¿½a sert, sinon crï¿½er un MouseListener particulier
         scrollPane.addMouseListener(new MouseListener(){
 
 			@Override
@@ -77,6 +82,27 @@ public class Data extends Observable {
     		}
     	}
     }
+	
+	public void fillDatas(LinkedList list)
+	{
+		Datas2DFactory d2DF = null;
+		try {
+			d2DF = new Datas2DFactory(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int n = 0;
+		for (Double d : d2DF.getX())
+		{
+			data[n][0]=d;
+		}
+		n=0;
+		for (Double d : d2DF.getY())
+		{
+			data[n][1]=d;
+		}
+	}
     
     public void setData(Object dat, int i, int j)
     {

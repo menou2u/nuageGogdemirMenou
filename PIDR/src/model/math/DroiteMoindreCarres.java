@@ -4,8 +4,9 @@ import java.util.LinkedList;
 
 import javagiac.context;
 import javagiac.gen;
+import model.swing.Data;
 
-public class DroiteMoindreCarres {
+public class DroiteMoindreCarres extends MathAlgo {
 
 	private context c;
 	private LinkedList<Double> listXi, listYi, listXxi, listYyi, longueurI;
@@ -21,7 +22,15 @@ public class DroiteMoindreCarres {
 	
 	//TODO ne pas oublier de l'appeler
 	public void init(LinkedList<Double> listXi, LinkedList<Double> listYi, int commutateur, double xOmega, double yOmega, double p1){
+		this.listXi = listXi;
+		this.listYi = listYi;
+		System.out.println(listYi.size());
+		this.xOmega = xOmega;
+		this.yOmega = yOmega;
+		this.p1 = p1;
+		
 		c = new context();
+		
 		xMoyen = getMoyenne(listXi);
 		yMoyen = getMoyenne(listYi);
 		n = listXi.size();
@@ -106,22 +115,30 @@ public class DroiteMoindreCarres {
 	private void calculLongueurI(){
 		longueurI = new LinkedList<Double>();
 		for (int j=0; j<=n-2; j++){
-			longueurI.set(j, Math.sqrt(Math.pow(listXi.get(j+1)-listXi.get(j), 2)+Math.pow(listYi.get(j+1)-listYi.get(j), 2)));
+			longueurI.add(j, Math.sqrt(Math.pow(listXi.get(j+1)-listXi.get(j), 2)+Math.pow(listYi.get(j+1)-listYi.get(j), 2)));
 		}
 	}
 	
 	public static void main(String[] args) throws Exception{
 		try {
-			System.out.println("Loading giac java interface");
+			//System.out.println("Loading giac java interface");
 		        //System.load("/usr/local/lib/libgiacjava.so");
 		        System.loadLibrary("javagiac");
 		    } catch (UnsatisfiedLinkError e) {
 		      System.err.println("Native code library failed to load. See the chapter on Dynamic Linking Problems in the SWIG Java documentation for help.\n" + e);
 		      System.exit(1);
 		    }
+		Data d = new Data();
+		LinkedList<Double> listXi = d.getX();
+		LinkedList<Double> listYi = d.getY();
+		DroiteMoindreCarres dmc = new DroiteMoindreCarres();
+		dmc.init(listXi, listYi, 0, 0, 0, 3);
+		dmc.testConseil();
 	}
 	
 	private double calculDenominateur(){
+		System.out.println("size listYi :"+listYi.size());
+		System.out.println("size listXi :"+listXi.size());
 		return getMoyenne(pow2ListElements(listYi)) - getMoyenne(pow2ListElements(listXi)) + Math.pow(yOmega, 2) - Math.pow(xOmega, 2) - 2*(yOmega*getMoyenne(listYi) - xOmega*getMoyenne(listXi));
 	}
 
@@ -267,7 +284,7 @@ public class DroiteMoindreCarres {
 	private LinkedList<Double> produitTermeATerme(LinkedList<Double> x, LinkedList<Double> y){
 		LinkedList<Double> produit = new LinkedList<Double>();
 		for (int i=0; i<x.size(); i++){
-			produit.set(i, x.get(i)*y.get(i));
+			produit.add(i, x.get(i)*y.get(i));
 		}
 		return produit;
 	}
@@ -275,7 +292,7 @@ public class DroiteMoindreCarres {
 	private LinkedList<Double> pow2ListElements(LinkedList<Double> list){
 		LinkedList<Double> res = new LinkedList<Double>();
 		for (int i=0; i<list.size(); i++){
-			res.set(i, Math.pow(list.get(i),2));
+			res.add(i, Math.pow(list.get(i),2));
 		}
 		return res;
 	}

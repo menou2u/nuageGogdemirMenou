@@ -75,13 +75,32 @@ public class Data extends Observable {
 		data = new Object[Math.max(x.size(),y.size())][2];
 		for (int i=0;i<x.size();i++){
 			data[i][0] = x.get(i);
+			System.out.println("tg");
 		}
+		System.out.println("size "+y.size());
 		for (int j=0;j<y.size();j++)
 		{
+			System.out.println("oin");
 			data[j][1] = y.get(j);
 		}
 	}
 	
+	
+	
+	/**
+	 * @return the x
+	 */
+	public LinkedList<Double> getX() {
+		return x;
+	}
+
+	/**
+	 * @return the y
+	 */
+	public LinkedList<Double> getY() {
+		return y;
+	}
+
 	public void setData(Object[][] datas)
     {
     	int length2 = datas[0].length;

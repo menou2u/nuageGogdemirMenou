@@ -2,7 +2,7 @@ package controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -14,7 +14,7 @@ public class Datas2DFactory {
 
 	private LinkedList<Double> x = new LinkedList<Double>();
 	private LinkedList<Double> y = new LinkedList<Double>();
-	private Dictionary<Integer, Boolean> dic;
+	private HashMap<Integer, Boolean> dic = new HashMap<Integer, Boolean>();
 	
 	public Datas2DFactory(String fileName) throws IOException
 	{
@@ -22,8 +22,8 @@ public class Datas2DFactory {
 		try {
 			XSSFWorkbook wb = readFile(fileName);	
 			XSSFSheet sheet = wb.getSheetAt(0);
-			setX(retrieveDatas(sheet, 1));
-			setY(retrieveDatas(sheet, 2));
+			setX(retrieveDatas(sheet, 0));
+			setY(retrieveDatas(sheet, 1));
 		} finally {
 		    fis.close();
 		}

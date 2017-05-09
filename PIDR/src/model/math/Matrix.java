@@ -1,6 +1,5 @@
 package model.math;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 final public class Matrix {
@@ -155,8 +154,29 @@ final public class Matrix {
         return x;
    
     }
+    
+    /**
+	 * @return the m
+	 */
+	public int getM() {
+		return M;
+	}
 
-    // print matrix to standard output
+	/**
+	 * @return the n
+	 */
+	public int getN() {
+		return N;
+	}
+
+	/**
+	 * @return the data
+	 */
+	public double[][] getData() {
+		return data;
+	}
+
+	// print matrix to standard output
     public void show() {
         for (int i = 0; i < M; i++) {
         	String line = "(";
@@ -173,18 +193,21 @@ final public class Matrix {
 
     // test client
     public static void main(String[] args) {
-        double[][] d = { { 1, 2, 3 }, { 4, 5, 6 }, { 9, 1, 3} };
+        double[][] d = { { 3, 4, 5 }, { 1, 2, 6 } };
         System.out.println("1");
         Matrix A = new Matrix(d);
         A.show();        
         //StdOut.println();
+        
+        //System.out.println("subMat");
+		//Matrix Oin = subMat(A,-1,1,1,2);
 
         //Matrix A = Matrix.random(5, 5);
         //A.show(); 
         //StdOut.println();
 
         System.out.println("2");
-        A.swap(1, 2);
+        A.swap(0, 1);
         A.show(); 
         //StdOut.println();
 

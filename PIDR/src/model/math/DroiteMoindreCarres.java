@@ -119,7 +119,7 @@ public class DroiteMoindreCarres extends MathAlgo {
 		}
 	}
 	
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws UnsatisfiedLinkError{
 		try {
 			//System.out.println("Loading giac java interface");
 		        //System.load("/usr/local/lib/libgiacjava.so");

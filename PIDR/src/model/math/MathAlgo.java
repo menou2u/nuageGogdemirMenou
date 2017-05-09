@@ -11,7 +11,7 @@ public abstract class MathAlgo {
 		int size = list.size();
 		if (nbCol<0)
 		{
-			System.out.println("Le nombre de colonnes dans doit être positif !");
+			System.err.println("Le nombre de colonnes dans doit être positif !");
 			return null;
 		}
 		while (size - nbCol>nbCol)
@@ -32,7 +32,6 @@ public abstract class MathAlgo {
 		double[][] res = new double[row][nbCol];
 		for (int i=0;i<size;i++)
 		{
-			System.out.println("i/nbCol : "+i/nbCol);
 			res[i/nbCol][i%nbCol]=list.get(i).doubleValue();
 		}
 		
@@ -80,7 +79,7 @@ public abstract class MathAlgo {
         	return new Matrix(subData);
     	}
     	else {
-    		System.out.println("Error : illegal indexes arguments");
+    		System.err.println("Error : illegal indexes arguments");
     		return null;
     	}
  

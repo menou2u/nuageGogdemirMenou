@@ -21,7 +21,7 @@ public class Data extends Observable {
 	private LinkedList<Double> x = new LinkedList<Double>();
 	private LinkedList<Double> y = new LinkedList<Double>();
 	
-	String path = "home/miron/Bureau/comparatif telephones.xlsx";
+	String path = "C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx";
 	
 	public Data(){
 		columnNames = new String[]{"xi","yi"};

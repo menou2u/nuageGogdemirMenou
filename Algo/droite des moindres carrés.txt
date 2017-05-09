@@ -145,5 +145,5 @@ returns v1 + ";" + v2 + ";" + y=v1*x+v2 + ";" + h1 + ";" + h2 + ";" + y=h1*x+h2 
         min(listxi) + ";" + max(listxi) + ";" +  xMoyen  + ";" + yMoyen    + ";" + Conseil + ";" + xmingraph  + ";" +  xmaxgraph+ ";" + ymingraph   + ";" + ymaxgraph  ;
 
  }:;
- 
+
 droitesmc() ;

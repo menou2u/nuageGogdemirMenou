@@ -33,14 +33,15 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.weighty = 0;
 		add(mainWindow.getToolsPanel(), gbc);
 
-		// Panneau des données brutes
+		// Panneau des donnï¿½es brutes
 		gbc.gridwidth = 1;
 		gbc.weighty = 1;
 		gbc.gridheight = 3;
 		gbc.gridy += gbc.gridheight;
 		add(mainWindow.getDataPanel(), gbc);
+		mainWindow.getData().addObserver(this);
 
-		// Panneau des contraintes sur coordonnées
+		// Panneau des contraintes sur coordonnï¿½es
 		gbc.gridx += gbc.gridwidth;
 		gbc.gridheight = 2;
 		gbc.weighty = 0;
@@ -78,7 +79,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.weighty = 1;
 		add(mainWindow.getVisualisationPanel(), gbc);
 
-		// Paramètres fenêtre
+		// Paramï¿½tres fenï¿½tre
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize= new Dimension((int)(screenSize.width*0.8), (int)(screenSize.height*0.8));

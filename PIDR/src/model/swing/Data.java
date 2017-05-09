@@ -15,19 +15,17 @@ import controller.Datas2DFactory;
 public class Data extends Observable {
 
 	private Object[][] data;
-	private final JTable table;
+	private JTable table;
 	private String[] columnNames;
 	private JScrollPane scrollPane;
+	private LinkedList<Double> x = new LinkedList<Double>();
+	private LinkedList<Double> y = new LinkedList<Double>();
+	
 	String path = "home/miron/Bureau/comparatif telephones.xlsx";
 	
 	public Data(){
-		
-		data = new Object[1][2];
-        data[0][0] = "xi";
-        data[0][1] = "yi";
-        
-        columnNames = new String[]{"xi","yi"};
-
+		columnNames = new String[]{"xi","yi"};
+		initData();
         table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
@@ -67,6 +65,21 @@ public class Data extends Observable {
 				
 			}
         });
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void initData()
+	{
+		fillDatas();
+		data = new Object[Math.max(x.size(),y.size())][2];
+		for (int i=0;i<x.size();i++){
+			data[i][0] = x.get(i);
+		}
+		for (int j=0;j<y.size();j++)
+		{
+			data[j][1] = y.get(j);
+		}
 	}
 	
 	public void setData(Object[][] datas)
@@ -83,7 +96,7 @@ public class Data extends Observable {
     	}
     }
 	
-	public void fillDatas(LinkedList list)
+	public void fillDatas()
 	{
 		Datas2DFactory d2DF = null;
 		try {
@@ -92,16 +105,8 @@ public class Data extends Observable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int n = 0;
-		for (Double d : d2DF.getX())
-		{
-			data[n][0]=d;
-		}
-		n=0;
-		for (Double d : d2DF.getY())
-		{
-			data[n][1]=d;
-		}
+		x = d2DF.getX();
+		y = d2DF.getY();
 	}
     
     public void setData(Object dat, int i, int j)

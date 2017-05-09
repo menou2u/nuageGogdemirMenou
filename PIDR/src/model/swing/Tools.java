@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.ImportButtonListener;
 import pidr.mag.sample.api.DefaultMenuModelHandler;
 import pidr.mag.sample.api.MenuOpenerButton;
 import pidr.mag.sample.api.RotativeMenuModel;
@@ -43,6 +44,7 @@ public class Tools extends Observable {
 	private String lastOpened[];
 	private DefaultMenuModelHandler openModel;
 	private MenuOpenerButton menuOpener;
+	private ImportFileChooser importFileChooser; 
 
 	public Tools() {
 
@@ -69,6 +71,7 @@ public class Tools extends Observable {
 		export = new JButton("Exporter");
 
 		importt = new JButton("Importer");
+		importt.addActionListener(new ImportButtonListener(this));
 
 		print = new JButton("Imprimer");
 
@@ -93,6 +96,9 @@ public class Tools extends Observable {
 		namePrinting = new JLabel("Impression");
 
 		nameExecuting = new JLabel("Exécution");
+		
+		importFileChooser = new ImportFileChooser();
+		
 	}
 
 	private void generateInitialModel() {
@@ -248,5 +254,13 @@ public class Tools extends Observable {
 	public void setOpenModel(DefaultMenuModelHandler openModel) {
 		this.openModel = openModel;
 	}
+	/**
+	 * @return the importFileChooser
+	 */
+	public ImportFileChooser getImportFileChooser() {
+		return importFileChooser;
+	}
+	
+		
 
 }

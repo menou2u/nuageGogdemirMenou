@@ -149,6 +149,10 @@ public class Data extends Observable {
 		return scrollPane;
 	}
 	
-	
+	public static void main(String[] args){
+		Data test = new Data();
+		System.out.println(test.getData());
+	}
 	
 }
+

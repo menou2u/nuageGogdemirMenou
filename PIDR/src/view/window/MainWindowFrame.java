@@ -14,6 +14,7 @@ import model.swing.MainWindow;
 @SuppressWarnings("serial")
 public class MainWindowFrame extends JFrame implements Observer {
 	
+	@SuppressWarnings("unused")
 	private MainWindow mainWindow;
 	
 	public MainWindowFrame(MainWindow mainWindow) {

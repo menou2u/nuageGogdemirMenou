@@ -46,11 +46,9 @@ public class TestFunction extends Observable {
 			formula = formula + (String) content + "()";
 			value = formula;
 			text.setText(value);
-			System.out.println("pouet");
 		}
 		setChanged();
 		notifyObservers();
-		System.out.println("COUCOU");
 	}
 	
 	//Un setter de la valeur à mettre dans la partie textuelle quand on clique sur les raccourcis.
@@ -69,6 +67,7 @@ public class TestFunction extends Observable {
 	public JTextArea getText() {
 		return text;
 	}
+	
 	public String getParamString() {
 		return "(x)";
 	}

@@ -59,6 +59,7 @@ public class Datas2DFactory {
 		return res;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean isNumericCell(XSSFCell cell)
 	{
 		boolean value = false;

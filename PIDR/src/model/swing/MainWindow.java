@@ -175,9 +175,11 @@ public class MainWindow extends Observable {
 	}
 
 	public void runMath() {
-		DroiteMoindreCarres dmc = new DroiteMoindreCarres();
-		dmc.init(data.getX(), data.getY(), 0, 0, 0, 1);
-		dmc.testConseil();
+		if (!data.getPath().equals("")){
+			DroiteMoindreCarres dmc = new DroiteMoindreCarres();
+			dmc.init(data.getX(), data.getY(), 0, 0, 0, 1);
+			dmc.testConseil();
+		}
 		setChanged();
 		notifyObservers();
 	}

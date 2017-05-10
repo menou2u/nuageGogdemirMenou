@@ -155,6 +155,13 @@ public class Data extends Observable {
 		return scrollPane;
 	}
 	
+	/**
+	 * @return the path
+	 */
+	public String getPath() {
+		return path;
+	}
+
 	public static void main(String[] args){
 		Data test = new Data();
 		System.out.println(test.getData());

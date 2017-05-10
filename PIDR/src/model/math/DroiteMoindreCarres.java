@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 import javagiac.context;
 import javagiac.gen;
-import model.swing.Data;
 
 public class DroiteMoindreCarres extends MathAlgo {
 
@@ -12,47 +11,71 @@ public class DroiteMoindreCarres extends MathAlgo {
 	private LinkedList<Double> listXi, listYi, listXxi, listYyi, longueurI;
 	private int n;
 	private double xMoyen, yMoyen, xOmega, yOmega, xmaxgraph, xmingraph, ymaxgraph, ymingraph,
-					p1, p2, residuVerticalMoyen, residuOrthogonalMoyen, longueurDroite, longueurPolygone,
+					p2, residuVerticalMoyen, residuOrthogonalMoyen, longueurDroite, longueurPolygone,
 					facteurQualite, v1, v2, h1, h2, denominateur, alpha, teta, o1, o2, residuMoyenOrthoProjVertical,
 					residuMoyenOrthoProjHorizontal, residuMoyenOrthoProjOrthogonal, residuCarreMoyenOrthoProjVertical,
-					residuCarreMoyenOrthoProjHorizontal, residuCarreMoyenOrthoProjOrtho, residuCarreMoyenOrtho, 
+					residuCarreMoyenOrthoProjHorizontal, residuCarreMoyenOrthoProjOrthogonal, residuCarreMoyenOrtho, 
 					residuMoyenOrtho;
 	private FonctionAffine f, fv, fh, fo, f1;
 	private String conseil;
 	
+	public DroiteMoindreCarres() {
+		System.out.println("constructeur");
+		try {
+			//System.out.println("Loading giac java interface");
+		        //System.load("/usr/local/lib/libgiacjava.so");
+		        System.loadLibrary("javagiac");
+		    } catch (UnsatisfiedLinkError e) {
+		      System.err.println("Native code library failed to load. See the chapter on Dynamic Linking Problems in the SWIG Java documentation for help.\n" + e);
+		      System.exit(1);
+		    }
+	}
+	
 	//TODO ne pas oublier de l'appeler
+	@SuppressWarnings("unchecked")
 	public void init(LinkedList<Double> listXi, LinkedList<Double> listYi, int commutateur, double xOmega, double yOmega, double p1){
+		System.out.println("init");
 		this.listXi = listXi;
 		this.listYi = listYi;
-		System.out.println(listYi.size());
 		this.xOmega = xOmega;
 		this.yOmega = yOmega;
-		this.p1 = p1;
 		
+		System.out.println("context ?");
 		c = new context();
+		System.out.println("context !");
 		
-		xMoyen = getMoyenne(listXi);
-		yMoyen = getMoyenne(listYi);
 		n = listXi.size();
+		xMoyen = getMoyenne(listXi);
+		System.out.println("xMoyen : " + xMoyen);
+		yMoyen = getMoyenne(listYi);
+		System.out.println("yMoyen : " + yMoyen);
+		
 		switch (commutateur) {
 		case 0: //pas de contraintes
-			xOmega = xMoyen;
-			yOmega = yMoyen;
-			listXxi = listXi;
+			System.out.println("cas 0");
+			this.xOmega = xMoyen;
+			this.yOmega = yMoyen;
+			System.out.println("size avant "+listXi.size());
+			listXxi = (LinkedList<Double>) listXi.clone();
 			concat(listXxi,xOmega);
-			listYyi = listYi;
+			listYyi = (LinkedList<Double>) listYi.clone();
 			concat(listYyi,yOmega);
 			xmaxgraph = getMax(listXi);
+			System.out.println("xMax : " + xmaxgraph);
 			xmingraph = getMin(listXi);
+			System.out.println("xMin : " + xmingraph);
 			ymaxgraph = getMax(listYi);
+			System.out.println("yMax : " + ymaxgraph);
 			ymingraph = getMin(listYi);
+			System.out.println("yMin : " + ymingraph);
 			break;
 		case 1: //contrainte sur coordonnées d'un point de la droite
+			System.out.println("cas 1");
 			this.xOmega = xOmega;
 			this.yOmega = yOmega;
-			listXxi = listXi;
+			listXxi = (LinkedList<Double>) listXi.clone();
 			concat(listXxi,xOmega);
-			listYyi = listYi;
+			listYyi = (LinkedList<Double>) listYi.clone();
 			concat(listYyi,yOmega);
 			xmaxgraph = getMax(listXxi);
 			xmingraph = getMin(listXxi);
@@ -60,11 +83,11 @@ public class DroiteMoindreCarres extends MathAlgo {
 			ymingraph = getMin(listYyi);
 			break;
 		case 2: //contrainte sur la pente p de la droite
+			System.out.println("cas 2");
 			xmaxgraph = getMax(listXi);
 			xmingraph = getMin(listXi);
 			ymaxgraph = getMax(listYi);
 			ymingraph = getMin(listYi);
-			this.p1 = p1;
 			p2 = yMoyen-p1*xMoyen;
 			f = new FonctionAffine("f", p1, "x", p2);
 			residuVerticalMoyen = calculResiduVerticalMoyen();
@@ -79,9 +102,11 @@ public class DroiteMoindreCarres extends MathAlgo {
 		}
 		
 		v1 = calculV1();
-		v2 = yOmega-v1*xOmega;
+		v2 = this.yOmega-v1*this.xOmega;
+		System.out.println("v2 "+v2);
 		h1 = calculH1();
-		h2 = yOmega-h1*xOmega;
+		h2 = this.yOmega-h1*this.xOmega;
+		System.out.println("h2 "+h2);
 		
 		denominateur = calculDenominateur();
 				
@@ -89,7 +114,7 @@ public class DroiteMoindreCarres extends MathAlgo {
 			System.out.println("Calculs de projection orthogonale impossibles");
 		}
 		else {
-			alpha = 0.5*Math.atan((-2*(getMoyenne(produitTermeATerme(listXi, listYi)) - xOmega*yMoyen - yOmega*xMoyen + xOmega*yOmega))/denominateur);
+			alpha = 0.5*Math.atan((-2*(getMoyenne(produitTermeATerme(listXi, listYi)) - this.xOmega*yMoyen - this.yOmega*xMoyen + this.xOmega*this.yOmega))/denominateur);
 			if (calculD1() <= calculD2()){
 				teta = alpha;
 			}
@@ -97,9 +122,9 @@ public class DroiteMoindreCarres extends MathAlgo {
 				teta = alpha+Math.PI/2;
 			}
 			o1 = -1/Math.tan(teta);
-			o2 = yOmega-o1*xOmega;
+			o2 = this.yOmega-o1*this.xOmega;
 		}
-		fv = new FonctionAffine("fv", p1, "x", p2);
+		fv = new FonctionAffine("fv", v1, "x", v2);
 		fh = new FonctionAffine("fh", h1, "x", h2);
 		fo = new FonctionAffine("fo", o1, "x", o2);
 		residuMoyenOrthoProjVertical = calculResiduMoyenOrthoProj(fv);
@@ -107,38 +132,35 @@ public class DroiteMoindreCarres extends MathAlgo {
 		residuMoyenOrthoProjOrthogonal = calculResiduMoyenOrthoProj(fo);
 		residuCarreMoyenOrthoProjVertical = calculResiduCarreMoyenOrthoProj(fv);
 		residuCarreMoyenOrthoProjHorizontal = calculResiduCarreMoyenOrthoProj(fh);
-		residuCarreMoyenOrthoProjOrtho = calculResiduCarreMoyenOrthoProj(fo);
-		residuCarreMoyenOrtho = Math.min(residuCarreMoyenOrthoProjVertical, Math.min(residuCarreMoyenOrthoProjHorizontal, residuCarreMoyenOrthoProjOrtho));
+		residuCarreMoyenOrthoProjOrthogonal = calculResiduCarreMoyenOrthoProj(fo);
+		residuCarreMoyenOrtho = Math.min(residuCarreMoyenOrthoProjVertical, Math.min(residuCarreMoyenOrthoProjHorizontal, residuCarreMoyenOrthoProjOrthogonal));
 		residuMoyenOrtho = Math.min(residuMoyenOrthoProjVertical, Math.min(residuMoyenOrthoProjHorizontal, residuMoyenOrthoProjOrthogonal));
+		
+		System.out.println("fv " + fv);
+		System.out.println("fh " + fh);
+		System.out.println("fo " + fo);
+		System.out.println("residuMoyenOrthoProjVertical " + residuMoyenOrthoProjVertical);
+		System.out.println("residuMoyenOrthoProjHorizontal " + residuMoyenOrthoProjHorizontal);
+		System.out.println("residuMoyenOrthoProjOrthogonal " + residuMoyenOrthoProjOrthogonal);
+		System.out.println("residuCarreMoyenOrthoProjVertical " + residuCarreMoyenOrthoProjVertical);
+		System.out.println("residuCarreMoyenOrthoProjHorizontal " + residuCarreMoyenOrthoProjHorizontal);
+		System.out.println("residuCarreMoyenOrthoProjOrthogonal " + residuCarreMoyenOrthoProjOrthogonal);
+		System.out.println("residuCarreMoyenOrtho " + residuCarreMoyenOrtho);
+		System.out.println("residuMoyenOrtho " + residuMoyenOrtho);
+		System.out.println("longueur droite "+longueurDroite);
+		System.out.println("longueur polygone "+longueurPolygone);
 	}
 	
 	private void calculLongueurI(){
+		System.out.println("calculLongueurI");
 		longueurI = new LinkedList<Double>();
 		for (int j=0; j<=n-2; j++){
 			longueurI.add(j, Math.sqrt(Math.pow(listXi.get(j+1)-listXi.get(j), 2)+Math.pow(listYi.get(j+1)-listYi.get(j), 2)));
 		}
 	}
 	
-	public static void main(String[] args) throws UnsatisfiedLinkError{
-		try {
-			//System.out.println("Loading giac java interface");
-		        //System.load("/usr/local/lib/libgiacjava.so");
-		        System.loadLibrary("javagiac");
-		    } catch (UnsatisfiedLinkError e) {
-		      System.err.println("Native code library failed to load. See the chapter on Dynamic Linking Problems in the SWIG Java documentation for help.\n" + e);
-		      System.exit(1);
-		    }
-		Data d = new Data();
-		LinkedList<Double> listXi = d.getX();
-		LinkedList<Double> listYi = d.getY();
-		DroiteMoindreCarres dmc = new DroiteMoindreCarres();
-		dmc.init(listXi, listYi, 0, 0, 0, 3);
-		dmc.testConseil();
-	}
-	
 	private double calculDenominateur(){
-		System.out.println("size listYi :"+listYi.size());
-		System.out.println("size listXi :"+listXi.size());
+		System.out.println("det");
 		return getMoyenne(pow2ListElements(listYi)) - getMoyenne(pow2ListElements(listXi)) + Math.pow(yOmega, 2) - Math.pow(xOmega, 2) - 2*(yOmega*getMoyenne(listYi) - xOmega*getMoyenne(listXi));
 	}
 
@@ -160,10 +182,13 @@ public class DroiteMoindreCarres extends MathAlgo {
 		longueurDroite = new gen("approx(int(sqrt(1+("+f1+").^2),x,"+getMin(listXxi)+","+getMax(listXxi)+"))", c).DOUBLE_val(); //TODO quel est le but de conseil ? car ici on modifie une variable
 		calculLongueurI();
 		longueurPolygone = getSomme(longueurI);
+		System.out.println("longueur droite conseil "+longueurDroite);
+		System.out.println("longueur polygone "+longueurPolygone);
 	}
 	
 	
 	private double calculD1(){
+		System.out.println("calcul D1");
 		double res = 0.0;
 		for (int i=0; i<listXi.size(); i++){
 			res = res + Math.pow((listXi.get(i) - xMoyen)*Math.cos(alpha) + (listYi.get(i) - yMoyen)*Math.sin(alpha),2);
@@ -172,6 +197,7 @@ public class DroiteMoindreCarres extends MathAlgo {
 	}
 	
 	private double calculD2(){
+		System.out.println("calcul D2");
 		double res = 0.0;
 		for (int i=0; i<listXi.size(); i++){
 			res = res + Math.pow((listXi.get(i) - xMoyen)*Math.cos(alpha+Math.PI/2) + (listYi.get(i) - yMoyen)*Math.sin(alpha+Math.PI/2),2);
@@ -180,36 +206,49 @@ public class DroiteMoindreCarres extends MathAlgo {
 	}
 
 	private double calculH1(){
+		System.out.println("calcul H1");
 		double num = 0.0;
 		double denom = 0.0;
 		for (int i=0; i<listXi.size(); i++){
 			num = num + Math.pow(listYi.get(i) - yOmega, 2);
 			denom = denom + (listYi.get(i) - yOmega)*(listXi.get(i) - xOmega);
 		}
+		System.out.println("denom : "+denom);
 		if (denom!=0.0){
+			System.out.println("h1 "+ num/denom);
 			return num/denom;
 		}
 		return 0.0;
 	}
 
 	private double calculV1() {
+		System.out.println("calcul V1");
 		double num = 0.0;
 		double denom = 0.0;
+		System.out.println("yomega : "+yOmega);
+		System.out.println("xomega : "+xOmega);
 		for (int i=0; i<listXi.size(); i++){
+			System.out.println("listXi : "+listXi.get(i));
+			System.out.println("listYi : "+listYi.get(i));
 			num = num + (listYi.get(i) - yOmega) * (listXi.get(i) - xOmega);
 			denom = denom + Math.pow(listXi.get(i)-xOmega,2);
 		}
+		System.out.println("num "+ num);
+		System.out.println("denom : "+denom);
 		if (denom!=0.0){
+			System.out.println("v1 "+ num/denom);
 			return num/denom;
 		}
 		return 0.0;
 	}
 	
 	private double calculLongueurDroite(){
+		System.out.println("calcul longueur droite");
 		return Math.sqrt(Math.pow(xmaxgraph-xmingraph,2)+Math.pow(f.eval(xmaxgraph)-f.eval(xmingraph), 2));
 	}
 	
 	public double calculResiduVerticalMoyen(){
+		System.out.println("calcul residu vertical moyen");
 		double res = 0.0;
 		for (int i=0; i<listXi.size(); i++){
 			res = res + Math.abs(listYi.get(i) - f.eval(listXi.get(i)));
@@ -222,6 +261,7 @@ public class DroiteMoindreCarres extends MathAlgo {
 	 * @return
 	 */
 	public double calculResiduMoyenOrthoProj(FonctionAffine function){
+		System.out.println("calcul residu moyen ortho proj");
 		double somme = 0.0;
 		for (int i=0; i<listXi.size(); i++){
 			somme = somme + Math.abs(listYi.get(i)-function.eval(listXi.get(i)))*Math.cos(Math.atan(function.getA()));
@@ -234,6 +274,7 @@ public class DroiteMoindreCarres extends MathAlgo {
 	 * @return
 	 */
 	public double calculResiduCarreMoyenOrthoProj(FonctionAffine function){
+		System.out.println("calcul Residu carre Moyen ortho proj");
 		double somme = 0.0;
 		for (int i=0; i<listXi.size(); i++) {
 			somme = somme + (listYi.get(i)-function.eval(listXi.get(i)))*Math.cos(Math.atan(function.getA()))*(listYi.get(i)-function.eval(listXi.get(i)))*Math.cos(Math.atan(function.getA())); 
@@ -242,20 +283,18 @@ public class DroiteMoindreCarres extends MathAlgo {
 	}
 
 	public void concat(LinkedList<Double> list, double elt){
+		System.out.println("concat");
 		list.add(elt);
 	}
 	
 	public double getMoyenne(LinkedList<Double> list){
-		double moyenne = 0.0;
-		for (int i=0; i<list.size()-1; i++){
-			moyenne += list.get(i);
-		}
-		return moyenne;
+		return getSomme(list)/n;
 	}
 	
 	public double getMax(LinkedList<Double> list){
-		double max = 0.0;
-		for (int i=0; i<list.size()-1; i++){
+		System.out.println("getMax");
+		double max = Integer.MIN_VALUE;
+		for (int i=0; i<list.size(); i++){
 			if (list.get(i) > max){
 				max = list.get(i);
 			}
@@ -264,8 +303,9 @@ public class DroiteMoindreCarres extends MathAlgo {
 	}
 	
 	public double getMin(LinkedList<Double> list){
-		double min = 0.0;
-		for (int i=0; i<list.size()-1; i++){
+		System.out.println("getMin");
+		double min = Integer.MAX_VALUE;
+		for (int i=0; i<list.size(); i++){
 			if (list.get(i) < min){
 				min = list.get(i);
 			}
@@ -274,6 +314,7 @@ public class DroiteMoindreCarres extends MathAlgo {
 	}
 
 	private double getSomme(LinkedList<Double> list) {
+		System.out.println("getSomme");
 		double somme = 0.0;
 		for (int i=0; i<list.size(); i++){
 			somme = somme + list.get(i);
@@ -282,6 +323,7 @@ public class DroiteMoindreCarres extends MathAlgo {
 	}
 	
 	private LinkedList<Double> produitTermeATerme(LinkedList<Double> x, LinkedList<Double> y){
+		System.out.println("produitTermeATerme");
 		LinkedList<Double> produit = new LinkedList<Double>();
 		for (int i=0; i<x.size(); i++){
 			produit.add(i, x.get(i)*y.get(i));
@@ -290,11 +332,223 @@ public class DroiteMoindreCarres extends MathAlgo {
 	}
 	
 	private LinkedList<Double> pow2ListElements(LinkedList<Double> list){
+		System.out.println("pow2ListElements");
 		LinkedList<Double> res = new LinkedList<Double>();
 		for (int i=0; i<list.size(); i++){
 			res.add(i, Math.pow(list.get(i),2));
 		}
 		return res;
 	}
+
+	/**
+	 * @return the conseil
+	 */
+	public String getConseil() {
+		return conseil;
+	}
+
+	/**
+	 * @return the c
+	 */
+	public context getC() {
+		return c;
+	}
+
+	/**
+	 * @return the xMoyen
+	 */
+	public double getxMoyen() {
+		return xMoyen;
+	}
+
+	/**
+	 * @return the yMoyen
+	 */
+	public double getyMoyen() {
+		return yMoyen;
+	}
+
+	/**
+	 * @return the xOmega
+	 */
+	public double getxOmega() {
+		return xOmega;
+	}
+
+	/**
+	 * @return the yOmega
+	 */
+	public double getyOmega() {
+		return yOmega;
+	}
+
+	/**
+	 * @return the xmaxgraph
+	 */
+	public double getXmaxgraph() {
+		return xmaxgraph;
+	}
+
+	/**
+	 * @return the xmingraph
+	 */
+	public double getXmingraph() {
+		return xmingraph;
+	}
+
+	/**
+	 * @return the ymaxgraph
+	 */
+	public double getYmaxgraph() {
+		return ymaxgraph;
+	}
+
+	/**
+	 * @return the ymingraph
+	 */
+	public double getYmingraph() {
+		return ymingraph;
+	}
+
+	/**
+	 * @return the residuVerticalMoyen
+	 */
+	public double getResiduVerticalMoyen() {
+		return residuVerticalMoyen;
+	}
+
+	/**
+	 * @return the residuOrthogonalMoyen
+	 */
+	public double getResiduOrthogonalMoyen() {
+		return residuOrthogonalMoyen;
+	}
+
+	/**
+	 * @return the longueurDroite
+	 */
+	public double getLongueurDroite() {
+		return longueurDroite;
+	}
+
+	/**
+	 * @return the longueurPolygone
+	 */
+	public double getLongueurPolygone() {
+		return longueurPolygone;
+	}
+
+	/**
+	 * @return the facteurQualite
+	 */
+	public double getFacteurQualite() {
+		return facteurQualite;
+	}
+
+	/**
+	 * @return the h1
+	 */
+	public double getH1() {
+		return h1;
+	}
+
+	/**
+	 * @return the h2
+	 */
+	public double getH2() {
+		return h2;
+	}
+
+	/**
+	 * @return the alpha
+	 */
+	public double getAlpha() {
+		return alpha;
+	}
+
+	/**
+	 * @return the residuMoyenOrthoProjVertical
+	 */
+	public double getResiduMoyenOrthoProjVertical() {
+		return residuMoyenOrthoProjVertical;
+	}
+
+	/**
+	 * @return the residuMoyenOrthoProjHorizontal
+	 */
+	public double getResiduMoyenOrthoProjHorizontal() {
+		return residuMoyenOrthoProjHorizontal;
+	}
+
+	/**
+	 * @return the residuMoyenOrthoProjOrthogonal
+	 */
+	public double getResiduMoyenOrthoProjOrthogonal() {
+		return residuMoyenOrthoProjOrthogonal;
+	}
+
+	/**
+	 * @return the residuCarreMoyenOrthoProjVertical
+	 */
+	public double getResiduCarreMoyenOrthoProjVertical() {
+		return residuCarreMoyenOrthoProjVertical;
+	}
+
+	/**
+	 * @return the residuCarreMoyenOrthoProjHorizontal
+	 */
+	public double getResiduCarreMoyenOrthoProjHorizontal() {
+		return residuCarreMoyenOrthoProjHorizontal;
+	}
+
+	/**
+	 * @return the residuCarreMoyenOrthoProjOrthogonal
+	 */
+	public double getResiduCarreMoyenOrthoProjOrthogonal() {
+		return residuCarreMoyenOrthoProjOrthogonal;
+	}
+
+	/**
+	 * @return the residuCarreMoyenOrtho
+	 */
+	public double getResiduCarreMoyenOrtho() {
+		return residuCarreMoyenOrtho;
+	}
+
+	/**
+	 * @return the residuMoyenOrtho
+	 */
+	public double getResiduMoyenOrtho() {
+		return residuMoyenOrtho;
+	}
+
+	/**
+	 * @return the f
+	 */
+	public FonctionAffine getF() {
+		return f;
+	}
+
+	/**
+	 * @return the fv
+	 */
+	public FonctionAffine getFv() {
+		return fv;
+	}
+
+	/**
+	 * @return the fh
+	 */
+	public FonctionAffine getFh() {
+		return fh;
+	}
+
+	/**
+	 * @return the fo
+	 */
+	public FonctionAffine getFo() {
+		return fo;
+	}
+	
 	
 }

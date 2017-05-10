@@ -17,6 +17,9 @@ public class FonctionAffine {
 	}
 	
 	public String toString(){
+		if (b < 0){
+			return a+"*"+x+b;
+		}
 		return a+"*"+x+"+"+b;
 	}
 

@@ -179,9 +179,9 @@ public class ToolsPanel extends JPanel{
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(1300, 1300);
-		Tools tools = new Tools();
-		ToolsPanel paneltest = new ToolsPanel(tools);
-		test.add(paneltest,null);
+		//Tools tools = new Tools();
+		//ToolsPanel paneltest = new ToolsPanel(tools);
+		//test.add(paneltest,null);
 		test.setVisible(true);
 	}
 	

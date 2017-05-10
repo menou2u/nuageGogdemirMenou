@@ -56,7 +56,6 @@
 		<version>2.3.2</version>
 	</dependency>
 
-
 	<dependency>
 		<groupId>net.sourceforge.jmatio</groupId>
 		<artifactId>jmatio</artifactId>
@@ -97,6 +96,12 @@
 		<groupId>org.apache.poi</groupId>
 		<artifactId>poi-ooxml</artifactId>
 		<version>${poi.version}</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>com.liferay.faces</groupId>
+	    <artifactId>liferay-faces-alloy</artifactId>
+	    <version>3.1.2-ga3</version>
 	</dependency>
   </dependencies>
 </project>

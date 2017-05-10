@@ -20,13 +20,24 @@ public class Data extends Observable {
 	private JScrollPane scrollPane;
 	private LinkedList<Double> x = new LinkedList<Double>();
 	private LinkedList<Double> y = new LinkedList<Double>();
-	
-	String path = "C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx";
+	private String path;
 	
 	public Data(){
 		columnNames = new String[]{"xi","yi"};
+		data = new Object[Math.max(x.size(),y.size())][2];
+        initTable();
+	}
+	
+	public void updateTableContent(String path){
+		this.path = path;
 		initData();
-        table = new JTable(data, columnNames);
+		initTable();
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void initTable(){
+		table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
         
@@ -65,8 +76,6 @@ public class Data extends Observable {
 				
 			}
         });
-		setChanged();
-		notifyObservers();
 	}
 	
 	public void initData()
@@ -75,12 +84,9 @@ public class Data extends Observable {
 		data = new Object[Math.max(x.size(),y.size())][2];
 		for (int i=0;i<x.size();i++){
 			data[i][0] = x.get(i);
-			System.out.println("tg");
 		}
-		System.out.println("size "+y.size());
 		for (int j=0;j<y.size();j++)
 		{
-			System.out.println("oin");
 			data[j][1] = y.get(j);
 		}
 	}

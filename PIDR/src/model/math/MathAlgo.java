@@ -9,44 +9,37 @@ public abstract class MathAlgo {
 	//page 455
 	public static Matrix list2Mat(LinkedList<Double> list, int nbCol){
 		int size = list.size();
-		if (nbCol<0)
-		{
+		if (nbCol < 0) {
 			System.err.println("Le nombre de colonnes dans doit être positif !");
 			return null;
 		}
-		while (size - nbCol>nbCol)
-		{
+		while (size - nbCol > nbCol) {
 			size = size - nbCol;
 		}
-		int toAdd = nbCol-size;
-		for (int i=0;i<toAdd;i++)
-		{
+		int toAdd = nbCol - size;
+		for (int i = 0; i < toAdd; i++) {
 			list.add(0.0);
 		}
 		size = list.size();
-		int row = size/nbCol;
-		if (row*nbCol<size)
-		{
-			row=row+1;
+		int row = size / nbCol;
+		if (row * nbCol < size) {
+			row = row + 1;
 		}
 		double[][] res = new double[row][nbCol];
-		for (int i=0;i<size;i++)
-		{
-			res[i/nbCol][i%nbCol]=list.get(i).doubleValue();
+		for (int i = 0; i < size; i++) {
+			res[i / nbCol][i % nbCol] = list.get(i).doubleValue();
 		}
-		
+
 		return new Matrix(res);
 	}
 	
 	//page 455
-	public static LinkedList<Double> mat2List(Matrix A){
+	public static LinkedList<Double> mat2List(Matrix A) {
 		LinkedList<Double> list = new LinkedList<Double>();
 		double data[][] = A.getData();
-		for (int i=0;i<data.length;i++)
-		{
-			for (int j=0;j<data[0].length;j++)
-			{
-				list.add((Double)data[i][j]);
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[0].length; j++) {
+				list.add((Double) data[i][j]);
 			}
 		}
 		return list;

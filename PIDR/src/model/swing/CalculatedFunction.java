@@ -40,6 +40,7 @@ public class CalculatedFunction extends Observable {
 		functionName.setText("f(x) = ");
 		
 		functionCalculated = new JTextArea();
+		functionCalculated.setEditable(false);
 		functionCalculated.setText(value);
 		functionCalculated.setBackground(Color.WHITE);
 		functionCalculated.setRows(4);
@@ -56,6 +57,7 @@ public class CalculatedFunction extends Observable {
 		calcul.setText("Calcul");
 		
 		calculatedPoint = new JTextArea();
+		calculatedPoint.setEditable(false);
 		calculatedPoint.setLineWrap(true);
 		calculatedPoint.setText("");
 		calculatedPoint.setBackground(Color.WHITE);

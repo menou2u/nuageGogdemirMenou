@@ -2,6 +2,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JFileChooser;
 
 import model.swing.Tools;
 
@@ -15,7 +18,12 @@ public class ImportButtonListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		toolsReference.getImportFileChooser().showOpenDialog(null);
+		int returnVal = toolsReference.getImportFileChooser().showOpenDialog(null);
+		System.out.println(toolsReference.getImportFileChooser().getCurrentDirectory());
+		if (returnVal == JFileChooser.APPROVE_OPTION){
+			File file = toolsReference.getImportFileChooser().getSelectedFile();
+			toolsReference.sendNewFile(file);
+		}
 	}
 
 }

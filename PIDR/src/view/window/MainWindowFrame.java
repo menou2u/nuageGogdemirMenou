@@ -14,7 +14,11 @@ import model.swing.MainWindow;
 @SuppressWarnings("serial")
 public class MainWindowFrame extends JFrame implements Observer {
 	
+	private MainWindow mainWindow;
+	
 	public MainWindowFrame(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+		mainWindow.addObserver(this);
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -32,6 +36,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridwidth = 4;
 		gbc.weighty = 0;
 		add(mainWindow.getToolsPanel(), gbc);
+		mainWindow.getTools().addObserver(this);
 
 		// Panneau des donn�es brutes
 		gbc.gridwidth = 1;
@@ -91,7 +96,14 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		/*if (o instanceof Tools){
+			System.out.println("TOOLS");
+			if (arg instanceof File){
+				System.out.println("FILE");
+				mainWindow.getData().updateTableContent(((File) arg).getPath());
+				System.out.println("oin ?");
+			}
+		}*/
 	}
 
 	public static void main(String[] args) {

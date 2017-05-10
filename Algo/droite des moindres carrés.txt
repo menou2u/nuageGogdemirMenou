@@ -69,7 +69,15 @@ droitesmc():={
     } 
 
  
-  v1:=approx((somme((listyi-yomega)*(listxi-xomega)))/(somme((listxi-xomega).^2)));
+  v1:=approx(
+            (somme(
+                  (listyi-yomega)*(listxi-xomega))
+                  )
+            /
+            (somme(
+                  (listxi-xomega).^2)
+                  )
+            );
   v2:=yomega-v1*xomega;
   
   h1:=approx(somme((listyi-yomega).^2)/(somme((listyi-yomega)*(listxi-xomega))));
@@ -129,7 +137,13 @@ droitesmc():={
     }
 
   f1(x):=diff(f(x),x,1);
-  longueurdroite:=approx(int(sqrt(1+(f1(x)).^2),x,min(listxxi),max(listxxi)));
+  longueurdroite:=approx(
+                        int(
+                            sqrt(
+                                1+(f1(x)).^2
+                            ),x,min(listxxi),max(listxxi)
+                        )
+                  );
   longueuri:=newList(n-1);
   for(j:=0;j<=n-2;j:=j++)   
     {

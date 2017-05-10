@@ -2,12 +2,14 @@ package model.swing;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.ExecuteButtonListener;
 import controller.ImportButtonListener;
 import pidr.mag.sample.api.DefaultMenuModelHandler;
 import pidr.mag.sample.api.MenuOpenerButton;
@@ -45,8 +47,10 @@ public class Tools extends Observable {
 	private DefaultMenuModelHandler openModel;
 	private MenuOpenerButton menuOpener;
 	private ImportFileChooser importFileChooser; 
+	private MainWindow mainWindow;
 
-	public Tools() {
+	public Tools(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 
 		close = new JButton("Fermer");
 
@@ -78,6 +82,7 @@ public class Tools extends Observable {
 		preview = new JButton("Prévisualiser");
 
 		execute = new JButton("Exécuter");
+		execute.addActionListener(new ExecuteButtonListener(this));
 
 		infos = new JPanel();
 
@@ -259,6 +264,16 @@ public class Tools extends Observable {
 	 */
 	public ImportFileChooser getImportFileChooser() {
 		return importFileChooser;
+	}
+
+	public void sendNewFile(File file) {
+		mainWindow.sendNewFile(file);
+		setChanged();
+		notifyObservers();
+	}
+
+	public void runMath() {
+		mainWindow.runMath();
 	}
 	
 		

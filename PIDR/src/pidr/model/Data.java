@@ -15,13 +15,58 @@ public class Data extends Observable {
 	private String[] columnNames;
 	private JScrollPane scrollPane;
 	
-	public Data(){
+	public Data(String col0,String col1,String col2){
+		
+		data = new Object[1][3];
+        
+        columnNames = new String[]{col0,col1,col2};
+
+        table = new JTable(data, columnNames);
+        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setFillsViewportHeight(true);
+        
+        //Create the scroll pane and add the table to it.
+        scrollPane = new JScrollPane(table);
+        //A voir à quoi ça sert, sinon créer un MouseListener particulier
+        scrollPane.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+	}
+	
+	public Data(String col1,String col2){
 		
 		data = new Object[1][2];
-        data[0][0] = "xi";
-        data[0][1] = "yi";
         
-        columnNames = new String[]{"xi","yi"};
+        columnNames = new String[]{col1,col2};
 
         table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -71,10 +116,11 @@ public class Data extends Observable {
     	this.data = new Object[length1][length2];
     	for (int i = 0; i<length1; i++)
     	{
-    		for (int j = 0; j<length2; i++)
+    		for (int j = 1; j<length2; i++)
     		{
     			data[i][j] = datas[i][j];
     		}
+    		data[i][0] = i;
     	}
     }
     

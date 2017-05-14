@@ -34,17 +34,22 @@ public class MainWindow extends Observable {
 	private DisplaySettingsPanel displayPanel;
 	private JPanel contentPanel;
 	private TransformationsPanel transformationsPanel;
+	private Data transformedData;
+	private DataPanel transformedDataPanel;
+	private JPanel chosenPanel;
 	
 	public MainWindow() {
 		tools = new Tools();
-		data = new Data();
+		data = new Data("n°","xi","yi");
+		transformedData = new Data("Xi = tx(xi)","Yi = ty(yi)");
 		constraints = new Constraints();
 		testFunction = new TestFunction();
 		mathShortcuts = new MathShortcuts();
 		calculatedFunction = new CalculatedFunction();
 		display = new DisplaySettings();
 		toolsPanel = new ToolsPanel(tools);
-		dataPanel = new DataPanel(data);
+		dataPanel = new DataPanel(data,transformedData);
+		//transformedDataPanel = new DataPanel(transformedData);
 		constraintsPanel = new ConstraintsChoicePanel(constraints);
 		testFunctionPanel = new TestFunctionPanel(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
@@ -52,10 +57,15 @@ public class MainWindow extends Observable {
 		displayPanel = new DisplaySettingsPanel(display);
 		contentPanel = new JPanel();
 		transformationsPanel = new TransformationsPanel(constraints);
+		chosenPanel = new JPanel();
 	}
 
 	public JPanel getContentPanel() {
 		return contentPanel;
+	}
+	
+	public JPanel getTransformedDataPanel(){
+		return transformedDataPanel;
 	}
 
 	public Tools getTools() {
@@ -64,6 +74,10 @@ public class MainWindow extends Observable {
 
 	public Data getData() {
 		return data;
+	}
+	
+	public Data getTransformedData(){
+		return transformedData;
 	}
 
 	public Constraints getConstraints() {
@@ -122,6 +136,11 @@ public class MainWindow extends Observable {
 		JPanel p = new JPanel();
 		p.setBorder(BorderFactory.createLineBorder(Color.black));
 		return p;
+	}
+
+	public Component getChosenPanel() {
+		// TODO Auto-generated method stub
+		return chosenPanel;
 	}
 
 	

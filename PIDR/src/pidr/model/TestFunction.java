@@ -14,7 +14,7 @@ public class TestFunction extends Observable {
 	
 	public TestFunction(){
 		
-		function = new JLabel("<html>&phi; "+getParamString()+" = </html>", JLabel.CENTER);
+		function = new JLabel("<html>&phi;j "+getParamString()+" = </html>", JLabel.CENTER);
 		//TODO : Gérer la taille en fonction de la fenêtre.
 		text = new JTextArea(value);
 		//Première valeur = largeur, deuxième = hauteur.

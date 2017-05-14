@@ -8,12 +8,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import pidr.view.panels.CalculatedFunctionPanel;
-import pidr.view.panels.ConstraintsPanel;
+import pidr.view.panels.ConstraintsChoicePanel;
 import pidr.view.panels.DataPanel;
 import pidr.view.panels.DisplaySettingsPanel;
 import pidr.view.panels.MathShortcutsPanel;
 import pidr.view.panels.TestFunctionPanel;
 import pidr.view.panels.ToolsPanel;
+import pidr.view.panels.TransformationsPanel;
 
 public class MainWindow extends Observable {
 	
@@ -26,12 +27,13 @@ public class MainWindow extends Observable {
 	private DisplaySettings display;
 	private ToolsPanel toolsPanel;
 	private DataPanel dataPanel;
-	private ConstraintsPanel constraintsPanel;
+	private ConstraintsChoicePanel constraintsPanel;
 	private TestFunctionPanel testFunctionPanel;
 	private MathShortcutsPanel mathShortcutsPanel;
 	private CalculatedFunctionPanel calculatedFunctionPanel;
 	private DisplaySettingsPanel displayPanel;
 	private JPanel contentPanel;
+	private TransformationsPanel transformationsPanel;
 	
 	public MainWindow() {
 		tools = new Tools();
@@ -43,12 +45,13 @@ public class MainWindow extends Observable {
 		display = new DisplaySettings();
 		toolsPanel = new ToolsPanel(tools);
 		dataPanel = new DataPanel(data);
-		constraintsPanel = new ConstraintsPanel(constraints);
+		constraintsPanel = new ConstraintsChoicePanel(constraints);
 		testFunctionPanel = new TestFunctionPanel(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
 		displayPanel = new DisplaySettingsPanel(display);
 		contentPanel = new JPanel();
+		transformationsPanel = new TransformationsPanel(constraints);
 	}
 
 	public JPanel getContentPanel() {
@@ -91,12 +94,16 @@ public class MainWindow extends Observable {
 		return dataPanel;
 	}
 
-	public ConstraintsPanel getConstraintsPanel() {
+	public ConstraintsChoicePanel getConstraintsPanel() {
 		return constraintsPanel;
 	}
 
 	public TestFunctionPanel getTestFunctionPanel() {
 		return testFunctionPanel;
+	}
+	
+	public TransformationsPanel getTransformationsPanel(){
+		return transformationsPanel;
 	}
 
 	public MathShortcutsPanel getMathShortcutsPanel() {

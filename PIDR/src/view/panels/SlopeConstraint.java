@@ -1,4 +1,4 @@
-package pidr.view.panels;
+package view.panels;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import pidr.model.Constraints;
+import model.swing.Constraints;
 
 /**
  * Quand on a choisi une contrainte de type "pente".

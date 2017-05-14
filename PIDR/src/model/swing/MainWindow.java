@@ -16,6 +16,7 @@ import view.panels.DisplaySettingsPanel;
 import view.panels.MathShortcutsPanel;
 import view.panels.TestFunctionPanel;
 import view.panels.ToolsPanel;
+import view.panels.TransformationsPanel;
 
 public class MainWindow extends Observable {
 	
@@ -36,11 +37,12 @@ public class MainWindow extends Observable {
 	private DisplaySettingsPanel displayPanel;
 	private JPanel contentPanel;
 	private Chart chart;
+	private TransformationsPanel transformationsPanel;
 	
 	public MainWindow() {
 		menu = new Menu();
 		tools = new Tools(this);
-		data = new Data();
+		data = new Data("n°","xi","yi");
 		constraints = new Constraints();
 		testFunction = new TestFunction();
 		calculatedFunction = new CalculatedFunction();
@@ -74,6 +76,10 @@ public class MainWindow extends Observable {
 
 	public Data getData() {
 		return data;
+	}
+
+	public TransformationsPanel getTransformationsPanel() {
+		return transformationsPanel;
 	}
 
 	public Constraints getConstraints() {
@@ -124,6 +130,8 @@ public class MainWindow extends Observable {
 		return displayPanel;
 	}
 
+	
+	
 	public Component getVisualisationPanel() {
 		/*// Define a function to plot
         Mapper mapper = new Mapper() {

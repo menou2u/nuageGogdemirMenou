@@ -1,4 +1,4 @@
-package pidr.view.panels;
+package view.panels;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -9,9 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.omg.CORBA.TypeCodeHolder;
-
-import pidr.model.Constraints;
+import model.swing.Constraints;
 
 public class TransformationsPanel extends JPanel{
 

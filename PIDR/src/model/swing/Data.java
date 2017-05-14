@@ -22,9 +22,9 @@ public class Data extends Observable {
 	private LinkedList<Double> y = new LinkedList<Double>();
 	private String path;
 	
-	public Data(){
-		columnNames = new String[]{"xi","yi"};
-		data = new Object[Math.max(x.size(),y.size())][2];
+	public Data(String col1,String col2,String col3){
+		columnNames = new String[]{col1,col2,col3};
+		data = new Object[Math.max(x.size(),y.size())][3];
         initTable();
 	}
 	
@@ -163,7 +163,7 @@ public class Data extends Observable {
 	}
 
 	public static void main(String[] args){
-		Data test = new Data();
+		Data test = new Data("n°","xi","yi");
 		System.out.println(test.getData());
 	}
 	

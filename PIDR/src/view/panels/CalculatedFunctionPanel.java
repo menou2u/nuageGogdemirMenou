@@ -1,4 +1,4 @@
-package pidr.view.panels;
+package view.panels;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import pidr.model.CalculatedFunction;
+import model.swing.CalculatedFunction;
 
 /**
  * Contient la fonction calculée. Ce panel devra donc se mettre à jour ou se

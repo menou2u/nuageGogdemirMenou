@@ -1,4 +1,4 @@
-package pidr.view.window;
+package view.window;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -10,12 +10,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
-import pidr.model.MainWindow;
+import model.swing.MainWindow;
 
 public class MainWindowFrame extends JFrame implements Observer {
 
@@ -48,7 +47,8 @@ public class MainWindowFrame extends JFrame implements Observer {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				mainWindow.getTools().saveHistoric();
+				//@TODO : Gérer ce la sauvegarde à la fermeture
+				//mainWindow.getTools().saveHistoric();
 			}
 		});
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -1,4 +1,4 @@
-package pidr.view.panels;
+package view.panels;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import pidr.model.TestFunction;
+import model.swing.TestFunction;
 
 @SuppressWarnings("serial")
 public class TestFunctionPanel extends JPanel{

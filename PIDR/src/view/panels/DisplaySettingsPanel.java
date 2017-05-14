@@ -1,4 +1,4 @@
-package pidr.view.panels;
+package view.panels;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -10,7 +10,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pidr.model.DisplaySettings;
+import model.swing.DisplaySettings;
 
 @SuppressWarnings("serial")
 public class DisplaySettingsPanel extends JPanel{

@@ -1,4 +1,4 @@
-package pidr.view.panels;
+package view.panels;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -9,7 +9,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pidr.model.MathShortcuts;
+import model.swing.MathShortcuts;
+import model.swing.TestFunction;
 
 @SuppressWarnings("serial")
 public class MathShortcutsPanel extends JPanel{
@@ -102,7 +103,7 @@ public class MathShortcutsPanel extends JPanel{
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(300, 500);
-		MathShortcuts math = new MathShortcuts();
+		MathShortcuts math = new MathShortcuts(new TestFunction());
 		MathShortcutsPanel paneltest = new MathShortcutsPanel(math);
 		test.add(paneltest,null);
 		test.setVisible(true);

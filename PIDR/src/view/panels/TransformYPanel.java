@@ -1,17 +1,14 @@
-package pidr.view.panels;
+package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import pidr.model.Constraints;
+import model.swing.Constraints;
 
 public class TransformYPanel extends JPanel {
 

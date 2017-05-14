@@ -1,4 +1,4 @@
-package pidr.view.panels;
+package view.panels;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,7 +7,7 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pidr.model.Tools;
+import model.swing.Tools;
 
 @SuppressWarnings("serial")
 public class ToolsPanel extends JPanel {
@@ -134,7 +134,7 @@ public class ToolsPanel extends JPanel {
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(1300, 1300);
-		Tools tools = new Tools();
+		Tools tools = new Tools(null);
 		ToolsPanel paneltest = new ToolsPanel(tools);
 		test.add(paneltest, null);
 		test.setVisible(true);

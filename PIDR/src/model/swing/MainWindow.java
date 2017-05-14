@@ -38,11 +38,15 @@ public class MainWindow extends Observable {
 	private JPanel contentPanel;
 	private Chart chart;
 	private TransformationsPanel transformationsPanel;
+	private Data transformedData;
+	private DataPanel transformedDataPanel;
+	private JPanel chosenPanel;
 	
 	public MainWindow() {
 		menu = new Menu();
 		tools = new Tools(this);
 		data = new Data("n°","xi","yi");
+		transformedData = new Data("Xi = tx(xi)","Yi = ty(yi)");
 		constraints = new Constraints();
 		testFunction = new TestFunction();
 		calculatedFunction = new CalculatedFunction();
@@ -50,6 +54,7 @@ public class MainWindow extends Observable {
 		display = new DisplaySettings();
 		toolsPanel = new ToolsPanel(tools);
 		dataPanel = new DataPanel(data);
+		transformedDataPanel = new DataPanel(transformedData);
 		constraintsPanel = new ConstraintsPanel(constraints);
 		testFunctionPanel = new TestFunctionPanel(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
@@ -57,6 +62,7 @@ public class MainWindow extends Observable {
 		displayPanel = new DisplaySettingsPanel(display);
 		transformationsPanel = new TransformationsPanel(constraints);
 		contentPanel = new JPanel();
+		chosenPanel = new JPanel();
 	}
 	
 	public void setCalculatedFunctionPanel(CalculatedFunctionPanel calculatedFunctionPanel) {
@@ -65,6 +71,10 @@ public class MainWindow extends Observable {
 	
 	public Menu getMenu() {
 		return menu;
+	}
+
+	public JPanel getChosenPanel() {
+		return chosenPanel;
 	}
 
 	public JPanel getContentPanel() {
@@ -170,6 +180,10 @@ public class MainWindow extends Observable {
 		//panel.add(canvas, BorderLayout.CENTER);
 		return canvas;*/
 		return new JPanel(); 
+	}
+
+	public DataPanel getTransformedDataPanel() {
+		return transformedDataPanel;
 	}
 
 	public Chart getChart() {

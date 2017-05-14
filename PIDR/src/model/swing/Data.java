@@ -28,6 +28,12 @@ public class Data extends Observable {
         initTable();
 	}
 	
+	public Data(String col1,String col2){
+		columnNames = new String[]{col1,col2};
+		data = new Object[Math.max(x.size(),y.size())][2];
+		initTable();
+	}
+	
 	public void updateTableContent(String path){
 		this.path = path;
 		initData();
@@ -81,13 +87,14 @@ public class Data extends Observable {
 	public void initData()
 	{
 		fillDatas();
-		data = new Object[Math.max(x.size(),y.size())][2];
+		data = new Object[Math.max(x.size(),y.size())][3];
 		for (int i=0;i<x.size();i++){
-			data[i][0] = x.get(i);
+			data[i][0] = i;
+			data[i][1] = x.get(i);
 		}
 		for (int j=0;j<y.size();j++)
 		{
-			data[j][1] = y.get(j);
+			data[j][2] = y.get(j);
 		}
 	}
 	

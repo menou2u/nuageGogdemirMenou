@@ -8,7 +8,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import model.swing.Constraints;
 
 public class TransformationsPanel extends JPanel{

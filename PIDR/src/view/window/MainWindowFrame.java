@@ -1,30 +1,81 @@
-package view.window;
+package pidr.view.window;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
 
-import model.swing.MainWindow;
+import pidr.model.MainWindow;
 
-@SuppressWarnings("serial")
 public class MainWindowFrame extends JFrame implements Observer {
-	
-	@SuppressWarnings("unused")
-	private MainWindow mainWindow;
-	
+
+	private static final long serialVersionUID = 2587382723338443456L;
+	private static JFrame current;
+	private JPanel twoDPanel;
+	private JPanel threeDPanel;
+	private JPanel linePanel;
+	private JPanel planePanel;
+	private JPanel contentPanel;
+
 	public MainWindowFrame(MainWindow mainWindow) {
-		this.mainWindow = mainWindow;
-		mainWindow.addObserver(this);
-		
+		current = this;
 		setLayout(new GridBagLayout());
+		init2DPanel(mainWindow);
+		init3DPanel(mainWindow);
+		initLinePanel(mainWindow);
+		initPlanePanel(mainWindow);
+
+		JPanel contentPanel = new JPanel(new GridBagLayout());
+		JTabbedPane onglets = new JTabbedPane(SwingConstants.TOP);
+
+		onglets.addTab("Droites", linePanel);
+		onglets.addTab("2D", twoDPanel);
+		onglets.addTab("Plans", planePanel);
+		onglets.addTab("3D", threeDPanel);
+
+		// Paramètres fenêtre
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				mainWindow.getTools().saveHistoric();
+			}
+		});
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension frameSize = new Dimension((int) (screenSize.width * 0.8), (int) (screenSize.height * 0.8));
+
+		onglets.setPreferredSize(frameSize);
+		onglets.setOpaque(true);
+
+		contentPanel.add(onglets);
+		add(contentPanel);
+		setPreferredSize(frameSize);
+		setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		setVisible(true);
+		pack();
+	}
+
+	public void init2DPanel(MainWindow mainWindow) {
+		twoDPanel = new JPanel(new GridBagLayout());
+	}
+
+	public void init3DPanel(MainWindow mainWindow) {
+		threeDPanel = new JPanel(new GridBagLayout());
+	}
+
+	public void initLinePanel(MainWindow mainWindow) {
+		linePanel = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setJMenuBar(mainWindow.getMenu().getMenuBar());
-		
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
@@ -36,30 +87,15 @@ public class MainWindowFrame extends JFrame implements Observer {
 		// Panneau des outils
 		gbc.gridwidth = 4;
 		gbc.weighty = 0;
-		add(mainWindow.getToolsPanel(), gbc);
-		mainWindow.getTools().addObserver(this);
+		linePanel.add(mainWindow.getToolsPanel(), gbc);
 
-		// Panneau des donnï¿½es brutes
+		// Fonctions de transformation
 		gbc.gridwidth = 1;
-		gbc.weighty = 1;
-		gbc.gridheight = 3;
-		gbc.gridy += gbc.gridheight;
-		add(mainWindow.getDataPanel(), gbc);
-		mainWindow.getData().addObserver(this);
-
-		// Panneau des contraintes sur coordonnï¿½es
-		gbc.gridx += gbc.gridwidth;
-		gbc.gridheight = 2;
-		gbc.weighty = 0;
-		add(mainWindow.getConstraintsPanel(), gbc);
-
-		// Fonction phi
-		gbc.gridx += gbc.gridwidth;
-		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		add(mainWindow.getTestFunctionPanel(), gbc);
+		gbc.gridy += gbc.gridheight;
+		linePanel.add(mainWindow.getTransformationsPanel(), gbc);
 
 		// Calculette
 		gbc.gridy += gbc.gridheight;
@@ -67,15 +103,26 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridheight = 1;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		add(mainWindow.getMathShortcutsPanel(), gbc);
-		//mainWindow.getMathShortcuts().addObserver(this);
+		linePanel.add(mainWindow.getMathShortcutsPanel(), gbc);
 
-		// Fonction f
+		// Panneau des données brutes
+		gbc.gridwidth = 1;
+		gbc.weighty = 1;
+		gbc.gridy += gbc.gridheight;
+		linePanel.add(mainWindow.getDataPanel(), gbc);
+
+		// Panneau des contraintes sur coordonnées
 		gbc.gridx += gbc.gridwidth;
-		gbc.weightx = 0;
+		gbc.gridy = 1;
+		gbc.gridheight = 2;
 		gbc.weighty = 0;
-		add(mainWindow.getCalculatedFunctionPanel(), gbc);
-		mainWindow.getCalculatedFunction().addObserver(this);
+		linePanel.add(mainWindow.getConstraintsPanel(), gbc);
+
+		// Panneau des contraintes selon choix
+		/*
+		 * gbc.gridx += gbc.gridwidth; gbc.gridy=1; gbc.gridheight =2;
+		 * gbc.weighty=0; linePanel.add(mainWindow.getChosenPanel(),gbc);
+		 */
 
 		// Panel de visualisation du graphe
 		gbc.gridx = 1;
@@ -83,32 +130,88 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridwidth = 3;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		add(mainWindow.getVisualisationPanel(), gbc);
+		linePanel.add(mainWindow.getVisualisationPanel(), gbc);
+	}
 
-		// Paramï¿½tres fenï¿½tre
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize= new Dimension((int)(screenSize.width*0.8), (int)(screenSize.height*0.8));
-		setPreferredSize(frameSize);
-		setLocation((screenSize.width-frameSize.width)/2, (screenSize.height-frameSize.height)/2);
-		setVisible(true);
-		pack();
+	public void initPlanePanel(MainWindow mainWindow) {
+		planePanel = new JPanel(new GridBagLayout());
+
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+
+		// Panneau des outils
+		gbc.gridwidth = 4;
+		gbc.weighty = 0;
+		planePanel.add(mainWindow.getToolsPanel(), gbc);
+
+		// Fonctions de transformation
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0;
+		gbc.weighty = 0;
+		gbc.gridy += gbc.gridheight;
+		planePanel.add(mainWindow.getTransformationsPanel(), gbc);
+
+		// Calculette
+		gbc.gridy += gbc.gridheight;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0;
+		gbc.weighty = 0;
+		planePanel.add(mainWindow.getMathShortcutsPanel(), gbc);
+
+		// Panneau des données brutes
+		gbc.gridwidth = 1;
+		gbc.weighty = 1;
+		gbc.gridy += gbc.gridheight;
+		planePanel.add(mainWindow.getDataPanel(), gbc);
+		
+		// Panneau des contraintes sur coordonnées
+		gbc.gridx += gbc.gridwidth;
+		gbc.gridy = 1;
+		gbc.gridheight = 2;
+		gbc.weighty = 0;
+		planePanel.add(mainWindow.getConstraintsPanel(), gbc);
+		
+		// Panneau des contraintes selon choix
+		/*
+		 * gbc.gridx += gbc.gridwidth; 
+		 * gbc.gridy=1; 
+		 * gbc.gridheight =2;
+		 * gbc.weighty=0; 
+		 * planePanel.add(mainWindow.getChosenPanel(),gbc);
+		 */
+
+		// Panel de visualisation du graphe
+		gbc.gridx = 1;
+		gbc.gridy += gbc.gridheight;
+		gbc.gridwidth = 3;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		planePanel.add(mainWindow.getVisualisationPanel(), gbc);
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		/*if (o instanceof Tools){
-			System.out.println("TOOLS");
-			if (arg instanceof File){
-				System.out.println("FILE");
-				mainWindow.getData().updateTableContent(((File) arg).getPath());
-				System.out.println("oin ?");
-			}
-		}*/
+		// TODO Auto-generated method stub
+
 	}
 
 	public static void main(String[] args) {
 		new MainWindowFrame(new MainWindow());
+	}
+
+	/**
+	 * @return
+	 */
+	public static JFrame getCurrent() {
+		return current;
 	}
 
 }

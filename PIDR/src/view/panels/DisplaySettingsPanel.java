@@ -1,14 +1,16 @@
-package view.panels;
+package pidr.view.panels;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.DisplaySettings;
+import pidr.model.DisplaySettings;
 
 @SuppressWarnings("serial")
 public class DisplaySettingsPanel extends JPanel{
@@ -72,7 +74,7 @@ public class DisplaySettingsPanel extends JPanel{
 		gbc.fill = gbc.BOTH;
 		add(displaySettings.getDisplayZone(),gbc);
 		
-		//setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 	
     public static void main(String[] args) {

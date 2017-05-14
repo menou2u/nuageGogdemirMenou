@@ -1,12 +1,15 @@
-package view.panels;
+package pidr.view.panels;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.MathShortcuts;
+import pidr.model.MathShortcuts;
 
 @SuppressWarnings("serial")
 public class MathShortcutsPanel extends JPanel{
@@ -92,16 +95,16 @@ public class MathShortcutsPanel extends JPanel{
 		gbc.gridx = 2;
 		add(math.getInteg(),gbc);
 		
-		//setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 	
 	//main pour test
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(300, 500);
 		MathShortcuts math = new MathShortcuts();
 		MathShortcutsPanel paneltest = new MathShortcutsPanel(math);
 		test.add(paneltest,null);
 		test.setVisible(true);
-	}*/
+	}
 }

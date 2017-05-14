@@ -55,6 +55,7 @@ public class MainWindow extends Observable {
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
 		displayPanel = new DisplaySettingsPanel(display);
+		transformationsPanel = new TransformationsPanel(constraints);
 		contentPanel = new JPanel();
 	}
 	

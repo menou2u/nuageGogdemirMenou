@@ -85,6 +85,8 @@ public class Tools extends Observable {
 		execute.addActionListener(new ExecuteButtonListener(this));
 
 		infos = new JPanel();
+		
+		file = new JPanel();
 
 		datas = new JPanel();
 

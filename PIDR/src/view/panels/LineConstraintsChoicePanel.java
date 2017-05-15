@@ -19,7 +19,7 @@ import model.swing.Constraints;
 
 //Ajouter un bouton pour ajouter des contraintes :)
 @SuppressWarnings("serial")
-public class ConstraintsChoicePanel extends JPanel {
+public class LineConstraintsChoicePanel extends JPanel {
     
 	private JPanel chosenPanel;
 	private CardLayout cl;
@@ -34,7 +34,7 @@ public class ConstraintsChoicePanel extends JPanel {
     private JRadioButton pointConstraint;
     private JRadioButton slopeConstraint;
 	
-    public ConstraintsChoicePanel(Constraints c) {
+    public LineConstraintsChoicePanel(Constraints c) {
         super(new GridLayout(2,1));
      
         selectionPanel = new JPanel();
@@ -110,7 +110,7 @@ public class ConstraintsChoicePanel extends JPanel {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Constraints c = new Constraints();
-        ConstraintsChoicePanel newContentPane = new ConstraintsChoicePanel(c);
+        LineConstraintsChoicePanel newContentPane = new LineConstraintsChoicePanel(c);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

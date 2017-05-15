@@ -10,7 +10,7 @@ import org.jzy3d.chart.Chart;
 
 import model.math.DroiteMoindreCarres;
 import view.panels.CalculatedFunctionPanel;
-import view.panels.ConstraintsChoicePanel;
+import view.panels.LineConstraintsChoicePanel;
 import view.panels.ConstraintsPanel;
 import view.panels.DataPanel;
 import view.panels.DisplaySettingsPanel;
@@ -46,7 +46,7 @@ public class MainWindow extends Observable {
 	private JPanel noConstraint;
 	private PointConstraint pointConstraint;
 	private SlopeConstraint slopeConstraint;
-	private ConstraintsChoicePanel chosenPanel;
+	private LineConstraintsChoicePanel chosenPanel;
 	
 	public MainWindow() {
 
@@ -68,7 +68,7 @@ public class MainWindow extends Observable {
 		displayPanel = new DisplaySettingsPanel(display);
 		transformationsPanel = new TransformationsPanel(constraints);
 		contentPanel = new JPanel();
-		chosenPanel = new ConstraintsChoicePanel(constraints);
+		chosenPanel = new LineConstraintsChoicePanel(constraints);
 
 	}
 	
@@ -92,7 +92,7 @@ public class MainWindow extends Observable {
 		return menu;
 	}
 
-	public ConstraintsChoicePanel getChosenPanel() {
+	public LineConstraintsChoicePanel getChosenPanel() {
 		return chosenPanel;
 	}
 

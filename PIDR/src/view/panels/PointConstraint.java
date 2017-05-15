@@ -24,10 +24,10 @@ public class PointConstraint extends JPanel {
 		JTextField xWTreated = new JTextField();
 		JTextField yWTrue = new JTextField();
 		JTextField yWTreated = new JTextField();
-		JLabel xWTrueLabel = new JLabel("xw brut = ");
-		JLabel yWTrueLabel = new JLabel("yw brut = ");
-		JLabel xWTreatedLabel = new JLabel("xw traité = ");
-		JLabel yWTreatedLabel = new JLabel("yw traité = ");
+		JLabel xWTrueLabel = new JLabel("Xw brut = ");
+		JLabel yWTrueLabel = new JLabel("Yw brut = ");
+		JLabel xWTreatedLabel = new JLabel("Xw traité = ");
+		JLabel yWTreatedLabel = new JLabel("Yw traité = ");
 		this.setLayout(gL);
 		this.add(xWTrueLabel);
 		this.add(xWTrue);

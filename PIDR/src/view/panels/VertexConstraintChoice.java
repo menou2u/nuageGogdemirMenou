@@ -93,11 +93,11 @@ public class VertexConstraintChoice extends JPanel{
 		vertexVYIJ = new JTextField();
 		vertexIJSlope = new JTextField();
 		
-		vertexVij.add(new JLabel("Vxij : "));
+		vertexVij.add(new JLabel("Vxij = "));
 		vertexVij.add(vertexVXIJ);
-		vertexVij.add(new JLabel("Vyij : "));
+		vertexVij.add(new JLabel("Vyij = "));
 		vertexVij.add(vertexVYIJ);
-		vertexVij.add(new JLabel("Pente : "));
+		vertexVij.add(new JLabel("Pente = "));
 		vertexVij.add(vertexIJSlope);
 		
 		vertexDatas.add(vertexVij,"Vij");
@@ -108,11 +108,11 @@ public class VertexConstraintChoice extends JPanel{
 		vertexVYKI = new JTextField();
 		vertexKISlope = new JTextField();
 		
-		vertexVki.add(new JLabel("Vxki : "));
+		vertexVki.add(new JLabel("Vxki = "));
 		vertexVki.add(vertexVXKI);
-		vertexVki.add(new JLabel("Vyki : "));
+		vertexVki.add(new JLabel("Vyki = "));
 		vertexVki.add(vertexVYKI);
-		vertexVki.add(new JLabel("Pente : "));
+		vertexVki.add(new JLabel("Pente = "));
 		vertexVki.add(vertexKISlope);
 		
 		vertexDatas.add(vertexVki,"Vki");
@@ -123,11 +123,11 @@ public class VertexConstraintChoice extends JPanel{
 		vertexVYJK = new JTextField();
 		vertexJKSlope = new JTextField();
 		
-		vertexVjk.add(new JLabel("Vxjk : "));
+		vertexVjk.add(new JLabel("Vxjk = "));
 		vertexVjk.add(vertexVXJK);
-		vertexVjk.add(new JLabel("Vyjk : "));
+		vertexVjk.add(new JLabel("Vyjk = "));
 		vertexVjk.add(vertexVYJK);
-		vertexVjk.add(new JLabel("Pente : "));
+		vertexVjk.add(new JLabel("Pente = "));
 		vertexVjk.add(vertexJKSlope);
 		
 		vertexDatas.add(vertexVjk,"Vjk");

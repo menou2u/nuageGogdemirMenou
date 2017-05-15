@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 
 import model.swing.Constraints;
 
+@SuppressWarnings("serial")
 public class OneConstraintChoicePanel extends JPanel {
 	
 	private CardLayout cl;
@@ -77,11 +78,11 @@ public class OneConstraintChoicePanel extends JPanel {
 		y = new JTextField();
 		z = new JTextField();
 		
-		pointChosen.add(new JLabel("Xw1 brut : "));
+		pointChosen.add(new JLabel("Xw1 brut = "));
 		pointChosen.add(x);
-		pointChosen.add(new JLabel("Yw1 brut : "));
+		pointChosen.add(new JLabel("Yw1 brut = "));
 		pointChosen.add(y);
-		pointChosen.add(new JLabel("Zw1 brut : "));
+		pointChosen.add(new JLabel("Zw1 brut = "));
 		pointChosen.add(z);
 		
 		constraintDatas.add(pointChosen,"Point");

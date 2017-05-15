@@ -1,6 +1,5 @@
 package model.swing;
 
-import java.awt.CardLayout;
 import java.awt.Component;
 import java.io.File;
 import java.util.Observable;
@@ -47,7 +46,6 @@ public class MainWindow extends Observable {
 	private JPanel noConstraint;
 	private PointConstraint pointConstraint;
 	private SlopeConstraint slopeConstraint;
-	private CardLayout cl;
 	private ConstraintsChoicePanel chosenPanel;
 	
 	public MainWindow() {
@@ -63,7 +61,7 @@ public class MainWindow extends Observable {
 		display = new DisplaySettings();
 		toolsPanel = new ToolsPanel(tools);
 		dataPanel = new DataPanel(data,transformedData);
-		transformedDataPanel = new DataPanel(transformedData);
+		//transformedDataPanel = new DataPanel(transformedData);
 		testFunctionPanel = new TestFunctionPanel(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
@@ -94,7 +92,7 @@ public class MainWindow extends Observable {
 		return menu;
 	}
 
-	public JPanel getChosenPanel() {
+	public ConstraintsChoicePanel getChosenPanel() {
 		return chosenPanel;
 	}
 

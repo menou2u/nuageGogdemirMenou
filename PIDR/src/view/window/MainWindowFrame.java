@@ -75,6 +75,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 		contentPanel.add(mainWindow.getToolsPanel(),gbc);
 		gbc.gridy+=gbc.gridheight;
 		gbc.weighty=1;
+		
 		contentPanel.add(onglets,gbc);
 		add(contentPanel);
 		setPreferredSize(frameSize);

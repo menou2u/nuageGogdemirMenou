@@ -26,14 +26,24 @@ public class MainWindowFrame extends JFrame implements Observer {
 	private JPanel planePanel;
 	private JPanel contentPanel;
 
+	/**
+	 * @param mainWindow
+	 */
 	public MainWindowFrame(MainWindow mainWindow) {
 		current = this;
 		setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		init2DPanel(mainWindow);
 		init3DPanel(mainWindow);
 		initLinePanel(mainWindow);
 		initPlanePanel(mainWindow);
 
+		gbc.weighty=0;
+		gbc.gridx=0;
+		gbc.gridy=0;
+		gbc.gridheight=1;
+		gbc.gridwidth=1;
+		
 		JPanel contentPanel = new JPanel(new GridBagLayout());
 		JTabbedPane onglets = new JTabbedPane(SwingConstants.TOP);
 
@@ -57,7 +67,15 @@ public class MainWindowFrame extends JFrame implements Observer {
 		onglets.setPreferredSize(frameSize);
 		onglets.setOpaque(true);
 
-		contentPanel.add(onglets);
+		// Panneau des outils
+		//gbc.gridwidth = 4;
+		//gbc.weighty = 0;
+		//linePanel.add(mainWindow.getToolsPanel(), gbc);
+		
+		contentPanel.add(mainWindow.getToolsPanel(),gbc);
+		gbc.gridy+=gbc.gridheight;
+		gbc.weighty=1;
+		contentPanel.add(onglets,gbc);
 		add(contentPanel);
 		setPreferredSize(frameSize);
 		setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
@@ -83,11 +101,6 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-
-		// Panneau des outils
-		gbc.gridwidth = 4;
-		gbc.weighty = 0;
-		linePanel.add(mainWindow.getToolsPanel(), gbc);
 
 		// Fonctions de transformation
 		gbc.gridwidth = 1;

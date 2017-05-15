@@ -1,5 +1,6 @@
 package model.swing;
 
+import java.awt.CardLayout;
 import java.awt.Component;
 import java.io.File;
 import java.util.Observable;
@@ -10,10 +11,13 @@ import org.jzy3d.chart.Chart;
 
 import model.math.DroiteMoindreCarres;
 import view.panels.CalculatedFunctionPanel;
+import view.panels.ConstraintsChoicePanel;
 import view.panels.ConstraintsPanel;
 import view.panels.DataPanel;
 import view.panels.DisplaySettingsPanel;
 import view.panels.MathShortcutsPanel;
+import view.panels.PointConstraint;
+import view.panels.SlopeConstraint;
 import view.panels.TestFunctionPanel;
 import view.panels.ToolsPanel;
 import view.panels.TransformationsPanel;
@@ -40,9 +44,14 @@ public class MainWindow extends Observable {
 	private TransformationsPanel transformationsPanel;
 	private Data transformedData;
 	private DataPanel transformedDataPanel;
-	private JPanel chosenPanel;
+	private JPanel noConstraint;
+	private PointConstraint pointConstraint;
+	private SlopeConstraint slopeConstraint;
+	private CardLayout cl;
+	private ConstraintsChoicePanel chosenPanel;
 	
 	public MainWindow() {
+
 		menu = new Menu();
 		tools = new Tools(this);
 		data = new Data("n°","xi","yi");
@@ -53,20 +62,32 @@ public class MainWindow extends Observable {
 		mathShortcuts = new MathShortcuts(testFunction);
 		display = new DisplaySettings();
 		toolsPanel = new ToolsPanel(tools);
-		dataPanel = new DataPanel(data);
+		dataPanel = new DataPanel(data,transformedData);
 		transformedDataPanel = new DataPanel(transformedData);
-		constraintsPanel = new ConstraintsPanel(constraints);
 		testFunctionPanel = new TestFunctionPanel(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
 		displayPanel = new DisplaySettingsPanel(display);
 		transformationsPanel = new TransformationsPanel(constraints);
 		contentPanel = new JPanel();
-		chosenPanel = new JPanel();
+		chosenPanel = new ConstraintsChoicePanel(constraints);
+
 	}
 	
 	public void setCalculatedFunctionPanel(CalculatedFunctionPanel calculatedFunctionPanel) {
 		this.calculatedFunctionPanel = calculatedFunctionPanel;
+	}
+	
+	public JPanel getNoConstraintPanel(){
+		return noConstraint;
+	}
+	
+	public PointConstraint getPointConstraint(){
+		return pointConstraint;
+	}
+	
+	public SlopeConstraint getSlopeConstraint(){
+		return slopeConstraint;
 	}
 	
 	public Menu getMenu() {

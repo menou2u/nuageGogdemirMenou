@@ -111,18 +111,13 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridy += gbc.gridheight;
 		linePanel.add(mainWindow.getDataPanel(), gbc);
 
-		// Panneau des contraintes sur coordonnées
-		gbc.gridx += gbc.gridwidth;
-		gbc.gridy = 1;
-		gbc.gridheight = 2;
-		gbc.weighty = 0;
-		linePanel.add(mainWindow.getConstraintsPanel(), gbc);
-
 		// Panneau des contraintes selon choix
-		/*
-		 * gbc.gridx += gbc.gridwidth; gbc.gridy=1; gbc.gridheight =2;
-		 * gbc.weighty=0; linePanel.add(mainWindow.getChosenPanel(),gbc);
-		 */
+		gbc.gridx += gbc.gridwidth;
+		gbc.gridy=1;
+		gbc.gridheight =2;
+		gbc.weighty=0;
+		linePanel.add(mainWindow.getChosenPanel(),gbc);
+		 
 
 		// Panel de visualisation du graphe
 		gbc.gridx = 1;
@@ -144,57 +139,6 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-
-		// Panneau des outils
-		gbc.gridwidth = 4;
-		gbc.weighty = 0;
-		planePanel.add(mainWindow.getToolsPanel(), gbc);
-
-		// Fonctions de transformation
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.weightx = 0;
-		gbc.weighty = 0;
-		gbc.gridy += gbc.gridheight;
-		planePanel.add(mainWindow.getTransformationsPanel(), gbc);
-
-		// Calculette
-		gbc.gridy += gbc.gridheight;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.weightx = 0;
-		gbc.weighty = 0;
-		planePanel.add(mainWindow.getMathShortcutsPanel(), gbc);
-
-		// Panneau des données brutes
-		gbc.gridwidth = 1;
-		gbc.weighty = 1;
-		gbc.gridy += gbc.gridheight;
-		planePanel.add(mainWindow.getDataPanel(), gbc);
-		
-		// Panneau des contraintes sur coordonnées
-		gbc.gridx += gbc.gridwidth;
-		gbc.gridy = 1;
-		gbc.gridheight = 2;
-		gbc.weighty = 0;
-		planePanel.add(mainWindow.getConstraintsPanel(), gbc);
-		
-		// Panneau des contraintes selon choix
-		/*
-		 * gbc.gridx += gbc.gridwidth; 
-		 * gbc.gridy=1; 
-		 * gbc.gridheight =2;
-		 * gbc.weighty=0; 
-		 * planePanel.add(mainWindow.getChosenPanel(),gbc);
-		 */
-
-		// Panel de visualisation du graphe
-		gbc.gridx = 1;
-		gbc.gridy += gbc.gridheight;
-		gbc.gridwidth = 3;
-		gbc.weightx = 1;
-		gbc.weighty = 1;
-		planePanel.add(mainWindow.getVisualisationPanel(), gbc);
 	}
 
 	@Override

@@ -1,10 +1,15 @@
 package view.panels;
 
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -16,26 +21,89 @@ import model.swing.Constraints;
 @SuppressWarnings("serial")
 public class ConstraintsChoicePanel extends JPanel {
     
+	private JPanel chosenPanel;
+	private CardLayout cl;
+	private JPanel noConstraintPanel;
+	private PointConstraint pointConstraintPanel;
+	private SlopeConstraint slopeConstraintPanel;
+	private Constraints constraints;
+	private JPanel selectionPanel;
+	private ButtonModel bm;
+	private ButtonGroup bG;
+	private JRadioButton noConstraint;
+    private JRadioButton pointConstraint;
+    private JRadioButton slopeConstraint;
+	
     public ConstraintsChoicePanel(Constraints c) {
-        super(new GridLayout(3,3));
+        super(new GridLayout(2,1));
+     
+        selectionPanel = new JPanel();
+        bG = new ButtonGroup();
+        noConstraint = new JRadioButton("Sans contrainte");
+        pointConstraint = new JRadioButton("Droite passe par (Xw;Yw)");
+        slopeConstraint = new JRadioButton("Fixer la pente de la droite");
         
-        JRadioButton noConstraint = new JRadioButton("Sans contrainte");
-        JRadioButton pointConstraint = new JRadioButton("Droite passe par (Xw;Yw)");
-        JRadioButton slopeConstraint = new JRadioButton("Fixer la pente de la droite");
-        
-        ButtonGroup bG = new ButtonGroup();
-        
+		cl = new CardLayout();
+		chosenPanel = new JPanel(cl);
+		
+		constraints = new Constraints();
+		
+		noConstraintPanel = new JPanel();
+		pointConstraintPanel = new PointConstraint(constraints);
+		slopeConstraintPanel = new SlopeConstraint(constraints);
+		
+		chosenPanel.add(noConstraintPanel,"Pas de contrainte");
+		chosenPanel.add(pointConstraintPanel,"Contrainte sur un point");
+		chosenPanel.add(slopeConstraintPanel,"Contrainte sur la pente");
+		
+		cl.first(chosenPanel);
+		
         bG.add(noConstraint);
         bG.add(pointConstraint);
         bG.add(slopeConstraint);
+        noConstraint.setSelected(true);
+        
+        bm = bG.getSelection();
+        
+        addCustomListener(noConstraint);   
+        addCustomListener(pointConstraint);
+        addCustomListener(slopeConstraint);
         
         setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
         
-        this.add(noConstraint);
-        this.add(pointConstraint);
-        this.add(slopeConstraint);
+        selectionPanel.add(noConstraint);
+        selectionPanel.add(pointConstraint);
+        selectionPanel.add(slopeConstraint);
         
-        noConstraint.setSelected(true);
+        this.add(selectionPanel);
+        this.add(chosenPanel);
+    }
+    
+    public void addCustomListener(JRadioButton bouton){
+    	bouton.addMouseListener(new MouseAdapter(){
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		super.mouseClicked(e);
+        		if (!bm.equals(bG.getSelection())){
+        			bm = bG.getSelection();
+        			if (bm.equals(noConstraint.getModel()))
+        			{
+        				cl.first(chosenPanel);
+        			}
+        			if (bm.equals(pointConstraint.getModel())){
+        				cl.show(chosenPanel, "Contrainte sur un point");
+        			}
+        			if (bm.equals(slopeConstraint.getModel())){
+        				cl.show(chosenPanel,"Contrainte sur la pente");
+        			}
+        		}
+
+        	}
+        });
+    }
+    
+    public ButtonModel getBM(){
+    	return bm;
     }
 
     public static void main(String[] args) {

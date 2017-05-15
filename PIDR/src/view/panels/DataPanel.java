@@ -26,7 +26,6 @@ public class DataPanel extends JPanel {
     public DataPanel(Data d, Data transformedData)
     {
     	super(new GridLayout(1,2));
-    	
     	add(d.getScrollPane());
     	add(transformedData.getScrollPane());
         setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
@@ -36,7 +35,8 @@ public class DataPanel extends JPanel {
         JFrame frame = new JFrame("DataPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Data d = new Data("n°","xi","yi");
-        DataPanel newContentPane = new DataPanel(d);
+        Data dtrans = new Data("xtrans","ytrans");
+        DataPanel newContentPane = new DataPanel(d,dtrans);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

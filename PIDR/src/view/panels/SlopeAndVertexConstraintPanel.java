@@ -1,6 +1,8 @@
 package view.panels;
 
 import java.awt.CardLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -38,11 +40,23 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 	private CardLayout cl;
 
 	public SlopeAndVertexConstraintPanel() {
-		super(new GridLayout(1, 2));
+		super(new GridBagLayout());
 		initField();
 		
-		add(constraintChoser);
-		add(cardDisplayer);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		add(constraintChoser,gbc);
+		
+		gbc.weightx=1;
+		gbc.gridx=1;
+		add(cardDisplayer,gbc);
 	}
 
 	private void initField() {
@@ -88,13 +102,32 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 		cardDisplayer.add(v1XoYV2YoZ,"v1XoYV2YoZ");
 		cardDisplayer.add(v1YoZV2ZoX,"v1YoZV2ZoX");
 		
-		constraintChoser = new JPanel(new GridLayout(3,2));
-		constraintChoser.add(v1XoYV2XoYButton);
-		constraintChoser.add(v1XoYV2YoZButton);
-		constraintChoser.add(v1ZoXV2ZoXButton);
-		constraintChoser.add(v1XoYV2ZoXButton);
-		constraintChoser.add(v1YoZV2YoZButton);
-		constraintChoser.add(v1YoZV2ZoXButton);
+		constraintChoser = new JPanel(new GridBagLayout());
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		constraintChoser.add(v1XoYV2XoYButton,gbc);
+		gbc.gridx=1;
+		constraintChoser.add(v1XoYV2YoZButton,gbc);
+		
+		gbc.gridy=1;
+		gbc.gridx=0;
+		constraintChoser.add(v1ZoXV2ZoXButton,gbc);
+		gbc.gridx=1;
+		constraintChoser.add(v1XoYV2ZoXButton,gbc);
+		
+		gbc.gridy=2;
+		gbc.gridx=0;
+		constraintChoser.add(v1YoZV2YoZButton,gbc);
+		gbc.gridx=1;
+		constraintChoser.add(v1YoZV2ZoXButton,gbc);
 	}
 	
 	private void addCustomListener(JRadioButton bouton) {

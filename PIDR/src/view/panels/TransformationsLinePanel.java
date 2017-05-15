@@ -10,13 +10,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.swing.Constraints;
 
-public class TransformationsPanel extends JPanel{
+public class TransformationsLinePanel extends JPanel{
 
-	public TransformationsPanel(Constraints c){
+	public TransformationsLinePanel(){
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
-		TransformXPanel xTrans = new TransformXPanel(new Constraints());
-		TransformYPanel yTrans = new TransformYPanel(new Constraints());
+		TransformXPanel xTrans = new TransformXPanel();
+		TransformYPanel yTrans = new TransformYPanel();
 		JButton validation = new JButton("Validation des données");
 		
 		gbc.gridx=0;
@@ -41,7 +41,7 @@ public class TransformationsPanel extends JPanel{
 		JFrame frame = new JFrame("Transforms");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Constraints c = new Constraints();
-		TransformationsPanel newContentPane = new TransformationsPanel(c);
+		TransformationsLinePanel newContentPane = new TransformationsLinePanel();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();

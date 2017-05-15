@@ -1,7 +1,8 @@
 package view.panels;
 
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -26,7 +27,7 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
 	
 	public SlopeAndVertexConstraintPanelHelper(String axev1,String axev2)
 	{
-		super(new GridLayout(2,4));
+		super(new GridBagLayout());
 		
 		initField(axev1,axev2);
 		fillWithFields();
@@ -35,21 +36,41 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
 	}
 
 	private void fillWithFields() {
-		add(v1xLab);
-		add(v1x);
-		add(v2xLab);
-		add(v2x);
-		add(v1yLab);
-		add(v1y);
-		add(v2yLab);
-		add(v2y);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = gbc.HORIZONTAL;
+		gbc.weightx = 0;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		add(v1xLab,gbc);
+		gbc.gridx=1;
+		add(v1x,gbc);
+		
+		gbc.gridx=2;
+		add(v2xLab,gbc);
+		gbc.gridx=3;
+		add(v2x,gbc);
+		
+		gbc.gridy=1;
+		gbc.gridx=0;
+		add(v1yLab,gbc);
+		gbc.gridx=1;
+		add(v1y,gbc);
+		
+		gbc.gridx=2;
+		add(v2yLab,gbc);
+		gbc.gridx=3;
+		add(v2y,gbc);
 	}
 
 	private void initField(String axev1,String axev2) {
-		v1x = new JTextField();
-		v2x = new JTextField();
-		v1y = new JTextField();
-		v2y = new JTextField();
+		v1x = new JTextField(8);
+		v2x = new JTextField(8);
+		v1y = new JTextField(8);
+		v2y = new JTextField(8);
 		
 		v1xLab = new JLabel("V1x"+axev1+" = ");
 		v1yLab = new JLabel("V1y"+axev1+" = ");

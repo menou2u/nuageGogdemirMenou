@@ -20,7 +20,14 @@ public class Data extends Observable {
 	private JScrollPane scrollPane;
 	private LinkedList<Double> x = new LinkedList<Double>();
 	private LinkedList<Double> y = new LinkedList<Double>();
+	private LinkedList<Double> z = new LinkedList<Double>();
 	private String path;
+	
+	public Data(String col1,String col2,String col3, String col4){
+		columnNames = new String[]{col1,col2,col3,col4};
+		data = new Object[Math.max(x.size(),Math.max(y.size(),z.size()))][4];
+        initTable();
+	}
 	
 	public Data(String col1,String col2,String col3){
 		columnNames = new String[]{col1,col2,col3};
@@ -112,6 +119,13 @@ public class Data extends Observable {
 	 */
 	public LinkedList<Double> getY() {
 		return y;
+	}
+	
+	/**
+	 * @return the z
+	 */
+	public LinkedList<Double> getZ() {
+		return z;
 	}
 
 	public void setData(Object[][] datas)

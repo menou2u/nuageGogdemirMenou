@@ -10,9 +10,9 @@ import javax.swing.JTextField;
 
 import model.swing.Constraints;
 
-public class TransformYPanel extends JPanel {
-
-	public TransformYPanel() {
+public class TransformZPanel extends JPanel{
+	
+	public TransformZPanel() {
 
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -24,26 +24,25 @@ public class TransformYPanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		JTextField transformY = new JTextField();
-		transformY.setColumns(20);
-		JLabel transformYLabel = new JLabel("Y = ty(y)");
+		JTextField transformZ = new JTextField();
+		transformZ.setColumns(20);
+		JLabel transformZLabel = new JLabel("Z = tz(z)");
 		this.setLayout(gbl);
-		this.add(transformYLabel,gbc);
+		this.add(transformZLabel,gbc);
 		
 		gbc.gridx=1;
 		gbc.gridwidth=4;
-		this.add(transformY);
+		this.add(transformZ);
 	}
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("xTransform");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Constraints c = new Constraints();
-		TransformYPanel newContentPane = new TransformYPanel();
+		TransformZPanel newContentPane = new TransformZPanel();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();
 		frame.setVisible(true);
 	}
-
 }

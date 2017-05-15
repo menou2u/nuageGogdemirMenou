@@ -1,6 +1,8 @@
 package view.panels;
 
 import java.awt.CardLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -31,11 +33,21 @@ public class TwoConstraintChoicePanel extends JPanel{
 	private CardLayout cl;
 	
 	public TwoConstraintChoicePanel(){
-		super(new GridLayout(1,2));	
+		super(new GridBagLayout());
 		initPanel();
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		
-		add(constraintChoice);
-		add(constraintData);
+		add(constraintChoice,gbc);
+		gbc.gridx=1;
+		gbc.weightx=1;
+		add(constraintData,gbc);
 	}
 
 	private void initPanel() {

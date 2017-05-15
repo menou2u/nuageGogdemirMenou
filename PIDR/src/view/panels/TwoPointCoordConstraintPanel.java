@@ -1,6 +1,7 @@
 package view.panels;
 
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,18 +28,18 @@ public class TwoPointCoordConstraintPanel extends JPanel{
 	private JLabel zw2Lab;
 
 	public TwoPointCoordConstraintPanel(){
-		super(new GridLayout(3,4));
+		super(new GridBagLayout());
 		initComp();
 		fillWithComp();
 	}
 	
 	public void initComp(){
-		xw1 = new JTextField();
-		yw1 = new JTextField();
-		zw1 = new JTextField();
-		xw2 = new JTextField();
-		yw2 = new JTextField();
-		zw2 = new JTextField();
+		xw1 = new JTextField(8);
+		yw1 = new JTextField(8);
+		zw1 = new JTextField(8);
+		xw2 = new JTextField(8);
+		yw2 = new JTextField(8);
+		zw2 = new JTextField(8);
 		
 		xw1Lab = new JLabel("Xw1 brut = ");
 		yw1Lab = new JLabel("Yw1 brut = ");
@@ -49,23 +50,50 @@ public class TwoPointCoordConstraintPanel extends JPanel{
 	}
 	
 	public void fillWithComp(){
-		add(xw1Lab);
-		add(xw1);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		add(xw1Lab,gbc);
 		
-		add(xw2Lab);
-		add(xw2);
+		gbc.gridx=1;
+		add(xw1,gbc);
+		
+		gbc.gridx=2;
+		add(xw2Lab,gbc);
+		
+		gbc.gridx=3;
+		add(xw2,gbc);
 
-		add(yw1Lab);
-		add(yw1);
+		gbc.gridy=1;
+		gbc.gridx=0;
+		add(yw1Lab,gbc);
 		
-		add(yw2Lab);
-		add(yw2);
+		gbc.gridx=1;
+		add(yw1,gbc);
 		
-		add(zw1Lab);
-		add(zw1);
+		gbc.gridx=2;
+		add(yw2Lab,gbc);
 		
-		add(zw2Lab);
-		add(zw2);
+		gbc.gridx=3;
+		add(yw2,gbc);
+		
+		gbc.gridy=2;
+		gbc.gridx=0;
+		add(zw1Lab,gbc);
+		
+		gbc.gridx=1;
+		add(zw1,gbc);
+		
+		gbc.gridx=2;
+		add(zw2Lab,gbc);
+		
+		gbc.gridx=3;
+		add(zw2,gbc);
 	}
 	
 	public static void main(String[] args) {

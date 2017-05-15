@@ -1,10 +1,13 @@
 package view.panels;
 
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.swing.Data;
@@ -25,9 +28,17 @@ public class DataPanel extends JPanel {
 
     public DataPanel(Data d, Data transformedData)
     {
-    	super(new GridLayout(1,2));
-    	add(d.getScrollPane());
-    	add(transformedData.getScrollPane());
+    	super(new GridBagLayout());
+    	GridBagConstraints gbc = new GridBagConstraints();
+    	add(new JLabel("Données brutes"),gbc);
+    	gbc.gridx=1;
+    	add(new JLabel("Données transformées"),gbc);
+    	gbc.gridx=0;
+    	gbc.gridy=1;
+    	gbc.weighty=1;
+    	add(d.getScrollPane(),gbc);
+    	gbc.gridx=1;
+    	add(transformedData.getScrollPane(),gbc);
         setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
     }
     

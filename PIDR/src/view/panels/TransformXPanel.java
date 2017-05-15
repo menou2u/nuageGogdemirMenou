@@ -12,7 +12,7 @@ import model.swing.Constraints;
 
 public class TransformXPanel extends JPanel{
 	
-	public TransformXPanel(Constraints c)
+	public TransformXPanel()
 	{
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -39,7 +39,7 @@ public class TransformXPanel extends JPanel{
 		JFrame frame = new JFrame("xTransform");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Constraints c = new Constraints();
-		TransformXPanel newContentPane = new TransformXPanel(c);
+		TransformXPanel newContentPane = new TransformXPanel();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();

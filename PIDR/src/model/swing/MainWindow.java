@@ -10,16 +10,18 @@ import org.jzy3d.chart.Chart;
 
 import model.math.DroiteMoindreCarres;
 import view.panels.CalculatedFunctionPanel;
-import view.panels.LineConstraintsChoicePanel;
 import view.panels.ConstraintsPanel;
 import view.panels.DataPanel;
 import view.panels.DisplaySettingsPanel;
+import view.panels.LineConstraintsChoicePanel;
 import view.panels.MathShortcutsPanel;
+import view.panels.PlaneConstraintsChoicePanel;
 import view.panels.PointConstraint;
 import view.panels.SlopeConstraint;
 import view.panels.TestFunctionPanel;
 import view.panels.ToolsPanel;
-import view.panels.TransformationsPanel;
+import view.panels.TransformationsLinePanel;
+import view.panels.TransformationsPlanePanel;
 
 public class MainWindow extends Observable {
 	
@@ -40,16 +42,35 @@ public class MainWindow extends Observable {
 	private DisplaySettingsPanel displayPanel;
 	private JPanel contentPanel;
 	private Chart chart;
-	private TransformationsPanel transformationsPanel;
+	private TransformationsLinePanel transformationsLinePanel;
 	private Data transformedData;
 	private DataPanel transformedDataPanel;
 	private JPanel noConstraint;
 	private PointConstraint pointConstraint;
 	private SlopeConstraint slopeConstraint;
 	private LineConstraintsChoicePanel chosenPanel;
+
+	private TransformationsPlanePanel transformationPlanePanel;
+	private MathShortcuts mathShortcutsPlane;
+	private MathShortcutsPanel mathShortcutsPlanePanel;
+	private Data planeData;
+	private Data transformedPlaneData;
+	private DataPanel dataPlanePanel;
+	private PlaneConstraintsChoicePanel planeConstraintsChoicePanel;
+	private DisplaySettings planeDisplay;
+	private DisplaySettingsPanel displayPlanePanel;
+	private TestFunction testFunctionPlane;
+	
+	
 	
 	public MainWindow() {
+		
+		initLinePanel();
+		initPlanePanel();
 
+	}
+	
+	public void initLinePanel(){
 		menu = new Menu();
 		tools = new Tools(this);
 		data = new Data("n°","xi","yi");
@@ -66,14 +87,90 @@ public class MainWindow extends Observable {
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
 		displayPanel = new DisplaySettingsPanel(display);
-		transformationsPanel = new TransformationsPanel(constraints);
+		transformationsLinePanel = new TransformationsLinePanel();
 		contentPanel = new JPanel();
 		chosenPanel = new LineConstraintsChoicePanel(constraints);
-
+	}
+	
+	public void initPlanePanel(){
+		testFunctionPlane = new TestFunction();
+		mathShortcutsPlane = new MathShortcuts(testFunctionPlane);
+		transformationPlanePanel = new TransformationsPlanePanel();
+		mathShortcutsPlanePanel = new MathShortcutsPanel(mathShortcuts);
+		planeData = new Data("n°", "xi", "yi", "zi");
+		transformedPlaneData = new Data("Xi = tx(xi)","Yi = ty(yi)","Zi = tz(zi)");
+		dataPlanePanel = new DataPanel(planeData,transformedPlaneData);
+		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel();
+		planeDisplay = new DisplaySettings();
+		displayPlanePanel = new DisplaySettingsPanel(planeDisplay);
 	}
 	
 	public void setCalculatedFunctionPanel(CalculatedFunctionPanel calculatedFunctionPanel) {
 		this.calculatedFunctionPanel = calculatedFunctionPanel;
+	}
+	
+	public TestFunction getTestFunctionPlane(){
+		return testFunctionPlane;
+	}
+	
+	public MathShortcuts getMathShortcutsPlane(){
+		return mathShortcutsPlane;
+	}
+	
+	/**
+	 * @return the transformationPlanePanel
+	 */
+	public TransformationsPlanePanel getTransformationPlanePanel() {
+		return transformationPlanePanel;
+	}
+
+	/**
+	 * @return the mathShortcutsPlanePanel
+	 */
+	public MathShortcutsPanel getMathShortcutsPlanePanel() {
+		return mathShortcutsPlanePanel;
+	}
+
+	/**
+	 * @return the planeData
+	 */
+	public Data getPlaneData() {
+		return planeData;
+	}
+
+	/**
+	 * @return the transformedPlaneData
+	 */
+	public Data getTransformedPlaneData() {
+		return transformedPlaneData;
+	}
+
+	/**
+	 * @return the dataPlanePanel
+	 */
+	public DataPanel getDataPlanePanel() {
+		return dataPlanePanel;
+	}
+
+	/**
+	 * @return the planeConstraintsChoicePanel
+	 */
+	public PlaneConstraintsChoicePanel getPlaneConstraintsChoicePanel() {
+		return planeConstraintsChoicePanel;
+	}
+
+	/**
+	 * @return the planeDisplay
+	 */
+	public DisplaySettings getPlaneDisplay() {
+		return planeDisplay;
+	}
+
+	/**
+	 * @return the displayPlanePanel
+	 */
+	public DisplaySettingsPanel getDisplayPlanePanel() {
+		return displayPlanePanel;
 	}
 	
 	public JPanel getNoConstraintPanel(){
@@ -108,8 +205,8 @@ public class MainWindow extends Observable {
 		return data;
 	}
 
-	public TransformationsPanel getTransformationsPanel() {
-		return transformationsPanel;
+	public TransformationsLinePanel getTransformationsPanel() {
+		return transformationsLinePanel;
 	}
 
 	public Constraints getConstraints() {

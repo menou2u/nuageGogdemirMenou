@@ -13,6 +13,7 @@ import javax.swing.JRadioButton;
 
 import model.swing.Constraints;
 
+@SuppressWarnings("serial")
 public class TwoConstraintChoicePanel extends JPanel{
 	
 	private ButtonModel bm;
@@ -29,15 +30,15 @@ public class TwoConstraintChoicePanel extends JPanel{
 	
 	private CardLayout cl;
 	
-	public TwoConstraintChoicePanel(Constraints c){
+	public TwoConstraintChoicePanel(){
 		super(new GridLayout(1,2));	
-		initPanel(c);
+		initPanel();
 		
 		add(constraintChoice);
 		add(constraintData);
 	}
 
-	private void initPanel(Constraints c) {
+	private void initPanel() {
 		bG = new ButtonGroup();
 		twoPointCoord = new JRadioButton("Coordonnées de deux points");
 		coordAndVertex = new JRadioButton("Coordonnées et pente selon un vecteur d'un plan");
@@ -61,7 +62,7 @@ public class TwoConstraintChoicePanel extends JPanel{
 		
 		constraintData = new JPanel(cl);
 		twoPointCoordPane = new TwoPointCoordConstraintPanel();
-		coordAndVertexPane = new CoordAndVertexConstraintPanel(c);
+		coordAndVertexPane = new CoordAndVertexConstraintPanel();
 		slopeAndVertexPane = new SlopeAndVertexConstraintPanel();
 		
 		constraintData.add(twoPointCoordPane,"twoPointCoord");
@@ -98,7 +99,7 @@ public class TwoConstraintChoicePanel extends JPanel{
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Constraints c = new Constraints();
-        TwoConstraintChoicePanel newContentPane = new TwoConstraintChoicePanel(c);
+        TwoConstraintChoicePanel newContentPane = new TwoConstraintChoicePanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

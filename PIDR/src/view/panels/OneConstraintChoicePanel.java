@@ -37,7 +37,7 @@ public class OneConstraintChoicePanel extends JPanel {
 	private JTextField y;
 	private JTextField z;
 	
-	public OneConstraintChoicePanel(Constraints c){
+	public OneConstraintChoicePanel(){
 		super(new GridLayout(1,2));
 		
 		cl = new CardLayout();
@@ -45,7 +45,7 @@ public class OneConstraintChoicePanel extends JPanel {
 		constraintDatas = new JPanel(cl);
 		constraintChoice = new JPanel(new GridLayout(2,1));
 		
-		initPanelDatas(c);
+		initPanelDatas();
 		
 		bG = new ButtonGroup();
 		pointChoice = new JRadioButton("Contraintes sur les coordonnées d'un point");
@@ -71,7 +71,7 @@ public class OneConstraintChoicePanel extends JPanel {
 		
 	}
 	
-	public void initPanelDatas(Constraints c){
+	public void initPanelDatas(){
 		pointChosen = new JPanel(new GridLayout(3,2));
 		
 		x = new JTextField();
@@ -87,7 +87,7 @@ public class OneConstraintChoicePanel extends JPanel {
 		
 		constraintDatas.add(pointChosen,"Point");
 		
-		vertexChosen = new VertexConstraintChoice(c);
+		vertexChosen = new VertexConstraintChoice();
 		
 		constraintDatas.add(vertexChosen,"Slope");
 	}
@@ -116,7 +116,7 @@ public class OneConstraintChoicePanel extends JPanel {
         JFrame frame = new JFrame("OneConstraintChoicePanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Constraints c = new Constraints();
-        OneConstraintChoicePanel newContentPane = new OneConstraintChoicePanel(c);
+        OneConstraintChoicePanel newContentPane = new OneConstraintChoicePanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

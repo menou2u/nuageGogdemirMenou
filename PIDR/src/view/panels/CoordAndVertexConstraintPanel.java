@@ -63,7 +63,7 @@ public class CoordAndVertexConstraintPanel extends JPanel{
 	private JLabel yjkLab;
 	private JLabel zjkLab;
 	
-	public CoordAndVertexConstraintPanel(Constraints c){
+	public CoordAndVertexConstraintPanel(){
 		super(new GridLayout(1,2));
 		
 		cl = new CardLayout();
@@ -219,7 +219,7 @@ public class CoordAndVertexConstraintPanel extends JPanel{
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Constraints c = new Constraints();
-        CoordAndVertexConstraintPanel newContentPane = new CoordAndVertexConstraintPanel(c);
+        CoordAndVertexConstraintPanel newContentPane = new CoordAndVertexConstraintPanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

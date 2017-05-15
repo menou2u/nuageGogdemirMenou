@@ -48,7 +48,7 @@ public class VertexConstraintChoice extends JPanel{
 	
 	private CardLayout cl;
 	
-	public VertexConstraintChoice(Constraints c){
+	public VertexConstraintChoice(){
 		super(new GridLayout(1,2));
 		
 		cl = new CardLayout();
@@ -160,7 +160,7 @@ public class VertexConstraintChoice extends JPanel{
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Constraints c = new Constraints();
-        VertexConstraintChoice newContentPane = new VertexConstraintChoice(c);
+        VertexConstraintChoice newContentPane = new VertexConstraintChoice();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

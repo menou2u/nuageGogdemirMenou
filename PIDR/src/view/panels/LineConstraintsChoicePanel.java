@@ -35,9 +35,9 @@ public class LineConstraintsChoicePanel extends JPanel {
     private JRadioButton slopeConstraint;
 	
     public LineConstraintsChoicePanel(Constraints c) {
-        super(new GridLayout(2,1));
+        super(new GridLayout(1,2));
      
-        selectionPanel = new JPanel();
+        selectionPanel = new JPanel(new GridLayout(3,1));
         bG = new ButtonGroup();
         noConstraint = new JRadioButton("Sans contrainte");
         pointConstraint = new JRadioButton("Droite passe par (Xw;Yw)");

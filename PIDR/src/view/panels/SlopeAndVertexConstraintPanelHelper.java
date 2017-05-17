@@ -31,14 +31,12 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
 		
 		initField(axev1,axev2);
 		fillWithFields();
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 
 	}
 
 	private void fillWithFields() {
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.weightx = 0;
+		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;

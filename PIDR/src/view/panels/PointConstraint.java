@@ -1,7 +1,8 @@
 package view.panels;
 
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -20,25 +21,44 @@ import model.swing.Constraints;
 public class PointConstraint extends JPanel {
 	
 	public PointConstraint(Constraints c){
-		GridLayout gL = new GridLayout(2,4);
-		JTextField xWTrue = new JTextField();
-		JTextField xWTreated = new JTextField();
-		JTextField yWTrue = new JTextField();
-		JTextField yWTreated = new JTextField();
+		
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		JTextField xWTrue = new JTextField(8);
+		JTextField xWTreated = new JTextField(8);
+		JTextField yWTrue = new JTextField(8);
+		JTextField yWTreated = new JTextField(8);
 		JLabel xWTrueLabel = new JLabel("Xw brut = ");
 		JLabel yWTrueLabel = new JLabel("Yw brut = ");
 		JLabel xWTreatedLabel = new JLabel("Xw traité = ");
 		JLabel yWTreatedLabel = new JLabel("Yw traité = ");
-		this.setLayout(gL);
-		this.add(xWTrueLabel);
-		this.add(xWTrue);
-		this.add(xWTreatedLabel);
-		this.add(xWTreated);
-		this.add(yWTrueLabel);
-		this.add(yWTrue);
-		this.add(yWTreatedLabel);
-		this.add(yWTreated);
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+		
+		this.add(xWTrueLabel,gbc);
+		gbc.gridx+=gbc.gridwidth;
+		this.add(xWTrue,gbc);
+		
+		gbc.gridx+=gbc.gridwidth;
+		this.add(xWTreatedLabel,gbc);
+		gbc.gridx+=gbc.gridwidth;
+		this.add(xWTreated,gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy+=gbc.gridheight;
+		this.add(yWTrueLabel,gbc);
+		gbc.gridx+=gbc.gridwidth;
+		this.add(yWTrue,gbc);
+		
+		gbc.gridx+=gbc.gridwidth;
+		this.add(yWTreatedLabel,gbc);
+		gbc.gridx+=gbc.gridwidth;
+		this.add(yWTreated,gbc);
 	}
 	
     public static void main(String[] args) {

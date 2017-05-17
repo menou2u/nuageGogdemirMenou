@@ -2,6 +2,8 @@ package view.panels;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,7 +36,15 @@ public class LineConstraintsChoicePanel extends JPanel {
     private JRadioButton slopeConstraint;
 	
     public LineConstraintsChoicePanel(Constraints c) {
-        super(new GridLayout(1,2));
+        super(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
      
         selectionPanel = new JPanel(new GridLayout(3,1));
         bG = new ButtonGroup();
@@ -68,14 +78,15 @@ public class LineConstraintsChoicePanel extends JPanel {
         addCustomListener(pointConstraint);
         addCustomListener(slopeConstraint);
         
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
         
         selectionPanel.add(noConstraint);
         selectionPanel.add(pointConstraint);
         selectionPanel.add(slopeConstraint);
         
-        this.add(selectionPanel);
-        this.add(chosenPanel);
+        this.add(selectionPanel,gbc);
+        
+        gbc.gridx+=gbc.gridwidth;
+        this.add(chosenPanel,gbc);
     }
     
     public void addCustomListener(JRadioButton bouton){

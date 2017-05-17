@@ -1,7 +1,8 @@
 package view.panels;
 
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -21,13 +22,21 @@ import model.swing.Constraints;
 public class SlopeConstraint extends JPanel {
 
 	public SlopeConstraint(Constraints c) {
-		GridLayout gL = new GridLayout(1, 2);
-		JTextField slope = new JTextField();
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		JTextField slope = new JTextField(8);
 		JLabel slopeLabel = new JLabel("Pente = ");
-		this.setLayout(gL);
-		this.add(slopeLabel);
-		this.add(slope);
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
+
+		this.add(slopeLabel,gbc);
+		gbc.gridx+=gbc.gridwidth;
+		this.add(slope,gbc);
 	}
 
 	public static void main(String[] args) {

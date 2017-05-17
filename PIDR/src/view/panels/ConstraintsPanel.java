@@ -16,7 +16,6 @@ public class ConstraintsPanel extends JPanel {
         super(new GridLayout(1,0));
         //Add the scroll pane to this panel.
         add(c.getScrollPane());
-        //setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
     }
 
     public static void main(String[] args) {

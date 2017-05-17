@@ -60,7 +60,6 @@ public class TestFunctionPanel extends JPanel{
 
 		//TODO : Ajouter éventuellement des marges sur les pour l'esthétique.
 		
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}	
 	
 	//main pour test

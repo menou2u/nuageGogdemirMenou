@@ -13,6 +13,8 @@ import model.swing.Constraints;
 @SuppressWarnings("serial")
 public class TransformYPanel extends JPanel {
 
+	JTextField transformY;
+	
 	public TransformYPanel() {
 
 		GridBagLayout gbl = new GridBagLayout();
@@ -25,14 +27,12 @@ public class TransformYPanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		JTextField transformY = new JTextField();
-		transformY.setColumns(20);
+		transformY = new JTextField(8);
 		JLabel transformYLabel = new JLabel("Y = ty(y)");
 		this.setLayout(gbl);
 		this.add(transformYLabel,gbc);
 		
 		gbc.gridx=1;
-		gbc.gridwidth=4;
 		this.add(transformY);
 	}
 
@@ -46,6 +46,14 @@ public class TransformYPanel extends JPanel {
 		frame.setContentPane(newContentPane);
 		frame.pack();
 		frame.setVisible(true);
+	}
+	
+	public JTextField getTransformY() {
+		return transformY;
+	}
+
+	public void setTransformY(JTextField transformY) {
+		this.transformY = transformY;
 	}
 
 }

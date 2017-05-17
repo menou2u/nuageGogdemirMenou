@@ -1,11 +1,9 @@
 package view.panels;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,19 +15,36 @@ public class DataPanel extends JPanel {
     
 
     public DataPanel(Data d) {
-        super(new GridLayout(1,2));
+        super(new BorderLayout());
+        /*GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = gbc.BOTH;
+        gbc.anchor = gbc.CENTER;
+        gbc.gridx=0;
+        gbc.gridy=0;
+        gbc.weightx=0;
+        gbc.weighty=0;
+        gbc.gridheight=1;
+        gbc.gridwidth=1;*/
 
         //Add the scroll pane to this panel.
         add(d.getScrollPane());
         //int colSize = d.getData().length;
         //int rowSize = d.getData()[0].length;
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
     }
 
     public DataPanel(Data d, Data transformedData)
     {
     	super(new GridBagLayout());
     	GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = gbc.BOTH;
+        gbc.gridx=0;
+        gbc.gridy=0;
+        gbc.weightx=0;
+        gbc.weighty=0;
+        gbc.gridheight=1;
+        gbc.gridwidth=1;
+        gbc.anchor = gbc.CENTER;
+    	
     	add(new JLabel("Données brutes"),gbc);
     	gbc.gridx=1;
     	add(new JLabel("Données transformées"),gbc);
@@ -39,7 +54,6 @@ public class DataPanel extends JPanel {
     	add(d.getScrollPane(),gbc);
     	gbc.gridx=1;
     	add(transformedData.getScrollPane(),gbc);
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
     }
     
     public static void main(String[] args) {

@@ -25,19 +25,19 @@ public class Data extends Observable {
 	
 	public Data(String col1,String col2,String col3, String col4){
 		columnNames = new String[]{col1,col2,col3,col4};
-		data = new Object[Math.max(x.size(),Math.max(y.size(),z.size()))][4];
+		data = new Object[Math.max(1,Math.max(x.size(),Math.max(y.size(),z.size())))][4];
         initTable();
 	}
 	
 	public Data(String col1,String col2,String col3){
 		columnNames = new String[]{col1,col2,col3};
-		data = new Object[Math.max(x.size(),y.size())][3];
+		data = new Object[Math.max(1,Math.max(x.size(),y.size()))][3];
         initTable();
 	}
 	
 	public Data(String col1,String col2){
 		columnNames = new String[]{col1,col2};
-		data = new Object[Math.max(x.size(),y.size())][2];
+		data = new Object[Math.max(1,Math.max(x.size(),y.size()))][2];
 		initTable();
 	}
 	
@@ -185,7 +185,7 @@ public class Data extends Observable {
 
 	public static void main(String[] args){
 		Data test = new Data("n°","xi","yi");
-		System.out.println(test.getData());
+		System.out.println(test.getData().toString());
 	}
 	
 }

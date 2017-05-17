@@ -35,7 +35,6 @@ public class TransformationsLinePanel extends JPanel{
 		gbc.gridheight=2;
 		this.add(validation,gbc);
 		
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 	
 	public static void main(String[] args) {

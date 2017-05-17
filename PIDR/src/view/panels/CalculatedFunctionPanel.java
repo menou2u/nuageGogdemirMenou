@@ -74,7 +74,6 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getCalculatedPoint(), gbc);
 
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 
 	// main pour test

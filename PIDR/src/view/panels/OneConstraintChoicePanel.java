@@ -68,7 +68,6 @@ public class OneConstraintChoicePanel extends JPanel {
 		
 		bm = bG.getSelection();
 		
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 
         constraintChoice.add(pointChoice,"Point");
         constraintChoice.add(slopeChoice,"Slope");

@@ -73,7 +73,6 @@ public class DisplaySettingsPanel extends JPanel{
 		gbc.fill = GridBagConstraints.BOTH;
 		add(displaySettings.getDisplayZone(),gbc);
 		
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 	
     public static void main(String[] args) {

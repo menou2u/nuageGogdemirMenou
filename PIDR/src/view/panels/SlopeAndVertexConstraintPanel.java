@@ -43,7 +43,6 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 		initField();
 		
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
@@ -69,9 +68,9 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 		v1XoYV2XoYButton = new JRadioButton("V1 et V2 dans (xoy)");
 		v1ZoXV2ZoXButton = new JRadioButton("V1 et V2 dans (zox)");
 		v1YoZV2YoZButton = new JRadioButton("V1 et V2 dans (yoz)");
-		v1XoYV2YoZButton = new JRadioButton("V1 dans (xoy) et V2 dans (yoz)");
-		v1XoYV2ZoXButton = new JRadioButton("V1 dans (xoy) et V2 dans (zox)");
-		v1YoZV2ZoXButton = new JRadioButton("V1 dans (yoz) et V2 dans (zox)");
+		v1XoYV2YoZButton = new JRadioButton("V1 (xoy) et V2 (yoz)");
+		v1XoYV2ZoXButton = new JRadioButton("V1 (xoy) et V2 (zox)");
+		v1YoZV2ZoXButton = new JRadioButton("V1 (yoz) et V2 (zox)");
 		
 		bG = new ButtonGroup();
 		bG.add(v1XoYV2XoYButton);
@@ -104,7 +103,6 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 		constraintChoser = new JPanel(new GridBagLayout());
 		
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;

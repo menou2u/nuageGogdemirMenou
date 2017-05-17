@@ -81,8 +81,10 @@ public class MainWindow extends Observable {
 		mathShortcuts = new MathShortcuts(testFunction);
 		display = new DisplaySettings();
 		toolsPanel = new ToolsPanel(tools);
+		
 		dataPanel = new DataPanel(data,transformedData);
 		//transformedDataPanel = new DataPanel(transformedData);
+		
 		testFunctionPanel = new TestFunctionPanel(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
@@ -96,10 +98,12 @@ public class MainWindow extends Observable {
 		testFunctionPlane = new TestFunction();
 		mathShortcutsPlane = new MathShortcuts(testFunctionPlane);
 		transformationPlanePanel = new TransformationsPlanePanel();
-		mathShortcutsPlanePanel = new MathShortcutsPanel(mathShortcuts);
+		mathShortcutsPlanePanel = new MathShortcutsPanel(mathShortcutsPlane);
+		
 		planeData = new Data("n°", "xi", "yi", "zi");
 		transformedPlaneData = new Data("Xi = tx(xi)","Yi = ty(yi)","Zi = tz(zi)");
 		dataPlanePanel = new DataPanel(planeData,transformedPlaneData);
+		
 		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel();
 		planeDisplay = new DisplaySettings();
 		displayPlanePanel = new DisplaySettingsPanel(planeDisplay);

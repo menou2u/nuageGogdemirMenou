@@ -40,14 +40,11 @@ public class TransformationsPlanePanel extends JPanel{
 		gbc.gridheight=3;
 		this.add(validation,gbc);
 		
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 	}
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Transforms");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		@SuppressWarnings("unused")
-		Constraints c = new Constraints();
 		TransformationsPlanePanel newContentPane = new TransformationsPlanePanel();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);

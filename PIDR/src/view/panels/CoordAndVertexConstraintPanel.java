@@ -69,8 +69,7 @@ public class CoordAndVertexConstraintPanel extends JPanel{
 		super(new GridBagLayout());
 		
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 0;
+		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
@@ -98,7 +97,6 @@ public class CoordAndVertexConstraintPanel extends JPanel{
 		
 		bm = bG.getSelection();
 		
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 
         vertexChoice.add(vertexIJ,"Vij");
         vertexChoice.add(vertexKI,"Vki");
@@ -165,8 +163,7 @@ public class CoordAndVertexConstraintPanel extends JPanel{
 		vertexVij = new JPanel(new GridBagLayout());
 		
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 0;
+		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
@@ -207,8 +204,7 @@ public class CoordAndVertexConstraintPanel extends JPanel{
 		
 		vertexVki = new JPanel(new GridBagLayout());
 		
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 0;
+		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
@@ -248,8 +244,7 @@ public class CoordAndVertexConstraintPanel extends JPanel{
 		
 		vertexVjk = new JPanel(new GridBagLayout());
 		
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 0;
+		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;

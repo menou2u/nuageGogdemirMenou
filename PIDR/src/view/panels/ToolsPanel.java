@@ -44,11 +44,6 @@ public class ToolsPanel extends JPanel {
 	private void createExecutingPanel(Tools tools) {
 		GridBagConstraints gbc = createGBC();
 		tools.getExecuting().add(tools.getExecute(), gbc);
-
-		gbc.gridx = 0;
-		gbc.gridy++;
-		gbc.gridwidth = 10;
-		tools.getExecuting().add(tools.getNameExecuting(), gbc);
 	}
 
 	private void createPrintingPanel(Tools tools) {
@@ -57,11 +52,6 @@ public class ToolsPanel extends JPanel {
 
 		gbc.gridx = 1;
 		tools.getPrinting().add(tools.getPreview(), gbc);
-
-		gbc.gridx = 0;
-		gbc.gridy += gbc.gridheight;
-		gbc.gridwidth = 10;
-		tools.getPrinting().add(tools.getNamePrinting(), gbc);
 	}
 
 	private void createDataPanel(Tools tools) {
@@ -70,19 +60,11 @@ public class ToolsPanel extends JPanel {
 
 		gbc.gridx = 1;
 		tools.getDatas().add(tools.getImportt(), gbc);
-
-		gbc.gridx = 0;
-		gbc.gridy += gbc.gridheight;
-		gbc.gridwidth = 10;
-		tools.getDatas().add(tools.getNameDatas(), gbc);
 	}
 
 	private void createInfoPanel(Tools tools) {
 		GridBagConstraints gbc = createGBC();
 		tools.getInfos().add(tools.getInfo(), gbc);
-		gbc.gridx = 0;
-		gbc.gridy += gbc.gridheight;
-		tools.getInfos().add(tools.getNameInfos(), gbc);
 	}
 
 	private void createFilePanel(Tools tools) {
@@ -108,11 +90,6 @@ public class ToolsPanel extends JPanel {
 
 		gbc.gridx++;
 		tools.getFile().add(tools.getRegisterAs(), gbc);
-
-		gbc.gridx = 0;
-		gbc.gridwidth = 10;
-		gbc.gridy += gbc.gridheight;
-		tools.getFile().add(tools.getNameFile(), gbc);
 	}
 
 	/**

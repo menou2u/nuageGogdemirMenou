@@ -1,5 +1,6 @@
 package view.window;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -31,13 +32,14 @@ public class MainWindowFrame extends JFrame implements Observer {
 	 */
 	public MainWindowFrame(MainWindow mainWindow) {
 		current = this;
-		setLayout(new GridBagLayout());
+		setLayout(new BorderLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		init2DPanel(mainWindow);
 		init3DPanel(mainWindow);
 		initLinePanel(mainWindow);
 		initPlanePanel(mainWindow);
-
+		
+		gbc.fill = gbc.BOTH;
 		gbc.weighty=0;
 		gbc.gridx=0;
 		gbc.gridy=0;
@@ -73,9 +75,10 @@ public class MainWindowFrame extends JFrame implements Observer {
 		//linePanel.add(mainWindow.getToolsPanel(), gbc);
 		
 		contentPanel.add(mainWindow.getToolsPanel(),gbc);
+		
 		gbc.gridy+=gbc.gridheight;
 		gbc.weighty=1;
-		
+		gbc.weightx=1;
 		contentPanel.add(onglets,gbc);
 		add(contentPanel);  //TODO add un autre gbc
 		setPreferredSize(frameSize);
@@ -86,6 +89,31 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	public void init2DPanel(MainWindow mainWindow) {
 		twoDPanel = new JPanel(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		//Datas
+		
+		
+		//Contraintes Différentielles
+		
+		
+		//Fonction de test
+		
+		
+		//Calculette
+		
+		
+		//CalculatedFunction
+		
+		
+		//Display
 	}
 
 	public void init3DPanel(MainWindow mainWindow) {
@@ -95,7 +123,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 	public void initLinePanel(MainWindow mainWindow) {
 		linePanel = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		//gbc.fill = GridBagConstraints.BOTH;
+		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
@@ -105,16 +133,15 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 		// Fonctions de transformation
 		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
+		gbc.gridheight = 2;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		gbc.gridy += gbc.gridheight;
 		linePanel.add(mainWindow.getTransformationsPanel(), gbc);
 
 		// Calculette
 		gbc.gridy += gbc.gridheight;
 		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
+		gbc.gridheight = 3;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
 		linePanel.add(mainWindow.getMathShortcutsPanel(), gbc);
@@ -123,12 +150,14 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridwidth = 1;
 		gbc.weighty = 1;
 		gbc.gridy += gbc.gridheight;
+		gbc.gridheight = 5;
 		linePanel.add(mainWindow.getDataPanel(), gbc);
 
 		// Panneau des contraintes selon choix
 		gbc.gridx += gbc.gridwidth;
-		gbc.gridy=1;
-		gbc.gridheight =2;
+		gbc.gridy=0;
+		gbc.gridheight =3;
+		gbc.weightx = 1;
 		gbc.weighty=0;
 		linePanel.add(mainWindow.getChosenPanel(),gbc);
 		 
@@ -139,6 +168,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridwidth = 3;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
+		gbc.gridheight =7;
 		linePanel.add(mainWindow.getVisualisationPanel(), gbc);
 	}
 
@@ -156,38 +186,41 @@ public class MainWindowFrame extends JFrame implements Observer {
 		
 		// Fonctions de transformation
 		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
+		gbc.gridheight = 2;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		gbc.gridy += gbc.gridheight;
 		planePanel.add(mainWindow.getTransformationPlanePanel(),gbc);
 		
 		// Calculette
 		gbc.gridy += gbc.gridheight;
 		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
+		gbc.gridheight = 3;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		planePanel.add(mainWindow.getMathShortcutsPlanePanel());
+		planePanel.add(mainWindow.getMathShortcutsPlanePanel(),gbc);
 		
 		
 		// Panneau des données brutes
 		gbc.gridwidth = 1;
 		gbc.weighty = 1;
+		gbc.weightx=1;
 		gbc.gridy += gbc.gridheight;
+		gbc.gridheight = 5;
 		planePanel.add(mainWindow.getDataPlanePanel(),gbc);
 		
 		// Panneau des contraintes selon choix
 		gbc.gridx += gbc.gridwidth;
-		gbc.gridy=1;
-		gbc.gridheight =2;
+		gbc.gridy=0;
+		gbc.gridheight=3;
 		gbc.weighty=0;
+		gbc.weightx=0;
 		planePanel.add(mainWindow.getPlaneConstraintsChoicePanel());
 		
 		// Panel de visualisation du graphe
 		gbc.gridx = 1;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridwidth = 3;
+		gbc.gridheight=7;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		planePanel.add(mainWindow.getDisplayPlanePanel(),gbc);

@@ -72,7 +72,6 @@ public class VertexConstraintChoice extends JPanel{
 		
 		bm = bG.getSelection();
 		
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));
 
         vertexChoice.add(vertexIJ,"Vij");
         vertexChoice.add(vertexKI,"Vki");

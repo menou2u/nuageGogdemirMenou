@@ -32,17 +32,18 @@ public class runme {
     gen g=new gen(s,C);
     // gen g=new gen(10,12);
     // gen g=new gen("x**4-1",C);
-    System.out.println( "Created gen of type : "+g.getType());
+    /*System.out.println( "Created gen of type : "+g.getType());
     if (g.getType()==gen_unary_types._SYMB.swigValue()){
 	System.out.println( "g operator is "+g.operator_at(0,C).print(C));
 	System.out.println( "g has "+giac._size(g,C).getVal()+" arguments");
 	System.out.println( "First argument of g is "+g.operator_at(1,C).print(C));
-    }
+    }*/
     gen h=giac._factor(g,C);
 
-    System.out.println( "Value of h: " + h.print(C) );
+    //System.out.println("res " + g);
+    //System.out.println( "Value of h: " + h.print(C) );
 
-    System.out.println( "Value of double h: " + h.DOUBLE_val() );
+    /*System.out.println( "Value of double h: " + h.DOUBLE_val() );
 
     h=giac.add(g,g);
     h=giac._simplify(h,C);
@@ -50,7 +51,7 @@ public class runme {
     System.out.println( "Value of h: " + h.print(C) );
     // h=new gen(giac.makevecteur(h,new gen(2)),(short)1);
     h=new gen(giac.makevecteur(h,new gen(2),h),(short)gen_comp_subtypes._SEQ__VECT.swigValue());
-    System.out.println( "Value of h: " + h.print(C) );
+    System.out.println( "Value of h: " + h.print(C) );*/
 
     System.out.println( "Goodbye" );
   }

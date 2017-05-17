@@ -77,7 +77,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.weighty=1;
 		
 		contentPanel.add(onglets,gbc);
-		add(contentPanel);
+		add(contentPanel);  //TODO add un autre gbc
 		setPreferredSize(frameSize);
 		setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 		setVisible(true);

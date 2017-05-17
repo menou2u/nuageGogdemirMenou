@@ -3,18 +3,19 @@ droitesmc():={
   restart ;
   // 1 list des xi
   // 2 list des yi
-  // 3 le commutateur 0:pas de contrainte , 1: 1 contrainte sur coordonnées , 2: 1 contrainte sur la pente
+  // 3 le commutateur 0:pas de contrainte , 1: 1 contrainte sur coordonnÃ©es , 2: 1 contrainte sur la pente
   // 4 xomega
   // 5 yomega
   // 6 p1
  
-  listxi:=list[%1];
-  listyi:=list[%2];
-  xMoyen := approx(moyenne(listxi)) ;   //approx veut dire qu'on veut des nombres à virgule
+  listxi:=list[1,3,5];
+  listyi:=list[5,9,25];
+  xMoyen := approx(moyenne(listxi)) ;   //approx veut dire qu'on veut des nombres Ã  virgule
   yMoyen := approx(moyenne(listyi)) ;
   n:=dim(listxi);
+  p:=0;
 
-  switch (%3) {
+  switch (p) {
     case 0:
           {
              //contraintes: 0   
@@ -30,9 +31,9 @@ droitesmc():={
     case 1:
         {
       // contraintes: 1
-      // Contrainte sur coordonnées d'un point de la droite
-          xomega := %4;
-          yomega := %5;
+      // Contrainte sur coordonnÃ©es d'un point de la droite
+          xomega := 0;
+          yomega := 0;
           listxxi:=concat(listxi, xomega);
           listyyi:=concat(listyi,yomega);
           xmaxgraph  := max(concat(listxi , xomega));
@@ -48,7 +49,7 @@ droitesmc():={
             xmingraph  := min(listxi);
             ymaxgraph  := max(listyi);
             ymingraph  := min(listyi);
-            p1 := %6 ;
+            p1 := 0 ;
             p2:=approx(mean(listyi)-p1*mean(listxi));
             f(x):=p1*x+p2;
             residuverticalmoyen:=approx((somme(abs(listyi-f(listxi))))/n);

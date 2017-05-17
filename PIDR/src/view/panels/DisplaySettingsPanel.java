@@ -20,7 +20,7 @@ public class DisplaySettingsPanel extends JPanel{
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(1,1,1,1);
-		gbc.anchor = gbc.WEST;
+		gbc.anchor = GridBagConstraints.WEST;
 		setLayout(gbl);
 		
 		gbc.gridx = 0;
@@ -71,7 +71,7 @@ public class DisplaySettingsPanel extends JPanel{
 		gbc.gridy = 0;
 		gbc.gridheight = 20;
 		gbc.gridwidth = 20;
-		gbc.fill = gbc.BOTH;
+		gbc.fill = GridBagConstraints.BOTH;
 		add(displaySettings.getDisplayZone(),gbc);
 		
 		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1)));

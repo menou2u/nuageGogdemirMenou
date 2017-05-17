@@ -22,7 +22,7 @@ public class MathShortcutsPanel extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		setLayout(gbl);
 		
-		gbc.fill = gbc.BOTH;
+		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(1,1,1,1);
 		
 		gbc.gridx = 0;

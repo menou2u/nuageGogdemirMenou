@@ -47,7 +47,7 @@ public class ApacheTest {
 				XSSFCell cell = row.getCell(j);
 				if (isNumericCell(cell))
 				{
-					res.add((Double)cell.getNumericCellValue());
+					res.add(cell.getNumericCellValue());
 					System.out.println("On a trouvé une cellule de type double en cellule :"+j+" de la colonne :"+i+" dont la valeur est :"+cell.getNumericCellValue());
 				}
 			}

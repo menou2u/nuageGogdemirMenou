@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import model.swing.CalculatedFunction;
 
@@ -37,18 +38,18 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		gbc.anchor = gbc.NORTHWEST;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
 		add(cF.getFunctionName(), gbc);
 
 		gbc.gridx += gbc.gridwidth;
 		gbc.gridy = 0;
 		gbc.gridheight = 5;
-		gbc.gridwidth = gbc.REMAINDER;
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.weighty = 1;
 
 		JScrollPane panelFunctionCalculated = new JScrollPane(cF.getFunctionCalculated());
-		panelFunctionCalculated.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		panelFunctionCalculated.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		panelFunctionCalculated.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panelFunctionCalculated.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(panelFunctionCalculated, gbc);
 
 		gbc.gridx += gbc.gridwidth;
@@ -56,21 +57,21 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 		gbc.gridheight = 1;
 		gbc.gridwidth = 1;
 		gbc.weighty = 0;
-		gbc.anchor = gbc.CENTER;
+		gbc.anchor = GridBagConstraints.CENTER;
 		add(cF.getPointName(), gbc);
 
-		gbc.anchor = gbc.WEST;
+		gbc.anchor = GridBagConstraints.WEST;
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getPoint(), gbc);
 
-		gbc.anchor = gbc.CENTER;
+		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getCalcul(), gbc);
 
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getCalculatedPointName(), gbc);
 
-		gbc.anchor = gbc.WEST;
+		gbc.anchor = GridBagConstraints.WEST;
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getCalculatedPoint(), gbc);
 

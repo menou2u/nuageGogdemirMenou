@@ -5,6 +5,7 @@ import java.util.Observable;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 import controller.CursorForFunctionListener;
 
@@ -16,7 +17,7 @@ public class TestFunction extends Observable {
 	
 	public TestFunction(){
 		
-		function = new JLabel("<html>&phi;j "+getParamString()+" = </html>", JLabel.CENTER);
+		function = new JLabel("<html>&phi;j "+getParamString()+" = </html>", SwingConstants.CENTER);
 		//TODO : Gérer la taille en fonction de la fenêtre.
 		text = new JTextArea(value);
 		//Première valeur = largeur, deuxième = hauteur.
@@ -37,13 +38,13 @@ public class TestFunction extends Observable {
 	//text.getCaretPosition() permet de r�cup�rer la position du curseur
 	public void warnMainWindowFrame(String content) {
 		if (value.equals("")){
-			value = ((String) content) + "()";
+			value = (content) + "()";
 			text.setText(value);
 			System.out.println("oin");
 		}
 		else {
 			String formula = value;
-			formula = formula + (String) content + "()";
+			formula = formula + content + "()";
 			value = formula;
 			text.setText(value);
 		}

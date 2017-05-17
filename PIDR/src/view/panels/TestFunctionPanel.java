@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 import model.swing.TestFunction;
 
@@ -53,8 +54,8 @@ public class TestFunctionPanel extends JPanel{
 		//Remplissage de la ligne
 		
 		JScrollPane panelText = new JScrollPane(textArea);
-		panelText.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		panelText.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		panelText.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panelText.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(panelText, gbc);
 
 		//TODO : Ajouter éventuellement des marges sur les pour l'esthétique.

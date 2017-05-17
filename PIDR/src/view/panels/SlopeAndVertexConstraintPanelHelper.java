@@ -37,7 +37,7 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
 
 	private void fillWithFields() {
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = gbc.HORIZONTAL;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.weightx = 0;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;

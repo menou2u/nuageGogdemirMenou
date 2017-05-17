@@ -52,7 +52,7 @@ public class Datas2DFactory {
 				XSSFCell cell = row.getCell(column);
 				if (isNumericCell(cell))
 				{
-					res.add((Double)cell.getNumericCellValue());
+					res.add(cell.getNumericCellValue());
 				}
 			}
 		}

@@ -211,4 +211,12 @@ public class MainWindowFrame extends JFrame implements Observer {
 		return current;
 	}
 
+	public JPanel getContentPanel() {
+		return contentPanel;
+	}
+
+	public void setContentPanel(JPanel contentPanel) {
+		this.contentPanel = contentPanel;
+	}
+
 }

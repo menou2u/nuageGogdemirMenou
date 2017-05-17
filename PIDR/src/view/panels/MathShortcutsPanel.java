@@ -16,7 +16,6 @@ import model.swing.TestFunction;
 public class MathShortcutsPanel extends JPanel{
 
 	
-	@SuppressWarnings("static-access")
 	public MathShortcutsPanel(MathShortcuts math){
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();

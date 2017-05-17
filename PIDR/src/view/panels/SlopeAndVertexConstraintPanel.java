@@ -163,7 +163,8 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Constraints c = new Constraints();
+        @SuppressWarnings("unused")
+		Constraints c = new Constraints();
         SlopeAndVertexConstraintPanel newContentPane = new SlopeAndVertexConstraintPanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

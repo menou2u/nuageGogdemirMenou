@@ -17,6 +17,7 @@ import model.swing.Constraints;
  * @author Romain
  *
  */
+@SuppressWarnings("serial")
 public class SlopeConstraint extends JPanel {
 
 	public SlopeConstraint(Constraints c) {

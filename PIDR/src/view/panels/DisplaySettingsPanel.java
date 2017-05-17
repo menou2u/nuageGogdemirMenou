@@ -15,7 +15,6 @@ import model.swing.DisplaySettings;
 @SuppressWarnings("serial")
 public class DisplaySettingsPanel extends JPanel{
 
-	@SuppressWarnings("static-access")
 	public DisplaySettingsPanel(DisplaySettings displaySettings){
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();

@@ -15,6 +15,7 @@ import javax.swing.JRadioButton;
 
 import model.swing.Constraints;
 
+@SuppressWarnings("serial")
 public class PlaneConstraintsChoicePanel extends JPanel {
 	
 	private ButtonGroup bG;
@@ -109,7 +110,8 @@ public class PlaneConstraintsChoicePanel extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Constraints c = new Constraints();
+        @SuppressWarnings("unused")
+		Constraints c = new Constraints();
         PlaneConstraintsChoicePanel newContentPane = new PlaneConstraintsChoicePanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.swing.Constraints;
 
+@SuppressWarnings("serial")
 public class TransformationsLinePanel extends JPanel{
 
 	public TransformationsLinePanel(){
@@ -40,6 +41,7 @@ public class TransformationsLinePanel extends JPanel{
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Transforms");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		@SuppressWarnings("unused")
 		Constraints c = new Constraints();
 		TransformationsLinePanel newContentPane = new TransformationsLinePanel();
 		newContentPane.setOpaque(true);

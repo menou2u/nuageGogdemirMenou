@@ -127,7 +127,8 @@ public class OneConstraintChoicePanel extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("OneConstraintChoicePanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Constraints c = new Constraints();
+        @SuppressWarnings("unused")
+		Constraints c = new Constraints();
         OneConstraintChoicePanel newContentPane = new OneConstraintChoicePanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

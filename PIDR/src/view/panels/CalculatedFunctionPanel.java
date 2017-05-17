@@ -25,7 +25,6 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 
 	// TODO : Mettre toutes les dimensions en adéquationavec le reste de la
 	// fenêtre.
-	@SuppressWarnings("static-access")
 	public CalculatedFunctionPanel(CalculatedFunction cF) {
 
 		GridBagLayout gbl = new GridBagLayout();

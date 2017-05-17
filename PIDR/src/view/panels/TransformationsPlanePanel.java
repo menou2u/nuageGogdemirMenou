@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import model.swing.Constraints;
 
+@SuppressWarnings("serial")
 public class TransformationsPlanePanel extends JPanel{
 	
 	public TransformationsPlanePanel(){
@@ -45,6 +46,7 @@ public class TransformationsPlanePanel extends JPanel{
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Transforms");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		@SuppressWarnings("unused")
 		Constraints c = new Constraints();
 		TransformationsPlanePanel newContentPane = new TransformationsPlanePanel();
 		newContentPane.setOpaque(true);

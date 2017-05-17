@@ -16,6 +16,7 @@ import model.swing.Constraints;
  * @author Romain
  *
  */
+@SuppressWarnings("serial")
 public class PointConstraint extends JPanel {
 	
 	public PointConstraint(Constraints c){

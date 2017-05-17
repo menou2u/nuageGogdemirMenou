@@ -291,7 +291,8 @@ public class CoordAndVertexConstraintPanel extends JPanel{
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Constraints c = new Constraints();
+        @SuppressWarnings("unused")
+		Constraints c = new Constraints();
         CoordAndVertexConstraintPanel newContentPane = new CoordAndVertexConstraintPanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

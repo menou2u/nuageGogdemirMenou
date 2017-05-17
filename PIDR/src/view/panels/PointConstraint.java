@@ -1,16 +1,12 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import model.swing.Constraints;
 
 /**
  * Quand on a choisi une contrainte de type "point".
@@ -20,7 +16,7 @@ import model.swing.Constraints;
 @SuppressWarnings("serial")
 public class PointConstraint extends JPanel {
 	
-	public PointConstraint(Constraints c){
+	public PointConstraint(){
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -64,8 +60,7 @@ public class PointConstraint extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("PointConstraint");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Constraints c = new Constraints();
-        PointConstraint newContentPane = new PointConstraint(c);
+        PointConstraint newContentPane = new PointConstraint();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

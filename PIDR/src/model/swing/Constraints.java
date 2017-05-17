@@ -13,15 +13,14 @@ public class Constraints extends Observable {
 	private final JTable table;
 	private JScrollPane scrollPane;
 
-	public Constraints(){
-		data = new Object[1][3];
+	public Constraints(String[] string){
+		data = new Object[1][string.length];
 
-		columnNames = new String[]{"N°","xi","yi"};
+		columnNames = string;
 		
         table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
-        
         //Create the scroll pane and add the table to it.
         scrollPane = new JScrollPane(table);
 	}

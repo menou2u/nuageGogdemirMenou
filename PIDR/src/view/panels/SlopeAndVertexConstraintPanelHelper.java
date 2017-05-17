@@ -1,16 +1,12 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import model.swing.Constraints;
 
 @SuppressWarnings("serial")
 public class SlopeAndVertexConstraintPanelHelper extends JPanel{
@@ -79,8 +75,6 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        @SuppressWarnings("unused")
-		Constraints c = new Constraints();
         SlopeAndVertexConstraintPanelHelper newContentPane = new SlopeAndVertexConstraintPanelHelper("ij","ij");
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

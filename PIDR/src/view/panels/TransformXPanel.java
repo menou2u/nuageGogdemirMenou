@@ -8,8 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.swing.Constraints;
-
 @SuppressWarnings("serial")
 public class TransformXPanel extends JPanel{
 	
@@ -39,8 +37,6 @@ public class TransformXPanel extends JPanel{
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("xTransform");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		@SuppressWarnings("unused")
-		Constraints c = new Constraints();
 		TransformXPanel newContentPane = new TransformXPanel();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);

@@ -1,21 +1,17 @@
 package view.panels;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
-import model.swing.Constraints;
 
 
 //Ajouter un bouton pour ajouter des contraintes :)
@@ -27,7 +23,6 @@ public class LineConstraintsChoicePanel extends JPanel {
 	private JPanel noConstraintPanel;
 	private PointConstraint pointConstraintPanel;
 	private SlopeConstraint slopeConstraintPanel;
-	private Constraints constraints;
 	private JPanel selectionPanel;
 	private ButtonModel bm;
 	private ButtonGroup bG;
@@ -35,7 +30,7 @@ public class LineConstraintsChoicePanel extends JPanel {
     private JRadioButton pointConstraint;
     private JRadioButton slopeConstraint;
 	
-    public LineConstraintsChoicePanel(Constraints c) {
+    public LineConstraintsChoicePanel() {
         super(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -55,11 +50,9 @@ public class LineConstraintsChoicePanel extends JPanel {
 		cl = new CardLayout();
 		chosenPanel = new JPanel(cl);
 		
-		constraints = new Constraints();
-		
 		noConstraintPanel = new JPanel();
-		pointConstraintPanel = new PointConstraint(constraints);
-		slopeConstraintPanel = new SlopeConstraint(constraints);
+		pointConstraintPanel = new PointConstraint();
+		slopeConstraintPanel = new SlopeConstraint();
 		
 		chosenPanel.add(noConstraintPanel,"Pas de contrainte");
 		chosenPanel.add(pointConstraintPanel,"Contrainte sur un point");
@@ -119,8 +112,7 @@ public class LineConstraintsChoicePanel extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Constraints c = new Constraints();
-        LineConstraintsChoicePanel newContentPane = new LineConstraintsChoicePanel(c);
+        LineConstraintsChoicePanel newContentPane = new LineConstraintsChoicePanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

@@ -37,40 +37,37 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		gbc.anchor = GridBagConstraints.NORTHWEST;
 		add(cF.getFunctionName(), gbc);
 
 		gbc.gridx += gbc.gridwidth;
 		gbc.gridy = 0;
-		gbc.gridheight = 5;
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 4;
 		gbc.weighty = 1;
+		gbc.weightx = 1;
 
 		JScrollPane panelFunctionCalculated = new JScrollPane(cF.getFunctionCalculated());
 		panelFunctionCalculated.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panelFunctionCalculated.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(panelFunctionCalculated, gbc);
 
-		gbc.gridx += gbc.gridwidth;
+		gbc.gridx = 0;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridheight = 1;
 		gbc.gridwidth = 1;
 		gbc.weighty = 0;
-		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.weightx = 0;
 		add(cF.getPointName(), gbc);
 
-		gbc.anchor = GridBagConstraints.WEST;
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getPoint(), gbc);
 
-		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getCalcul(), gbc);
 
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getCalculatedPointName(), gbc);
 
-		gbc.anchor = GridBagConstraints.WEST;
 		gbc.gridx += gbc.gridwidth;
 		add(cF.getCalculatedPoint(), gbc);
 
@@ -79,7 +76,7 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 	// main pour test
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
-		CalculatedFunction cF = new CalculatedFunction();
+		CalculatedFunction cF = new CalculatedFunction("f(x) = ");
 		test.setSize(1500, 1000);
 		CalculatedFunctionPanel paneltest = new CalculatedFunctionPanel(cF);
 		GridBagLayout gbl = new GridBagLayout();

@@ -34,16 +34,16 @@ public class CalculatedFunction extends Observable {
 	private JLabel calculatedPointName;
 	private Dimension oneCell;
 	
-	public CalculatedFunction(){
+	public CalculatedFunction(String s){
 		
 		functionName = new JLabel();
-		functionName.setText("f(x) = ");
+		functionName.setText(s);
 		
 		functionCalculated = new JTextArea();
 		functionCalculated.setEditable(false);
 		functionCalculated.setText(value);
 		functionCalculated.setBackground(Color.WHITE);
-		functionCalculated.setRows(4);
+		functionCalculated.setRows(2);
 		functionCalculated.setLineWrap(true);
 		functionCalculated.setSize(400,400);
 		

@@ -101,7 +101,7 @@ public class MathShortcutsPanel extends JPanel{
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(300, 500);
-		MathShortcuts math = new MathShortcuts(new TestFunction());
+		MathShortcuts math = new MathShortcuts(new TestFunction("f(x) = "));
 		MathShortcutsPanel paneltest = new MathShortcutsPanel(math);
 		test.add(paneltest,null);
 		test.setVisible(true);

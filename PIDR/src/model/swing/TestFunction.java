@@ -14,17 +14,19 @@ public class TestFunction extends Observable {
 	private String value = "";
 	private JLabel function;
 	private JTextArea text;
+	private String param;
 	
-	public TestFunction(){
+	public TestFunction(String s){
 		
-		function = new JLabel("<html>&phi;j "+getParamString()+" = </html>", SwingConstants.CENTER);
+		param = s;
+		function = new JLabel("<html>&phi;j "+param+" = </html>", SwingConstants.CENTER);
 		//TODO : Gérer la taille en fonction de la fenêtre.
 		text = new JTextArea(value);
 		//Première valeur = largeur, deuxième = hauteur.
 		//Hauteur inutile...?
 //		text.setSize(800,400);
 		//3 colonnes de texte disponibles nativement, s'étend au besoin.
-		text.setRows(3);
+		text.setRows(2);
 		//Renvoie à la ligne si manque de place
 		text.setLineWrap(true);
 		//Coloration
@@ -40,7 +42,6 @@ public class TestFunction extends Observable {
 		if (value.equals("")){
 			value = (content) + "()";
 			text.setText(value);
-			System.out.println("oin");
 		}
 		else {
 			String formula = value;
@@ -68,8 +69,9 @@ public class TestFunction extends Observable {
 	public JTextArea getText() {
 		return text;
 	}
-	
-	public String getParamString() {
-		return "(x)";
+
+	public String getParam() {
+		return param;
 	}
+
 }

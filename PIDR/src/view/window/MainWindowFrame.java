@@ -89,35 +89,125 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	public void init2DPanel(MainWindow mainWindow) {
 		twoDPanel = new JPanel(new GridBagLayout());
+		twoDPanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1;
-		gbc.weighty = 1;
+		
+		//Fonction de test
+		gbc.weightx = 0;
+		gbc.weighty = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
-		//Datas
-		
-		
-		//Contraintes Différentielles
-		
-		
-		//Fonction de test
-		
-		
-		//Calculette
-		
+		twoDPanel.add(mainWindow.getTwoDTestFunctionPane(),gbc);
 		
 		//CalculatedFunction
+		gbc.weightx = 0;
+		gbc.weighty = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 2;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		twoDPanel.add(mainWindow.getTwoDCalculatedFunctionPane(),gbc);
 		
+		//Calculette
+		gbc.weightx = 0;
+		gbc.weighty = 0;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 3;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		twoDPanel.add(mainWindow.getTwoDMathShortcutsPane(),gbc);
+		
+		//Contraintes Différentielles
+		gbc.weightx = 1;
+		gbc.weighty = 0;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 3;
+		gbc.gridx = 3;
+		gbc.gridy = 0;
+		twoDPanel.add(mainWindow.getTwoDConstraintsPane(),gbc);
+
+		//Datas
+		gbc.weightx = 0;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 4;
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		twoDPanel.add(mainWindow.getTwoDDatasPane(),gbc);
 		
 		//Display
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 4;
+		gbc.gridheight = 4;
+		gbc.gridx = 2;
+		gbc.gridy = 3;
+		twoDPanel.add(mainWindow.getTwoDDisplaySettingsPane(),gbc);
 	}
 
 	public void init3DPanel(MainWindow mainWindow) {
 		threeDPanel = new JPanel(new GridBagLayout());
+		threeDPanel = new JPanel(new GridBagLayout());
+		threeDPanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		
+		//Fonction de test
+		gbc.weightx = 0;
+		gbc.weighty = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		threeDPanel.add(mainWindow.getThreeDTestFunctionPane(),gbc);
+		
+		//CalculatedFunction
+		gbc.weightx = 0;
+		gbc.weighty = 0;
+		gbc.gridwidth = 1;
+		gbc.gridy += gbc.gridheight;
+		gbc.gridheight = 2;
+		gbc.gridx = 0;
+		threeDPanel.add(mainWindow.getThreeDCalculatedFunctionPane(),gbc);
+		
+		//Calculette
+		gbc.weightx = 0;
+		gbc.weighty = 0;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 3;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		threeDPanel.add(mainWindow.getThreeDMathShortcutsPane(),gbc);
+		
+		//Contraintes Différentielles
+		gbc.weightx = 1;
+		gbc.weighty = 0;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 3;
+		gbc.gridx = 3;
+		gbc.gridy = 0;
+		threeDPanel.add(mainWindow.getThreeDConstraintsPane(),gbc);
+
+		//Datas
+		gbc.weightx = 0;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 4;
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		threeDPanel.add(mainWindow.getThreeDDatasPane(),gbc);
+		
+		//Display
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 4;
+		gbc.gridheight = 4;
+		gbc.gridx = 2;
+		gbc.gridy = 3;
+		threeDPanel.add(mainWindow.getThreeDDisplaySettingsPane(),gbc);
 	}
 
 	public void initLinePanel(MainWindow mainWindow) {

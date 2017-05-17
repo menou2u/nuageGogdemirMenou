@@ -40,7 +40,7 @@ public class TestFunctionPanel extends JPanel{
 		//On centre le texte
 		//gbc.anchor = GridBagConstraints.CENTER;
 		JLabel label = testFunction.getFunction();
-		gbc.ipadx = label.getFontMetrics(label.getFont()).stringWidth(testFunction.getParamString())+20;
+		gbc.ipadx = label.getFontMetrics(label.getFont()).stringWidth(testFunction.getParam())+20;
 		add(label, gbc);
 		
 		
@@ -66,7 +66,7 @@ public class TestFunctionPanel extends JPanel{
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
 		test.setSize(300, 500);
-		TestFunction testFunction = new TestFunction();
+		TestFunction testFunction = new TestFunction("f(x) = ");
 		TestFunctionPanel paneltest = new TestFunctionPanel(testFunction);
 		test.add(paneltest,null);
 		test.setVisible(true);

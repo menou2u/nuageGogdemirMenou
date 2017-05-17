@@ -12,8 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import model.swing.Constraints;
-
 @SuppressWarnings("serial")
 public class SlopeAndVertexConstraintPanel extends JPanel {
 	private JPanel v1XoYV2XoY;
@@ -161,8 +159,6 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        @SuppressWarnings("unused")
-		Constraints c = new Constraints();
         SlopeAndVertexConstraintPanel newContentPane = new SlopeAndVertexConstraintPanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

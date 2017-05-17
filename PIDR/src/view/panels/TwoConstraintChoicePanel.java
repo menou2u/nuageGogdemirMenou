@@ -13,8 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import model.swing.Constraints;
-
 @SuppressWarnings("serial")
 public class TwoConstraintChoicePanel extends JPanel{
 	
@@ -110,8 +108,6 @@ public class TwoConstraintChoicePanel extends JPanel{
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        @SuppressWarnings("unused")
-		Constraints c = new Constraints();
         TwoConstraintChoicePanel newContentPane = new TwoConstraintChoicePanel();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

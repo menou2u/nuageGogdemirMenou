@@ -1,12 +1,10 @@
 package view.panels;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JFrame;
@@ -14,8 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-
-import model.swing.Constraints;
 
 @SuppressWarnings("serial")
 public class VertexConstraintChoice extends JPanel{
@@ -158,8 +154,6 @@ public class VertexConstraintChoice extends JPanel{
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        @SuppressWarnings("unused")
-		Constraints c = new Constraints();
         VertexConstraintChoice newContentPane = new VertexConstraintChoice();
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

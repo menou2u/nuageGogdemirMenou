@@ -21,7 +21,7 @@ public class ConstraintsPanel extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Constraints c = new Constraints();
+        Constraints c = new Constraints(new String[]{"N°","Xw","Valeur contrainte","Ordre de dérivation"});
         ConstraintsPanel newContentPane = new ConstraintsPanel(c);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

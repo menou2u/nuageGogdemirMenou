@@ -25,6 +25,55 @@ import view.panels.TransformationsPlanePanel;
 
 public class MainWindow extends Observable {
 	
+	public Data getThreeDDatas() {
+		return threeDDatas;
+	}
+
+	public DataPanel getThreeDDatasPane() {
+		return threeDDatasPane;
+	}
+
+	public Constraints getThreeDConstraints() {
+		return threeDConstraints;
+	}
+
+	public ConstraintsPanel getThreeDConstraintsPane() {
+		return threeDConstraintsPane;
+	}
+
+	public TestFunction getThreeDTestFunction() {
+		return threeDTestFunction;
+	}
+
+	public TestFunctionPanel getThreeDTestFunctionPane() {
+		return threeDTestFunctionPane;
+	}
+
+	public MathShortcuts getThreeDMathShortcuts() {
+		return threeDMathShortcuts;
+	}
+
+	public MathShortcutsPanel getThreeDMathShortcutsPane() {
+		return threeDMathShortcutsPane;
+	}
+
+	public CalculatedFunction getThreeDCalculatedFunction() {
+		return threeDCalculatedFunction;
+	}
+
+	public CalculatedFunctionPanel getThreeDCalculatedFunctionPane() {
+		return threeDCalculatedFunctionPane;
+	}
+
+	public DisplaySettings getThreeDDisplaySettings() {
+		return threeDDisplaySettings;
+	}
+
+	public DisplaySettingsPanel getThreeDDisplaySettingsPane() {
+		return threeDDisplaySettingsPane;
+	}
+
+	//Partie Ligne
 	private Menu menu;
 	private Tools tools;
 	private Data data;
@@ -50,6 +99,7 @@ public class MainWindow extends Observable {
 	private SlopeConstraint slopeConstraint;
 	private LineConstraintsChoicePanel chosenPanel;
 
+	//Partie Plans
 	private TransformationsPlanePanel transformationPlanePanel;
 	private MathShortcuts mathShortcutsPlane;
 	private MathShortcutsPanel mathShortcutsPlanePanel;
@@ -61,23 +111,92 @@ public class MainWindow extends Observable {
 	private DisplaySettingsPanel displayPlanePanel;
 	private TestFunction testFunctionPlane;
 	
+	//Partie 2D
+	private Data twoDDatas;
+	private DataPanel twoDDatasPane;
+	private Constraints twoDConstraints;
+	private ConstraintsPanel twoDConstraintsPane;
+	private TestFunction twoDTestFunction;
+	private TestFunctionPanel twoDTestFunctionPane;
+	private MathShortcuts twoDMathShortcuts;
+	private MathShortcutsPanel twoDMathShortcutsPane;
+	private CalculatedFunction twoDCalculatedFunction;
+	private CalculatedFunctionPanel twoDCalculatedFunctionPane;
+	private DisplaySettings twoDDisplaySettings;
+	private DisplaySettingsPanel twoDDisplaySettingsPane;
 	
+	//Partie 3D
+	private Data threeDDatas;
+	private DataPanel threeDDatasPane;
+	private Constraints threeDConstraints;
+	private ConstraintsPanel threeDConstraintsPane;
+	private TestFunction threeDTestFunction;
+	private TestFunctionPanel threeDTestFunctionPane;
+	private MathShortcuts threeDMathShortcuts;
+	private MathShortcutsPanel threeDMathShortcutsPane;
+	private CalculatedFunction threeDCalculatedFunction;
+	private CalculatedFunctionPanel threeDCalculatedFunctionPane;
+	private DisplaySettings threeDDisplaySettings;
+	private DisplaySettingsPanel threeDDisplaySettingsPane;
 	
 	public MainWindow() {
 		
 		initLinePanel();
+		init2DPanel();
 		initPlanePanel();
+		init3DPanel();
 
 	}
 	
+	private void init3DPanel() {
+		// Datas
+		threeDDatas = new Data("N°","Xi","Yi","Zi");
+		threeDDatasPane = new DataPanel(threeDDatas);
+		//Contraintes
+		threeDConstraints = new Constraints(new String[]{"N°","Xw","Yw","Valeur contrainte","Ordre de dérivation","Valeur contrainte","Ordre de dérivation","Ux","Uy"});
+		threeDConstraintsPane = new ConstraintsPanel(threeDConstraints);
+		//Fonction de Test
+		threeDTestFunction = new TestFunction("(x;y)");
+		threeDTestFunctionPane = new TestFunctionPanel(threeDTestFunction);
+		//Calculette
+		threeDMathShortcuts = new MathShortcuts(threeDTestFunction);
+		threeDMathShortcutsPane = new MathShortcutsPanel(threeDMathShortcuts);
+		//Fonction calculée
+		threeDCalculatedFunction = new CalculatedFunction("f(x;y) = ");
+		threeDCalculatedFunctionPane = new CalculatedFunctionPanel(threeDCalculatedFunction);
+		//Partie display
+		threeDDisplaySettings = new DisplaySettings();
+		threeDDisplaySettingsPane = new DisplaySettingsPanel(threeDDisplaySettings);
+	}
+
+	private void init2DPanel() {
+		// Datas
+		twoDDatas = new Data("N°","Xi","Yi");
+		twoDDatasPane = new DataPanel(twoDDatas);
+		//Contraintes
+		twoDConstraints = new Constraints(new String[]{"N°","Xw","Valeur contrainte","Ordre de dérivation"});
+		twoDConstraintsPane = new ConstraintsPanel(twoDConstraints);
+		//Fonction de Test
+		twoDTestFunction = new TestFunction("(x)");
+		twoDTestFunctionPane = new TestFunctionPanel(twoDTestFunction);
+		//Calculette
+		twoDMathShortcuts = new MathShortcuts(twoDTestFunction);
+		twoDMathShortcutsPane = new MathShortcutsPanel(twoDMathShortcuts);
+		//Fonction calculée
+		twoDCalculatedFunction = new CalculatedFunction("f(x) = ");
+		twoDCalculatedFunctionPane = new CalculatedFunctionPanel(twoDCalculatedFunction);
+		//Partie display
+		twoDDisplaySettings = new DisplaySettings();
+		twoDDisplaySettingsPane = new DisplaySettingsPanel(twoDDisplaySettings);
+	}
+
 	public void initLinePanel(){
 		menu = new Menu();
 		tools = new Tools(this);
 		data = new Data("n°","xi","yi");
 		transformedData = new Data("Xi = tx(xi)","Yi = ty(yi)");
-		constraints = new Constraints();
-		testFunction = new TestFunction();
-		calculatedFunction = new CalculatedFunction();
+		testFunction = new TestFunction("(x)");
+		calculatedFunction = new CalculatedFunction("f(x) = ");
 		mathShortcuts = new MathShortcuts(testFunction);
 		display = new DisplaySettings();
 		toolsPanel = new ToolsPanel(tools);
@@ -91,11 +210,11 @@ public class MainWindow extends Observable {
 		displayPanel = new DisplaySettingsPanel(display);
 		transformationsLinePanel = new TransformationsLinePanel();
 		contentPanel = new JPanel();
-		chosenPanel = new LineConstraintsChoicePanel(constraints);
+		chosenPanel = new LineConstraintsChoicePanel();
 	}
 	
 	public void initPlanePanel(){
-		testFunctionPlane = new TestFunction();
+		testFunctionPlane = new TestFunction("(x;y)");
 		mathShortcutsPlane = new MathShortcuts(testFunctionPlane);
 		transformationPlanePanel = new TransformationsPlanePanel();
 		mathShortcutsPlanePanel = new MathShortcutsPanel(mathShortcutsPlane);
@@ -108,11 +227,55 @@ public class MainWindow extends Observable {
 		planeDisplay = new DisplaySettings();
 		displayPlanePanel = new DisplaySettingsPanel(planeDisplay);
 	}
-	
-	public void setCalculatedFunctionPanel(CalculatedFunctionPanel calculatedFunctionPanel) {
-		this.calculatedFunctionPanel = calculatedFunctionPanel;
+
+	public Data getTwoDDatas() {
+		return twoDDatas;
 	}
-	
+
+	public DataPanel getTwoDDatasPane() {
+		return twoDDatasPane;
+	}
+
+	public Constraints getTwoDConstraints() {
+		return twoDConstraints;
+	}
+
+	public ConstraintsPanel getTwoDConstraintsPane() {
+		return twoDConstraintsPane;
+	}
+
+	public TestFunction getTwoDTestFunction() {
+		return twoDTestFunction;
+	}
+
+	public TestFunctionPanel getTwoDTestFunctionPane() {
+		return twoDTestFunctionPane;
+	}
+
+	public MathShortcuts getTwoDMathShortcuts() {
+		return twoDMathShortcuts;
+	}
+
+	public MathShortcutsPanel getTwoDMathShortcutsPane() {
+		return twoDMathShortcutsPane;
+	}
+
+	public CalculatedFunction getTwoDCalculatedFunction() {
+		return twoDCalculatedFunction;
+	}
+
+	public CalculatedFunctionPanel getTwoDCalculatedFunctionPane() {
+		return twoDCalculatedFunctionPane;
+	}
+
+	public DisplaySettings getTwoDDisplaySettings() {
+		return twoDDisplaySettings;
+	}
+
+	public DisplaySettingsPanel getTwoDDisplaySettingsPane() {
+		return twoDDisplaySettingsPane;
+	}
+
 	public TestFunction getTestFunctionPlane(){
 		return testFunctionPlane;
 	}

@@ -483,7 +483,7 @@ public class MainWindow extends Observable {
 	public void runMath() {
 		if (!data.getPath().equals("")){
 			DroiteMoindreCarres dmc = new DroiteMoindreCarres();
-			dmc.run(data.getX(), data.getY(), 0, 0, 0, 0);
+			//dmc.run(data.getX(), data.getY(), 0, 0, 0, 0);
 			System.out.println(dmc.getRes());
 		}
 		setChanged();

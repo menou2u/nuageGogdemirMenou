@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import javagiac.context;
 import javagiac.gen;
 
-public class Plan extends XcasProg {
+public class Plan0Contrainte extends XcasProg {
 
-	public Plan() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Plan.cas");
+	public Plan0Contrainte() {
+		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Plans\\plan 0 contrainte.cas");
 	}
 	
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi){
@@ -25,5 +25,5 @@ public class Plan extends XcasProg {
 		gen g = new gen(algo, c);
 		res = g.eval(1, c).print(c);
 	}
-	
+		
 }

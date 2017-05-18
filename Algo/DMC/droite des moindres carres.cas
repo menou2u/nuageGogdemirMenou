@@ -128,7 +128,7 @@ droitesmc():={
       f(x):=o1*x+o2;          
     }
 
-  f1(x):=diff(f(x),x,1);
+  f1:=unapply(diff(f(x),x,1),x)
   longueurdroite:=approx(int(sqrt(1+(f1(x)).^2),x,min(listxxi),max(listxxi)));
   longueuri:=newList(n-1);
   for(j:=0;j<=n-2;j:=j++)   
@@ -139,7 +139,7 @@ droitesmc():={
 
 //   --------------------------------------------------------------------------------------------------------
 
-returns v1 + ";" + v2 + ";" + y=v1*x+v2 + ";" + h1 + ";" + h2 + ";" + y=h1*x+h2 + ";" + sqrt(min(v1/h1,h1/v1)) + ";" + o1 + ";" + o2+ ";" + y=o1*x+o2 + ";" +
+return v1 + ";" + v2 + ";" + h1 + ";" + h2 + ";" + sqrt(min(v1/h1,h1/v1)) + ";" + o1 + ";" + o2+ ";" +
         residucarremoyenorthoprojverti + ";" +  residucarremoyenorthoprojhoriz + ";" + residucarremoyenorthoprojortho + ";" + residumoyenorthoprojverti + ";" +
         residumoyenorthoprojhoriz + ";" + residumoyenorthoprojortho + ";" + longueurdroite  + ";" + longueurpolygone + ";" + longueurdroite/longueurpolygone + ";" +
         min(listxi) + ";" + max(listxi) + ";" +  xMoyen  + ";" + yMoyen    + ";" + Conseil + ";" + xmingraph  + ";" +  xmaxgraph+ ";" + ymingraph   + ";" + ymaxgraph  ;

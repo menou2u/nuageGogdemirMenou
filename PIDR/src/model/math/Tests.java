@@ -8,7 +8,30 @@ public class Tests {
 		//dmcC0();
 		//dmcC1();
 		//dmcC2();
-		plan1Contrainte();
+		plan0Contrainte();
+		//plan1Contrainte();
+		//test3D();
+	}
+	
+	public static void plan0Contrainte(){
+		Plan0Contrainte plan = new Plan0Contrainte();
+		LinkedList<Double> listXi = new LinkedList<Double>();
+		listXi.add(-1.0);
+		listXi.add(1.0);
+		listXi.add(2.0);
+		listXi.add(3.0);
+		LinkedList<Double> listYi = new LinkedList<Double>();
+		listYi.add(1.0);
+		listYi.add(2.0);
+		listYi.add(3.0);
+		listYi.add(4.0);
+		LinkedList<Double> listZi = new LinkedList<Double>();
+		listZi.add(-1.0);
+		listZi.add(6.0);
+		listZi.add(11.0);
+		listZi.add(16.0);
+		plan.run(listXi, listYi, listZi);
+		System.out.println(plan.getInfos());
 	}
 	
 	public static void plan1Contrainte(){
@@ -28,15 +51,59 @@ public class Tests {
 		listZi.add(-4.0);
 		listZi.add(0.0);
 		listZi.add(11.0);
-		LinkedList<Double> listXomega = new LinkedList<Double>();
-		listXomega.add(3.0);
-		LinkedList<Double> listYomega = new LinkedList<Double>();
-		listXomega.add(4.0);
-		LinkedList<Double> listZomega = new LinkedList<Double>();
-		listXomega.add(2.0);
-		plan.run(listXi, listYi, listZi, listXomega, listYomega, listZomega);
-		
+		LinkedList<Double> listXomegaBT = new LinkedList<Double>();
+		listXomegaBT.add(3.0);
+		listXomegaBT.add(3.0);
+		LinkedList<Double> listYomegaBT = new LinkedList<Double>();
+		listYomegaBT.add(4.0);
+		listYomegaBT.add(4.0);
+		LinkedList<Double> listZomegaBT = new LinkedList<Double>();
+		listZomegaBT.add(2.0);
+		listZomegaBT.add(2.0);
+		plan.run(listXi, listYi, listZi, listXomegaBT, listYomegaBT, listZomegaBT);
+		System.out.println(plan.getRes());
+		//System.out.println(plan.getInfos());
 	}
+	
+	//x -1 1 2 3
+	//y 1 2 3 4
+	//z -1 6 11 16     // 2 3 -2
+	
+	public static void test3D(){
+		Nuages3D troisD = new Nuages3D();
+		LinkedList<Double> listXi = new LinkedList<Double>();
+		listXi.add(-2.0);
+		listXi.add(0.0);
+		listXi.add(1.0);
+		listXi.add(2.0);
+		LinkedList<Double> listYi = new LinkedList<Double>();
+		listYi.add(1.0);
+		listYi.add(0.0);
+		listYi.add(2.0);
+		listYi.add(-1.0);
+		LinkedList<Double> listZi = new LinkedList<Double>();
+		listZi.add(3.0);
+		listZi.add(-4.0);
+		listZi.add(0.0);
+		listZi.add(-11.0);
+		LinkedList<String> listPhi = new LinkedList<>();
+		listPhi.add("x");
+		listPhi.add("y");
+		listPhi.add("1");
+		LinkedList<Double> listXomega = new LinkedList<Double>();
+		//listXomega.add(3.0);
+		LinkedList<Double> listYomega = new LinkedList<Double>();
+		//listYomega.add(4.0);
+		LinkedList<Double> listZomega = new LinkedList<Double>();
+		//listZomega.add(2.0);
+		LinkedList<Integer> listOrdreDerivation = new LinkedList<Integer>();
+		//listOrdreDerivation.add(0);
+		LinkedList<Double> listUx = new LinkedList<Double>();
+		LinkedList<Double> listUy = new LinkedList<Double>();
+		troisD.run(listXi, listYi, listZi, listPhi, listXomega, listYomega, listZomega, listOrdreDerivation, listUx, listUy);
+		System.out.println(troisD.getInfos());	
+	}
+	
 	
 	public static void dmcC2(){
 		DroiteMoindreCarres dmc = new DroiteMoindreCarres();

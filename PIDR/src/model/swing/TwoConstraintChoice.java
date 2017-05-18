@@ -59,6 +59,7 @@ public class TwoConstraintChoice {
 		
 		cl = new CardLayout();
 		
+		twoPointCoordConstraint = new TwoPointCoordConstraint();
 		constraintData = new JPanel(cl);
 		twoPointCoordPane = new TwoPointCoordConstraintPanel(twoPointCoordConstraint);
 		coordAndVertexPane = new CoordAndVertexConstraintPanel();

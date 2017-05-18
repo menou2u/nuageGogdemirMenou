@@ -4,16 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.swing.Tools;
+import view.window.InfosWindowFrame;
 
 public class InfosButtonListener implements ActionListener {
 
+	private Tools toolsReference;
+	
 	public InfosButtonListener(Tools tools) {
-		// TODO Auto-generated constructor stub
+		toolsReference = tools;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		//new InfosWindowFrame(toolsReference.getMainWindow());
 		
 	}
 

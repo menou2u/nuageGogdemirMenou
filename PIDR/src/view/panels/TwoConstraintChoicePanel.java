@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.swing.TwoConstraintChoice;
+import model.swing.TwoPointCoordConstraint;
 
 @SuppressWarnings("serial")
 public class TwoConstraintChoicePanel extends JPanel{

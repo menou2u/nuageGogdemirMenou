@@ -29,6 +29,7 @@ public class LineConstraintsChoicePanel extends JPanel {
 	private JRadioButton noConstraint;
     private JRadioButton pointConstraint;
     private JRadioButton slopeConstraint;
+    private int commutateur;
 	
     public LineConstraintsChoicePanel() {
         super(new GridBagLayout());
@@ -84,19 +85,23 @@ public class LineConstraintsChoicePanel extends JPanel {
     
     public void addCustomListener(JRadioButton bouton){
     	bouton.addMouseListener(new MouseAdapter(){
-        	@Override
+
+			@Override
         	public void mouseClicked(MouseEvent e) {
         		super.mouseClicked(e);
         		if (!bm.equals(bG.getSelection())){
         			bm = bG.getSelection();
         			if (bm.equals(noConstraint.getModel()))
         			{
+        				commutateur = 0;
         				cl.first(chosenPanel);
         			}
         			if (bm.equals(pointConstraint.getModel())){
+        				commutateur = 1;
         				cl.show(chosenPanel, "Contrainte sur un point");
         			}
         			if (bm.equals(slopeConstraint.getModel())){
+        				commutateur = 2;
         				cl.show(chosenPanel,"Contrainte sur la pente");
         			}
         		}
@@ -105,7 +110,14 @@ public class LineConstraintsChoicePanel extends JPanel {
         });
     }
     
-    public ButtonModel getBM(){
+    /**
+	 * @return the commutateur
+	 */
+	public int getCommutateur() {
+		return commutateur;
+	}
+
+	public ButtonModel getBM(){
     	return bm;
     }
 

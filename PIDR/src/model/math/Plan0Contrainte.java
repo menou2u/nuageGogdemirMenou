@@ -27,7 +27,7 @@ public class Plan0Contrainte extends XcasProg {
 	}
 	
 	public StringBuilder getInfos(){
-		StringBuilder infos = new StringBuilder();
+		infos = new StringBuilder();
 		String[] elements = (res.split(",")[1]).split(";");
 		infos.append("Données mathématiques\n");
 		infos.append("approx(listfeqplans[0]) = "+elements[0]+"\n");

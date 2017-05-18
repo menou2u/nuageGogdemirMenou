@@ -24,57 +24,14 @@ import view.panels.TransformationsLinePanel;
 import view.panels.TransformationsPlanePanel;
 
 public class MainWindow extends Observable {
+
+	private String functionMode;
+	private static final String LINE = "Line";
+	private static final String PLANE = "Plane";
+	private static final String D2 = "2D";
+	private static final String D3 = "3D";
 	
-	public Data getThreeDDatas() {
-		return threeDDatas;
-	}
-
-	public DataPanel getThreeDDatasPane() {
-		return threeDDatasPane;
-	}
-
-	public Constraints getThreeDConstraints() {
-		return threeDConstraints;
-	}
-
-	public ConstraintsPanel getThreeDConstraintsPane() {
-		return threeDConstraintsPane;
-	}
-
-	public TestFunction getThreeDTestFunction() {
-		return threeDTestFunction;
-	}
-
-	public TestFunctionPanel getThreeDTestFunctionPane() {
-		return threeDTestFunctionPane;
-	}
-
-	public MathShortcuts getThreeDMathShortcuts() {
-		return threeDMathShortcuts;
-	}
-
-	public MathShortcutsPanel getThreeDMathShortcutsPane() {
-		return threeDMathShortcutsPane;
-	}
-
-	public CalculatedFunction getThreeDCalculatedFunction() {
-		return threeDCalculatedFunction;
-	}
-
-	public CalculatedFunctionPanel getThreeDCalculatedFunctionPane() {
-		return threeDCalculatedFunctionPane;
-	}
-
-	public DisplaySettings getThreeDDisplaySettings() {
-		return threeDDisplaySettings;
-	}
-
-	public DisplaySettingsPanel getThreeDDisplaySettingsPane() {
-		return threeDDisplaySettingsPane;
-	}
-
 	//Partie Ligne
-	private Menu menu;
 	private Tools tools;
 	private Data data;
 	private Constraints constraints;
@@ -140,15 +97,14 @@ public class MainWindow extends Observable {
 	private DisplaySettingsPanel threeDDisplaySettingsPane;
 	
 	public MainWindow() {
-		
 		initLinePanel();
 		init2DPanel();
 		initPlanePanel();
 		init3DPanel();
-
 	}
 	
 	private void init3DPanel() {
+		functionMode = D3;
 		// Datas
 		threeDDatas = new Data("N°","Xi","Yi","Zi");
 		threeDDatasPane = new DataPanel(threeDDatas);
@@ -170,6 +126,7 @@ public class MainWindow extends Observable {
 	}
 
 	private void init2DPanel() {
+		functionMode = D2;
 		// Datas
 		twoDDatas = new Data("N°","Xi","Yi");
 		twoDDatasPane = new DataPanel(twoDDatas);
@@ -191,7 +148,7 @@ public class MainWindow extends Observable {
 	}
 
 	public void initLinePanel(){
-		menu = new Menu();
+		functionMode = LINE;
 		tools = new Tools(this);
 		data = new Data("n°","xi","yi");
 		transformedData = new Data("Xi = tx(xi)","Yi = ty(yi)");
@@ -214,6 +171,7 @@ public class MainWindow extends Observable {
 	}
 	
 	public void initPlanePanel(){
+		functionMode = PLANE;
 		testFunctionPlane = new TestFunction("(x;y)");
 		mathShortcutsPlane = new MathShortcuts(testFunctionPlane);
 		transformationPlanePanel = new TransformationsPlanePanel();
@@ -226,6 +184,134 @@ public class MainWindow extends Observable {
 		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel();
 		planeDisplay = new DisplaySettings();
 		displayPlanePanel = new DisplaySettingsPanel(planeDisplay);
+	}
+	
+	public Component getVisualisationPanel() {
+		/*// Define a function to plot
+        Mapper mapper = new Mapper() {
+            @Override
+            public double f(double x, double y) {
+                return x * Math.sin(x * y);
+            }
+        };
+
+        // Define range and precision for the function to plot
+        Range range = new Range(-3, 3);
+        int steps = 80;
+
+        // Create the object to represent the function over the given range.
+        final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
+        surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(), surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
+        surface.setFaceDisplayed(true);
+        surface.setWireframeDisplayed(false);
+
+        // Create a chart
+        chart = new Chart();
+        chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
+        chart.getScene().getGraph().add(surface);
+        
+        chart.addMouseCameraController();
+        chart.addMousePickingController(2);
+        /*AWTCameraMouseController controller = new AWTCameraMouseController(chart);
+
+		addMouseListener(controller);
+		addMouseMotionListener(controller);
+		addMouseWheelListener(controller);*/
+		/*Component canvas = (Component) chart.getCanvas();
+		
+		//JPanel panel = new JPanel();
+		//panel.add(canvas, BorderLayout.CENTER);
+		return canvas;*/
+		return new JPanel(); 
+	}
+
+	public void sendNewFile(File file) {
+		data.updateTableContent(file.getPath());
+		dataPanel = new DataPanel(data);
+		setChanged();
+		notifyObservers();
+	}
+
+	public void runMath() {
+		if (!data.getPath().equals("")){
+			switch (functionMode) {
+			case LINE:
+				DroiteMoindreCarres dmc = new DroiteMoindreCarres();
+				dmc.run(data.getX(), data.getY(), chosenPanel.getCommutateur(), pointConstraint.getOmegaDatas(), Double.parseDouble(slopeConstraint.getSlope().getText()));
+				/*if (pointConstraint.getOmegaDatas().size() > 0)
+				notifyObservers(dmc.get);*/
+				break;
+			case PLANE:
+				
+				break;
+			case D2:
+				
+				break;
+			case D3:
+				
+				break;
+			default:
+				break;
+			}
+		}
+		setChanged();
+		notifyObservers();
+	}
+	
+	public DataPanel getTransformedDataPanel() {
+		return transformedDataPanel;
+	}
+
+	public Chart getChart() {
+		return chart;
+	}
+	
+	public Data getThreeDDatas() {
+		return threeDDatas;
+	}
+
+	public DataPanel getThreeDDatasPane() {
+		return threeDDatasPane;
+	}
+
+	public Constraints getThreeDConstraints() {
+		return threeDConstraints;
+	}
+
+	public ConstraintsPanel getThreeDConstraintsPane() {
+		return threeDConstraintsPane;
+	}
+
+	public TestFunction getThreeDTestFunction() {
+		return threeDTestFunction;
+	}
+
+	public TestFunctionPanel getThreeDTestFunctionPane() {
+		return threeDTestFunctionPane;
+	}
+
+	public MathShortcuts getThreeDMathShortcuts() {
+		return threeDMathShortcuts;
+	}
+
+	public MathShortcutsPanel getThreeDMathShortcutsPane() {
+		return threeDMathShortcutsPane;
+	}
+
+	public CalculatedFunction getThreeDCalculatedFunction() {
+		return threeDCalculatedFunction;
+	}
+
+	public CalculatedFunctionPanel getThreeDCalculatedFunctionPane() {
+		return threeDCalculatedFunctionPane;
+	}
+
+	public DisplaySettings getThreeDDisplaySettings() {
+		return threeDDisplaySettings;
+	}
+
+	public DisplaySettingsPanel getThreeDDisplaySettingsPane() {
+		return threeDDisplaySettingsPane;
 	}
 
 	public Data getTwoDDatas() {
@@ -351,10 +437,6 @@ public class MainWindow extends Observable {
 	public SlopeConstraint getSlopeConstraint(){
 		return slopeConstraint;
 	}
-	
-	public Menu getMenu() {
-		return menu;
-	}
 
 	public LineConstraintsChoicePanel getChosenPanel() {
 		return chosenPanel;
@@ -424,70 +506,34 @@ public class MainWindow extends Observable {
 		return displayPanel;
 	}
 
+	/**
+	 * @return the functionMode
+	 */
+	public String getFunctionMode() {
+		return functionMode;
+	}
+
+	/**
+	 * @return the transformationsLinePanel
+	 */
+	public TransformationsLinePanel getTransformationsLinePanel() {
+		return transformationsLinePanel;
+	}
+
+	/**
+	 * @return the transformedData
+	 */
+	public Data getTransformedData() {
+		return transformedData;
+	}
+
+	/**
+	 * @return the noConstraint
+	 */
+	public JPanel getNoConstraint() {
+		return noConstraint;
+	}
 	
 	
-	public Component getVisualisationPanel() {
-		/*// Define a function to plot
-        Mapper mapper = new Mapper() {
-            @Override
-            public double f(double x, double y) {
-                return x * Math.sin(x * y);
-            }
-        };
-
-        // Define range and precision for the function to plot
-        Range range = new Range(-3, 3);
-        int steps = 80;
-
-        // Create the object to represent the function over the given range.
-        final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
-        surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(), surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
-        surface.setFaceDisplayed(true);
-        surface.setWireframeDisplayed(false);
-
-        // Create a chart
-        chart = new Chart();
-        chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
-        chart.getScene().getGraph().add(surface);
-        
-        chart.addMouseCameraController();
-        chart.addMousePickingController(2);
-        /*AWTCameraMouseController controller = new AWTCameraMouseController(chart);
-
-		addMouseListener(controller);
-		addMouseMotionListener(controller);
-		addMouseWheelListener(controller);*/
-		/*Component canvas = (Component) chart.getCanvas();
-		
-		//JPanel panel = new JPanel();
-		//panel.add(canvas, BorderLayout.CENTER);
-		return canvas;*/
-		return new JPanel(); 
-	}
-
-	public DataPanel getTransformedDataPanel() {
-		return transformedDataPanel;
-	}
-
-	public Chart getChart() {
-		return chart;
-	}
-
-	public void sendNewFile(File file) {
-		data.updateTableContent(file.getPath());
-		dataPanel = new DataPanel(data);
-		setChanged();
-		notifyObservers();
-	}
-
-	public void runMath() {
-		if (!data.getPath().equals("")){
-			DroiteMoindreCarres dmc = new DroiteMoindreCarres();
-			//dmc.run(data.getX(), data.getY(), 0, 0, 0, 0);
-			System.out.println(dmc.getRes());
-		}
-		setChanged();
-		notifyObservers();
-	}
 
 }

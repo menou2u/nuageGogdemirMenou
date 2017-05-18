@@ -2,6 +2,7 @@ package view.panels;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.LinkedList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,11 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class PointConstraint extends JPanel {
 	
+	private JTextField xWTrue;
+	private JTextField xWTreated;
+	private JTextField yWTrue;
+	private JTextField yWTreated;
+
 	public PointConstraint(){
 		
 		this.setLayout(new GridBagLayout());
@@ -27,10 +33,10 @@ public class PointConstraint extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		JTextField xWTrue = new JTextField(8);
-		JTextField xWTreated = new JTextField(8);
-		JTextField yWTrue = new JTextField(8);
-		JTextField yWTreated = new JTextField(8);
+		xWTrue = new JTextField(8);
+		xWTreated = new JTextField(8);
+		yWTrue = new JTextField(8);
+		yWTreated = new JTextField(8);
 		JLabel xWTrueLabel = new JLabel("Xw brut = ");
 		JLabel yWTrueLabel = new JLabel("Yw brut = ");
 		JLabel xWTreatedLabel = new JLabel("Xw traité = ");
@@ -55,6 +61,15 @@ public class PointConstraint extends JPanel {
 		this.add(yWTreatedLabel,gbc);
 		gbc.gridx+=gbc.gridwidth;
 		this.add(yWTreated,gbc);
+	}
+	
+	public LinkedList<Double> getOmegaDatas(){
+		LinkedList<Double> omegaDatas = new LinkedList<Double>();
+		omegaDatas.add(Double.parseDouble(xWTrue.getText()));
+		omegaDatas.add(Double.parseDouble(yWTrue.getText()));
+		omegaDatas.add(Double.parseDouble(xWTreated.getText()));
+		omegaDatas.add(Double.parseDouble(yWTreated.getText()));
+		return omegaDatas;
 	}
 	
     public static void main(String[] args) {

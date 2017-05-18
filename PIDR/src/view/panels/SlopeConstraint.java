@@ -16,6 +16,8 @@ import javax.swing.JTextField;
  */
 @SuppressWarnings("serial")
 public class SlopeConstraint extends JPanel {
+	
+	private JTextField slope;
 
 	public SlopeConstraint() {
 		this.setLayout(new GridBagLayout());
@@ -27,13 +29,24 @@ public class SlopeConstraint extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		JTextField slope = new JTextField(8);
+		slope = new JTextField(8);
 		JLabel slopeLabel = new JLabel("Pente = ");
 
 		this.add(slopeLabel,gbc);
 		gbc.gridx+=gbc.gridwidth;
 		this.add(slope,gbc);
 	}
+	
+	
+
+	/**
+	 * @return the slope
+	 */
+	public JTextField getSlope() {
+		return slope;
+	}
+
+
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("PointConstraint");

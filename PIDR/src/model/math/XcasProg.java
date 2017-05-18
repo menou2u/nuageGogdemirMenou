@@ -12,6 +12,7 @@ public abstract class XcasProg {
 	protected String res;
 	protected String algo;
 	protected String path;
+	protected StringBuilder infos;
 	
 	protected void parsingProg(String path){
 		System.loadLibrary("javagiac");

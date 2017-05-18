@@ -93,7 +93,7 @@ public class DroiteMoindreCarres extends XcasProg {
 	}
 	
 	public StringBuilder getInfosC2(){
-		StringBuilder infos = new StringBuilder();
+		infos = new StringBuilder();
 		String[] elements = (res.split(",")[1]).split(";");
 		infos.append("Données mathématiques\n");
 		infos.append("X = tx(x)\n");

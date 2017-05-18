@@ -11,6 +11,11 @@ import javax.swing.JPanel;
 
 import controller.ExecuteButtonListener;
 import controller.ImportButtonListener;
+import controller.InfosButtonListener;
+import controller.PreviewButtonListener;
+import controller.PrintButtonListener;
+import controller.SaveAsButtonListener;
+import controller.SaveButtonListener;
 import pidr.mag.sample.api.DefaultMenuModelHandler;
 import pidr.mag.sample.api.MenuOpenerButton;
 import pidr.mag.sample.api.RotativeMenuModel;
@@ -67,10 +72,13 @@ public class Tools extends Observable {
 		menuOpener = new MenuOpenerButton(new FilePopupMenuOpener(openModel), open);
 
 		register = new JButton("Enregistrer");
+		register.addActionListener(new SaveButtonListener(this));
 
 		registerAs = new JButton("Enregistrer Sous...");
+		registerAs.addActionListener(new SaveAsButtonListener(this));
 
 		info = new JButton("Infos");
+		info.addActionListener(new InfosButtonListener(this));
 
 		export = new JButton("Exporter");
 
@@ -78,8 +86,10 @@ public class Tools extends Observable {
 		importt.addActionListener(new ImportButtonListener(this));
 
 		print = new JButton("Imprimer");
+		print.addActionListener(new PrintButtonListener(this));
 
 		preview = new JButton("Prévisualiser");
+		preview.addActionListener(new PreviewButtonListener(this));
 
 		execute = new JButton("Exécuter");
 		execute.addActionListener(new ExecuteButtonListener(this));

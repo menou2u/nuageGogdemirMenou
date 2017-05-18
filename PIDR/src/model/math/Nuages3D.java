@@ -53,7 +53,7 @@ public class Nuages3D extends XcasProg {
 	}
 	
 	public StringBuilder getInfos(){
-		StringBuilder infos = new StringBuilder();
+		infos = new StringBuilder();
 		String[] elements = (res.split(",")[1]).split(";");
 		infos.append("Données mathématiques\n\n");
 		infos.append("Nombre de données brutes : "+nbElements+"\n\n");

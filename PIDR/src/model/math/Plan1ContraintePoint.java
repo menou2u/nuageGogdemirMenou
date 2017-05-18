@@ -37,7 +37,7 @@ public class Plan1ContraintePoint extends XcasProg {
 	}
 
 	public StringBuilder getInfos() {
-		StringBuilder infos = new StringBuilder();
+		infos = new StringBuilder();
 		String[] elements = (res.split(",")[1]).split(";");
 		infos.append("Données mathématiques\n\n");
 		infos.append("xw brut = "+listXomega.get(0)+"\n");

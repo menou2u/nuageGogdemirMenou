@@ -45,9 +45,9 @@ public class DataPanel extends JPanel {
         gbc.gridwidth=1;
         gbc.anchor = gbc.CENTER;
     	
-    	add(new JLabel("Données brutes"),gbc);
+    	add(new JLabel("            Données brutes             "),gbc);
     	gbc.gridx=1;
-    	add(new JLabel("Données transformées"),gbc);
+    	add(new JLabel("           Données transformées         "),gbc);
     	gbc.gridx=0;
     	gbc.gridy=1;
     	gbc.weighty=1;

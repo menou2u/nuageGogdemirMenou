@@ -89,7 +89,6 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	public void init2DPanel(MainWindow mainWindow) {
 		twoDPanel = new JPanel(new GridBagLayout());
-		twoDPanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		
@@ -150,8 +149,6 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	public void init3DPanel(MainWindow mainWindow) {
 		threeDPanel = new JPanel(new GridBagLayout());
-		threeDPanel = new JPanel(new GridBagLayout());
-		threeDPanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		
@@ -264,7 +261,6 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	public void initPlanePanel(MainWindow mainWindow) {
 		planePanel = new JPanel(new GridBagLayout());
-
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1;
@@ -302,6 +298,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridx += gbc.gridwidth;
 		gbc.gridy=0;
 		gbc.gridheight=3;
+		gbc.gridwidth=3;
 		gbc.weighty=0;
 		gbc.weightx=0;
 		planePanel.add(mainWindow.getPlaneConstraintsChoicePanel());
@@ -309,7 +306,6 @@ public class MainWindowFrame extends JFrame implements Observer {
 		// Panel de visualisation du graphe
 		gbc.gridx = 1;
 		gbc.gridy += gbc.gridheight;
-		gbc.gridwidth = 3;
 		gbc.gridheight=7;
 		gbc.weightx = 1;
 		gbc.weighty = 1;

@@ -12,7 +12,6 @@ public class Nuage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		new MainWindowFrame(new MainWindow());
 	}
 }

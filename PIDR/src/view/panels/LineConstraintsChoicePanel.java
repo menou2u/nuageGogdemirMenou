@@ -13,6 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import model.swing.PointConstraint;
+import model.swing.SlopeConstraint;
+
 
 //Ajouter un bouton pour ajouter des contraintes :)
 @SuppressWarnings("serial")

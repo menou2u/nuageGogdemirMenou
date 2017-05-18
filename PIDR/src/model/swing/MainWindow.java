@@ -16,8 +16,6 @@ import view.panels.DisplaySettingsPanel;
 import view.panels.LineConstraintsChoicePanel;
 import view.panels.MathShortcutsPanel;
 import view.panels.PlaneConstraintsChoicePanel;
-import view.panels.PointConstraint;
-import view.panels.SlopeConstraint;
 import view.panels.TestFunctionPanel;
 import view.panels.ToolsPanel;
 import view.panels.TransformationsLinePanel;

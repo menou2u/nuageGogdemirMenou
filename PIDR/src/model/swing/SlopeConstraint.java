@@ -1,4 +1,4 @@
-package view.panels;
+package model.swing;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

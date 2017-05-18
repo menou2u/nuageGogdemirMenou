@@ -56,12 +56,12 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 	}
 
 	private void initField() {
-		v1XoYV2XoY = new SlopeAndVertexConstraintPanelHelper("ij", "ij");
-		v1ZoXV2ZoX = new SlopeAndVertexConstraintPanelHelper("ki", "ki");;
-		v1YoZV2YoZ = new SlopeAndVertexConstraintPanelHelper("jk", "jk");;
-		v1XoYV2ZoX = new SlopeAndVertexConstraintPanelHelper("ij", "ki");;
-		v1XoYV2YoZ = new SlopeAndVertexConstraintPanelHelper("ij", "jk");;
-		v1YoZV2ZoX = new SlopeAndVertexConstraintPanelHelper("jk", "ki");;
+		v1XoYV2XoY = new SlopeAndVertexConstraintHelperPanel("ij", "ij");
+		v1ZoXV2ZoX = new SlopeAndVertexConstraintHelperPanel("ki", "ki");;
+		v1YoZV2YoZ = new SlopeAndVertexConstraintHelperPanel("jk", "jk");;
+		v1XoYV2ZoX = new SlopeAndVertexConstraintHelperPanel("ij", "ki");;
+		v1XoYV2YoZ = new SlopeAndVertexConstraintHelperPanel("ij", "jk");;
+		v1YoZV2ZoX = new SlopeAndVertexConstraintHelperPanel("jk", "ki");;
 		
 		v1XoYV2XoYButton = new JRadioButton("V1 et V2 dans (xoy)");
 		v1ZoXV2ZoXButton = new JRadioButton("V1 et V2 dans (zox)");

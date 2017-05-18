@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class SlopeAndVertexConstraintPanelHelper extends JPanel{
+public class SlopeAndVertexConstraintHelperPanel extends JPanel{
 	
 	private JTextField v1x;
 	private JTextField v1y;
@@ -21,7 +21,7 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
 	private JLabel v2xLab;
 	private JLabel v2yLab;
 	
-	public SlopeAndVertexConstraintPanelHelper(String axev1,String axev2)
+	public SlopeAndVertexConstraintHelperPanel(String axev1,String axev2)
 	{
 		super(new GridBagLayout());
 		
@@ -32,6 +32,7 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
 
 	private void fillWithFields() {
 		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = gbc.BOTH;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
@@ -61,7 +62,7 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
 	}
 
 	private void initField(String axev1,String axev2) {
-		v1x = new JTextField(8);
+		v1x = new JTextField("Testtest");
 		v2x = new JTextField(8);
 		v1y = new JTextField(8);
 		v2y = new JTextField(8);
@@ -75,7 +76,7 @@ public class SlopeAndVertexConstraintPanelHelper extends JPanel{
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        SlopeAndVertexConstraintPanelHelper newContentPane = new SlopeAndVertexConstraintPanelHelper("ij","ij");
+        SlopeAndVertexConstraintHelperPanel newContentPane = new SlopeAndVertexConstraintHelperPanel("ij","ij");
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

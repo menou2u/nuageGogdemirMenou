@@ -4,16 +4,17 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import model.swing.TransformY;
 
 @SuppressWarnings("serial")
 public class TransformYPanel extends JPanel {
 
-	JTextField transformY;
+
 	
-	public TransformYPanel() {
+	public TransformYPanel(TransformY transformY) {
 
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -24,32 +25,23 @@ public class TransformYPanel extends JPanel {
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
-		transformY = new JTextField(8);
-		JLabel transformYLabel = new JLabel("Y = ty(y)");
+
 		this.setLayout(gbl);
-		this.add(transformYLabel,gbc);
+		this.add(transformY.getTransformYLabel(),gbc);
 		
 		gbc.gridx=1;
-		this.add(transformY);
+		this.add(transformY.getTransformY(),gbc);
 	}
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("xTransform");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TransformYPanel newContentPane = new TransformYPanel();
+		TransformY transformY = new TransformY();
+		TransformYPanel newContentPane = new TransformYPanel(transformY);
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();
 		frame.setVisible(true);
-	}
-	
-	public JTextField getTransformY() {
-		return transformY;
-	}
-
-	public void setTransformY(JTextField transformY) {
-		this.transformY = transformY;
 	}
 
 }

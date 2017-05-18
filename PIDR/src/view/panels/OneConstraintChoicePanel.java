@@ -33,7 +33,7 @@ public class OneConstraintChoicePanel extends JPanel {
 	private JPanel constraintDatas;
 	private JPanel constraintChoice;
 	private JPanel pointChosen;
-	private VertexConstraintChoice vertexChosen;
+	private VertexConstraintChoicePanel vertexChosen;
 	
 	private JTextField x;
 	private JTextField y;
@@ -98,7 +98,7 @@ public class OneConstraintChoicePanel extends JPanel {
 		
 		constraintDatas.add(pointChosen,"Point");
 		
-		vertexChosen = new VertexConstraintChoice();
+		vertexChosen = new VertexConstraintChoicePanel();
 		
 		constraintDatas.add(vertexChosen,"Slope");
 	}

@@ -8,12 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.swing.TransformX;
+
 @SuppressWarnings("serial")
 public class TransformXPanel extends JPanel{
 	
-	JTextField transformX;
-	
-	public TransformXPanel()
+	public TransformXPanel(TransformX transformX)
 	{
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -25,31 +25,22 @@ public class TransformXPanel extends JPanel{
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		transformX = new JTextField(8);
-		JLabel transformXLabel = new JLabel("X = tx(x)");
 		this.setLayout(gbl);
-		this.add(transformXLabel,gbc);
+		this.add(transformX.getTransformXLabel(),gbc);
 		
 		gbc.gridx=1;
-		this.add(transformX,gbc);
+		this.add(transformX.getTransformX(),gbc);
 	}
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("xTransform");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TransformXPanel newContentPane = new TransformXPanel();
+		TransformX transformX = new TransformX();
+		TransformXPanel newContentPane = new TransformXPanel(transformX);
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();
 		frame.setVisible(true);
-	}
-	
-	public JTextField getTransformX() {
-		return transformX;
-	}
-
-	public void setTransformX(JTextField transformX) {
-		this.transformX = transformX;
 	}
 	
 }

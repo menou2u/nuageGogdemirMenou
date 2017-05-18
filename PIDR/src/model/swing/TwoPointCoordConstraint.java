@@ -28,7 +28,6 @@ public class TwoPointCoordConstraint extends Observable{
 		xw2 = new JTextField(8);
 		yw2 = new JTextField(8);
 		zw2 = new JTextField(8);
-		
 		xw1Lab = new JLabel("Xw1 brut = ");
 		yw1Lab = new JLabel("Yw1 brut = ");
 		zw1Lab = new JLabel("Zw1 brut = ");

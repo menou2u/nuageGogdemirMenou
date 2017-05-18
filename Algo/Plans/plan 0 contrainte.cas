@@ -1,4 +1,3 @@
-Plan
 plansmc0c():={
  ClrIO;
      purge(n,k);
@@ -67,7 +66,7 @@ plansmc0c():={
          if(j==0)
            {
              fz(x,y):=listlambda[0]*x+listlambda[1]*y+listlambda[2];
-             eqcartplanprojz(x,y,z):=fz(x,y)-z;
+             eqcartplanprojz:=unapply(fz(x,y)-z,x,y,z);
              listresorthofz:=newList(n);
              listresorthofz:=(abs(zip(fz,listxi,listyi)-listzi))/sqrt(listlambda[0].^2+listlambda[1].^2+1);
              resorthomfz:=((1/n)*sum((abs(listresorthofz))));
@@ -75,7 +74,7 @@ plansmc0c():={
          if(j==1)
           {
              fx(y,z):=listlambda[0]*y+listlambda[1]*z+listlambda[2];
-             eqcartplanprojx(x,y,z):=fx(y,z)-x;
+             eqcartplanprojx:=unapply(fx(y,z)-x,x,y,z);
              listresorthofx:=newList(n);
              listresorthofx:=(abs(zip(fx,listyi,listzi)-listxi))/sqrt(listlambda[0].^2+listlambda[1].^2+1);
              resorthomfx:=((1/n)*sum((abs(listresorthofx))));
@@ -84,7 +83,7 @@ plansmc0c():={
          if(j==2)
           {
              fy(z,x):=listlambda[0]*z+listlambda[1]*x+listlambda[2];
-             eqcartplanprojy(x,y,z):=fy(z,x)-y;   
+             eqcartplanprojy:=unapply(fy(z,x)-y,x,y,z);
              listresorthofy:=newList(n);
              listresorthofy:=(abs(zip(fy,listzi,listxi)-listyi))/sqrt(listlambda[0].^2+listlambda[1].^2+1);
              resorthomfy:=((1/n)*sum((abs(listresorthofy))));
@@ -158,27 +157,27 @@ plansmc0c():={
        res2orthom1:=mean(approx((zip(-fortho1,listxi,listyi)+listzi)).^2/(aa1.^2+bb1.^2+1));
        res2orthom2:=mean(approx((zip(-fortho2,listxi,listyi)+listzi)).^2/(aa2.^2+bb2.^2+1));
        res2orthom3:=mean(approx((zip(-fortho3,listxi,listyi)+listzi)).^2/(aa3.^2+bb3.^2+1));
-       resorthom1:=mean(approx(((abs(zip(-fortho1,listxi,listyi)+listzi)))/sqrt(aa1.^2+bb1.^2+1)))));
-       resorthom2:=mean(approx(((abs(zip(-fortho2,listxi,listyi)+listzi)))/sqrt(aa2.^2+bb2.^2+1)))));
-       resorthom3:=mean(approx(((abs(zip(-fortho3,listxi,listyi)+listzi)))/sqrt(aa3.^2+bb3.^2+1)))));
+       resorthom1:=mean(approx(((abs(zip(-fortho1,listxi,listyi)+listzi)))/sqrt(aa1.^2+bb1.^2+1)));
+       resorthom2:=mean(approx(((abs(zip(-fortho2,listxi,listyi)+listzi)))/sqrt(aa2.^2+bb2.^2+1)));
+       resorthom3:=mean(approx(((abs(zip(-fortho3,listxi,listyi)+listzi)))/sqrt(aa3.^2+bb3.^2+1)));
        listorthochoix:=[res2orthom1,res2orthom2,res2orthom3];
        choix:=min(listorthochoix);
        if(res2orthom1==choix)
         {
-          fortho(x,y):=fortho1(x,y);
-          eqcartplanprojortho(x,y,z):=eqcartplanprojortho1(x,y,z);
+          fortho:=unapply(fortho1(x,y),x,y);
+          eqcartplanprojortho:=unapply(eqcartplanprojortho1(x,y,z),x,y,z);
           resorthomortho:=approx(resorthom1); 
         }
        if(res2orthom2==choix)
         {
-          fortho(x,y):=fortho2(x,y);
-          eqcartplanprojortho(x,y,z):=eqcartplanprojortho2(x,y,z);        
+          fortho:=unapply(fortho2(x,y),x,y);
+          eqcartplanprojortho:=unapply(eqcartplanprojortho2(x,y,z),x,y,z);
           resorthomortho:=approx(resorthom2);
         }
        if(res2orthom3==choix)
         {
-          fortho(x,y):=fortho3(x,y);
-          eqcartplanprojortho(x,y,z):=eqcartplanprojortho3(x,y,z);
+          fortho:=unapply(fortho3(x,y),x,y);
+          eqcartplanprojortho:=unapply(eqcartplanprojortho3(x,y,z),x,y,z);
           resorthomortho:=approx(resorthom3);
         }
        listchoixchoix:=newList(0);
@@ -187,22 +186,22 @@ plansmc0c():={
        if(resorthomfz==choixchoix)
         {
           resorthomfxy:=resorthomfz;
-          f(x,y):=fz(x,y);
+          f:=unapply(fz(x,y),x,y);
         }
        if(resorthomfx==choixchoix)
         {
           resorthomfxy:=resorthomfx;
-          f(x,y):=fx(x,y);
+          f:=unapply(fx(x,y),x,y);
         }
        if(resorthomfy==choixchoix)
         {
           resorthomfxy:=resorthomfy;
-          f(x,y):=fy(x,y);
+          f:=unapply(fy(x,y),x,y);
         }
        if(resorthomortho==choixchoix)
         {
           resorthomfxy:=resorthomortho;
-          f(x,y):=fortho(x,y);
+          f:=unapply(fortho(x,y),x,y);
         }  
      
        Return approx(listfeqplans[0]) + ";" + approx(listfeqplans[1]) + ";" +  approx(listfeqplans[2]) + ";" + approx(eqcartplanprojz(x,y,z)) + ";" +

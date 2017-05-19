@@ -163,23 +163,23 @@ public class MainWindow extends Observable {
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
 		displayPanel = new DisplaySettingsPanel(display);
-		transformationsLinePanel = new TransformationsLinePanel();
+		transformationsLinePanel = new TransformationsLinePanel(new TransformationsLine());
 		contentPanel = new JPanel();
-		chosenPanel = new LineConstraintsChoicePanel();
+		chosenPanel = new LineConstraintsChoicePanel(new LineConstraintsChoice());
 	}
 	
 	public void initPlanePanel(){
 		functionMode = PLANE;
 		testFunctionPlane = new TestFunction("(x;y)");
 		mathShortcutsPlane = new MathShortcuts(testFunctionPlane);
-		transformationPlanePanel = new TransformationsPlanePanel();
+		transformationPlanePanel = new TransformationsPlanePanel(new TransformationsPlane());
 		mathShortcutsPlanePanel = new MathShortcutsPanel(mathShortcutsPlane);
 		
 		planeData = new Data("n°", "xi", "yi", "zi");
 		transformedPlaneData = new Data("Xi = tx(xi)","Yi = ty(yi)","Zi = tz(zi)");
 		dataPlanePanel = new DataPanel(planeData,transformedPlaneData);
 		
-		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel();
+		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel(new PlaneConstraintsChoice());
 		planeDisplay = new DisplaySettings();
 		displayPlanePanel = new DisplaySettingsPanel(planeDisplay);
 	}

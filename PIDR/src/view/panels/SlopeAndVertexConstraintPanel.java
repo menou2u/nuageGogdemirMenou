@@ -6,14 +6,12 @@ import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import model.swing.SlopeAndVertexConstraint;
-import model.swing.SlopeAndVertexConstraintHelper;
 
 @SuppressWarnings("serial")
 public class SlopeAndVertexConstraintPanel extends JPanel {

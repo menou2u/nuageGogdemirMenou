@@ -51,7 +51,7 @@ public class MainWindow extends Observable {
 	private DataPanel transformedDataPanel;
 	private JPanel noConstraint;
 	private PointConstraint pointConstraint;
-	private SlopeConstraint slopeConstraint;
+	private SlopeConstraintPanel slopeConstraint;
 	private LineConstraintsChoicePanel chosenPanel;
 
 	//Partie Plans
@@ -432,7 +432,7 @@ public class MainWindow extends Observable {
 		return pointConstraint;
 	}
 	
-	public SlopeConstraint getSlopeConstraint(){
+	public SlopeConstraintPanel getSlopeConstraint(){
 		return slopeConstraint;
 	}
 

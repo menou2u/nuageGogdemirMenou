@@ -62,8 +62,8 @@ public class TwoConstraintChoice {
 		twoPointCoordConstraint = new TwoPointCoordConstraint();
 		constraintData = new JPanel(cl);
 		twoPointCoordPane = new TwoPointCoordConstraintPanel(twoPointCoordConstraint);
-		coordAndVertexPane = new CoordAndVertexConstraintPanel();
-		slopeAndVertexPane = new SlopeAndVertexConstraintPanel();
+		coordAndVertexPane = new CoordAndVertexConstraintPanel(new CoordAndVertexConstraints());
+		slopeAndVertexPane = new SlopeAndVertexConstraintPanel(new SlopeAndVertexConstraint());
 		
 		constraintData.add(twoPointCoordPane,"twoPointCoord");
 		constraintData.add(coordAndVertexPane,"coordAndVertex");

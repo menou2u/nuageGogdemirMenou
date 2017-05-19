@@ -11,13 +11,15 @@ import javax.swing.ButtonModel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import view.panels.PointConstraintPanel;
+
 public class LineConstraintsChoice extends Observable {
 
 	private JPanel chosenPanel;
 	private CardLayout cl;
 	private JPanel noConstraintPanel;
-	private PointConstraint pointConstraintPanel;
-	private SlopeConstraint slopeConstraintPanel;
+	private PointConstraintPanel pointConstraintPanel;
+	private SlopeConstraintPanel slopeConstraintPanel;
 	private JPanel selectionPanel;
 	private ButtonModel bm;
 	private ButtonGroup bG;
@@ -37,8 +39,8 @@ public class LineConstraintsChoice extends Observable {
 		chosenPanel = new JPanel(cl);
 		
 		noConstraintPanel = new JPanel();
-		pointConstraintPanel = new PointConstraint();
-		slopeConstraintPanel = new SlopeConstraint();
+		pointConstraintPanel = new PointConstraintPanel(new PointConstraint());
+		slopeConstraintPanel = new SlopeConstraintPanel();
 		
 		chosenPanel.add(noConstraintPanel,"Pas de contrainte");
 		chosenPanel.add(pointConstraintPanel,"Contrainte sur un point");
@@ -122,14 +124,14 @@ public class LineConstraintsChoice extends Observable {
 	/**
 	 * @return the pointConstraintPanel
 	 */
-	public PointConstraint getPointConstraintPanel() {
+	public PointConstraintPanel getPointConstraintPanel() {
 		return pointConstraintPanel;
 	}
 
 	/**
 	 * @return the slopeConstraintPanel
 	 */
-	public SlopeConstraint getSlopeConstraintPanel() {
+	public SlopeConstraintPanel getSlopeConstraintPanel() {
 		return slopeConstraintPanel;
 	}
 

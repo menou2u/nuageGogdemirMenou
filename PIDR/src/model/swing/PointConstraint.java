@@ -1,9 +1,7 @@
 package model.swing;
 
 import java.util.LinkedList;
-import java.util.Observable;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -13,7 +11,7 @@ import javax.swing.JTextField;
  *
  */
 @SuppressWarnings("serial")
-public class PointConstraint extends Observable {
+public class PointConstraint {
 	
 	private JTextField xWTrue;
 	private JTextField xWTreated;

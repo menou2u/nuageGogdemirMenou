@@ -15,11 +15,11 @@ import javax.swing.JTextField;
  *
  */
 @SuppressWarnings("serial")
-public class SlopeConstraint extends JPanel {
+public class SlopeConstraintPanel extends JPanel {
 	
 	private JTextField slope;
 
-	public SlopeConstraint() {
+	public SlopeConstraintPanel() {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
@@ -51,7 +51,7 @@ public class SlopeConstraint extends JPanel {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("PointConstraint");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SlopeConstraint newContentPane = new SlopeConstraint();
+		SlopeConstraintPanel newContentPane = new SlopeConstraintPanel();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();

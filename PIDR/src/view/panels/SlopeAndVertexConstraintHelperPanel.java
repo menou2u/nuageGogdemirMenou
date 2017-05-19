@@ -4,25 +4,14 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import model.swing.SlopeAndVertexConstraintHelper;
 
 @SuppressWarnings("serial")
 public class SlopeAndVertexConstraintHelperPanel extends JPanel{
 	
-	private JTextField v1x;
-	private JTextField v1y;
-	private JTextField v2x;
-	private JTextField v2y;
-	
-	private JLabel v1xLab;
-	private JLabel v1yLab;
-	private JLabel v2xLab;
-	private JLabel v2yLab;
-	
+	@SuppressWarnings("static-access")
 	public SlopeAndVertexConstraintHelperPanel(SlopeAndVertexConstraintHelper slopeAndVertexConstraintHelper)
 	{
 		super(new GridBagLayout());

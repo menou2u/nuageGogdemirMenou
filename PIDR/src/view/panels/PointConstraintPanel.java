@@ -6,9 +6,12 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.liferay.faces.util.lang.Observable;
+import com.liferay.faces.util.lang.Observer;
+
 import model.swing.PointConstraint;
 
-public class PointConstraintPanel extends JPanel{
+public class PointConstraintPanel extends JPanel implements Observer{
 
 	
 	public PointConstraintPanel(PointConstraint pointConstraint){
@@ -52,5 +55,11 @@ public class PointConstraintPanel extends JPanel{
         frame.pack();
         frame.setVisible(true);
     }
+
+	@Override
+	public void receiveNotification(Observable arg0, Object... arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

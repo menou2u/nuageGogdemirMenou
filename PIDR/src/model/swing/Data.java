@@ -3,12 +3,14 @@ package model.swing;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Observable;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import controller.Datas2DFactory;
 
@@ -44,7 +46,7 @@ public class Data extends Observable {
 	public void updateTableContent(String path){
 		this.path = path;
 		initData();
-		initTable();
+		updateTable();
 		setChanged();
 		notifyObservers();
 	}
@@ -105,8 +107,14 @@ public class Data extends Observable {
 		}
 	}
 	
-	
-	
+	public void updateTable(){
+		// = new JTable(data, columnNames);
+		DefaultTableModel defaultTableModel = new DefaultTableModel(data, columnNames);
+		table.setModel(defaultTableModel);
+        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setFillsViewportHeight(true);
+	}
+
 	/**
 	 * @return the x
 	 */
@@ -148,7 +156,6 @@ public class Data extends Observable {
 		try {
 			d2DF = new Datas2DFactory(path);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		x = d2DF.getX();
@@ -186,6 +193,12 @@ public class Data extends Observable {
 	public static void main(String[] args){
 		Data test = new Data("n°","xi","yi");
 		System.out.println(test.getData().toString());
+	}
+
+	public void warnView(File file) {
+		updateTableContent(file.getPath());
+		setChanged();
+		notifyObservers();
 	}
 	
 }

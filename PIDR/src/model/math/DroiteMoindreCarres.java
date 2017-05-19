@@ -12,7 +12,7 @@ public class DroiteMoindreCarres extends XcasProg {
 	private int commutateur;
 	
 	public DroiteMoindreCarres() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\droite des moindres carres.cas");
+		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\DMC\\droite des moindres carres.cas");
 	}
 
 	protected void putArguments(LinkedList<Double> listXi, LinkedList<Double> listYi, int commutateur, LinkedList<Double> omegaDatas, double p1) {
@@ -20,8 +20,14 @@ public class DroiteMoindreCarres extends XcasProg {
 		algo = algo.replace("%1", getListForXcas(listXi));
 		algo = algo.replace("%2", getListForXcas(listYi));
 		algo = algo.replace("%3", ""+commutateur);
-		algo = algo.replace("%4", ""+omegaDatas.get(2));
-		algo = algo.replace("%5", ""+omegaDatas.get(3));
+		if (omegaDatas.size() > 0){
+			algo = algo.replace("%4", ""+omegaDatas.get(2));
+			algo = algo.replace("%5", ""+omegaDatas.get(3));
+		}
+		else {
+			algo = algo.replace("%4", "");
+			algo = algo.replace("%5", "");
+		}
 		algo = algo.replace("%6", ""+p1);
 		context c = new context();
 		gen g = new gen(algo, c);
@@ -38,7 +44,7 @@ public class DroiteMoindreCarres extends XcasProg {
 	}
 	
 	public StringBuilder getInfosC0orC1(){
-		StringBuilder infos = new StringBuilder();
+		infos = new StringBuilder();
 		String[] elements = (res.split(",")[1]).split(";");
 		infos.append("Données mathématiques\n");
 		infos.append("X = tx(x)\n");

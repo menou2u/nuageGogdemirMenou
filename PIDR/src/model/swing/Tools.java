@@ -278,6 +278,13 @@ public class Tools extends Observable {
 		return importFileChooser;
 	}
 
+	/**
+	 * @return the mainWindow
+	 */
+	public MainWindow getMainWindow() {
+		return mainWindow;
+	}
+
 	public void sendNewFile(File file) {
 		mainWindow.sendNewFile(file);
 		setChanged();

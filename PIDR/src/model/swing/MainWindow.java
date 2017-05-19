@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 import org.jzy3d.chart.Chart;
 
-import model.math.DroiteMoindreCarres;
 import view.panels.CalculatedFunctionPanel;
 import view.panels.ConstraintsPanel;
 import view.panels.DataPanel;
@@ -22,12 +21,6 @@ import view.panels.TransformationsLinePanel;
 import view.panels.TransformationsPlanePanel;
 
 public class MainWindow extends Observable {
-
-	private String functionMode;
-	private static final String LINE = "Line";
-	private static final String PLANE = "Plane";
-	private static final String D2 = "2D";
-	private static final String D3 = "3D";
 	
 	//Partie Ligne
 	private Tools tools;
@@ -93,6 +86,8 @@ public class MainWindow extends Observable {
 	private CalculatedFunctionPanel threeDCalculatedFunctionPane;
 	private DisplaySettings threeDDisplaySettings;
 	private DisplaySettingsPanel threeDDisplaySettingsPane;
+	private TransformationsLine transformationsLine;
+	private LineConstraintsChoice lineConstraintsChoice;
 	
 	public MainWindow() {
 		initLinePanel();
@@ -102,7 +97,6 @@ public class MainWindow extends Observable {
 	}
 	
 	private void init3DPanel() {
-		functionMode = D3;
 		// Datas
 		threeDDatas = new Data("N°","Xi","Yi","Zi");
 		threeDDatasPane = new DataPanel(threeDDatas);
@@ -124,7 +118,6 @@ public class MainWindow extends Observable {
 	}
 
 	private void init2DPanel() {
-		functionMode = D2;
 		// Datas
 		twoDDatas = new Data("N°","Xi","Yi");
 		twoDDatasPane = new DataPanel(twoDDatas);
@@ -146,7 +139,6 @@ public class MainWindow extends Observable {
 	}
 
 	public void initLinePanel(){
-		functionMode = LINE;
 		tools = new Tools(this);
 		data = new Data("n°","xi","yi");
 		transformedData = new Data("Xi = tx(xi)","Yi = ty(yi)");
@@ -163,13 +155,14 @@ public class MainWindow extends Observable {
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
 		displayPanel = new DisplaySettingsPanel(display);
-		transformationsLinePanel = new TransformationsLinePanel(new TransformationsLine());
+		transformationsLine = new TransformationsLine();
+		transformationsLinePanel = new TransformationsLinePanel(transformationsLine);
 		contentPanel = new JPanel();
-		chosenPanel = new LineConstraintsChoicePanel(new LineConstraintsChoice());
+		lineConstraintsChoice = new LineConstraintsChoice();
+		chosenPanel = new LineConstraintsChoicePanel(lineConstraintsChoice);
 	}
 	
 	public void initPlanePanel(){
-		functionMode = PLANE;
 		testFunctionPlane = new TestFunction("(x;y)");
 		mathShortcutsPlane = new MathShortcuts(testFunctionPlane);
 		transformationPlanePanel = new TransformationsPlanePanel(new TransformationsPlane());
@@ -224,36 +217,15 @@ public class MainWindow extends Observable {
 	}
 
 	public void sendNewFile(File file) {
-		data.updateTableContent(file.getPath());
-		dataPanel = new DataPanel(data);
-		setChanged();
-		notifyObservers();
+		data.warnView(file);
 	}
 
 	public void runMath() {
 		if (!data.getPath().equals("")){
-			switch (functionMode) {
-			case LINE:
-				DroiteMoindreCarres dmc = new DroiteMoindreCarres();
-				dmc.run(data.getX(), data.getY(), chosenPanel.getCommutateur(), pointConstraint.getOmegaDatas(), Double.parseDouble(slopeConstraint.getSlope().getText()));
-				/*if (pointConstraint.getOmegaDatas().size() > 0)
-				notifyObservers(dmc.get);*/
-				break;
-			case PLANE:
-				
-				break;
-			case D2:
-				
-				break;
-			case D3:
-				
-				break;
-			default:
-				break;
-			}
+			System.out.println("??");
+			setChanged();
+			notifyObservers("exec");
 		}
-		setChanged();
-		notifyObservers();
 	}
 	
 	public DataPanel getTransformedDataPanel() {
@@ -503,14 +475,6 @@ public class MainWindow extends Observable {
 	public DisplaySettingsPanel getDisplayPanel() {
 		return displayPanel;
 	}
-
-	/**
-	 * @return the functionMode
-	 */
-	public String getFunctionMode() {
-		return functionMode;
-	}
-
 	/**
 	 * @return the transformationsLinePanel
 	 */
@@ -531,6 +495,34 @@ public class MainWindow extends Observable {
 	public JPanel getNoConstraint() {
 		return noConstraint;
 	}
+
+	/**
+	 * @return the transformationsLine
+	 */
+	public TransformationsLine getTransformationsLine() {
+		return transformationsLine;
+	}
+
+	/**
+	 * @return the lineConstraintsChoice
+	 */
+	public LineConstraintsChoice getLineConstraintsChoice() {
+		return lineConstraintsChoice;
+	}
+
+	/**
+	 * @param dataPanel the dataPanel to set
+	 */
+	public void setDataPanel(DataPanel dataPanel) {
+		this.dataPanel = dataPanel;
+	}
+
+	public void updateInfos() {
+		setChanged();
+		notifyObservers("infos");
+	}
+	
+	
 	
 	
 

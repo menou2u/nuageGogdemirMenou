@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -15,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
+import model.math.DroiteMoindreCarres;
+import model.swing.InfosWindow;
 import model.swing.MainWindow;
 
 public class MainWindowFrame extends JFrame implements Observer {
@@ -26,11 +29,23 @@ public class MainWindowFrame extends JFrame implements Observer {
 	private JPanel linePanel;
 	private JPanel planePanel;
 	private JPanel contentPanel;
+	private JTabbedPane onglets;
+	private MainWindow mainWindow;
+	private StringBuilder infosLine;
+	private StringBuilder infosPlane;
+	private StringBuilder infos2D;
+	private StringBuilder infos3D;
+	private StringBuilder currentInfos;
 
 	/**
 	 * @param mainWindow
 	 */
 	public MainWindowFrame(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
+		//mainWindow.getTools().addObserver(this);
+		mainWindow.addObserver(this);
+		mainWindow.getData().addObserver(this);
+		currentInfos = new StringBuilder("");
 		current = this;
 		setLayout(new BorderLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -47,7 +62,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridwidth=1;
 		
 		JPanel contentPanel = new JPanel(new GridBagLayout());
-		JTabbedPane onglets = new JTabbedPane(SwingConstants.TOP);
+		onglets = new JTabbedPane(SwingConstants.TOP);
 
 		onglets.addTab("Droites", linePanel);
 		onglets.addTab("2D", twoDPanel);
@@ -315,7 +330,60 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		System.out.println("oin");
+		if (o instanceof MainWindow && arg.equals("exec")){
+			System.out.println("OIN");
+			//Droite 0/1/2 + data (via cdv)
+			if (onglets.getSelectedIndex() == 0){
+				DroiteMoindreCarres dmc = new DroiteMoindreCarres();
+				String tX = mainWindow.getTransformationsLine().getTransformX().getTransformX().getText();
+				String tY = mainWindow.getTransformationsLine().getTransformY().getTransformY().getText();
+				if (!tX.equals("")){
+					
+				}
+				if (!tY.equals("")){
+					
+				}
+				if (mainWindow.getLineConstraintsChoice().getNoConstraint().isSelected()){
+					dmc.run(mainWindow.getData().getX(), mainWindow.getData().getY(), 0, new LinkedList<Double>(), 0);
+					infosLine = dmc.getInfosC0orC1();
+				}
+				if (mainWindow.getLineConstraintsChoice().getPointConstraint().isSelected()){//TODO changer omegas
+					dmc.run(mainWindow.getData().getX(), mainWindow.getData().getY(), 1, new LinkedList<Double>(), 0);
+					infosLine = dmc.getInfosC0orC1();
+				}
+				if (mainWindow.getLineConstraintsChoice().getSlopeConstraint().isSelected()){//TODO changer omegas
+					dmc.run(mainWindow.getData().getX(), mainWindow.getData().getY(), 2, new LinkedList<Double>(), Double.parseDouble(mainWindow.getLineConstraintsChoice().getSlopeConstraintPanel().getSlope().getText()));
+					infosLine = dmc.getInfosC2();
+				}
+				currentInfos = infosLine;
+			}
+			//Plans 0/1/2 +++++
+			//2D : phi + datas
+			//3D : phi + datas
+			
+		}
+		if (o instanceof MainWindow && arg.equals("infos")){
+			new InfosWindowFrame(new InfosWindow(currentInfos));
+		}
+		if (o instanceof MainWindow && arg.equals("newDatas")){
+			switch (onglets.getSelectedIndex()) {
+			case 0:
+				this.repaint();
+				break;
+			case 1:
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			default:
+				break;
+			}
+		}
 
 	}
 

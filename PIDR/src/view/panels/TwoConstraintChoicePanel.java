@@ -28,10 +28,6 @@ public class TwoConstraintChoicePanel extends JPanel{
 		gbc.weightx=1;
 		add(twoConstraintChoice.getConstraintData(),gbc);
 	}
-
-
-
-
 	
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");

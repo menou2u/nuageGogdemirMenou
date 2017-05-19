@@ -55,6 +55,8 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 		addCustomListener(slopeAndVertexConstraint,slopeAndVertexConstraint.getV1XoYV2ZoXButton());
 		addCustomListener(slopeAndVertexConstraint,slopeAndVertexConstraint.getV1YoZV2ZoXButton());
 		
+		constraintChoser = slopeAndVertexConstraint.getConstraintChoser();
+		
 		add(constraintChoser,gbc);
 		
 		gbc.weightx=1;

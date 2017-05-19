@@ -1,45 +1,32 @@
 package view.panels;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import model.swing.Constraints;
+import model.swing.OneConstraintChoice;
 
 @SuppressWarnings("serial")
 public class OneConstraintChoicePanel extends JPanel {
 	
 	private CardLayout cl;
 	
-	private ButtonGroup bG;
 	private ButtonModel bm;
-	
-	private JRadioButton pointChoice;
-	private JRadioButton slopeChoice;
 	
 	private JPanel constraintDatas;
 	private JPanel constraintChoice;
-	private JPanel pointChosen;
-	private VertexConstraintChoicePanel vertexChosen;
 	
-	private JTextField x;
-	private JTextField y;
-	private JTextField z;
-	
-	public OneConstraintChoicePanel(){
+	public OneConstraintChoicePanel(OneConstraintChoice oneConstraintChoice){
 		super(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -55,25 +42,16 @@ public class OneConstraintChoicePanel extends JPanel {
 		constraintDatas = new JPanel(cl);
 		constraintChoice = new JPanel(new GridLayout(2,1));
 		
-		initPanelDatas();
+		constraintDatas.add(oneConstraintChoice.getPointChosen(),"Point");
+		constraintDatas.add(oneConstraintChoice.getVertexChosen(),"Slope");
 		
-		bG = new ButtonGroup();
-		pointChoice = new JRadioButton("Contraintes sur les coordonnées d'un point");
-		slopeChoice = new JRadioButton("Contraintes sur pente selon un vecteur d'un plan");
+		bm = oneConstraintChoice.getbG().getSelection();
 		
-		bG.add(pointChoice);
-		bG.add(slopeChoice);
-		
-		pointChoice.setSelected(true);
-		
-		bm = bG.getSelection();
-		
-
-        constraintChoice.add(pointChoice,"Point");
-        constraintChoice.add(slopeChoice,"Slope");
+        constraintChoice.add(oneConstraintChoice.getPointChoice(),"Point");
+        constraintChoice.add(oneConstraintChoice.getSlopeChoice(),"Slope");
         
-        addCustomListener(pointChoice);
-        addCustomListener(slopeChoice);
+        addCustomListener(oneConstraintChoice,oneConstraintChoice.getPointChoice());
+        addCustomListener(oneConstraintChoice,oneConstraintChoice.getSlopeChoice());
         
         this.add(constraintChoice,gbc);
         gbc.gridx=1;
@@ -82,39 +60,20 @@ public class OneConstraintChoicePanel extends JPanel {
 		
 	}
 	
-	public void initPanelDatas(){
-		pointChosen = new JPanel(new GridLayout(3,2));
-		
-		x = new JTextField();
-		y = new JTextField();
-		z = new JTextField();
-		
-		pointChosen.add(new JLabel("Xw1 brut = "));
-		pointChosen.add(x);
-		pointChosen.add(new JLabel("Yw1 brut = "));
-		pointChosen.add(y);
-		pointChosen.add(new JLabel("Zw1 brut = "));
-		pointChosen.add(z);
-		
-		constraintDatas.add(pointChosen,"Point");
-		
-		vertexChosen = new VertexConstraintChoicePanel();
-		
-		constraintDatas.add(vertexChosen,"Slope");
-	}
+
 	
-	public void addCustomListener(JRadioButton bouton){
+	public void addCustomListener(OneConstraintChoice oneConstraintChoice,JRadioButton bouton){
 		bouton.addMouseListener(new MouseAdapter(){
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		super.mouseClicked(e);
-        		if (!bm.equals(bG.getSelection())){
-        			bm = bG.getSelection();
-        			if (bm.equals(pointChoice.getModel()))
+        		if (!bm.equals(oneConstraintChoice.getbG().getSelection())){
+        			bm = oneConstraintChoice.getbG().getSelection();
+        			if (bm.equals(oneConstraintChoice.getPointChoice().getModel()))
         			{
         				cl.show(constraintDatas,"Point");
         			}
-        			if (bm.equals(slopeChoice.getModel())){
+        			if (bm.equals(oneConstraintChoice.getSlopeChoice().getModel())){
         				cl.show(constraintDatas, "Slope");
         			}
         		}
@@ -126,7 +85,8 @@ public class OneConstraintChoicePanel extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("OneConstraintChoicePanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        OneConstraintChoicePanel newContentPane = new OneConstraintChoicePanel();
+        OneConstraintChoice oneConstraintChoice = new OneConstraintChoice();
+        OneConstraintChoicePanel newContentPane = new OneConstraintChoicePanel(oneConstraintChoice);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

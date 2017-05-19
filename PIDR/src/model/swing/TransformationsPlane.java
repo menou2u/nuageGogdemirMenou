@@ -2,15 +2,17 @@ package model.swing;
 
 import javax.swing.JButton;
 
-public class TransformationsLine {
+public class TransformationsPlane {
 
 	private TransformX transformX;
 	private TransformY transformY;
+	private TransformZ transformZ;
 	private JButton validation;
 	
-	public TransformationsLine(){
+	public TransformationsPlane(){
 		transformX = new TransformX();
 		transformY = new TransformY();
+		transformZ = new TransformZ();
 		validation = new JButton("Validation des données");
 	}
 
@@ -21,8 +23,13 @@ public class TransformationsLine {
 	public TransformY getTransformY() {
 		return transformY;
 	}
-	
-	public JButton getValidation(){
+
+	public TransformZ getTransformZ() {
+		return transformZ;
+	}
+
+	public JButton getValidation() {
 		return validation;
 	}
+	
 }

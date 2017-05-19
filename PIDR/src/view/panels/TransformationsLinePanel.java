@@ -7,37 +7,37 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.swing.TransformationsLine;
+
 @SuppressWarnings("serial")
 public class TransformationsLinePanel extends JPanel{
 
-	public TransformationsLinePanel(){
+	public TransformationsLinePanel(TransformationsLine transformationsLine){
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
-		TransformXPanel xTrans = new TransformXPanel();
-		TransformYPanel yTrans = new TransformYPanel();
-		JButton validation = new JButton("Validation des données");
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
 		gbc.gridheight=1;
 		gbc.gridwidth=1;
 		this.setLayout(gbl);
-		this.add(xTrans,gbc);
+		this.add(new TransformXPanel(transformationsLine.getTransformX()),gbc);
 		
 		gbc.gridy+=gbc.gridheight;
-		this.add(yTrans,gbc);
+		this.add(new TransformYPanel(transformationsLine.getTransformY()),gbc);
 		
 		gbc.gridy=0;
 		gbc.gridx=1;
 		gbc.gridheight=2;
-		this.add(validation,gbc);
+		this.add(transformationsLine.getValidation(),gbc);
 		
 	}
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Transforms");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TransformationsLinePanel newContentPane = new TransformationsLinePanel();
+		TransformationsLine transformationsLine = new TransformationsLine();
+		TransformationsLinePanel newContentPane = new TransformationsLinePanel(transformationsLine);
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();

@@ -1,51 +1,46 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.Constraints;
+import model.swing.TransformX;
+import model.swing.TransformationsPlane;
 
 @SuppressWarnings("serial")
 public class TransformationsPlanePanel extends JPanel{
 	
-	public TransformationsPlanePanel(){
+	public TransformationsPlanePanel(TransformationsPlane transformationsPlane){
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
-		TransformXPanel xTrans = new TransformXPanel();
-		TransformYPanel yTrans = new TransformYPanel();
-		TransformZPanel zTrans = new TransformZPanel();
-		JButton validation = new JButton("Validation des données");
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
 		gbc.gridheight=1;
 		gbc.gridwidth=1;
 		this.setLayout(gbl);
-		this.add(xTrans,gbc);
+		this.add(new TransformXPanel(transformationsPlane.getTransformX()),gbc);
 		
 		gbc.gridy+=gbc.gridheight;
-		this.add(yTrans,gbc);
+		this.add(new TransformYPanel(transformationsPlane.getTransformY()),gbc);
 		
 		gbc.gridy+=gbc.gridheight;
-		this.add(zTrans,gbc);
+		this.add(new TransformZPanel(transformationsPlane.getTransformZ()),gbc);
 		
 		gbc.gridy=0;
 		gbc.gridx=1;
 		gbc.gridheight=3;
-		this.add(validation,gbc);
+		this.add(transformationsPlane.getValidation(),gbc);
 		
 	}
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Transforms");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TransformationsPlanePanel newContentPane = new TransformationsPlanePanel();
+		TransformationsPlane transformationsPlane = new TransformationsPlane();
+		TransformationsPlanePanel newContentPane = new TransformationsPlanePanel(transformationsPlane);
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();

@@ -12,33 +12,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import model.swing.SlopeAndVertexConstraint;
+import model.swing.SlopeAndVertexConstraintHelper;
+
 @SuppressWarnings("serial")
 public class SlopeAndVertexConstraintPanel extends JPanel {
-	private JPanel v1XoYV2XoY;
-	private JPanel v1ZoXV2ZoX;
-	private JPanel v1YoZV2YoZ;
-	private JPanel v1XoYV2ZoX;
-	private JPanel v1XoYV2YoZ;
-	private JPanel v1YoZV2ZoX;
+	
 	private JPanel cardDisplayer;
 	private JPanel constraintChoser;
-
-	private ButtonGroup bG;
-
+	
 	private ButtonModel bm;
-
-	private JRadioButton v1XoYV2XoYButton;
-	private JRadioButton v1ZoXV2ZoXButton;
-	private JRadioButton v1YoZV2YoZButton;
-	private JRadioButton v1XoYV2YoZButton;
-	private JRadioButton v1XoYV2ZoXButton;
-	private JRadioButton v1YoZV2ZoXButton;
 	
 	private CardLayout cl;
 
-	public SlopeAndVertexConstraintPanel() {
+	public SlopeAndVertexConstraintPanel(SlopeAndVertexConstraint slopeAndVertexConstraint) {
 		super(new GridBagLayout());
-		initField();
+		
+		constraintChoser = new JPanel();
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 0;
@@ -47,6 +37,25 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		
+		bm = slopeAndVertexConstraint.getbG().getSelection();
+		
+		cl = new CardLayout();
+		
+		cardDisplayer = new JPanel(cl);
+		cardDisplayer.add(slopeAndVertexConstraint.getV1XoYV2XoY(),"v1XoYV2XoY");
+		cardDisplayer.add(slopeAndVertexConstraint.getV1ZoXV2ZoX(),"v1ZoXV2ZoX");
+		cardDisplayer.add(slopeAndVertexConstraint.getV1YoZV2YoZ(),"v1YoZV2YoZ");
+		cardDisplayer.add(slopeAndVertexConstraint.getV1XoYV2ZoX(),"v1XoYV2ZoX");
+		cardDisplayer.add(slopeAndVertexConstraint.getV1XoYV2YoZ(),"v1XoYV2YoZ");
+		cardDisplayer.add(slopeAndVertexConstraint.getV1YoZV2ZoX(),"v1YoZV2ZoX");
+		
+		addCustomListener(slopeAndVertexConstraint,slopeAndVertexConstraint.getV1XoYV2XoYButton());
+		addCustomListener(slopeAndVertexConstraint,slopeAndVertexConstraint.getV1ZoXV2ZoXButton());
+		addCustomListener(slopeAndVertexConstraint,slopeAndVertexConstraint.getV1YoZV2YoZButton());
+		addCustomListener(slopeAndVertexConstraint,slopeAndVertexConstraint.getV1XoYV2YoZButton());
+		addCustomListener(slopeAndVertexConstraint,slopeAndVertexConstraint.getV1XoYV2ZoXButton());
+		addCustomListener(slopeAndVertexConstraint,slopeAndVertexConstraint.getV1YoZV2ZoXButton());
 		
 		add(constraintChoser,gbc);
 		
@@ -54,100 +63,30 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 		gbc.gridx=1;
 		add(cardDisplayer,gbc);
 	}
-
-	private void initField() {
-		v1XoYV2XoY = new SlopeAndVertexConstraintHelperPanel("ij", "ij");
-		v1ZoXV2ZoX = new SlopeAndVertexConstraintHelperPanel("ki", "ki");;
-		v1YoZV2YoZ = new SlopeAndVertexConstraintHelperPanel("jk", "jk");;
-		v1XoYV2ZoX = new SlopeAndVertexConstraintHelperPanel("ij", "ki");;
-		v1XoYV2YoZ = new SlopeAndVertexConstraintHelperPanel("ij", "jk");;
-		v1YoZV2ZoX = new SlopeAndVertexConstraintHelperPanel("jk", "ki");;
-		
-		v1XoYV2XoYButton = new JRadioButton("V1 et V2 dans (xoy)");
-		v1ZoXV2ZoXButton = new JRadioButton("V1 et V2 dans (zox)");
-		v1YoZV2YoZButton = new JRadioButton("V1 et V2 dans (yoz)");
-		v1XoYV2YoZButton = new JRadioButton("V1 (xoy) et V2 (yoz)");
-		v1XoYV2ZoXButton = new JRadioButton("V1 (xoy) et V2 (zox)");
-		v1YoZV2ZoXButton = new JRadioButton("V1 (yoz) et V2 (zox)");
-		
-		bG = new ButtonGroup();
-		bG.add(v1XoYV2XoYButton);
-		bG.add(v1ZoXV2ZoXButton);
-		bG.add(v1YoZV2YoZButton);
-		bG.add(v1XoYV2YoZButton);
-		bG.add(v1XoYV2ZoXButton);
-		bG.add(v1YoZV2ZoXButton);
-		
-		addCustomListener(v1XoYV2XoYButton);
-		addCustomListener(v1ZoXV2ZoXButton);
-		addCustomListener(v1YoZV2YoZButton);
-		addCustomListener(v1XoYV2YoZButton);
-		addCustomListener(v1XoYV2ZoXButton);
-		addCustomListener(v1YoZV2ZoXButton);
-
-		v1XoYV2XoYButton.setSelected(true);
-		bm = bG.getSelection();
-		
-		cl = new CardLayout();
-		
-		cardDisplayer = new JPanel(cl);
-		cardDisplayer.add(v1XoYV2XoY,"v1XoYV2XoY");
-		cardDisplayer.add(v1ZoXV2ZoX,"v1ZoXV2ZoX");
-		cardDisplayer.add(v1YoZV2YoZ,"v1YoZV2YoZ");
-		cardDisplayer.add(v1XoYV2ZoX,"v1XoYV2ZoX");
-		cardDisplayer.add(v1XoYV2YoZ,"v1XoYV2YoZ");
-		cardDisplayer.add(v1YoZV2ZoX,"v1YoZV2ZoX");
-		
-		constraintChoser = new JPanel(new GridBagLayout());
-		
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.weightx = 0;
-		gbc.weighty = 1;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		
-		constraintChoser.add(v1XoYV2XoYButton,gbc);
-		gbc.gridx=1;
-		constraintChoser.add(v1XoYV2YoZButton,gbc);
-		
-		gbc.gridy=1;
-		gbc.gridx=0;
-		constraintChoser.add(v1ZoXV2ZoXButton,gbc);
-		gbc.gridx=1;
-		constraintChoser.add(v1XoYV2ZoXButton,gbc);
-		
-		gbc.gridy=2;
-		gbc.gridx=0;
-		constraintChoser.add(v1YoZV2YoZButton,gbc);
-		gbc.gridx=1;
-		constraintChoser.add(v1YoZV2ZoXButton,gbc);
-	}
 	
-	private void addCustomListener(JRadioButton bouton) {
+	private void addCustomListener(SlopeAndVertexConstraint slopeAndVertexConstraint,JRadioButton bouton) {
 		bouton.addMouseListener(new MouseAdapter(){
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		super.mouseClicked(e);
-        		if (!bm.equals(bG.getSelection())){
-        			bm = bG.getSelection();
-        			if (bm.equals(v1XoYV2XoYButton.getModel())){
+        		if (!bm.equals(slopeAndVertexConstraint.getbG().getSelection())){
+        			bm = slopeAndVertexConstraint.getbG().getSelection();
+        			if (bm.equals(slopeAndVertexConstraint.getV1XoYV2XoYButton().getModel())){
         				cl.show(cardDisplayer,"v1XoYV2XoY");
         			}
-        			if (bm.equals(v1XoYV2YoZButton.getModel())){
+        			if (bm.equals(slopeAndVertexConstraint.getV1XoYV2YoZButton().getModel())){
         				cl.show(cardDisplayer, "v1XoYV2YoZ");
         			}
-        			if (bm.equals(v1ZoXV2ZoXButton.getModel())){
+        			if (bm.equals(slopeAndVertexConstraint.getV1ZoXV2ZoXButton().getModel())){
         				cl.show(cardDisplayer,"v1ZoXV2ZoX");
         			}
-        			if (bm.equals(v1XoYV2ZoXButton.getModel())){
+        			if (bm.equals(slopeAndVertexConstraint.getV1XoYV2ZoXButton().getModel())){
         				cl.show(cardDisplayer,"v1XoYV2ZoX");
         			}
-        			if (bm.equals(v1YoZV2YoZButton.getModel())){
+        			if (bm.equals(slopeAndVertexConstraint.getV1YoZV2YoZButton().getModel())){
         				cl.show(cardDisplayer, "v1YoZV2YoZ");
         			}
-        			if (bm.equals(v1YoZV2ZoXButton.getModel())){
+        			if (bm.equals(slopeAndVertexConstraint.getV1YoZV2ZoXButton().getModel())){
         				cl.show(cardDisplayer,"v1YoZV2ZoX");
         			}
         		}
@@ -159,7 +98,8 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        SlopeAndVertexConstraintPanel newContentPane = new SlopeAndVertexConstraintPanel();
+        SlopeAndVertexConstraint slopeAndVertexConstraint = new SlopeAndVertexConstraint();
+        SlopeAndVertexConstraintPanel newContentPane = new SlopeAndVertexConstraintPanel(slopeAndVertexConstraint);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

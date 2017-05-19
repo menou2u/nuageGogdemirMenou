@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.swing.SlopeAndVertexConstraintHelper;
+
 @SuppressWarnings("serial")
 public class SlopeAndVertexConstraintHelperPanel extends JPanel{
 	
@@ -21,16 +23,10 @@ public class SlopeAndVertexConstraintHelperPanel extends JPanel{
 	private JLabel v2xLab;
 	private JLabel v2yLab;
 	
-	public SlopeAndVertexConstraintHelperPanel(String axev1,String axev2)
+	public SlopeAndVertexConstraintHelperPanel(SlopeAndVertexConstraintHelper slopeAndVertexConstraintHelper)
 	{
 		super(new GridBagLayout());
 		
-		initField(axev1,axev2);
-		fillWithFields();
-
-	}
-
-	private void fillWithFields() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = gbc.BOTH;
 		gbc.weightx = 1;
@@ -40,43 +36,33 @@ public class SlopeAndVertexConstraintHelperPanel extends JPanel{
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		add(v1xLab,gbc);
+		add(slopeAndVertexConstraintHelper.getV1xLab(),gbc);
 		gbc.gridx=1;
-		add(v1x,gbc);
+		add(slopeAndVertexConstraintHelper.getV1x(),gbc);
 		
 		gbc.gridx=2;
-		add(v2xLab,gbc);
+		add(slopeAndVertexConstraintHelper.getV2xLab(),gbc);
 		gbc.gridx=3;
-		add(v2x,gbc);
+		add(slopeAndVertexConstraintHelper.getV2x(),gbc);
 		
 		gbc.gridy=1;
 		gbc.gridx=0;
-		add(v1yLab,gbc);
+		add(slopeAndVertexConstraintHelper.getV1yLab(),gbc);
 		gbc.gridx=1;
-		add(v1y,gbc);
+		add(slopeAndVertexConstraintHelper.getV1y(),gbc);
 		
 		gbc.gridx=2;
-		add(v2yLab,gbc);
+		add(slopeAndVertexConstraintHelper.getV2yLab(),gbc);
 		gbc.gridx=3;
-		add(v2y,gbc);
-	}
+		add(slopeAndVertexConstraintHelper.getV2y(),gbc);
 
-	private void initField(String axev1,String axev2) {
-		v1x = new JTextField("Testtest");
-		v2x = new JTextField(8);
-		v1y = new JTextField(8);
-		v2y = new JTextField(8);
-		
-		v1xLab = new JLabel("V1x"+axev1+" = ");
-		v1yLab = new JLabel("V1y"+axev1+" = ");
-		v2xLab = new JLabel("V2x"+axev2+" = ");
-		v2yLab = new JLabel("V2y"+axev2+" = ");
 	}
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        SlopeAndVertexConstraintHelperPanel newContentPane = new SlopeAndVertexConstraintHelperPanel("ij","ij");
+        SlopeAndVertexConstraintHelper s = new SlopeAndVertexConstraintHelper("ij", "ij");
+        SlopeAndVertexConstraintHelperPanel newContentPane = new SlopeAndVertexConstraintHelperPanel(s);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

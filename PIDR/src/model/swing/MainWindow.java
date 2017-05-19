@@ -5,8 +5,20 @@ import java.io.File;
 import java.util.Observable;
 
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import org.jzy3d.chart.Chart;
+import org.jzy3d.chart.factories.AWTChartComponentFactory;
+import org.jzy3d.chart.factories.IChartComponentFactory;
+import org.jzy3d.colors.Color;
+import org.jzy3d.colors.ColorMapper;
+import org.jzy3d.colors.colormaps.ColorMapRainbow;
+import org.jzy3d.maths.Range;
+import org.jzy3d.plot3d.builder.Builder;
+import org.jzy3d.plot3d.builder.Mapper;
+import org.jzy3d.plot3d.builder.concrete.OrthonormalGrid;
+import org.jzy3d.plot3d.primitives.Shape;
+import org.jzy3d.plot3d.rendering.canvas.Quality;
 
 import view.panels.CalculatedFunctionPanel;
 import view.panels.ConstraintsPanel;
@@ -21,6 +33,8 @@ import view.panels.TransformationsLinePanel;
 import view.panels.TransformationsPlanePanel;
 
 public class MainWindow extends Observable {
+	
+	private JTabbedPane onglets;
 	
 	//Partie Ligne
 	private Tools tools;
@@ -46,6 +60,7 @@ public class MainWindow extends Observable {
 	private PointConstraint pointConstraint;
 	private SlopeConstraintPanel slopeConstraint;
 	private LineConstraintsChoicePanel chosenPanel;
+	private TransformationsLine transformationsLine;
 
 	//Partie Plans
 	private TransformationsPlanePanel transformationPlanePanel;
@@ -86,7 +101,6 @@ public class MainWindow extends Observable {
 	private CalculatedFunctionPanel threeDCalculatedFunctionPane;
 	private DisplaySettings threeDDisplaySettings;
 	private DisplaySettingsPanel threeDDisplaySettingsPane;
-	private TransformationsLine transformationsLine;
 	private LineConstraintsChoice lineConstraintsChoice;
 	
 	public MainWindow() {
@@ -101,7 +115,7 @@ public class MainWindow extends Observable {
 		threeDDatas = new Data("N°","Xi","Yi","Zi");
 		threeDDatasPane = new DataPanel(threeDDatas);
 		//Contraintes
-		threeDConstraints = new Constraints(new String[]{"N°","Xw","Yw","Valeur contrainte","Ordre de dérivation","Valeur contrainte","Ordre de dérivation","Ux","Uy"});
+		threeDConstraints = new Constraints(new String[]{"N°","Xw","Yw","Valeur contrainte","Ordre de dérivation","Ux","Uy"});
 		threeDConstraintsPane = new ConstraintsPanel(threeDConstraints);
 		//Fonction de Test
 		threeDTestFunction = new TestFunction("(x;y)");
@@ -178,16 +192,17 @@ public class MainWindow extends Observable {
 	}
 	
 	public Component getVisualisationPanel() {
-		/*// Define a function to plot
+		// Define a function to plot
         Mapper mapper = new Mapper() {
             @Override
             public double f(double x, double y) {
-                return x * Math.sin(x * y);
+                //return x * Math.sin(x * y);
+            	return 0;
             }
         };
 
         // Define range and precision for the function to plot
-        Range range = new Range(-3, 3);
+        Range range = new Range(1, 5);
         int steps = 80;
 
         // Create the object to represent the function over the given range.
@@ -208,12 +223,12 @@ public class MainWindow extends Observable {
 		addMouseListener(controller);
 		addMouseMotionListener(controller);
 		addMouseWheelListener(controller);*/
-		/*Component canvas = (Component) chart.getCanvas();
+		Component canvas = (Component) chart.getCanvas();
 		
 		//JPanel panel = new JPanel();
 		//panel.add(canvas, BorderLayout.CENTER);
-		return canvas;*/
-		return new JPanel(); 
+		return canvas;
+		//return new JPanel(); 
 	}
 
 	public void sendNewFile(File file) {
@@ -222,7 +237,6 @@ public class MainWindow extends Observable {
 
 	public void runMath() {
 		if (!data.getPath().equals("")){
-			System.out.println("??");
 			setChanged();
 			notifyObservers("exec");
 		}
@@ -515,6 +529,20 @@ public class MainWindow extends Observable {
 	 */
 	public void setDataPanel(DataPanel dataPanel) {
 		this.dataPanel = dataPanel;
+	}
+	
+	/**
+	 * @return the onglets
+	 */
+	public JTabbedPane getOnglets() {
+		return onglets;
+	}
+	
+	/**
+	 * @param onglets the onglets to set
+	 */
+	public void setOnglets(JTabbedPane onglets) {
+		this.onglets = onglets;
 	}
 
 	public void updateInfos() {

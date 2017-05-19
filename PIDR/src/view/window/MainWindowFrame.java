@@ -17,7 +17,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
 import model.math.DroiteMoindreCarres;
-import model.swing.InfosWindow;
+import model.math.Nuages3D;
 import model.swing.MainWindow;
 
 public class MainWindowFrame extends JFrame implements Observer {
@@ -29,7 +29,6 @@ public class MainWindowFrame extends JFrame implements Observer {
 	private JPanel linePanel;
 	private JPanel planePanel;
 	private JPanel contentPanel;
-	private JTabbedPane onglets;
 	private MainWindow mainWindow;
 	private StringBuilder infosLine;
 	private StringBuilder infosPlane;
@@ -62,12 +61,12 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridwidth=1;
 		
 		JPanel contentPanel = new JPanel(new GridBagLayout());
-		onglets = new JTabbedPane(SwingConstants.TOP);
+		mainWindow.setOnglets(new JTabbedPane(SwingConstants.TOP));
 
-		onglets.addTab("Droites", linePanel);
-		onglets.addTab("2D", twoDPanel);
-		onglets.addTab("Plans", planePanel);
-		onglets.addTab("3D", threeDPanel);
+		mainWindow.getOnglets().addTab("Droites", linePanel);
+		mainWindow.getOnglets().addTab("2D", twoDPanel);
+		mainWindow.getOnglets().addTab("Plans", planePanel);
+		mainWindow.getOnglets().addTab("3D", threeDPanel);
 
 		// Paramètres fenêtre
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -81,8 +80,8 @@ public class MainWindowFrame extends JFrame implements Observer {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = new Dimension((int) (screenSize.width * 0.9), (int) (screenSize.height * 0.9));
 
-		onglets.setPreferredSize(frameSize);
-		onglets.setOpaque(true);
+		mainWindow.getOnglets().setPreferredSize(frameSize);
+		mainWindow.getOnglets().setOpaque(true);
 
 		// Panneau des outils
 		//gbc.gridwidth = 4;
@@ -94,9 +93,10 @@ public class MainWindowFrame extends JFrame implements Observer {
 		gbc.gridy+=gbc.gridheight;
 		gbc.weighty=1;
 		gbc.weightx=1;
-		contentPanel.add(onglets,gbc);
+		contentPanel.add(mainWindow.getOnglets(),gbc);
 		add(contentPanel);  //TODO add un autre gbc
 		setPreferredSize(frameSize);
+		setTitle("Nuage de points");
 		setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 		setVisible(true);
 		pack();
@@ -334,7 +334,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 		if (o instanceof MainWindow && arg.equals("exec")){
 			System.out.println("OIN");
 			//Droite 0/1/2 + data (via cdv)
-			if (onglets.getSelectedIndex() == 0){
+			if (mainWindow.getOnglets().getSelectedIndex() == 0){
 				DroiteMoindreCarres dmc = new DroiteMoindreCarres();
 				String tX = mainWindow.getTransformationsLine().getTransformX().getTransformX().getText();
 				String tY = mainWindow.getTransformationsLine().getTransformY().getTransformY().getText();
@@ -361,28 +361,20 @@ public class MainWindowFrame extends JFrame implements Observer {
 			//Plans 0/1/2 +++++
 			//2D : phi + datas
 			//3D : phi + datas
+			if (mainWindow.getOnglets().getSelectedIndex() == 3){
+				Nuages3D nuages3D = new Nuages3D();
+				String[] phi = mainWindow.getThreeDTestFunction().getText().getText().split(",");
+				LinkedList<String> phiList = new LinkedList<>();
+				for (int i=0; i<phi.length; i++){
+					phiList.add(phi[i]);
+				}
+				nuages3D.run(mainWindow.getThreeDDatas().getX(), mainWindow.getThreeDDatas().getY(), mainWindow.getThreeDDatas().getZ(), phiList, mainWindow.getThreeDConstraints().getColumn(1), mainWindow.getThreeDConstraints().getColumn(2), mainWindow.getThreeDConstraints().getColumn(3), mainWindow.getThreeDConstraints().getColumn(4), mainWindow.getThreeDConstraints().getColumn(5), mainWindow.getThreeDConstraints().getColumn(6));
+				currentInfos = nuages3D.getInfos();
+			}
 			
 		}
 		if (o instanceof MainWindow && arg.equals("infos")){
-			new InfosWindowFrame(new InfosWindow(currentInfos));
-		}
-		if (o instanceof MainWindow && arg.equals("newDatas")){
-			switch (onglets.getSelectedIndex()) {
-			case 0:
-				this.repaint();
-				break;
-			case 1:
-
-				break;
-			case 2:
-
-				break;
-			case 3:
-
-				break;
-			default:
-				break;
-			}
+			InfosWindowFrame.getCurrent().setInfos(currentInfos);
 		}
 
 	}

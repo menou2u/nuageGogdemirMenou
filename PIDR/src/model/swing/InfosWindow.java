@@ -54,6 +54,10 @@ public class InfosWindow {
 	public JButton getPreview() {
 		return preview;
 	}
+
+	public void setInfos(StringBuilder infos) {
+		infosDisplay.setText(infos.toString());
+	}
 	
 	
 	

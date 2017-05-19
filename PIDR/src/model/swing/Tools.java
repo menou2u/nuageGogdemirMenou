@@ -92,7 +92,7 @@ public class Tools extends Observable {
 		preview.addActionListener(new PreviewButtonListener(this));
 
 		execute = new JButton("Exécuter");
-		execute.addActionListener(new ExecuteButtonListener(this));
+		execute.addActionListener(new ExecuteButtonListener(this));//, mainWindow.getOnglets()));
 
 		infos = new JPanel();
 		

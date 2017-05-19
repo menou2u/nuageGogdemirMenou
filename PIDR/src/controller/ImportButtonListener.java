@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -22,6 +23,7 @@ public class ImportButtonListener implements ActionListener {
 		System.out.println(toolsReference.getImportFileChooser().getCurrentDirectory());
 		if (returnVal == JFileChooser.APPROVE_OPTION){
 			File file = toolsReference.getImportFileChooser().getSelectedFile();
+			Component modePanel = toolsReference.getMainWindow().getOnglets().getTabComponentAt(toolsReference.getMainWindow().getOnglets().getSelectedIndex());
 			toolsReference.sendNewFile(file);
 		}
 	}

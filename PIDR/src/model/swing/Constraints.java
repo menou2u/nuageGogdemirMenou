@@ -1,6 +1,7 @@
 package model.swing;
 
 import java.awt.Dimension;
+import java.util.LinkedList;
 import java.util.Observable;
 
 import javax.swing.JScrollPane;
@@ -23,6 +24,15 @@ public class Constraints extends Observable {
         table.setFillsViewportHeight(true);
         //Create the scroll pane and add the table to it.
         scrollPane = new JScrollPane(table);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <E> LinkedList<E> getColumn(int col){
+		LinkedList<E> column = new LinkedList<>();
+		for (int i=0; i<data.length; i++){
+			column.add((E) data[i][col]);
+		}
+		return column;
 	}
 	
 

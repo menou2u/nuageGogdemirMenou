@@ -22,8 +22,7 @@ import view.panels.DisplaySettingsPanel;
 import view.panels.MathShortcutsPanel;
 import view.panels.TestFunctionPanel;
 
-@SuppressWarnings("serial")
-public class D3 extends Onglet {
+public class D3 implements Updatable {
 
 	private Data threeDDatas;
 	private DataPanel threeDDatasPane;

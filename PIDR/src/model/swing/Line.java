@@ -27,8 +27,7 @@ import view.panels.TestFunctionPanel;
 import view.panels.ToolsPanel;
 import view.panels.TransformationsLinePanel;
 
-@SuppressWarnings("serial")
-public class Line extends Onglet {
+public class Line implements Updatable {
 
 	private Data data;
 	private Constraints constraints;

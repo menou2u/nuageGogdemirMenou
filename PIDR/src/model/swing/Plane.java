@@ -6,8 +6,7 @@ import view.panels.MathShortcutsPanel;
 import view.panels.PlaneConstraintsChoicePanel;
 import view.panels.TransformationsPlanePanel;
 
-@SuppressWarnings("serial")
-public class Plane extends Onglet {
+public class Plane implements Updatable {
 	
 	private TransformationsPlanePanel transformationPlanePanel;
 	private MathShortcuts mathShortcutsPlane;

@@ -13,6 +13,8 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.math.DroiteMoindreCarres;
+import model.swing.Line;
 import model.swing.MainWindow;
 import view.panels.D2Panel;
 import view.panels.D3Panel;
@@ -113,7 +115,8 @@ public class MainWindowFrame extends JFrame implements Observer {
 			//Droite 0/1/2 + data (via cdv)
 			if (mainWindow.getOnglets().getSelectedIndex() == 0){
 				DroiteMoindreCarres dmc = new DroiteMoindreCarres();
-				String tX = mainWindow.getTransformationsLine().getTransformX().getTransformX().getText();
+				Line mode = (Line) mainWindow.getMode();
+				String tX = mode.getTransformX().getText();
 				String tY = mainWindow.getTransformationsLine().getTransformY().getTransformY().getText();
 				if (!tX.equals("")){
 					

@@ -1,6 +1,5 @@
 package model.swing;
 
-import java.awt.Component;
 import java.io.File;
 import java.util.Observable;
 
@@ -27,25 +26,29 @@ public class MainWindow extends Observable {
 	}
 	
 	public void sendNewFile(File file) {
-		UpdatablePanel modePanel = (UpdatablePanel) onglets.getSelectedComponent();
-		Onglet onglet = modePanel.getOnglet();
-		onglet.getData().warnView(file);
+		getMode().getData().warnView(file);
 	}
 
-	public void runMath(Updatable u) {
-		if (!u.getData().getPath().equals("")){
+	public void runMath() {
+		if (!getMode().getData().getPath().equals("")){
 			setChanged();
 			notifyObservers("exec");
 		}
 	}
 
-	public Tools getTools() {
-		return tools;
-	}
-
 	public void updateInfos() {
 		setChanged();
 		notifyObservers("infos");
+	}
+	
+	public Updatable getMode(){
+		UpdatablePanel modePanel = (UpdatablePanel) onglets.getSelectedComponent();
+		Updatable onglet = modePanel.getOnglet();
+		return onglet;
+	}
+
+	public Tools getTools() {
+		return tools;
 	}
 
 	/**

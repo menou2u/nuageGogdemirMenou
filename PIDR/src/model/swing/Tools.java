@@ -1,9 +1,7 @@
 package model.swing;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.Observable;
 
 import javax.swing.JButton;
@@ -284,10 +282,6 @@ public class Tools extends Observable {
 	 */
 	public MainWindow getMainWindow() {
 		return mainWindow;
-	}
-
-	public void runMath() {
-		//mainWindow.runMath();
 	}
 	
 		

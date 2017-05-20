@@ -3,8 +3,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTabbedPane;
-
 import model.swing.Tools;
 
 public class ExecuteButtonListener implements ActionListener {
@@ -17,7 +15,7 @@ public class ExecuteButtonListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		toolsReference.runMath();
+		toolsReference.getMainWindow().runMath();
 	}
 
 }

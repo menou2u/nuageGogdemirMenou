@@ -45,6 +45,7 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		// Panneau des données brutes
 		gbc.gridwidth = 1;
 		gbc.weighty = 1;
+		gbc.weightx =1;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridheight = 5;
 		add(line.getDataPanel(), gbc);
@@ -53,21 +54,23 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		gbc.gridx += gbc.gridwidth;
 		gbc.gridy=0;
 		gbc.gridheight =3;
+		gbc.gridwidth = 8;
 		gbc.weightx = 1;
 		gbc.weighty=0;
-		add(line.getChosenPanel(),gbc);		
+		add(line.getChosenPanel(),gbc);
 		
 		// Panel de visualisation des params du graphe
 		gbc.gridx = 1;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridwidth = 1;
-		gbc.weightx = 1;
+		gbc.weightx = 0;
 		gbc.weighty = 1;
 		gbc.gridheight = 7;
 		add(line.getDisplaySettingsPanel(), gbc);
 		
 		//Panel de visualisation du graphe
 		gbc.gridx += gbc.gridwidth;
+		gbc.gridwidth = 7;
 		gbc.weightx = 15;
 		gbc.weighty = 1;
 		add(line.getLineGraphPanel().getCanvas(), gbc);

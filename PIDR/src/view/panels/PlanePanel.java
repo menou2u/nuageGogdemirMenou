@@ -55,22 +55,23 @@ public class PlanePanel extends JPanel implements Observer, UpdatablePanel {
 		gbc.gridx += gbc.gridwidth;
 		gbc.gridy=0;
 		gbc.gridheight=3;
-		gbc.gridwidth=3;
+		gbc.gridwidth=8;
 		gbc.weighty=0;
-		gbc.weightx=0;
-		add(plane.getPlaneConstraintsChoicePanel());
+		gbc.weightx=1;
+		add(plane.getPlaneConstraintsChoicePanel(),gbc);
 		
-		// Panel de visualisation du graphe
+		// Panel de visualisation des Params du graphe
 		gbc.gridx = 1;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridwidth = 1;
-		gbc.weightx = 1;
+		gbc.weightx = 0;
 		gbc.weighty = 1;
 		gbc.gridheight = 7;
 		add(plane.getDisplayPlanePanel(),gbc);
 		
 		//Panel de visualisation du graphe
-		gbc.gridx += gbc.gridwidth;
+		gbc.gridx = 2;
+		gbc.gridwidth = 7;
 		gbc.weightx = 15;
 		gbc.weighty = 1;
 		add(plane.getPlaneGraph().getCanvas(), gbc);

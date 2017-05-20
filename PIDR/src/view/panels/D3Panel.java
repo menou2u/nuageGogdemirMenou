@@ -42,7 +42,7 @@ public class D3Panel extends JPanel implements Observer, UpdatablePanel {
 		//Calculette
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 4;
 		gbc.gridheight = 3;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
@@ -51,9 +51,9 @@ public class D3Panel extends JPanel implements Observer, UpdatablePanel {
 		//Contraintes Différentielles
 		gbc.weightx = 1;
 		gbc.weighty = 0;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 4;
 		gbc.gridheight = 3;
-		gbc.gridx = 3;
+		gbc.gridx = 5;
 		gbc.gridy = 0;
 		add(d3.getThreeDConstraintsPane(),gbc);
 
@@ -67,16 +67,17 @@ public class D3Panel extends JPanel implements Observer, UpdatablePanel {
 		add(d3.getThreeDDatasPane(),gbc);
 		
 		//Display
-		gbc.weightx = 1;
+		gbc.weightx = 0;
 		gbc.weighty = 1;
-		gbc.gridwidth = 4;
+		gbc.gridwidth = 1;
 		gbc.gridheight = 4;
-		gbc.gridx = 2;
+		gbc.gridx = 1;
 		gbc.gridy = 3;
 		add(d3.getThreeDDisplaySettingsPane(),gbc);
 		
 		//Panel de visualisation du graphe
 		gbc.gridx += gbc.gridwidth;
+		gbc.gridwidth = 7;
 		gbc.weightx = 15;
 		gbc.weighty = 1;
 		add(d3.getD3Graph().getCanvas(), gbc);

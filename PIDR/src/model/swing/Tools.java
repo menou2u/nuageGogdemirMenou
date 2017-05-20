@@ -1,5 +1,6 @@
 package model.swing;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -285,14 +286,8 @@ public class Tools extends Observable {
 		return mainWindow;
 	}
 
-	public void sendNewFile(File file) {
-		mainWindow.sendNewFile(file);
-		setChanged();
-		notifyObservers();
-	}
-
 	public void runMath() {
-		mainWindow.runMath();
+		//mainWindow.runMath();
 	}
 	
 		

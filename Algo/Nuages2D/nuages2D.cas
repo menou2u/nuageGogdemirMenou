@@ -333,7 +333,7 @@ label k1
       };
 label affichages;
     longueurpolygone:=somme(sqrt((listxi[j+1]-listxi[j]).^2+(listyi[j+1]-listyi[j]).^2),j,0,n-2);
-    deriveefx(x):=diff(f(x),x,1);
+    deriveefx:=unapply(diff(f(x),x,1),x);
     longueurcourbefx:=abs(int(sqrt(1+(deriveefx(x)).^2),x,listxi[0],listxi[n-1]));
     qualrep:=longueurpolygone/longueurcourbefx;
     for(jj:=0;jj<=n-1;jj++)

@@ -8,7 +8,6 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import model.swing.Line;
-import model.swing.UpdatablePanel;
 
 @SuppressWarnings("serial")
 public class LinePanel extends JPanel implements Observer, UpdatablePanel {
@@ -56,17 +55,22 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		gbc.gridheight =3;
 		gbc.weightx = 1;
 		gbc.weighty=0;
-		add(line.getChosenPanel(),gbc);
-		 
-
-		// Panel de visualisation du graphe
+		add(line.getChosenPanel(),gbc);		
+		
+		// Panel de visualisation des params du graphe
 		gbc.gridx = 1;
 		gbc.gridy += gbc.gridheight;
-		gbc.gridwidth = 3;
+		gbc.gridwidth = 1;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		gbc.gridheight =7;
-		add(line.getVisualisationPanel(), gbc);
+		gbc.gridheight = 7;
+		add(line.getDisplaySettingsPanel(), gbc);
+		
+		//Panel de visualisation du graphe
+		gbc.gridx += gbc.gridwidth;
+		gbc.weightx = 15;
+		gbc.weighty = 1;
+		add(line.getLineGraphPanel().getCanvas(), gbc);
 	}
 	
 	@Override

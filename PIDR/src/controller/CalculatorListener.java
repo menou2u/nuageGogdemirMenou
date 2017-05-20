@@ -19,8 +19,14 @@ public class CalculatorListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String buttonText = ((JButton) arg0.getSource()).getText();
-		calculatorReference.updatePhiJ(buttonText);
+		String text;
+		if (!functionClicked.equals("")){
+			text = functionClicked;
+		}
+		else {
+			text = ((JButton) arg0.getSource()).getText();
+		}
+		calculatorReference.updatePhiJ(text);
 	}
 
 }

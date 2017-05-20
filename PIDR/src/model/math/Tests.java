@@ -8,11 +8,16 @@ public class Tests {
 		//dmcC0();
 		//dmcC1();
 		//dmcC2();
-		plan0Contrainte();
+		//plan0Contrainte();
 		//plan1Contrainte();
 		//test3D();
+		test2D();
 	}
 	
+	private static void test2D() {
+		
+	}
+
 	public static void plan0Contrainte(){
 		Plan0Contrainte plan = new Plan0Contrainte();
 		LinkedList<Double> listXi = new LinkedList<Double>();
@@ -64,10 +69,6 @@ public class Tests {
 		System.out.println(plan.getRes());
 		//System.out.println(plan.getInfos());
 	}
-	
-	//x -1 1 2 3
-	//y 1 2 3 4
-	//z -1 6 11 16     // 2 3 -2
 	
 	public static void test3D(){
 		Nuages3D troisD = new Nuages3D();

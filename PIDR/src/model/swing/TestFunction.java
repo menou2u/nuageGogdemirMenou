@@ -35,7 +35,6 @@ public class TestFunction extends Observable {
 		
 	}
 	
-	//TODO si on efface à la main, ça ne change pas value
 	//TODO ne pas insérer des fonctions au milieu de fonctions, e.g : tan() => cos()tan() ou tan()cos() ou tan(cos()) mais c'est tout.
 	//text.getCaretPosition() permet de récupérer la position du curseur
 	public void warnMainWindowFrame(String content) {

@@ -1,11 +1,9 @@
 package model.swing;
 
-import java.awt.Dimension;
 import java.util.Observable;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class DisplaySettings extends Observable {
@@ -20,7 +18,6 @@ public class DisplaySettings extends Observable {
 	private JTextArea absText;
 	private JTextArea ordText;
 	private JTextArea heiText;
-	private JPanel displayZone;
 	
 	public DisplaySettings(){
 		
@@ -48,11 +45,6 @@ public class DisplaySettings extends Observable {
 		
 		heiText = new JTextArea("z");
 		heiText.setColumns(8);
-		
-		//Le panel qu'il faut remplir avec la courbe du monsieur.
-		displayZone = new JPanel();
-		Dimension dim = new Dimension(400,600);
-		displayZone.setSize(dim);
 		
 	}
 
@@ -94,12 +86,6 @@ public class DisplaySettings extends Observable {
 
 	public JTextArea getHeiText() {
 		return heiText;
-	}
-
-	public JPanel getDisplayZone() {
-		return displayZone;
-	}
-	
-	
+	}	
 	
 }

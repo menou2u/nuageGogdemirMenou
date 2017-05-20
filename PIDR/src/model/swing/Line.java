@@ -1,21 +1,6 @@
 package model.swing;
 
-import java.awt.Component;
-
 import javax.swing.JPanel;
-
-import org.jzy3d.chart.Chart;
-import org.jzy3d.chart.factories.AWTChartComponentFactory;
-import org.jzy3d.chart.factories.IChartComponentFactory;
-import org.jzy3d.colors.Color;
-import org.jzy3d.colors.ColorMapper;
-import org.jzy3d.colors.colormaps.ColorMapRainbow;
-import org.jzy3d.maths.Range;
-import org.jzy3d.plot3d.builder.Builder;
-import org.jzy3d.plot3d.builder.Mapper;
-import org.jzy3d.plot3d.builder.concrete.OrthonormalGrid;
-import org.jzy3d.plot3d.primitives.Shape;
-import org.jzy3d.plot3d.rendering.canvas.Quality;
 
 import view.panels.CalculatedFunctionPanel;
 import view.panels.ConstraintsPanel;
@@ -52,19 +37,20 @@ public class Line implements Updatable {
 	private LineConstraintsChoicePanel chosenPanel;
 	private TransformationsLine transformationsLine;
 	private LineConstraintsChoice lineConstraintsChoice;
-	
-	public Line(Tools tools) {
+	private LineGraph lineGraph;
+
+	public Line() {
 		data = new Data("n°","xi","yi");
 		transformedData = new Data("Xi = tx(xi)","Yi = ty(yi)");
 		testFunction = new TestFunction("(x)");
 		calculatedFunction = new CalculatedFunction("f(x) = ");
 		mathShortcuts = new MathShortcuts(testFunction);
 		display = new DisplaySettings();
-		toolsPanel = new ToolsPanel(tools);
 		
 		dataPanel = new DataPanel(data,transformedData);
 		//transformedDataPanel = new DataPanel(transformedData);
 		
+		lineGraph = new LineGraph();
 		testFunctionPanel = new TestFunctionPanel(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
@@ -75,45 +61,12 @@ public class Line implements Updatable {
 		lineConstraintsChoice = new LineConstraintsChoice();
 		chosenPanel = new LineConstraintsChoicePanel(lineConstraintsChoice);
 	}
-	
-	public Component getVisualisationPanel() {
-		// Define a function to plot
-        Mapper mapper = new Mapper() {
-            @Override
-            public double f(double x, double y) {
-                //return x * Math.sin(x * y);
-            	return 0;
-            }
-        };
 
-        // Define range and precision for the function to plot
-        Range range = new Range(1, 5);
-        int steps = 80;
-
-        // Create the object to represent the function over the given range.
-        final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
-        surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(), surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
-        surface.setFaceDisplayed(true);
-        surface.setWireframeDisplayed(false);
-
-        // Create a chart
-        Chart chart = new Chart();
-        chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
-        chart.getScene().getGraph().add(surface);
-        
-        chart.addMouseCameraController();
-        chart.addMousePickingController(2);
-        /*AWTCameraMouseController controller = new AWTCameraMouseController(chart);
-
-		addMouseListener(controller);
-		addMouseMotionListener(controller);
-		addMouseWheelListener(controller);*/
-		Component canvas = (Component) chart.getCanvas();
-		
-		//JPanel panel = new JPanel();
-		//panel.add(canvas, BorderLayout.CENTER);
-		return canvas;
-		//return new JPanel(); 
+	/**
+	 * @return the displayPanel
+	 */
+	public DisplaySettingsPanel getDisplayPanel() {
+		return displayPanel;
 	}
 
 	@Override
@@ -201,7 +154,7 @@ public class Line implements Updatable {
 	/**
 	 * @return the displayPanel
 	 */
-	public DisplaySettingsPanel getDisplayPanel() {
+	public DisplaySettingsPanel getDisplaySettingsPanel() {
 		return displayPanel;
 	}
 
@@ -274,6 +227,19 @@ public class Line implements Updatable {
 	public LineConstraintsChoice getLineConstraintsChoice() {
 		return lineConstraintsChoice;
 	}
-	
-	
+
+	@Override
+	public TransformX getTransformX() {
+		return getTransformationsLine().getTransformX();
+	}
+
+	@Override
+	public TransformY getTransformY() {
+		return getTransformationsLine().getTransformY();
+	}
+
+	public LineGraph getLineGraphPanel() {
+		return lineGraph;
+	}
+
 }

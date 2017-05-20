@@ -36,6 +36,7 @@ public class D3 implements Updatable {
 	private CalculatedFunctionPanel threeDCalculatedFunctionPane;
 	private DisplaySettings threeDDisplaySettings;
 	private DisplaySettingsPanel threeDDisplaySettingsPane;
+	private D3Graph d3Graph;
 	
 	public D3() {
 		// Datas
@@ -56,6 +57,7 @@ public class D3 implements Updatable {
 		//Partie display
 		threeDDisplaySettings = new DisplaySettings();
 		threeDDisplaySettingsPane = new DisplaySettingsPanel(threeDDisplaySettings);
+		d3Graph = new D3Graph();
 	}
 	
 	public Component getVisualisationPanel() {
@@ -134,7 +136,7 @@ public class D3 implements Updatable {
 	/**
 	 * @return the threeDTestFunction
 	 */
-	public TestFunction getThreeDTestFunction() {
+	private TestFunction getThreeDTestFunction() {
 		return threeDTestFunction;
 	}
 
@@ -185,6 +187,25 @@ public class D3 implements Updatable {
 	 */
 	public DisplaySettingsPanel getThreeDDisplaySettingsPane() {
 		return threeDDisplaySettingsPane;
+	}
+
+	@Override
+	public TransformX getTransformX() {
+		return null;
+	}
+
+	@Override
+	public TransformY getTransformY() {
+		return null;
+	}
+
+	@Override
+	public TestFunction getTestFunction() {
+		return getThreeDTestFunction();
+	}
+
+	public D3Graph getD3Graph() {
+		return d3Graph;
 	}
 	
 	

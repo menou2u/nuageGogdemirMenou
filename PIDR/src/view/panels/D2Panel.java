@@ -8,7 +8,6 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import model.swing.D2;
-import model.swing.UpdatablePanel;
 
 @SuppressWarnings("serial")
 public class D2Panel extends JPanel implements Observer, UpdatablePanel {
@@ -75,6 +74,12 @@ public class D2Panel extends JPanel implements Observer, UpdatablePanel {
 		gbc.gridx = 2;
 		gbc.gridy = 3;
 		add(d2.getTwoDDisplaySettingsPane(),gbc);
+		
+		//Panel de visualisation du graphe
+		gbc.gridx += gbc.gridwidth;
+		gbc.weightx = 15;
+		gbc.weighty = 1;
+		add(d2.getD2Graph().getCanvas(), gbc);
 	}
 
 	@Override

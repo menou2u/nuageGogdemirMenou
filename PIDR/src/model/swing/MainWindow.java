@@ -6,6 +6,8 @@ import java.util.Observable;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
+import view.panels.UpdatablePanel;
+
 public class MainWindow extends Observable {
 	
 	private Tools tools;
@@ -18,7 +20,7 @@ public class MainWindow extends Observable {
 	
 	public MainWindow() {
 		tools = new Tools(this);
-		line = new Line(tools);
+		line = new Line();
 		plane = new Plane();
 		d2 = new D2();
 		d3 = new D3();

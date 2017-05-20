@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.math.DroiteMoindreCarres;
+import model.math.Nuages3D;
+import model.swing.D3;
 import model.swing.Line;
 import model.swing.MainWindow;
 import view.panels.D2Panel;
@@ -109,31 +112,31 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		/*System.out.println("oin");
+		System.out.println("oin");
 		if (o instanceof MainWindow && arg.equals("exec")){
 			System.out.println("OIN");
 			//Droite 0/1/2 + data (via cdv)
 			if (mainWindow.getOnglets().getSelectedIndex() == 0){
 				DroiteMoindreCarres dmc = new DroiteMoindreCarres();
 				Line mode = (Line) mainWindow.getMode();
-				String tX = mode.getTransformX().getText();
-				String tY = mainWindow.getTransformationsLine().getTransformY().getTransformY().getText();
+				String tX = mode.getTransformX().getTransformX().getText();
+				String tY = mode.getTransformY().getTransformY().getText();
 				if (!tX.equals("")){
 					
 				}
 				if (!tY.equals("")){
 					
 				}
-				if (mainWindow.getLineConstraintsChoice().getNoConstraint().isSelected()){
-					dmc.run(mainWindow.getData().getX(), mainWindow.getData().getY(), 0, new LinkedList<Double>(), 0);
+				if (mode.getLineConstraintsChoice().getNoConstraint().isSelected()){
+					dmc.run(mode.getData().getX(), mode.getData().getY(), 0, new LinkedList<Double>(), 0);
 					infosLine = dmc.getInfosC0orC1();
 				}
-				if (mainWindow.getLineConstraintsChoice().getPointConstraint().isSelected()){//TODO changer omegas
-					dmc.run(mainWindow.getData().getX(), mainWindow.getData().getY(), 1, new LinkedList<Double>(), 0);
+				if (mode.getLineConstraintsChoice().getPointConstraint().isSelected()){//TODO changer omegas
+					dmc.run(mode.getData().getX(), mode.getData().getY(), 1, new LinkedList<Double>(), 0);
 					infosLine = dmc.getInfosC0orC1();
 				}
-				if (mainWindow.getLineConstraintsChoice().getSlopeConstraint().isSelected()){//TODO changer omegas
-					dmc.run(mainWindow.getData().getX(), mainWindow.getData().getY(), 2, new LinkedList<Double>(), Double.parseDouble(mainWindow.getLineConstraintsChoice().getSlopeConstraintPanel().getSlope().getText()));
+				if (mode.getLineConstraintsChoice().getSlopeConstraint().isSelected()){//TODO changer omegas
+					dmc.run(mode.getData().getX(), mode.getData().getY(), 2, new LinkedList<Double>(), Double.parseDouble(mode.getLineConstraintsChoice().getSlopeConstraintPanel().getSlope().getText()));
 					infosLine = dmc.getInfosC2();
 				}
 				currentInfos = infosLine;
@@ -143,19 +146,20 @@ public class MainWindowFrame extends JFrame implements Observer {
 			//3D : phi + datas
 			if (mainWindow.getOnglets().getSelectedIndex() == 3){
 				Nuages3D nuages3D = new Nuages3D();
-				String[] phi = mainWindow.getThreeDTestFunction().getText().getText().split(",");
+				D3 mode = (D3) mainWindow.getMode();
+				String[] phi = mode.getTestFunction().getValue().split(",");
 				LinkedList<String> phiList = new LinkedList<>();
 				for (int i=0; i<phi.length; i++){
 					phiList.add(phi[i]);
 				}
-				nuages3D.run(mainWindow.getThreeDDatas().getX(), mainWindow.getThreeDDatas().getY(), mainWindow.getThreeDDatas().getZ(), phiList, mainWindow.getThreeDConstraints().getColumn(1), mainWindow.getThreeDConstraints().getColumn(2), mainWindow.getThreeDConstraints().getColumn(3), mainWindow.getThreeDConstraints().getColumn(4), mainWindow.getThreeDConstraints().getColumn(5), mainWindow.getThreeDConstraints().getColumn(6));
+				nuages3D.run(mode.getData().getX(), mode.getData().getY(), mode.getData().getZ(), phiList, mode.getThreeDConstraints().getColumn(1), mode.getThreeDConstraints().getColumn(2), mode.getThreeDConstraints().getColumn(3), mode.getThreeDConstraints().getColumn(4), mode.getThreeDConstraints().getColumn(5), mode.getThreeDConstraints().getColumn(6));
 				currentInfos = nuages3D.getInfos();
 			}
 			
 		}
 		if (o instanceof MainWindow && arg.equals("infos")){
 			InfosWindowFrame.getCurrent().setInfos(currentInfos);
-		}*/
+		}
 
 	}
 

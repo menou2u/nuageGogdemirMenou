@@ -1,11 +1,9 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -66,22 +64,16 @@ public class DisplaySettingsPanel extends JPanel{
 		gbc.gridx=1;
 		add(displaySettings.getHeiText(),gbc);
 		
-		gbc.gridx = 2;
-		gbc.gridy = 0;
-		gbc.gridheight = 20;
-		gbc.gridwidth = 20;
-		gbc.fill = GridBagConstraints.BOTH;
-		add(displaySettings.getDisplayZone(),gbc);
-		
 	}
 	
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        DisplaySettings ds = new DisplaySettings();
-        DisplaySettingsPanel newContentPane = new DisplaySettingsPanel(ds);
-        newContentPane.setOpaque(true);
-        frame.setContentPane(newContentPane);
+        @SuppressWarnings("unused")
+		DisplaySettings ds = new DisplaySettings();
+        //DisplaySettingsPanel newContentPane = new DisplaySettingsPanel(ds);
+        //newContentPane.setOpaque(true);
+        //frame.setContentPane(newContentPane);
         frame.pack();
         frame.setVisible(true);
     }

@@ -36,6 +36,7 @@ public class D2 implements Updatable{
 	private CalculatedFunctionPanel twoDCalculatedFunctionPane;
 	private DisplaySettings twoDDisplaySettings;
 	private DisplaySettingsPanel twoDDisplaySettingsPane;
+	private D2Graph d2Graph;
 	
 	public D2() {
 		// Datas
@@ -56,6 +57,7 @@ public class D2 implements Updatable{
 		//Partie display
 		twoDDisplaySettings = new DisplaySettings();
 		twoDDisplaySettingsPane = new DisplaySettingsPanel(twoDDisplaySettings);
+		d2Graph = new D2Graph();
 	}
 	
 	public Component getVisualisationPanel() {
@@ -134,7 +136,7 @@ public class D2 implements Updatable{
 	/**
 	 * @return the twoDTestFunction
 	 */
-	public TestFunction getTwoDTestFunction() {
+	private TestFunction getTwoDTestFunction() {
 		return twoDTestFunction;
 	}
 
@@ -185,6 +187,25 @@ public class D2 implements Updatable{
 	 */
 	public DisplaySettingsPanel getTwoDDisplaySettingsPane() {
 		return twoDDisplaySettingsPane;
+	}
+
+	@Override
+	public TransformX getTransformX() {
+		return null;
+	}
+
+	@Override
+	public TransformY getTransformY() {
+		return null;
+	}
+
+	@Override
+	public TestFunction getTestFunction() {
+		return getTwoDTestFunction();
+	}
+
+	public D2Graph getD2Graph() {
+		return d2Graph;
 	}
 	
 	

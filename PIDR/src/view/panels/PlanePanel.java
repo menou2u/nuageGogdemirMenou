@@ -8,7 +8,6 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import model.swing.Plane;
-import model.swing.UpdatablePanel;
 
 @SuppressWarnings("serial")
 public class PlanePanel extends JPanel implements Observer, UpdatablePanel {
@@ -64,10 +63,17 @@ public class PlanePanel extends JPanel implements Observer, UpdatablePanel {
 		// Panel de visualisation du graphe
 		gbc.gridx = 1;
 		gbc.gridy += gbc.gridheight;
-		gbc.gridheight=7;
+		gbc.gridwidth = 1;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
+		gbc.gridheight = 7;
 		add(plane.getDisplayPlanePanel(),gbc);
+		
+		//Panel de visualisation du graphe
+		gbc.gridx += gbc.gridwidth;
+		gbc.weightx = 15;
+		gbc.weighty = 1;
+		add(plane.getPlaneGraph().getCanvas(), gbc);
 
 	}
 	

@@ -90,10 +90,10 @@ public class MathShortcuts extends Observable {
 		exp.addActionListener(new CalculatorListener(this, ""));
 		
 		fact = new JButton("!");
-		fact.addActionListener(new CalculatorListener(this, ""));
+		fact.addActionListener(new CalculatorListener(this, "factorial"));
 		
-		inv = new JButton("1/x");
-		inv.addActionListener(new CalculatorListener(this, ""));
+		inv = new JButton("1/f");
+		inv.addActionListener(new CalculatorListener(this, "1/"));
 		
 		sqrt = new JButton("sqrt");
 		sqrt.addActionListener(new CalculatorListener(this, ""));

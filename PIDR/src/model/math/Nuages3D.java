@@ -15,6 +15,7 @@ public class Nuages3D extends XcasProg {
 	private LinkedList<Double> listUx;
 	private LinkedList<Double> listUy;
 	private LinkedList<String> listPhi;
+	private String function;
 
 	public Nuages3D() {
 		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Nuages3D\\nuages3D.cas");
@@ -55,6 +56,8 @@ public class Nuages3D extends XcasProg {
 	public StringBuilder getInfos(){
 		infos = new StringBuilder();
 		String[] elements = (res.split(",")[1]).split(";");
+		function = elements[0].substring(1);
+		System.out.println(" tu veux voir ma fonction ? "+function);
 		infos.append("Données mathématiques\n\n");
 		infos.append("Nombre de données brutes : "+nbElements+"\n\n");
 		infos.append("Nombre de contraintes : "+listZomega.size()+"\n\n");
@@ -95,5 +98,14 @@ public class Nuages3D extends XcasProg {
 		infos.append("z maxi : "+elements[11]+"\n");
 		return infos;
 	}
+
+	/**
+	 * @return the function
+	 */
+	public String getFunction() {
+		return function;
+	}
+	
+	
 
 }

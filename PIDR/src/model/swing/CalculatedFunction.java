@@ -34,7 +34,7 @@ public class CalculatedFunction extends Observable {
 	private JLabel calculatedPointName;
 	private Dimension oneCell;
 	
-	public CalculatedFunction(String s){
+	public CalculatedFunction(String s, String parameters){
 		
 		functionName = new JLabel();
 		functionName.setText(s);
@@ -64,10 +64,10 @@ public class CalculatedFunction extends Observable {
 		calculatedPoint.setSize(100,100);
 
 		pointName = new JLabel();
-		pointName.setText("(x0) = ");
+		pointName.setText(parameters +" = ");
 		
 		calculatedPointName = new JLabel();
-		calculatedPointName.setText("f(x0) = ");
+		calculatedPointName.setText("f"+ parameters +" = ");
 	}
 
 	public String getValue() {
@@ -117,6 +117,13 @@ public class CalculatedFunction extends Observable {
 	//Un setter de la valeur à mettre dans la partie textuelle quand on clique sur les raccourcis.
 	public void setValue(String newValue) {
 		value = newValue;
+	}
+	
+	public void setFunctionCalculated(String res){
+		functionCalculated.setText(res);
+		System.out.println("res : "+functionCalculated.getText());
+		setChanged();
+		notifyObservers();
 	}
 
 	

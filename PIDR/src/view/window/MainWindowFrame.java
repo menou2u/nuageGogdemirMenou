@@ -155,19 +155,22 @@ public class MainWindowFrame extends JFrame implements Observer {
 				}
 				nuages2D.run(mode.getData().getX(), mode.getData().getY(), phiList, mode.getTwoDConstraints().getColumn(1), mode.getTwoDConstraints().getColumn(1), mode.getTwoDConstraints().getColumn(2), mode.getTwoDConstraints().getColumn(3));
 				currentInfos = nuages2D.getInfos();
+				mode.getTwoDCalculatedFunction().getFunctionCalculated().setText(nuages2D.getFunction());
 			}
 			//3D : phi + datas
 			if (mainWindow.getOnglets().getSelectedIndex() == 3){
 				Nuages3D nuages3D = new Nuages3D();
 				D3 mode = (D3) mainWindow.getMode();
-				String[] phi = mode.getTestFunction().getValue().split(",");
+				String[] phi = mode.getTestFunction().getText().getText().split(",");
 				LinkedList<String> phiList = new LinkedList<>();
 				for (int i=0; i<phi.length; i++){
 					phiList.add(phi[i]);
 				}
 				nuages3D.run(mode.getData().getX(), mode.getData().getY(), mode.getData().getZ(), phiList, mode.getThreeDConstraints().getColumn(1), mode.getThreeDConstraints().getColumn(2), mode.getThreeDConstraints().getColumn(3), mode.getThreeDConstraints().getColumn(4), mode.getThreeDConstraints().getColumn(5), mode.getThreeDConstraints().getColumn(6));
 				currentInfos = nuages3D.getInfos();
+				mode.getThreeDCalculatedFunction().setFunctionCalculated(nuages3D.getFunction());
 			}
+			InfosWindowFrame.getCurrent().setInfos(currentInfos);
 			
 		}
 		if (o instanceof MainWindow && arg.equals("infos")){

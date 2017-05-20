@@ -8,7 +8,7 @@ import javagiac.gen;
 public class Nuages2D extends XcasProg {
 
 	public Nuages2D() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\droite des moindres carres.cas");
+		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Nuages2D\\nuages2D.cas");
 	}
 	
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Double> listContraintes, LinkedList<Double> listOrdreDerivation){
@@ -30,8 +30,13 @@ public class Nuages2D extends XcasProg {
 	}
 
 	public StringBuilder getInfos() {
+		infos = new StringBuilder();
 		infos.append("OIN :D");
 		return infos;
+	}
+
+	public String getFunction() {
+		return "remplis moi, oh oui vas y";
 	}
 	
 }

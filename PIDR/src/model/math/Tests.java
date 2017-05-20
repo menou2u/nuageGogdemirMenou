@@ -10,7 +10,7 @@ public class Tests {
 		//dmcC2();
 		//plan0Contrainte();
 		//plan1Contrainte();
-		//test3D();
+		test3D();
 		test2D();
 	}
 	
@@ -92,13 +92,13 @@ public class Tests {
 		listPhi.add("y");
 		listPhi.add("1");
 		LinkedList<Double> listXomega = new LinkedList<Double>();
-		//listXomega.add(3.0);
+		listXomega.add(3.0);
 		LinkedList<Double> listYomega = new LinkedList<Double>();
-		//listYomega.add(4.0);
+		listYomega.add(4.0);
 		LinkedList<Double> listZomega = new LinkedList<Double>();
-		//listZomega.add(2.0);
+		listZomega.add(2.0);
 		LinkedList<Integer> listOrdreDerivation = new LinkedList<Integer>();
-		//listOrdreDerivation.add(0);
+		listOrdreDerivation.add(0);
 		LinkedList<Double> listUx = new LinkedList<Double>();
 		LinkedList<Double> listUy = new LinkedList<Double>();
 		troisD.run(listXi, listYi, listZi, listPhi, listXomega, listYomega, listZomega, listOrdreDerivation, listUx, listUy);

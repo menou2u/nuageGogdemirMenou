@@ -55,6 +55,9 @@ public class TestFunction extends Observable {
 	//Un setter de la valeur à mettre dans la partie textuelle quand on clique sur les raccourcis.
 	public void setValue(String newValue) {
 		value = newValue;
+		System.out.println("oin !");
+		setChanged();
+		notifyObservers();
 	}
 
 	public String getValue() {

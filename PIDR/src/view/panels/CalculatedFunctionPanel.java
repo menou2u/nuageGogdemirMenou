@@ -1,11 +1,9 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -76,7 +74,7 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 	// main pour test
 	public static void main(String[] args) {
 		JFrame test = new JFrame();
-		CalculatedFunction cF = new CalculatedFunction("f(x) = ");
+		CalculatedFunction cF = new CalculatedFunction("f(x) = ", "(x0)");
 		test.setSize(1500, 1000);
 		CalculatedFunctionPanel paneltest = new CalculatedFunctionPanel(cF);
 		GridBagLayout gbl = new GridBagLayout();

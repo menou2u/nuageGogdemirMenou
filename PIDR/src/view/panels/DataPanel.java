@@ -60,7 +60,7 @@ public class DataPanel extends JPanel {
         JFrame frame = new JFrame("DataPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Data d = new Data("n°","xi","yi");
-        Data dtrans = new Data("xtrans","ytrans");
+        Data dtrans = new Data("n°","xtrans","ytrans");
         DataPanel newContentPane = new DataPanel(d,dtrans);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);

@@ -11,12 +11,14 @@ import java.util.Observable;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Datas2DFactory;
 import controller.Datas3DFactory;
 
-public class Data extends Observable {
+public class Data extends Observable implements TableModelListener {
 
 	private Object[][] data;
 	private JTable table;
@@ -30,11 +32,13 @@ public class Data extends Observable {
 	private int length2;
 	private int nbDim;
 	private String sortedBy;
+	private DefaultTableModel tableModel;
 	
 	public Data(String col1,String col2,String col3, String col4){
 		columnNames = new String[]{col1,col2,col3,col4};
 		data = new Object[Math.max(1,Math.max(x.size(),Math.max(y.size(),z.size())))][4];
 		nbDim = 3;
+		tableModel = new DefaultTableModel(columnNames, columnNames.length);
         initTable();
 	}
 	
@@ -42,14 +46,8 @@ public class Data extends Observable {
 		columnNames = new String[]{col1,col2,col3};
 		data = new Object[Math.max(1,Math.max(x.size(),y.size()))][3];
 		nbDim = 2;
+		tableModel = new DefaultTableModel(columnNames, columnNames.length);
         initTable();
-	}
-	
-	public Data(String col1,String col2){
-		columnNames = new String[]{col1,col2};
-		data = new Object[Math.max(1,Math.max(x.size(),y.size()))][2];
-		nbDim = 2;
-		initTable();
 	}
 	
 	public void updateTableContent(String path){
@@ -69,7 +67,8 @@ public class Data extends Observable {
 	}
 	
 	public void initTable(){
-		table = new JTable(data, columnNames);
+		tableModel.addTableModelListener(this);
+		table = new JTable(tableModel);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
        
@@ -84,10 +83,39 @@ public class Data extends Observable {
         	public void mouseClicked(MouseEvent event)
         	{
         		if (event.getClickCount() == 2) {
-        			//getDataObject().sort();
-        	  }
+        			
+        		}
         	}
         });
+	}
+	
+	public void tableChanged(TableModelEvent e){
+		int row = e.getFirstRow();
+		int column = e.getColumn();
+		DefaultTableModel model = (DefaultTableModel)e.getSource();
+		Object newValue = new Object();
+		try
+		{
+			newValue = (Double)model.getValueAt(row, column);
+		}
+		catch(ClassCastException exc)
+		{
+			newValue = model.getValueAt(row,column);
+		}
+		System.out.println(column+" colonne");
+		System.out.println(row+" ligne");
+		for (int i=0;i<model.getColumnCount();i++)
+		{
+			for (int j=0;j<model.getRowCount();j++)
+			{
+				System.out.println(model.getValueAt(i,j) + " en"+i+","+j);
+				data[i][j]=model.getValueAt(i,j);
+			}
+		}
+		if (data.length>=column){
+		data[column][row] = newValue;
+		}
+		updateTable();
 	}
 	
 	/*public void sort(ColumnHeader cH){
@@ -109,6 +137,20 @@ public class Data extends Observable {
 		{
 			data[j][2] = y.get(j);
 		}
+	}
+	
+	public void addLine(Data datas){
+		int initialColumn = datas.getData().length;
+		int initialRow = datas.getData()[0].length;
+		Object[][] dataTemp = new Object[initialColumn][initialRow+1];
+		for (int i=0;i<initialRow;i++){
+			for (int j=0;j<initialColumn;j++){
+				dataTemp[j][i] = datas.getData()[j][i];
+			}
+		}
+		data = dataTemp;
+		tableModel = new DefaultTableModel(data, initialRow+1);
+		table = new JTable(tableModel);
 	}
 	
 	/**
@@ -134,9 +176,11 @@ public class Data extends Observable {
 	
 	public void updateTable(){
 		DefaultTableModel defaultTableModel = new DefaultTableModel(data, columnNames);
+		defaultTableModel.addTableModelListener(this);
 		table.setModel(defaultTableModel);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
+        printData(data);
 	}
 
 	public void setData(Object[][] datas)
@@ -183,6 +227,28 @@ public class Data extends Observable {
 		}
 	}
     
+	public void printData(Object[][] o)
+	{
+		StringBuilder sb = new StringBuilder();
+		Double res = 0.0;
+		for (int i=0;i<o.length;i++){
+			sb.append("\n");
+			for (int j=0;j<o[i].length;j++){
+				sb.append(o[i][j]+"");
+				try{
+					if (o[i][j]!=null){
+						res+=(Double)o[i][j];
+					}
+				}
+				catch (ClassCastException exc){
+					
+				}
+			}
+		}
+		System.out.println(sb);
+		System.out.println(res);
+	}
+	
     public void setData(Object dat, int i, int j)
     {
     	data[i][j] = dat;

@@ -41,7 +41,7 @@ public class Line implements Updatable {
 
 	public Line() {
 		data = new Data("n°","xi","yi");
-		transformedData = new Data("Xi = tx(xi)","Yi = ty(yi)");
+		transformedData = new Data("n°","Xi = tx(xi)","Yi = ty(yi)");
 		testFunction = new TestFunction("(x)");
 		calculatedFunction = new CalculatedFunction("f(x) = ");
 		mathShortcuts = new MathShortcuts(testFunction);

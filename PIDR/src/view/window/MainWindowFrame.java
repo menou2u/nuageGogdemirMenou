@@ -15,7 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.math.DroiteMoindreCarres;
+import model.math.Nuages2D;
 import model.math.Nuages3D;
+import model.swing.D2;
 import model.swing.D3;
 import model.swing.Line;
 import model.swing.MainWindow;
@@ -143,6 +145,17 @@ public class MainWindowFrame extends JFrame implements Observer {
 			}
 			//Plans 0/1/2 +++++
 			//2D : phi + datas
+			if (mainWindow.getOnglets().getSelectedIndex() == 1){
+				Nuages2D nuages2D = new Nuages2D();
+				D2 mode = (D2) mainWindow.getMode();
+				String[] phi = mode.getTestFunction().getValue().split(",");
+				LinkedList<String> phiList = new LinkedList<>();
+				for (int i=0; i<phi.length; i++){
+					phiList.add(phi[i]);
+				}
+				nuages2D.run(mode.getData().getX(), mode.getData().getY(), phiList, mode.getTwoDConstraints().getColumn(1), mode.getTwoDConstraints().getColumn(1), mode.getTwoDConstraints().getColumn(2), mode.getTwoDConstraints().getColumn(3));
+				currentInfos = nuages2D.getInfos();
+			}
 			//3D : phi + datas
 			if (mainWindow.getOnglets().getSelectedIndex() == 3){
 				Nuages3D nuages3D = new Nuages3D();

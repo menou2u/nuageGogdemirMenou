@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.swing.Tools;
+import view.window.InfosWindowFrame;
 
 public class ExecuteButtonListener implements ActionListener {
 
@@ -16,6 +17,7 @@ public class ExecuteButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		toolsReference.getMainWindow().runMath();
+		InfosWindowFrame.getCurrent();
 	}
 
 }

@@ -308,6 +308,17 @@ public class Data extends Observable implements TableModelListener {
 	public LinkedList<Double> getZ() {
 		return z;
 	}
+
+	public boolean isEmpty() {
+		for (int i=0; i<length1; i++){ //col
+			for (int j=0; j<length1; j++){ //ligne
+				if ((""+(double) data[j][i]).equals("")){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	
 }
 

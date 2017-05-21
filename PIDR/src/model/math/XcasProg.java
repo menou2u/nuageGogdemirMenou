@@ -7,6 +7,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 
+import javagiac.context;
+import javagiac.gen;
+
 public abstract class XcasProg {
 
 	protected String res;
@@ -58,6 +61,12 @@ public abstract class XcasProg {
 		return res;
 	}
 	
+	public static double simpleEval(String expression){
+		System.loadLibrary("javagiac");
+		context c = new context();
+		double eval = (new gen(expression,c)).DOUBLE_val();
+		return eval;
+	}
 	
 	
 }

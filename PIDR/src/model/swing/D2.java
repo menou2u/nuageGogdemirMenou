@@ -52,7 +52,7 @@ public class D2 implements Updatable{
 		twoDMathShortcuts = new MathShortcuts(twoDTestFunction);
 		twoDMathShortcutsPane = new MathShortcutsPanel(twoDMathShortcuts);
 		//Fonction calculée
-		twoDCalculatedFunction = new CalculatedFunction("f(x) = ", "(x0)");
+		twoDCalculatedFunction = new CalculatedFunction("f(x) = ", "x0");
 		twoDCalculatedFunctionPane = new CalculatedFunctionPanel(twoDCalculatedFunction);
 		//Partie display
 		twoDDisplaySettings = new DisplaySettings();

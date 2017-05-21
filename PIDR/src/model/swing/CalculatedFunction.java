@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
+import controller.CalculButtonListener;
+import model.math.XcasProg;
+
 public class CalculatedFunction extends Observable {
 	
 	//Valeur de la fonction calculée
@@ -33,8 +36,10 @@ public class CalculatedFunction extends Observable {
 	//Nom du résultat
 	private JLabel calculatedPointName;
 	private Dimension oneCell;
+	private String parameters;
 	
 	public CalculatedFunction(String s, String parameters){
+		this.parameters = parameters;
 		
 		functionName = new JLabel();
 		functionName.setText(s);
@@ -55,6 +60,7 @@ public class CalculatedFunction extends Observable {
 
 		calcul = new JButton();
 		calcul.setText("Calcul");
+		calcul.addActionListener(new CalculButtonListener(this));
 		
 		calculatedPoint = new JTextArea();
 		calculatedPoint.setEditable(false);
@@ -64,10 +70,23 @@ public class CalculatedFunction extends Observable {
 		calculatedPoint.setSize(100,100);
 
 		pointName = new JLabel();
-		pointName.setText(parameters +" = ");
+		pointName.setText("("+parameters +") = ");
 		
 		calculatedPointName = new JLabel();
-		calculatedPointName.setText("f"+ parameters +" = ");
+		calculatedPointName.setText("f("+ parameters +") = ");
+	}
+	
+	public void eval(){
+		String completeFunction = functionCalculated.getText();
+		String[] pointParsed = point.getText().split(";");
+		if (parameters.contains("y0")){
+			completeFunction.replaceAll("y", pointParsed[1].split(")")[0]);
+		}
+		completeFunction.replaceAll("x", pointParsed[0].split("(")[0]);
+		double image = XcasProg.simpleEval(completeFunction);
+		calculatedPoint.setText(""+image);
+		setChanged();
+		notifyObservers();
 	}
 
 	public String getValue() {

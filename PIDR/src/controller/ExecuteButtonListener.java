@@ -15,7 +15,12 @@ public class ExecuteButtonListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		toolsReference.getMainWindow().runMath();
+		if (toolsReference.getMainWindow().getMode().getData().isEmpty()){
+			new PopUp(this);
+		}
+		else {
+			toolsReference.getMainWindow().runMath();
+		}
 	}
 
 }

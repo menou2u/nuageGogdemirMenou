@@ -52,7 +52,7 @@ public class D3 implements Updatable {
 		threeDMathShortcuts = new MathShortcuts(threeDTestFunction);
 		threeDMathShortcutsPane = new MathShortcutsPanel(threeDMathShortcuts);
 		//Fonction calculée
-		threeDCalculatedFunction = new CalculatedFunction("f(x;y) = ", "(x0;y0)");
+		threeDCalculatedFunction = new CalculatedFunction("f(x;y) = ", "x0;y0");
 		threeDCalculatedFunctionPane = new CalculatedFunctionPanel(threeDCalculatedFunction);
 		//Partie display
 		threeDDisplaySettings = new DisplaySettings();

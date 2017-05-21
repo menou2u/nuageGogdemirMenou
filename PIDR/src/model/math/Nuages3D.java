@@ -56,7 +56,6 @@ public class Nuages3D extends XcasProg {
 		infos = new StringBuilder();
 		String[] elements = (res.split(",")[1]).split(";");
 		function = elements[0].substring(1);
-		System.out.println(" tu veux voir ma fonction ? "+function);
 		infos.append("Données mathématiques\n\n");
 		infos.append("Nombre de données brutes : "+nbElements+"\n\n");
 		infos.append("Nombre de contraintes : "+listZomega.size()+"\n\n");
@@ -64,7 +63,7 @@ public class Nuages3D extends XcasProg {
 			infos.append("Contraintes\n");
 			for (int i=0; i<listXomega.size(); i++){
 				infos.append("xw : "+listXomega.get(i)+", yw : "+listYomega.get(i)+", zw : "+listZomega.get(i)+", ordre dérivation : "+listOrdreDerivation.get(i));
-				if (listUx.size() > 0 && listUy.size() > 0){
+				if (listUx.get(i) == null && listUy.get(i) == null){
 					infos.append(", ux : "+listUx.get(i)+", uy : "+listUy.get(i));
 				}
 				infos.append("\n");

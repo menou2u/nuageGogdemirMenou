@@ -10,12 +10,49 @@ public class Tests {
 		//dmcC2();
 		//plan0Contrainte();
 		//plan1Contrainte();
-		test3D();
+		//test3D();
 		test2D();
 	}
 	
-	private static void test2D() {
+	public static void test2D() {
+		Nuages2D nuages2d = new Nuages2D();
+		LinkedList<Double> listXi = new LinkedList<Double>();
+		listXi.add(12.56637061436);
+		listXi.add(15.70796326795);
+		listXi.add(18.84955592154);
+		listXi.add(20.94395102393);
+		listXi.add(25.13274122872);
+		listXi.add(26.17993877992);
+		listXi.add(27.75073510671);
+		listXi.add(29.32153143351);
+		listXi.add(30.3687289847);
+		listXi.add(32.4631240871);
+		LinkedList<Double> listYi = new LinkedList<>();
+		listYi.add(0.16);
+		listYi.add(0.24);
+		listYi.add(0.48);
+		listYi.add(0.68);
+		listYi.add(1.72);
+		listYi.add(7.4);
+		listYi.add(5.6);
+		listYi.add(1.72);
+		listYi.add(1.4);
+		listYi.add(1.12);
+		LinkedList<String> listPhi = new LinkedList<>();
+		listPhi.add("x^3");
+		listPhi.add("x^2");
+		listPhi.add("x");
+		listPhi.add("exp(-(x-26)^2)");
+		listPhi.add("1");
+		LinkedList<Double> listXomega = new LinkedList<>();
+		listXomega.add(12.56637061436);
+		LinkedList<Double> listYomega = new LinkedList<>();
+		listYomega.add(0.16);
+		LinkedList<Integer> listOrdreDerivation = new LinkedList<>();
+		listOrdreDerivation.add(0);
 		
+		nuages2d.run(listXi, listYi, listPhi, listXomega, listYomega, listOrdreDerivation);
+		System.out.println(nuages2d.getInfos());
 	}
 
 	public static void plan0Contrainte(){

@@ -50,7 +50,7 @@ public class Line implements Updatable {
 		dataPanel = new DataPanel(data,transformedData);
 		//transformedDataPanel = new DataPanel(transformedData);
 		
-		lineGraph = new LineGraph();
+		lineGraph = new LineGraph("line");
 		testFunctionPanel = new TestFunctionPanel(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
@@ -238,7 +238,7 @@ public class Line implements Updatable {
 		return getTransformationsLine().getTransformY();
 	}
 
-	public LineGraph getLineGraphPanel() {
+	public LineGraph getLineGraph() {
 		return lineGraph;
 	}
 

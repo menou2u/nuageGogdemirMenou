@@ -1,83 +1,127 @@
 package model.swing;
 
-import java.awt.Component;
-import java.awt.Container;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.LinkedList;
 
-import javax.swing.JFrame;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.ui.ApplicationFrame;
 
-import org.jzy3d.analysis.AbstractAnalysis;
-import org.jzy3d.chart.factories.AWTChartComponentFactory;
-import org.jzy3d.chart.factories.IChartComponentFactory;
-import org.jzy3d.colors.Color;
-import org.jzy3d.maths.Coord2d;
-import org.jzy3d.plot3d.primitives.Scatter;
-import org.jzy3d.plot3d.rendering.canvas.Quality;
+/**
+ * A simple demonstration application showing how to create a line chart using data from an
+ * {@link XYDataset}.
+ *
+ */
+@SuppressWarnings("serial")
+public class LineGraph extends ApplicationFrame {
 
-public class LineGraph extends AbstractAnalysis{
+	private XYDataset dataset;
+    private JFreeChart freeChart;
+	private ChartPanel chartPanel;
 
-	private Component canvas;	
-	private LinkedList<Double> listX;
-	private LinkedList<Double> listY;
-	
-	public LineGraph(LinkedList<Double> listX, LinkedList<Double> listY) {
-		this.listX = listX;
-		this.listY = listY;
-	}
-	
-	public LineGraph() {
-		listX = new LinkedList<>();
-		listY = new LinkedList<>();
-		init();
-	}
-	
-	public static void main(String[] args) {
-		LinkedList<Double> x = new LinkedList<>();
-		x.add(1.0);
-		x.add(3.0);
-		x.add(5.0);
-		LinkedList<Double> y = new LinkedList<>();
-		y.add(5.0);
-		y.add(9.0);
-		y.add(25.0);
-		LineGraph graph = new LineGraph(x, y);
-		graph.init();
-		
-		JFrame frame = new JFrame();
-		frame.setContentPane((Container) graph.getCanvas());
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-	}
-	
-	 public void init(){
-	        int size = listX.size();
-	        float x;
-	        float y;
-	        float z;
-	        float a;
-	        
-	        Coord2d[] points = new Coord2d[size];
-	        Color[]   colors = new Color[size];
-	        
-	        for(int i=0; i<size; i++){
-	            x = (float) ((double) listX.get(i));
-	            System.out.println("x "+x);
-	            y = (float) ((double) listY.get(i));
-	            System.out.println("y "+y);
-	            a = 0.25f;
-	            points[i] = new Coord2d(x, y);
-	            colors[i] = new Color(x, y, a);
-	        }
-	        
-	        Scatter scatter = new Scatter();
-	        chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
-	        chart.getScene().add(scatter);
-	        canvas = (Component) chart.getCanvas();
-	}
+	/**
+     * Creates a new demo.
+     *
+     * @param title  the frame title.
+     */
+    public LineGraph(String title) {
+        super(title);
+        dataset = new XYSeriesCollection();
+        freeChart = createChart(dataset);
+        chartPanel = new ChartPanel(freeChart);
+        chartPanel.setPreferredSize(new Dimension(500, 270));
+    }
+    
+    public void fill(LinkedList<Double> xList, LinkedList<Double> yList){
+    	createDataset(xList, yList);
+    	freeChart.getXYPlot().setDataset(dataset);
+    	chartPanel.setChart(freeChart);
+    }
+    
+    /**
+     * Creates a sample dataset.
+     * 
+     * @return a sample dataset.
+     */
+	private XYDataset createDataset(LinkedList<Double> xList, LinkedList<Double> yList) {
+        
+        final XYSeries series1 = new XYSeries("First");
+        for (int i=0; i<xList.size(); i++){
+        	series1.add(xList.get(i), yList.get(i));
+        }
 
-	public Component getCanvas() {
-		return canvas;
+        final XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(series1);
+        return dataset;
+        
+    }
+    
+    /**
+     * Creates a chart.
+     * 
+     * @param dataset  the data for the chart.
+     * 
+     * @return a chart.
+     */
+    private JFreeChart createChart(final XYDataset dataset) {
+        
+        // create the chart...
+        freeChart = ChartFactory.createXYLineChart(
+            getTitle(),      // chart title
+            "X",                      // x axis label
+            "Y",                      // y axis label
+            dataset,                  // data
+            PlotOrientation.VERTICAL,
+            true,                     // include legend
+            true,                     // tooltips
+            false                     // urls
+        );
+
+        // NOW DO SOME OPTIONAL CUSTOMISATION OF THE CHART...
+        freeChart.setBackgroundPaint(Color.white);
+
+//        final StandardLegend legend = (StandardLegend) chart.getLegend();
+  //      legend.setDisplaySeriesShapes(true);
+        
+        // get a reference to the plot for further customisation...
+        final XYPlot plot = freeChart.getXYPlot();
+        plot.setBackgroundPaint(Color.lightGray);
+    //    plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 5.0, 5.0, 5.0, 5.0));
+        plot.setDomainGridlinePaint(Color.white);
+        plot.setRangeGridlinePaint(Color.white);
+        
+        final XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+        renderer.setSeriesLinesVisible(0, false);
+        renderer.setSeriesShapesVisible(1, false);
+        plot.setRenderer(renderer);
+
+        // change the auto tick unit selection to integer units only...
+        final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        // OPTIONAL CUSTOMISATION COMPLETED.
+        return freeChart;
+        
+    }
+
+
+	/**
+	 * @return the chartPanel
+	 */
+	public ChartPanel getCanvas() {
+		return chartPanel;
 	}
+    
+    
 	
+	
+
 }

@@ -87,7 +87,7 @@ public class CalculatedFunction extends Observable {
 		System.out.println("point "+point.getText());
 		String[] pointParsed = point.getText().split(";");
 		System.out.println("1 "+pointParsed[0]);
-		System.out.println("2 "+pointParsed[1]);
+		//System.out.println("2 "+pointParsed[1]);
 		if (parameters.contains("y0")){
 			completeFunction = completeFunction.replace("y", pointParsed[1]);
 			System.out.println("after y "+completeFunction);

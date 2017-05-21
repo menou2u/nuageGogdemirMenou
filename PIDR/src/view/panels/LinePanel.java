@@ -73,7 +73,7 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		gbc.gridwidth = 7;
 		gbc.weightx = 15;
 		gbc.weighty = 1;
-		add(line.getLineGraphPanel().getCanvas(), gbc);
+		add(line.getLineGraph().getCanvas(), gbc);
 	}
 	
 	@Override

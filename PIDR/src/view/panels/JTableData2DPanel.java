@@ -1,4 +1,4 @@
-package model.swing;
+package view.panels;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class JTableData2D extends JPanel {
+import model.swing.Point2D;
+import model.swing.TableCustom2DModel;
+
+public class JTableData2DPanel extends JPanel {
 	/**
 	 * 
 	 */
@@ -18,7 +21,7 @@ public class JTableData2D extends JPanel {
 	private TableCustom2DModel modele = new TableCustom2DModel();
 	private JTable tableau;
 
-	public JTableData2D() {
+	public JTableData2DPanel() {
 		super();
 
 		tableau = new JTable(modele);
@@ -36,7 +39,7 @@ public class JTableData2D extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		frame.setContentPane(new JTableData2D());
+		frame.setContentPane(new JTableData2DPanel());
 		frame.pack();
 		frame.setVisible(true);
 	}

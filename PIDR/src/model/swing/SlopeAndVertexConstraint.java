@@ -8,7 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import view.panels.SolopeAndVertexConstraintHelperPanel;
+import view.panels.SlopeAndVertexConstraintHelperPanel;
 
 public class SlopeAndVertexConstraint extends Observable{
 	
@@ -51,12 +51,12 @@ public class SlopeAndVertexConstraint extends Observable{
 		v1YoZV2ZoXModel = new SlopeAndVertexConstraintHelper("jk","ki");
 
 		
-		v1XoYV2XoY = new SolopeAndVertexConstraintHelperPanel(v1XoYV2XoYModel);
-		v1ZoXV2ZoX = new SolopeAndVertexConstraintHelperPanel(v1ZoXV2ZoXModel);
-		v1YoZV2YoZ = new SolopeAndVertexConstraintHelperPanel(v1YoZV2YoZModel);
-		v1XoYV2ZoX = new SolopeAndVertexConstraintHelperPanel(v1XoYV2ZoXModel);
-		v1XoYV2YoZ = new SolopeAndVertexConstraintHelperPanel(v1XoYV2YoZModel);
-		v1YoZV2ZoX = new SolopeAndVertexConstraintHelperPanel(v1YoZV2ZoXModel);
+		v1XoYV2XoY = new SlopeAndVertexConstraintHelperPanel(v1XoYV2XoYModel);
+		v1ZoXV2ZoX = new SlopeAndVertexConstraintHelperPanel(v1ZoXV2ZoXModel);
+		v1YoZV2YoZ = new SlopeAndVertexConstraintHelperPanel(v1YoZV2YoZModel);
+		v1XoYV2ZoX = new SlopeAndVertexConstraintHelperPanel(v1XoYV2ZoXModel);
+		v1XoYV2YoZ = new SlopeAndVertexConstraintHelperPanel(v1XoYV2YoZModel);
+		v1YoZV2ZoX = new SlopeAndVertexConstraintHelperPanel(v1YoZV2ZoXModel);
 		
 		v1XoYV2XoYButton = new JRadioButton("V1 et V2 dans (xoy)");
 		v1ZoXV2ZoXButton = new JRadioButton("V1 et V2 dans (zox)");

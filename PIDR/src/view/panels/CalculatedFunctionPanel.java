@@ -1,5 +1,6 @@
 package view.panels;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -47,14 +48,15 @@ public class CalculatedFunctionPanel extends JPanel { // frederic.neurohr@cpc57.
 		JScrollPane panelFunctionCalculated = new JScrollPane(cF.getFunctionCalculated());
 		panelFunctionCalculated.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panelFunctionCalculated.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		panelFunctionCalculated.setMinimumSize(new Dimension(10, 100));
 		add(panelFunctionCalculated, gbc);
 
 		gbc.gridx = 0;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridheight = 1;
 		gbc.gridwidth = 1;
-		gbc.weighty = 0;
-		gbc.weightx = 0;
+		gbc.weighty = 1;
+		gbc.weightx = 1;
 		add(cF.getPointName(), gbc);
 
 		gbc.gridx += gbc.gridwidth;

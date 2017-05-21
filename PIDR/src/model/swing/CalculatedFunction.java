@@ -40,11 +40,11 @@ public class CalculatedFunction extends Observable {
 	
 	public CalculatedFunction(String s, String parameters){
 		this.parameters = parameters;
-		
 		functionName = new JLabel();
+		functionName.setVerticalAlignment(JLabel.TOP);
 		functionName.setText(s);
 		
-		functionCalculated = new JTextArea();
+		functionCalculated = new JTextArea(4, 100);
 		functionCalculated.setEditable(false);
 		functionCalculated.setText(value);
 		functionCalculated.setBackground(Color.WHITE);

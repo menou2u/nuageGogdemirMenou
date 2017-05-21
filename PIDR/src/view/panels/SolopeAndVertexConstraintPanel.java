@@ -14,7 +14,7 @@ import javax.swing.JRadioButton;
 import model.swing.SlopeAndVertexConstraint;
 
 @SuppressWarnings("serial")
-public class SlopeAndVertexConstraintPanel extends JPanel {
+public class SolopeAndVertexConstraintPanel extends JPanel {
 	
 	private JPanel cardDisplayer;
 	private JPanel constraintChoser;
@@ -23,7 +23,7 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
 	
 	private CardLayout cl;
 
-	public SlopeAndVertexConstraintPanel(SlopeAndVertexConstraint slopeAndVertexConstraint) {
+	public SolopeAndVertexConstraintPanel(SlopeAndVertexConstraint slopeAndVertexConstraint) {
 		super(new GridBagLayout());
 		
 		constraintChoser = new JPanel();
@@ -99,7 +99,7 @@ public class SlopeAndVertexConstraintPanel extends JPanel {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         SlopeAndVertexConstraint slopeAndVertexConstraint = new SlopeAndVertexConstraint();
-        SlopeAndVertexConstraintPanel newContentPane = new SlopeAndVertexConstraintPanel(slopeAndVertexConstraint);
+        SolopeAndVertexConstraintPanel newContentPane = new SolopeAndVertexConstraintPanel(slopeAndVertexConstraint);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

@@ -10,33 +10,35 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-@SuppressWarnings("serial")
-public class JTableData2D extends JFrame {
+public class JTableData2D extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5696106447554694086L;
 	private TableCustom2DModel modele = new TableCustom2DModel();
 	private JTable tableau;
 
 	public JTableData2D() {
 		super();
 
-		setTitle("JTable avec modèle dynamique");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		tableau = new JTable(modele);
 		tableau.setAutoCreateRowSorter(true);
-		getContentPane().add(new JScrollPane(tableau), BorderLayout.CENTER);
+		tableau.getColumnModel().getColumn(0).setMaxWidth(50);
+		add(new JScrollPane(tableau), BorderLayout.CENTER);
 
 		JPanel boutons = new JPanel();
 
 		boutons.add(new JButton(new AddAction()));
 		boutons.add(new JButton(new RemoveAction()));
 
-		getContentPane().add(boutons, BorderLayout.SOUTH);
-
-		pack();
+		add(boutons, BorderLayout.SOUTH);
 	}
 
 	public static void main(String[] args) {
-		new JTableData2D().setVisible(true);
+		JFrame frame = new JFrame();
+		frame.setContentPane(new JTableData2D());
+		frame.pack();
+		frame.setVisible(true);
 	}
 
 	private class AddAction extends AbstractAction {
@@ -52,7 +54,7 @@ public class JTableData2D extends JFrame {
 
 	private class RemoveAction extends AbstractAction {
 		private RemoveAction() {
-			super("Supprimmer");
+			super("Supprimer");
 		}
 
 		@Override

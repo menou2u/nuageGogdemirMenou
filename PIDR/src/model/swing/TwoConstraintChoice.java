@@ -11,14 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import view.panels.CoordAndVertexConstraintPanel;
-import view.panels.SlopeAndVertexConstraintPanel;
+import view.panels.SolopeAndVertexConstraintPanel;
 import view.panels.TwoPointCoordConstraintPanel;
 
 public class TwoConstraintChoice {
 
 	private TwoPointCoordConstraintPanel twoPointCoordPane;
 	private CoordAndVertexConstraintPanel coordAndVertexPane;
-	private SlopeAndVertexConstraintPanel slopeAndVertexPane;
+	private SolopeAndVertexConstraintPanel slopeAndVertexPane;
 	
 	private JRadioButton twoPointCoord;
 	private JRadioButton coordAndVertex;
@@ -63,7 +63,7 @@ public class TwoConstraintChoice {
 		constraintData = new JPanel(cl);
 		twoPointCoordPane = new TwoPointCoordConstraintPanel(twoPointCoordConstraint);
 		coordAndVertexPane = new CoordAndVertexConstraintPanel(new CoordAndVertexConstraints());
-		slopeAndVertexPane = new SlopeAndVertexConstraintPanel(new SlopeAndVertexConstraint());
+		slopeAndVertexPane = new SolopeAndVertexConstraintPanel(new SlopeAndVertexConstraint());
 		
 		constraintData.add(twoPointCoordPane,"twoPointCoord");
 		constraintData.add(coordAndVertexPane,"coordAndVertex");
@@ -101,7 +101,7 @@ public class TwoConstraintChoice {
 		return coordAndVertexPane;
 	}
 
-	public SlopeAndVertexConstraintPanel getSlopeAndVertexPane() {
+	public SolopeAndVertexConstraintPanel getSlopeAndVertexPane() {
 		return slopeAndVertexPane;
 	}
 

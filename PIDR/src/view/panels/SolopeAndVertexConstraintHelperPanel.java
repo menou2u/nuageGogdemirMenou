@@ -9,10 +9,10 @@ import javax.swing.JPanel;
 import model.swing.SlopeAndVertexConstraintHelper;
 
 @SuppressWarnings("serial")
-public class SlopeAndVertexConstraintHelperPanel extends JPanel{
+public class SolopeAndVertexConstraintHelperPanel extends JPanel{
 	
 	@SuppressWarnings("static-access")
-	public SlopeAndVertexConstraintHelperPanel(SlopeAndVertexConstraintHelper slopeAndVertexConstraintHelper)
+	public SolopeAndVertexConstraintHelperPanel(SlopeAndVertexConstraintHelper slopeAndVertexConstraintHelper)
 	{
 		super(new GridBagLayout());
 		
@@ -51,7 +51,7 @@ public class SlopeAndVertexConstraintHelperPanel extends JPanel{
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         SlopeAndVertexConstraintHelper s = new SlopeAndVertexConstraintHelper("ij", "ij");
-        SlopeAndVertexConstraintHelperPanel newContentPane = new SlopeAndVertexConstraintHelperPanel(s);
+        SolopeAndVertexConstraintHelperPanel newContentPane = new SolopeAndVertexConstraintHelperPanel(s);
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
         frame.pack();

@@ -54,7 +54,7 @@ public class TableCustom2DModel extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return points.get(rowIndex).getNum();
+			return rowIndex+1;
 		case 1:
 			return points.get(rowIndex).getX();
 		case 2:

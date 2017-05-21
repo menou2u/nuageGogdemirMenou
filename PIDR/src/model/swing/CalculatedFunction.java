@@ -78,11 +78,22 @@ public class CalculatedFunction extends Observable {
 	
 	public void eval(){
 		String completeFunction = functionCalculated.getText();
-		String[] pointParsed = point.getText().split(";");
-		if (parameters.contains("y0")){
-			completeFunction.replaceAll("y", pointParsed[1].split(")")[0]);
+		if (completeFunction.contains("(")){
+			completeFunction = completeFunction.replace("(", "");
 		}
-		completeFunction.replaceAll("x", pointParsed[0].split("(")[0]);
+		if (completeFunction.contains(")")){
+			completeFunction = completeFunction.replace(")", "");
+		}
+		System.out.println("point "+point.getText());
+		String[] pointParsed = point.getText().split(";");
+		System.out.println("1 "+pointParsed[0]);
+		System.out.println("2 "+pointParsed[1]);
+		if (parameters.contains("y0")){
+			completeFunction = completeFunction.replace("y", pointParsed[1]);
+			System.out.println("after y "+completeFunction);
+		}
+		completeFunction = completeFunction.replace("x", pointParsed[0]);
+		System.out.println("after x "+completeFunction);
 		double image = XcasProg.simpleEval(completeFunction);
 		calculatedPoint.setText(""+image);
 		setChanged();

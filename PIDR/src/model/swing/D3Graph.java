@@ -1,6 +1,7 @@
 package model.swing;
 
 import java.awt.Component;
+import java.util.Observable;
 
 import org.jzy3d.chart.Chart;
 import org.jzy3d.chart.factories.AWTChartComponentFactory;
@@ -8,49 +9,48 @@ import org.jzy3d.chart.factories.IChartComponentFactory;
 import org.jzy3d.colors.Color;
 import org.jzy3d.colors.ColorMapper;
 import org.jzy3d.colors.colormaps.ColorMapRainbow;
-import org.jzy3d.maths.Range;
-import org.jzy3d.plot3d.builder.Builder;
+import org.jzy3d.maths.Coord3d;
 import org.jzy3d.plot3d.builder.Mapper;
-import org.jzy3d.plot3d.builder.concrete.OrthonormalGrid;
-import org.jzy3d.plot3d.primitives.Shape;
+import org.jzy3d.plot3d.primitives.ScatterMultiColor;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
 
-public class D3Graph {
+public class D3Graph extends Observable {
 
 	private Component canvas;	
 	
 	public D3Graph() {
-		// Define a function to plot
-        Mapper mapper = new Mapper() {
+		int size = 100000;
+		float x;
+		float y;
+		float z;
+		Coord3d[] points = new Coord3d[size];
+		
+		@SuppressWarnings("unused")
+		Mapper mapper = new Mapper() {
             @Override
             public double f(double x, double y) {
                 //return x * Math.sin(x * y);
-            	return 0;
+            	return Math.sin(x) + Math.cos(y);
             }
         };
 
-        // Define range and precision for the function to plot
-        Range range = new Range(1, 5);
-        int steps = 80;
+		// Create scatter points
+		for(int i=0; i<size; i++){
+		    x = (float)Math.random() - 0.5f;
+		    y = (float)Math.random() - 0.5f;
+		    z = (float)Math.random() - 0.5f;
+		    points[i] = new Coord3d(x, y, z);
+		}       
 
-        // Create the object to represent the function over the given range.
-        final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
-        surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(), surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
-        surface.setFaceDisplayed(true);
-        surface.setWireframeDisplayed(false);
+		// Create a drawable scatter with a colormap
+		ScatterMultiColor scatter = new ScatterMultiColor( points, new ColorMapper( new ColorMapRainbow(), -0.5f, 0.5f ) );
 
-        // Create a chart
-        Chart chart = new Chart();
-        chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
-        chart.getScene().getGraph().add(surface);
-        
-        chart.addMouseCameraController();
-        chart.addMousePickingController(2);
-        /*AWTCameraMouseController controller = new AWTCameraMouseController(chart);
-
-		addMouseListener(controller);
-		addMouseMotionListener(controller);
-		addMouseWheelListener(controller);*/
+		// Create a chart and add scatter
+		Chart chart = new Chart();
+		chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
+		chart.getAxeLayout().setMainColor(Color.WHITE);
+		chart.getView().setBackgroundColor(Color.WHITE);
+		chart.getScene().getGraph().add(scatter);
 		canvas = (Component) chart.getCanvas();
 		
 		//JPanel panel = new JPanel();

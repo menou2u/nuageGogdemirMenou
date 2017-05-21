@@ -9,6 +9,7 @@ import java.util.LinkedList;
 
 import javagiac.context;
 import javagiac.gen;
+import javagiac.giac;
 
 public abstract class XcasProg {
 
@@ -64,8 +65,9 @@ public abstract class XcasProg {
 	public static double simpleEval(String expression){
 		System.loadLibrary("javagiac");
 		context c = new context();
-		double eval = (new gen(expression,c)).DOUBLE_val();
-		return eval;
+		gen g = new gen(expression,c);
+		gen h = giac._factor(g, c);
+		return h.DOUBLE_val();
 	}
 	
 	

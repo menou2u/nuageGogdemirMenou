@@ -50,7 +50,6 @@ public class Nuages3D extends XcasProg {
 		context c = new context();
 		gen g = new gen(algo, c);
 		res = g.eval(1, c).print(c);
-		System.out.println(res);
 	}
 	
 	public StringBuilder getInfos(){

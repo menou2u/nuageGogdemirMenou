@@ -313,11 +313,11 @@ public class Data extends Observable implements TableModelListener {
 		for (int i=0; i<length1; i++){ //col
 			for (int j=0; j<length1; j++){ //ligne
 				if ((""+(double) data[j][i]).equals("")){
-					return false;
+					return true;
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 	
 }

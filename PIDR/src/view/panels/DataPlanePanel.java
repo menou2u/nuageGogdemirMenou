@@ -3,7 +3,6 @@ package view.panels;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -18,48 +17,56 @@ import model.swing.TableCustom2DModel;
 import model.swing.TableCustom3DModel;
 
 
-public class Data3DPanel extends JPanel {
+public class DataPlanePanel extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5696106447554694086L;
 	private TableCustom3DModel modele;
-	private JTable tableau;
+	private JTable tableauDatas;
+	private String tx;
+	private String ty;
+	private String tz;
+	private TableCustom3DModel tc3dmDatas;
+	private TableCustom3DModel tc3dmTrans;
+	private Data3DPanel d3dpDatas;
+	private Data3DPanel d3dpTrans;
 
-	public Data3DPanel(TableCustom3DModel modele) {
+	public DataPlanePanel(TableCustom3DModel modele,String tx,String ty,String tz)
+	{
 		super();
+		this.tx = tx;
+		this.ty = ty;
+		this.tz = tz;
+		
+		tc3dmDatas = modele;
+		tc3dmTrans = applyChanges(modele);
+		
+		d3dpDatas = new Data3DPanel(modele);
+		d3dpTrans = new Data3DPanel(tc3dmTrans);
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		gbc.gridwidth = 4;
-		gbc.gridheight = 3;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		this.modele = modele;
-		tableau = new JTable(modele);
-		tableau.setAutoCreateRowSorter(true);
-		tableau.getColumnModel().getColumn(0).setMaxWidth(50);
-		JScrollPane scrollPane = new JScrollPane(tableau);
-		scrollPane.setMinimumSize(new Dimension(300, 1000));
-		add(scrollPane, gbc);
+		add(d3dpDatas = new Data3DPanel(tc3dmDatas));
+		gbc.gridx=1;
+		add(d3dpTrans = new Data3DPanel(tc3dmTrans));
+	}
 
-		JPanel boutons = new JPanel();
-		
-		gbc.weightx=1;
-		gbc.weighty=0;
-		gbc.gridheight = 1;
-		gbc.gridy=3;
-		gbc.gridx = 1;
-		gbc.gridwidth = 1;
-		gbc.anchor = gbc.EAST;
-		
-		add(new JButton(new AddAction()),gbc);
-		gbc.anchor = gbc.WEST;
-		gbc.gridx=2;
-		add(new JButton(new RemoveAction()),gbc);
+	private TableCustom3DModel applyChanges(TableCustom3DModel modele2) {
+		// TODO Auto-generated method stub
+		TableCustom3DModel model = new TableCustom3DModel(modele2.getEntetes());
+		model.getPoints().clear();
+		for (Point3D p : modele2.getPoints()){
+			model.addPoint(p);
+		}
+		return model;
 	}
 
 	public static void main(String[] args) {
@@ -88,7 +95,7 @@ public class Data3DPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			int[] selection = tableau.getSelectedRows();
+			int[] selection = tableauDatas.getSelectedRows();
 			for (int i = selection.length - 1; i >= 0; i--) {
 				modele.removePoint(selection[i]);
 			}

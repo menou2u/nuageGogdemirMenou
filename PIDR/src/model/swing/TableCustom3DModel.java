@@ -63,7 +63,16 @@ public class TableCustom3DModel extends AbstractTableModel {
 	public int getColumnCount() {
 		return entetes.length;
 	}
+	
+	public ArrayList<Point3D> getPoints()
+	{
+		return points;
+	}
 
+	public String[] getEntetes(){
+		return entetes;
+	}
+	
 	public String getColumnName(int columnIndex) {
 		return entetes[columnIndex];
 	}
@@ -85,13 +94,11 @@ public class TableCustom3DModel extends AbstractTableModel {
 
 	public void addPoint(Point3D point) {
 		points.add(point);
-
 		fireTableRowsInserted(points.size() - 1, points.size() - 1);
 	}
 
 	public void removePoint(int rowIndex) {
 		points.remove(rowIndex);
-
 		fireTableRowsDeleted(rowIndex, rowIndex);
 	}
 
@@ -128,9 +135,5 @@ public class TableCustom3DModel extends AbstractTableModel {
 	@Override
 	public Class getColumnClass(int columnIndex){
 		return Double.class;
-	}
-	
-	public void applyTransfo(){
-		//TODO : Quand on clique le bouton Validation du transformationsPanel, Ca devra appeler cette méthode pour changer la partie des TransformedDatas
 	}
 }

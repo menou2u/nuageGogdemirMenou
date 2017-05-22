@@ -16,6 +16,7 @@ import org.jzy3d.plot3d.primitives.Shape;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
 
 import view.panels.DataPanel;
+import view.panels.DataPlanePanel;
 import view.panels.DisplaySettingsPanel;
 import view.panels.MathShortcutsPanel;
 import view.panels.PlaneConstraintsChoicePanel;
@@ -26,14 +27,14 @@ public class Plane implements Updatable {
 	private TransformationsPlanePanel transformationPlanePanel;
 	private MathShortcuts mathShortcutsPlane;
 	private MathShortcutsPanel mathShortcutsPlanePanel;
-	private Data planeData;
+	private TableCustom3DModel planeData;
 	private Data transformedPlaneData;
-	private DataPanel dataPlanePanel;
 	private PlaneConstraintsChoicePanel planeConstraintsChoicePanel;
 	private DisplaySettings planeDisplay;
 	private DisplaySettingsPanel displayPlanePanel;
 	private TestFunction testFunctionPlane;
 	private PlaneGraph planeGraph;
+	private DataPlanePanel dataPlanePanel;
 	
 	public Plane() {
 		testFunctionPlane = new TestFunction("(x;y)");
@@ -41,9 +42,8 @@ public class Plane implements Updatable {
 		transformationPlanePanel = new TransformationsPlanePanel(new TransformationsPlane());
 		mathShortcutsPlanePanel = new MathShortcutsPanel(mathShortcutsPlane);
 		
-		planeData = new Data("n°", "xi", "yi", "zi");
-		transformedPlaneData = new Data("Xi = tx(xi)","Yi = ty(yi)","Zi = tz(zi)");
-		dataPlanePanel = new DataPanel(planeData,transformedPlaneData);
+		planeData = new TableCustom3DModel(new String[]{"n°", "Xi", "Yi", "Zi"});
+		dataPlanePanel = new DataPlanePanel(planeData,"","","");
 		
 		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel(new PlaneConstraintsChoice());
 		planeDisplay = new DisplaySettings();
@@ -91,11 +91,6 @@ public class Plane implements Updatable {
 		//return new JPanel(); 
 	}
 
-	@Override
-	public Data getData() {
-		return planeData;
-	}
-
 	/**
 	 * @return the transformationPlanePanel
 	 */
@@ -117,12 +112,6 @@ public class Plane implements Updatable {
 		return mathShortcutsPlanePanel;
 	}
 
-	/**
-	 * @return the planeData
-	 */
-	public Data getPlaneData() {
-		return planeData;
-	}
 
 	/**
 	 * @return the transformedPlaneData
@@ -131,12 +120,6 @@ public class Plane implements Updatable {
 		return transformedPlaneData;
 	}
 
-	/**
-	 * @return the dataPlanePanel
-	 */
-	public DataPanel getDataPlanePanel() {
-		return dataPlanePanel;
-	}
 
 	/**
 	 * @return the planeConstraintsChoicePanel
@@ -183,6 +166,26 @@ public class Plane implements Updatable {
 
 	public PlaneGraph getPlaneGraph() {
 		return planeGraph;
+	}
+
+	@Override
+	public Data getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * @return the planeData
+	 */
+	public TableCustom3DModel getPlaneData() {
+		return planeData;
+	}
+
+	/**
+	 * @return the dataPlanePanel
+	 */
+	public DataPlanePanel getDataPlanePanel() {
+		return dataPlanePanel;
 	}
 	
 	

@@ -1,6 +1,8 @@
 package view.panels;
 
-import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -13,33 +15,54 @@ import javax.swing.JTable;
 import model.swing.Point2D;
 import model.swing.TableCustom2DModel;
 
-public class JTableData2DPanel extends JPanel {
+public class Data2DPanel extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5696106447554694086L;
-	private TableCustom2DModel modele = new TableCustom2DModel();
+	private TableCustom2DModel modele;
 	private JTable tableau;
 
-	public JTableData2DPanel() {
+	public Data2DPanel(TableCustom2DModel modele) {
 		super();
-
+		
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 4;
+		gbc.gridheight = 3;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		this.modele = modele;
 		tableau = new JTable(modele);
 		tableau.setAutoCreateRowSorter(true);
 		tableau.getColumnModel().getColumn(0).setMaxWidth(50);
-		add(new JScrollPane(tableau), BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(tableau);
+		scrollPane.setMinimumSize(new Dimension(300, 1000));
+		add(scrollPane, gbc);
 
 		JPanel boutons = new JPanel();
-
-		boutons.add(new JButton(new AddAction()));
-		boutons.add(new JButton(new RemoveAction()));
-
-		add(boutons, BorderLayout.SOUTH);
+		
+		gbc.weightx=1;
+		gbc.weighty=0;
+		gbc.gridheight = 1;
+		gbc.gridy=3;
+		gbc.gridx = 1;
+		gbc.gridwidth = 1;
+		gbc.anchor = gbc.EAST;
+		
+		add(new JButton(new AddAction()),gbc);
+		gbc.anchor = gbc.WEST;
+		gbc.gridx=2;
+		add(new JButton(new RemoveAction()),gbc);
 	}
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		frame.setContentPane(new JTableData2DPanel());
+		TableCustom2DModel mod = new TableCustom2DModel(new String[]{"n°","Xi","Yi"});
+		frame.setContentPane(new Data2DPanel(mod));
 		frame.pack();
 		frame.setVisible(true);
 	}
@@ -51,7 +74,7 @@ public class JTableData2DPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			modele.addPoint(new Point2D(modele.getRowCount() + 1, 0.0, 0.0));
+			modele.addPoint(new Point2D(modele.getRowCount() + 1.0, 0.0, 0.0));
 		}
 	}
 

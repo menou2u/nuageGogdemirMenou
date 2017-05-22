@@ -17,6 +17,7 @@ import org.jzy3d.plot3d.rendering.canvas.Quality;
 
 import view.panels.CalculatedFunctionPanel;
 import view.panels.ConstraintsPanel;
+import view.panels.Data3DPanel;
 import view.panels.DataPanel;
 import view.panels.DisplaySettingsPanel;
 import view.panels.MathShortcutsPanel;
@@ -24,8 +25,8 @@ import view.panels.TestFunctionPanel;
 
 public class D3 implements Updatable {
 
-	private Data threeDDatas;
-	private DataPanel threeDDatasPane;
+	private TableCustom3DModel threeDDatas;
+	private Data3DPanel threeDDatasPane;
 	private Constraints threeDConstraints;
 	private ConstraintsPanel threeDConstraintsPane;
 	private TestFunction threeDTestFunction;
@@ -40,8 +41,8 @@ public class D3 implements Updatable {
 	
 	public D3() {
 		// Datas
-		threeDDatas = new Data("N°","Xi","Yi","Zi");
-		threeDDatasPane = new DataPanel(threeDDatas);
+		threeDDatas = new TableCustom3DModel(new String[]{"N°","Xi","Yi","Zi"});
+		threeDDatasPane = new Data3DPanel(threeDDatas);
 		//Contraintes
 		threeDConstraints = new Constraints(new String[]{"N°","Xw","Yw","Valeur contrainte","Ordre de dérivation","Ux","Uy"});
 		threeDConstraintsPane = new ConstraintsPanel(threeDConstraints);
@@ -89,7 +90,6 @@ public class D3 implements Updatable {
         chart.addMousePickingController(2);
         /*AWTCameraMouseController controller = new AWTCameraMouseController(chart);
 
-		addMouseListener(controller);
 		addMouseMotionListener(controller);
 		addMouseWheelListener(controller);*/
 		Component canvas = (Component) chart.getCanvas();
@@ -100,24 +100,6 @@ public class D3 implements Updatable {
 		//return new JPanel(); 
 	}
 
-	@Override
-	public Data getData() {
-		return threeDDatas;
-	}
-
-	/**
-	 * @return the threeDDatas
-	 */
-	public Data getThreeDDatas() {
-		return threeDDatas;
-	}
-
-	/**
-	 * @return the threeDDatasPane
-	 */
-	public DataPanel getThreeDDatasPane() {
-		return threeDDatasPane;
-	}
 
 	/**
 	 * @return the threeDConstraints
@@ -206,6 +188,26 @@ public class D3 implements Updatable {
 
 	public D3Graph getD3Graph() {
 		return d3Graph;
+	}
+
+	@Override
+	public Data getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * @return the threeDDatas
+	 */
+	public TableCustom3DModel getThreeDDatas() {
+		return threeDDatas;
+	}
+
+	/**
+	 * @return the threeDDatasPane
+	 */
+	public Data3DPanel getThreeDDatasPane() {
+		return threeDDatasPane;
 	}
 	
 	

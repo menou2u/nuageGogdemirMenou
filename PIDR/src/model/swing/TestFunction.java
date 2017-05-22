@@ -32,7 +32,6 @@ public class TestFunction extends Observable {
 		//Coloration
 		text.setBackground(Color.WHITE);
 		text.addCaretListener(new CursorForFunctionListener(this));
-		
 	}
 	
 	//TODO ne pas insérer des fonctions au milieu de fonctions, e.g : tan() => cos()tan() ou tan()cos() ou tan(cos()) mais c'est tout.
@@ -55,7 +54,6 @@ public class TestFunction extends Observable {
 	//Un setter de la valeur Ã  mettre dans la partie textuelle quand on clique sur les raccourcis.
 	public void setValue(String newValue) {
 		value = newValue;
-		System.out.println("oin !");
 		setChanged();
 		notifyObservers();
 	}

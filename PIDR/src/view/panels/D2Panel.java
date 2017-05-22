@@ -24,7 +24,7 @@ public class D2Panel extends JPanel implements Observer, UpdatablePanel {
 		//Fonction de test
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		gbc.gridwidth = 1;
+		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -33,7 +33,7 @@ public class D2Panel extends JPanel implements Observer, UpdatablePanel {
 		//CalculatedFunction
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		gbc.gridwidth = 1;
+		gbc.gridwidth = 2;
 		gbc.gridheight = 2;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
@@ -44,7 +44,7 @@ public class D2Panel extends JPanel implements Observer, UpdatablePanel {
 		gbc.weighty = 0;
 		gbc.gridwidth = 4;
 		gbc.gridheight = 3;
-		gbc.gridx = 1;
+		gbc.gridx = 2;
 		gbc.gridy = 0;
 		add(d2.getTwoDMathShortcutsPane(),gbc);
 		
@@ -53,14 +53,14 @@ public class D2Panel extends JPanel implements Observer, UpdatablePanel {
 		gbc.weighty = 0;
 		gbc.gridwidth = 4;
 		gbc.gridheight = 3;
-		gbc.gridx = 5;
+		gbc.gridx = 6;
 		gbc.gridy = 0;
 		add(d2.getTwoDConstraintsPane(),gbc);
 
 		//Datas
-		gbc.weightx = 0;
+		gbc.weightx = 1;
 		gbc.weighty = 1;
-		gbc.gridwidth = 1;
+		gbc.gridwidth = 2;
 		gbc.gridheight = 4;
 		gbc.gridx = 0;
 		gbc.gridy = 3;
@@ -71,7 +71,7 @@ public class D2Panel extends JPanel implements Observer, UpdatablePanel {
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 4;
-		gbc.gridx = 1;
+		gbc.gridx = 2;
 		gbc.gridy = 3;
 		add(d2.getTwoDDisplaySettingsPane(),gbc);
 		

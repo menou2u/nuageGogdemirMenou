@@ -6,47 +6,52 @@ import java.util.LinkedList;
 
 import javax.swing.table.AbstractTableModel;
 
-import controller.Datas2DFactory;
+import com.sun.org.apache.bcel.internal.generic.LLOAD;
+
+import controller.Datas3DFactory;
 
 @SuppressWarnings("serial")
-public class TableCustom2DModel extends AbstractTableModel {
-	private final ArrayList<Point2D> points = new ArrayList<Point2D>();
+public class TableCustom3DModel extends AbstractTableModel {
+	private final ArrayList<Point3D> points = new ArrayList<Point3D>();
 	private final String[] entetes;
-	private TableCustom2DModel transformedData;
+	private TableCustom3DModel transformedData;
 
-	public TableCustom2DModel(String fileName,String[] entetes) {
+	public TableCustom3DModel(String fileName,String[] entetes) {
 		super();
 		this.entetes = entetes;
 		fillPoints(fileName);
 		//"C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx"
 	}
 	
-	public TableCustom2DModel(String[] entetes){
+	public TableCustom3DModel(String[] entetes){
 		super();
 		this.entetes = entetes;
 		LinkedList<Double> point = new LinkedList<Double>();
 		point.add(1.0);
 		point.add(0.0);
 		point.add(0.0);
-		points.add(new Point2D(point));
+		point.add(0.0);
+		points.add(new Point3D(point));
 	}
 
 	public void fillPoints(String fileName){
 		LinkedList<Double> point=new LinkedList<Double>();
-		Datas2DFactory fact = null;
+		Datas3DFactory fact = null;
 		try {
-			fact = new Datas2DFactory(fileName);
+			fact = new Datas3DFactory(fileName);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		LinkedList<Double> x = fact.getX();
 		LinkedList<Double> y = fact.getY();
+		LinkedList<Double> z = fact.getZ();
 		for (int i=0;i<x.size();i++){
 			point.add(i+1.0);
 			point.add((Double)x.get(i));
 			point.add((Double)y.get(i));
-			points.add(new Point2D(point));
+			point.add((Double)z.get(i));
+			points.add(new Point3D(point));
 			point = new LinkedList<Double>();
 		}
 	}
@@ -71,12 +76,14 @@ public class TableCustom2DModel extends AbstractTableModel {
 			return points.get(rowIndex).getX();
 		case 2:
 			return points.get(rowIndex).getY();
+		case 3:
+			return points.get(rowIndex).getZ();
 		default:
 			return null; // Ne devrait jamais arriver
 		}
 	}
 
-	public void addPoint(Point2D point) {
+	public void addPoint(Point3D point) {
 		points.add(point);
 
 		fireTableRowsInserted(points.size() - 1, points.size() - 1);
@@ -103,13 +110,15 @@ public class TableCustom2DModel extends AbstractTableModel {
     		return;
     	}
     	if (val != null){
-    		Point2D point = points.get(rowIndex);
+    		Point3D point = points.get(rowIndex);
     		switch (columnIndex) {
     		case 1:
     			point.setX((Double)val);
     			break;
     		case 2:
     			point.setY((Double)val);
+    		case 3:
+    			point.setZ((Double)val);
     		default:
     			break;
 			}

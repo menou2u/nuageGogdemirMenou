@@ -19,13 +19,14 @@ import view.panels.CalculatedFunctionPanel;
 import view.panels.ConstraintsPanel;
 import view.panels.DataPanel;
 import view.panels.DisplaySettingsPanel;
+import view.panels.Data2DPanel;
 import view.panels.MathShortcutsPanel;
 import view.panels.TestFunctionPanel;
 
 public class D2 implements Updatable{
 
-	private Data twoDDatas;
-	private DataPanel twoDDatasPane;
+	private TableCustom2DModel twoDDatasModel;
+	private Data2DPanel twoDDatasPane;
 	private Constraints twoDConstraints;
 	private ConstraintsPanel twoDConstraintsPane;
 	private TestFunction twoDTestFunction;
@@ -37,11 +38,16 @@ public class D2 implements Updatable{
 	private DisplaySettings twoDDisplaySettings;
 	private DisplaySettingsPanel twoDDisplaySettingsPane;
 	private D2Graph d2Graph;
+	private TableCustom2DModel twoDTransformedDatasModel;
+	private Data2DPanel twoDTransformedDatasPane;
 	
 	public D2() {
 		// Datas
-		twoDDatas = new Data("N°","Xi","Yi");
-		twoDDatasPane = new DataPanel(twoDDatas);
+		twoDDatasModel = new TableCustom2DModel(new String[]{"n°","Xi","Yi"});
+		twoDDatasPane = new Data2DPanel(twoDDatasModel);
+		//TransformedDatas
+		twoDTransformedDatasModel = new TableCustom2DModel(new String[]{"n°","Xi=tx(xi)","Yi=ty(yi)"});
+		twoDTransformedDatasPane = new Data2DPanel(twoDTransformedDatasModel);
 		//Contraintes
 		twoDConstraints = new Constraints(new String[]{"N°","Xw","Valeur contrainte","Ordre de dérivation"});
 		twoDConstraintsPane = new ConstraintsPanel(twoDConstraints);
@@ -98,25 +104,6 @@ public class D2 implements Updatable{
 		//panel.add(canvas, BorderLayout.CENTER);
 		return canvas;
 		//return new JPanel(); 
-	}
-
-	@Override
-	public Data getData() {
-		return twoDDatas;
-	}
-
-	/**
-	 * @return the twoDDatas
-	 */
-	public Data getTwoDDatas() {
-		return twoDDatas;
-	}
-
-	/**
-	 * @return the twoDDatasPane
-	 */
-	public DataPanel getTwoDDatasPane() {
-		return twoDDatasPane;
 	}
 
 	/**
@@ -206,6 +193,40 @@ public class D2 implements Updatable{
 
 	public D2Graph getD2Graph() {
 		return d2Graph;
+	}
+
+	@Override
+	public Data getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * @return the twoDDatasModel
+	 */
+	public TableCustom2DModel getTwoDDatasModel() {
+		return twoDDatasModel;
+	}
+
+	/**
+	 * @return the twoDDatasPane
+	 */
+	public Data2DPanel getTwoDDatasPane() {
+		return twoDDatasPane;
+	}
+
+	/**
+	 * @return the twoDTransformedDatasModel
+	 */
+	public TableCustom2DModel getTwoDTransformedDatasModel() {
+		return twoDTransformedDatasModel;
+	}
+
+	/**
+	 * @return the twoDTransformedDatasPane
+	 */
+	public Data2DPanel getTwoDTransformedDatasPane() {
+		return twoDTransformedDatasPane;
 	}
 	
 	

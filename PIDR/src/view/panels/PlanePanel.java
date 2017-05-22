@@ -46,7 +46,7 @@ public class PlanePanel extends JPanel implements Observer, UpdatablePanel {
 		// Panneau des données brutes
 		gbc.gridwidth = 1;
 		gbc.weighty = 1;
-		gbc.weightx=1;
+		gbc.weightx=0;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridheight = 5;
 		add(plane.getDataPlanePanel(),gbc);

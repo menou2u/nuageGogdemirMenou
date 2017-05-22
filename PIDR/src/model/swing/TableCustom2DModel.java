@@ -1,21 +1,27 @@
 package model.swing;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
 import controller.Datas2DFactory;
 
 @SuppressWarnings("serial")
-public class TableCustom2DModel extends AbstractTableModel {
+public class TableCustom2DModel extends TableCustomModel {
 	private final ArrayList<Point2D> points = new ArrayList<Point2D>();
 	private final String[] entetes;
 	private TableCustom2DModel transformedData;
+	private LinkedList<Double> x;
+	private LinkedList<Double> y;
+	private MainWindow mainWin;
 
-	public TableCustom2DModel(String fileName,String[] entetes) {
+	public TableCustom2DModel(MainWindow mainWindow,String fileName,String[] entetes) {
 		super();
+		mainWin = mainWindow;
 		this.entetes = entetes;
 		fillPoints(fileName);
 		//"C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx"
@@ -31,6 +37,27 @@ public class TableCustom2DModel extends AbstractTableModel {
 		points.add(new Point2D(point));
 	}
 
+	public void setTable(TableCustom2DModel table){
+		x = table.getX();
+		y = table.getY();
+		points.clear();
+		for (int i=0;i<x.size();i++)
+		{
+			points.add(new Point2D(i+0.0,x.get(i),y.get(i)));
+		}
+	}
+	
+	@Override
+	public void warnView(MainWindow mainWindow,File file)
+	{
+		setTable(mainWindow,file.getPath());
+	}
+	
+	public void setTable(MainWindow mainWindow,String fileName){
+		setTable(new TableCustom2DModel(mainWindow,fileName,entetes));
+		fireTableChanged(new TableModelEvent(this));
+	}
+	
 	public void fillPoints(String fileName){
 		LinkedList<Double> point=new LinkedList<Double>();
 		Datas2DFactory fact = null;
@@ -40,8 +67,8 @@ public class TableCustom2DModel extends AbstractTableModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LinkedList<Double> x = fact.getX();
-		LinkedList<Double> y = fact.getY();
+		x = fact.getX();
+		y = fact.getY();
 		for (int i=0;i<x.size();i++){
 			point.add(i+1.0);
 			point.add((Double)x.get(i));
@@ -55,6 +82,14 @@ public class TableCustom2DModel extends AbstractTableModel {
 		return points.size();
 	}
 
+	public LinkedList<Double> getX(){
+		 return x;
+	}
+	
+	public LinkedList<Double> getY(){
+		 return y;
+	}
+	
 	public int getColumnCount() {
 		return entetes.length;
 	}
@@ -134,4 +169,27 @@ public class TableCustom2DModel extends AbstractTableModel {
 		// TODO Auto-generated method stub
 		return entetes;
 	}
+	
+	public Data toData() {
+		Data d = new Data("n°","x","y");
+		for (Point2D p : points)
+		{
+			d.getX().add(p.getX());
+			d.getY().add(p.getY());
+		}
+		return d;
+	}
+	
+	@Override
+	public boolean isEmpty(){
+		return x.isEmpty()&&y.isEmpty();
+	}
+
+	@Override
+	public LinkedList<Double> getZ() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

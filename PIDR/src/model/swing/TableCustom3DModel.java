@@ -1,22 +1,25 @@
 package model.swing;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import javax.swing.table.AbstractTableModel;
-
-import com.sun.org.apache.bcel.internal.generic.LLOAD;
+import javax.swing.event.TableModelEvent;
 
 import controller.Datas3DFactory;
 
 @SuppressWarnings("serial")
-public class TableCustom3DModel extends AbstractTableModel {
+public class TableCustom3DModel extends TableCustomModel {
 	private final ArrayList<Point3D> points = new ArrayList<Point3D>();
 	private final String[] entetes;
 	private TableCustom3DModel transformedData;
-
-	public TableCustom3DModel(String fileName,String[] entetes) {
+	private LinkedList<Double> x ;
+	private LinkedList<Double> y ;
+	private LinkedList<Double> z ;
+	private MainWindow mainWin;
+	
+	public TableCustom3DModel(MainWindow mainWindow,String fileName,String[] entetes) {
 		super();
 		this.entetes = entetes;
 		fillPoints(fileName);
@@ -34,6 +37,28 @@ public class TableCustom3DModel extends AbstractTableModel {
 		points.add(new Point3D(point));
 	}
 
+	public void setTable(TableCustom3DModel table){
+		x = table.getX();
+		y = table.getY();
+		z = table.getZ();
+		points.clear();
+		for (int i=0;i<x.size();i++)
+		{
+			points.add(new Point3D(i+0.0,x.get(i),y.get(i),z.get(i)));
+		}
+	}
+	
+	@Override
+	public void warnView(MainWindow mainWindow,File file)
+	{
+		setTable(mainWindow,file.getPath());
+		fireTableChanged(new TableModelEvent(this));
+	}
+	
+	public void setTable(MainWindow mainWindow,String fileName){
+		setTable(new TableCustom3DModel(mainWindow,fileName,entetes));
+	}
+	
 	public void fillPoints(String fileName){
 		LinkedList<Double> point=new LinkedList<Double>();
 		Datas3DFactory fact = null;
@@ -43,9 +68,9 @@ public class TableCustom3DModel extends AbstractTableModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LinkedList<Double> x = fact.getX();
-		LinkedList<Double> y = fact.getY();
-		LinkedList<Double> z = fact.getZ();
+		x = fact.getX();
+		y = fact.getY();
+		z = fact.getZ();
 		for (int i=0;i<x.size();i++){
 			point.add(i+1.0);
 			point.add((Double)x.get(i));
@@ -54,6 +79,7 @@ public class TableCustom3DModel extends AbstractTableModel {
 			points.add(new Point3D(point));
 			point = new LinkedList<Double>();
 		}
+
 	}
 	
 	public int getRowCount() {
@@ -62,6 +88,18 @@ public class TableCustom3DModel extends AbstractTableModel {
 
 	public int getColumnCount() {
 		return entetes.length;
+	}
+	
+	public LinkedList<Double> getX(){
+		 return x;
+	}
+	
+	public LinkedList<Double> getY(){
+		 return y;
+	}
+	
+	public LinkedList<Double> getZ(){
+		 return z;
 	}
 	
 	public ArrayList<Point3D> getPoints()
@@ -135,5 +173,21 @@ public class TableCustom3DModel extends AbstractTableModel {
 	@Override
 	public Class getColumnClass(int columnIndex){
 		return Double.class;
+	}
+
+	public Data toData() {
+		Data d = new Data("n°","x","y","z");
+		for (Point3D p : points)
+		{
+			d.getX().add(p.getX());
+			d.getY().add(p.getY());
+			d.getZ().add(p.getZ());
+		}
+		return d;
+	}
+	
+	@Override
+	public boolean isEmpty(){
+		return x.isEmpty()&&y.isEmpty()&&z.isEmpty();
 	}
 }

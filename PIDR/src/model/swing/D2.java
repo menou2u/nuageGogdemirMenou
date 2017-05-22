@@ -196,15 +196,15 @@ public class D2 implements Updatable{
 	}
 
 	@Override
-	public Data getData() {
+	public TableCustomModel getData() {
 		// TODO Auto-generated method stub
-		return null;
+		return getDataModel();
 	}
 
 	/**
 	 * @return the twoDDatasModel
 	 */
-	public TableCustom2DModel getTwoDDatasModel() {
+	public TableCustom2DModel getDataModel() {
 		return twoDDatasModel;
 	}
 

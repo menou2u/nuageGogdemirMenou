@@ -169,15 +169,15 @@ public class Plane implements Updatable {
 	}
 
 	@Override
-	public Data getData() {
+	public TableCustom3DModel getData() {
 		// TODO Auto-generated method stub
-		return null;
+		return getDataModel();
 	}
 
 	/**
 	 * @return the planeData
 	 */
-	public TableCustom3DModel getPlaneData() {
+	public TableCustom3DModel getDataModel() {
 		return planeData;
 	}
 

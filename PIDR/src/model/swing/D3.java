@@ -190,16 +190,10 @@ public class D3 implements Updatable {
 		return d3Graph;
 	}
 
-	@Override
-	public Data getData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	/**
 	 * @return the threeDDatas
 	 */
-	public TableCustom3DModel getThreeDDatas() {
+	public TableCustom3DModel getDataModel() {
 		return threeDDatas;
 	}
 
@@ -208,6 +202,11 @@ public class D3 implements Updatable {
 	 */
 	public Data3DPanel getThreeDDatasPane() {
 		return threeDDatasPane;
+	}
+
+	@Override
+	public TableCustom3DModel getData() {
+		return getDataModel();
 	}
 	
 	

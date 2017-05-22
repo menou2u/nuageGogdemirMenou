@@ -33,12 +33,15 @@ public class Data extends Observable implements TableModelListener {
 	private int nbDim;
 	private String sortedBy;
 	private DefaultTableModel tableModel;
+	private TableCustom3DModel table3DModel;
+	private TableCustom2DModel table2DModel;
 	
 	public Data(String col1,String col2,String col3, String col4){
 		columnNames = new String[]{col1,col2,col3,col4};
 		data = new Object[Math.max(1,Math.max(x.size(),Math.max(y.size(),z.size())))][4];
 		nbDim = 3;
 		tableModel = new DefaultTableModel(columnNames, columnNames.length);
+		table3DModel = new TableCustom3DModel(columnNames);
         initTable();
 	}
 	
@@ -47,6 +50,7 @@ public class Data extends Observable implements TableModelListener {
 		data = new Object[Math.max(1,Math.max(x.size(),y.size()))][3];
 		nbDim = 2;
 		tableModel = new DefaultTableModel(columnNames, columnNames.length);
+		table2DModel = new TableCustom2DModel(columnNames);
         initTable();
 	}
 	
@@ -56,16 +60,33 @@ public class Data extends Observable implements TableModelListener {
 		if (nbDim ==2)
 		{
 			init2DData();
+			updateTable();
+			update2DModel();
+
 		}
 		else
 		{
 			init3DData();
+			updateTable();
+			update3DModel();
 		}
-		updateTable();
+
 		setChanged();
 		notifyObservers();
 	}
 	
+	private void update3DModel() {
+		for (int row=0;row<this.data.length;row++){
+			table3DModel.addPoint(new Point3D(row+0.0, (Double)data[row][1]+0.0, (Double)data[row][2]+0.0, (Double)data[row][3]));
+		}
+	}
+
+	private void update2DModel() {
+		for (int row=0;row<this.data.length;row++){
+			table2DModel.addPoint(new Point2D(row+0.0, (Double)data[row][1]+0.0, (Double)data[row][2]+0.0));
+		}
+	}
+
 	public void initTable(){
 		tableModel.addTableModelListener(this);
 		table = new JTable(tableModel);

@@ -183,9 +183,9 @@ public class Line implements Updatable {
 	}
 
 	@Override
-	public Data getData() {
+	public TableCustom2DModel getData() {
 		// TODO Auto-generated method stub
-		return null;
+		return getDataModel();
 	}
 
 	/**

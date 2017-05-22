@@ -20,18 +20,14 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1;
-		gbc.weighty = 1;
+		
+		// Fonctions de transformation
+		gbc.weightx = 0;
+		gbc.weighty = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-
-		// Fonctions de transformation
-		gbc.gridwidth = 1;
-		gbc.gridheight = 2;
-		gbc.weightx = 0;
-		gbc.weighty = 0;
 		add(line.getTransformationsLinePanel(), gbc);
 
 		// Calculette
@@ -45,7 +41,7 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		// Panneau des données brutes
 		gbc.gridwidth = 1;
 		gbc.weighty = 1;
-		gbc.weightx =1;
+		gbc.weightx =0;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridheight = 5;
 		add(line.getDataLinePanel(), gbc);

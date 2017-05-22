@@ -22,7 +22,7 @@ public class ImportButtonListener implements ActionListener {
 		System.out.println(toolsReference.getImportFileChooser().getCurrentDirectory());
 		if (returnVal == JFileChooser.APPROVE_OPTION){
 			File file = toolsReference.getImportFileChooser().getSelectedFile();
-			toolsReference.getMainWindow().sendNewFile(file);
+			toolsReference.getMainWindow().sendNewFile(toolsReference.getMainWindow(),file);
 		}
 	}
 

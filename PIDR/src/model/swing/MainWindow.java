@@ -39,8 +39,8 @@ public class MainWindow extends Observable {
 		currentInfos = new StringBuilder("");
 	}
 	
-	public void sendNewFile(File file) {
-		getMode().getData().warnView(file);
+	public void sendNewFile(MainWindow mainWindow,File file) {
+		getMode().getData().warnView(mainWindow,file);
 	}
 
 	public void runMath() {

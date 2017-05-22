@@ -2,35 +2,24 @@ package model.swing;
 
 import javax.swing.JPanel;
 
-import view.panels.CalculatedFunctionPanel;
 import view.panels.ConstraintsPanel;
-import view.panels.DataPanel;
 import view.panels.DisplaySettingsPanel;
 import view.panels.LineConstraintsChoicePanel;
 import view.panels.MathShortcutsPanel;
-import view.panels.TestFunctionPanel;
 import view.panels.ToolsPanel;
 import view.panels.TransformationsLinePanel;
 
 public class Line implements Updatable {
 
-	private Data data;
 	private Constraints constraints;
 	private TestFunction testFunction;
 	private MathShortcuts mathShortcuts;
-	private CalculatedFunction calculatedFunction;
 	private DisplaySettings display;
 	private ToolsPanel toolsPanel;
-	private DataPanel dataPanel;
 	private ConstraintsPanel constraintsPanel;
-	private TestFunctionPanel testFunctionPanel;
 	private MathShortcutsPanel mathShortcutsPanel;
-	private CalculatedFunctionPanel calculatedFunctionPanel;
 	private DisplaySettingsPanel displayPanel;
-	private JPanel contentPanel;
 	private TransformationsLinePanel transformationsLinePanel;
-	private Data transformedData;
-	private DataPanel transformedDataPanel;
 	private JPanel noConstraint;
 	private PointConstraint pointConstraint;
 	private SlopeConstraintPanel slopeConstraint;
@@ -38,28 +27,33 @@ public class Line implements Updatable {
 	private TransformationsLine transformationsLine;
 	private LineConstraintsChoice lineConstraintsChoice;
 	private LineGraph lineGraph;
+	private TableCustom2DModel dataModel;
+	private DataLinePanel dataLinePanel;
 
 	public Line() {
-		data = new Data("n°","xi","yi");
-		transformedData = new Data("n°","Xi = tx(xi)","Yi = ty(yi)");
 		testFunction = new TestFunction("(x)");
-		calculatedFunction = new CalculatedFunction("f(x) = ", "");
+		
 		mathShortcuts = new MathShortcuts(testFunction);
+		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
+
+		transformationsLine = new TransformationsLine();
+		transformationsLinePanel = new TransformationsLinePanel(transformationsLine);
+
+		
+		dataModel = new TableCustom2DModel(new String[]{"n°","xi","yi"});
+		dataLinePanel = new DataLinePanel(dataModel,"","");
+	
+		lineConstraintsChoice = new LineConstraintsChoice();
+		chosenPanel = new LineConstraintsChoicePanel(lineConstraintsChoice);
+
 		display = new DisplaySettings();
 		
-		dataPanel = new DataPanel(data,transformedData);
 		//transformedDataPanel = new DataPanel(transformedData);
 		
 		lineGraph = new LineGraph("line");
-		testFunctionPanel = new TestFunctionPanel(testFunction);
-		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
-		calculatedFunctionPanel = new CalculatedFunctionPanel(calculatedFunction);
 		displayPanel = new DisplaySettingsPanel(display);
 		transformationsLine = new TransformationsLine();
-		transformationsLinePanel = new TransformationsLinePanel(transformationsLine);
-		contentPanel = new JPanel();
 		lineConstraintsChoice = new LineConstraintsChoice();
-		chosenPanel = new LineConstraintsChoicePanel(lineConstraintsChoice);
 	}
 
 	/**
@@ -67,11 +61,6 @@ public class Line implements Updatable {
 	 */
 	public DisplaySettingsPanel getDisplayPanel() {
 		return displayPanel;
-	}
-
-	@Override
-	public Data getData() {
-		return data;
 	}
 
 	/**
@@ -96,13 +85,6 @@ public class Line implements Updatable {
 	}
 
 	/**
-	 * @return the calculatedFunction
-	 */
-	public CalculatedFunction getCalculatedFunction() {
-		return calculatedFunction;
-	}
-
-	/**
 	 * @return the display
 	 */
 	public DisplaySettings getDisplay() {
@@ -117,24 +99,10 @@ public class Line implements Updatable {
 	}
 
 	/**
-	 * @return the dataPanel
-	 */
-	public DataPanel getDataPanel() {
-		return dataPanel;
-	}
-
-	/**
 	 * @return the constraintsPanel
 	 */
 	public ConstraintsPanel getConstraintsPanel() {
 		return constraintsPanel;
-	}
-
-	/**
-	 * @return the testFunctionPanel
-	 */
-	public TestFunctionPanel getTestFunctionPanel() {
-		return testFunctionPanel;
 	}
 
 	/**
@@ -145,13 +113,6 @@ public class Line implements Updatable {
 	}
 
 	/**
-	 * @return the calculatedFunctionPanel
-	 */
-	public CalculatedFunctionPanel getCalculatedFunctionPanel() {
-		return calculatedFunctionPanel;
-	}
-
-	/**
 	 * @return the displayPanel
 	 */
 	public DisplaySettingsPanel getDisplaySettingsPanel() {
@@ -159,31 +120,10 @@ public class Line implements Updatable {
 	}
 
 	/**
-	 * @return the contentPanel
-	 */
-	public JPanel getContentPanel() {
-		return contentPanel;
-	}
-
-	/**
 	 * @return the transformationsLinePanel
 	 */
 	public TransformationsLinePanel getTransformationsLinePanel() {
 		return transformationsLinePanel;
-	}
-
-	/**
-	 * @return the transformedData
-	 */
-	public Data getTransformedData() {
-		return transformedData;
-	}
-
-	/**
-	 * @return the transformedDataPanel
-	 */
-	public DataPanel getTransformedDataPanel() {
-		return transformedDataPanel;
 	}
 
 	/**
@@ -241,5 +181,26 @@ public class Line implements Updatable {
 	public LineGraph getLineGraph() {
 		return lineGraph;
 	}
+
+	@Override
+	public Data getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * @return the dataModel
+	 */
+	public TableCustom2DModel getDataModel() {
+		return dataModel;
+	}
+
+	/**
+	 * @return the dataLinePanel
+	 */
+	public DataLinePanel getDataLinePanel() {
+		return dataLinePanel;
+	}
+
 
 }

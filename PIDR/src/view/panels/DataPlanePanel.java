@@ -1,15 +1,12 @@
 package view.panels;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import model.swing.Point3D;
@@ -61,7 +58,7 @@ public class DataPlanePanel extends JPanel {
 
 	private TableCustom3DModel applyChanges(TableCustom3DModel modele2) {
 		// TODO Auto-generated method stub
-		TableCustom3DModel model = new TableCustom3DModel(modele2.getEntetes());
+		TableCustom3DModel model = new TableCustom3DModel(new String[]{"n°","Xi = tx(xi)","Yi = ty(yi)","Zi = tz(zi)"});
 		model.getPoints().clear();
 		for (Point3D p : modele2.getPoints()){
 			model.addPoint(p);

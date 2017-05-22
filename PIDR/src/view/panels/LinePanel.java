@@ -48,7 +48,7 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		gbc.weightx =1;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridheight = 5;
-		add(line.getDataPanel(), gbc);
+		add(line.getDataLinePanel(), gbc);
 
 		// Panneau des contraintes selon choix
 		gbc.gridx += gbc.gridwidth;

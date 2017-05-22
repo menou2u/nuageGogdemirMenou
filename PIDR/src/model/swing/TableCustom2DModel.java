@@ -124,4 +124,14 @@ public class TableCustom2DModel extends AbstractTableModel {
 	public void applyTransfo(){
 		//TODO : Quand on clique le bouton Validation du transformationsPanel, Ca devra appeler cette méthode pour changer la partie des TransformedDatas
 	}
+
+	public ArrayList<Point2D> getPoints() {
+		// TODO Auto-generated method stub
+		return points;
+	}
+
+	public String[] getEntetes() {
+		// TODO Auto-generated method stub
+		return entetes;
+	}
 }

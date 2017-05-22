@@ -1,61 +1,66 @@
-package view.panels;
+package model.swing;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import model.swing.Point2D;
-import model.swing.TableCustom2DModel;
+import view.panels.Data2DPanel;
+import view.panels.Data3DPanel;
 
-public class Data2DTransformedPanel extends JPanel {
+
+public class DataLinePanel extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5696106447554694086L;
 	private TableCustom2DModel modele;
-	private JTable tableau;
+	private JTable tableauDatas;
+	private String tx;
+	private String ty;
+	private TableCustom2DModel tc2dmDatas;
+	private TableCustom2DModel tc2dmTrans;
+	private Data2DPanel d2dpDatas;
+	private Data2DPanel d2dpTrans;
 
-	public Data2DTransformedPanel(TableCustom2DModel modele) {
+	public DataLinePanel(TableCustom2DModel modele,String tx,String ty)
+	{
 		super();
+		this.tx = tx;
+		this.ty = ty;
+		
+		tc2dmDatas = modele;
+		tc2dmTrans = applyChanges(modele);
+		
+		d2dpDatas = new Data2DPanel(modele);
+		d2dpTrans = new Data2DPanel(tc2dmTrans);
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		gbc.gridwidth = 4;
-		gbc.gridheight = 3;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		this.modele = modele;
-		tableau = new JTable(modele);
-		tableau.setAutoCreateRowSorter(true);
-		tableau.getColumnModel().getColumn(0).setMaxWidth(50);
-		JScrollPane scrollPane = new JScrollPane(tableau);
-		scrollPane.setMinimumSize(new Dimension(300, 1000));
-		add(scrollPane, gbc);
+		add(d2dpDatas = new Data2DPanel(tc2dmDatas));
+		gbc.gridx=1;
+		add(d2dpTrans = new Data2DPanel(tc2dmTrans));
+	}
 
-		gbc.weightx=1;
-		gbc.weighty=0;
-		gbc.gridheight = 1;
-		gbc.gridy=3;
-		gbc.gridx = 1;
-		gbc.gridwidth = 1;
-		gbc.anchor = gbc.EAST;
-		add(new JButton(new AddAction()),gbc);
-		
-		gbc.anchor = gbc.WEST;
-		gbc.gridx=2;
-		add(new JButton(new RemoveAction()),gbc);
+	private TableCustom2DModel applyChanges(TableCustom2DModel modele2) {
+		// TODO Auto-generated method stub
+		TableCustom2DModel model = new TableCustom2DModel(new String[]{"n°","Xi = tx(xi)","Yi = ty(yi)"});
+		model.getPoints().clear();
+		for (Point2D p : modele2.getPoints()){
+			model.addPoint(p);
+		}
+		return model;
 	}
 
 	public static void main(String[] args) {
@@ -73,7 +78,7 @@ public class Data2DTransformedPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			modele.addPoint(new Point2D(modele.getRowCount() + 1.0, 0.0, 0.0));
+			modele.addPoint(new Point2D(modele.getRowCount() + 1.0,0.0,0.0));
 		}
 	}
 
@@ -84,7 +89,7 @@ public class Data2DTransformedPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			int[] selection = tableau.getSelectedRows();
+			int[] selection = tableauDatas.getSelectedRows();
 			for (int i = selection.length - 1; i >= 0; i--) {
 				modele.removePoint(selection[i]);
 			}

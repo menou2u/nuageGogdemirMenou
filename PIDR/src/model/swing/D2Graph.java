@@ -60,6 +60,7 @@ public class D2Graph {
 	}
 
 	public Component getCanvas() {
+		System.out.println("taille : "+canvas.getPreferredSize().toString());
 		return canvas;
 	}
 }

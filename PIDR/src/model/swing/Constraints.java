@@ -15,7 +15,7 @@ public class Constraints extends Observable {
 	private JScrollPane scrollPane;
 
 	public Constraints(String[] string){
-		data = new Object[1][string.length];
+		data = new Object[5][string.length];
 
 		columnNames = string;
 		

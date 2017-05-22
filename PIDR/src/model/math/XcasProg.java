@@ -38,13 +38,15 @@ public abstract class XcasProg {
 		}
 	}
 	
-	protected <E> CharSequence getListForXcas(LinkedList<E> listXi) {
+	protected <E> CharSequence getListForXcas(LinkedList<E> list) {
 		CharSequence res = "";
-		if (listXi.size() != 0){	
-			for (int i=0; i<listXi.size(); i++){
-				res = res + ""+listXi.get(i);
-				if (i<listXi.size() -1){
-					res = res + ",";
+		if (list.size() != 0){
+			for (int i=0; i<list.size(); i++){
+				if (list.get(i) != null){
+					res = res + ""+list.get(i);
+					if (i<list.size() -1){
+						res = res + ",";
+					}
 				}
 			}
 		}

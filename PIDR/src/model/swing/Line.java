@@ -50,7 +50,7 @@ public class Line implements Updatable {
 		
 		//transformedDataPanel = new DataPanel(transformedData);
 		
-		lineGraph = new LineGraph("line");
+		lineGraph = new LineGraph("Représentation graphique");
 		displayPanel = new DisplaySettingsPanel(display);
 		transformationsLine = new TransformationsLine();
 		lineConstraintsChoice = new LineConstraintsChoice();

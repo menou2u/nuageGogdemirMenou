@@ -82,9 +82,7 @@ label debut;
         c:=listordrederivation[j];
         uux:=listuux[j];
         uuy:=listuuy[j];
-        functionA:=unapply(diff(listphi,x,jj),x)
-        functionB:=unapply(diff(functionA,y,c-jj),y)
-        listdeltaxy:=somme(comb(c,jj)*uux.^jj*uuy.^(c-jj)*functionB,jj,0,c);       
+        listdeltaxy:=somme(comb(c,jj)*uux.^jj*uuy.^(c-jj)*diff(diff(listphi,x,jj),y,c-jj),jj,0,c);       
         matdelta[j]:=subst(listdeltaxy,(x=listxomega[j],y=listyomega[j]));
       }  
 
@@ -290,7 +288,7 @@ label k1;
     listderivexy:=newlist[k];
     listdelta:=newList(p);
     matdelta:=newMat(1,p);
-    listuux:=newList(1);
+    listuux:=newList(1),
     listuuy:=newList(1);
    
       if (listordrederivation[0]!=0)

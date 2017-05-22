@@ -60,18 +60,18 @@ public class MainWindow extends Observable {
 				dmc.run(mode.getData().getX(), mode.getData().getY(), 0, new LinkedList<Double>(), 0);
 				infosLine = dmc.getInfosC0orC1();
 			}
-			if (mode.getLineConstraintsChoice().getPointConstraint().isSelected()){//TODO changer omegas
-				dmc.run(mode.getData().getX(), mode.getData().getY(), 1, new LinkedList<Double>(), 0);
+			if (mode.getLineConstraintsChoice().getPointConstraint().isSelected()){
+				dmc.run(mode.getData().getX(), mode.getData().getY(), 1, mode.getPointConstraint().getOmegaDatas(), 0);
 				infosLine = dmc.getInfosC0orC1();
 			}
-			if (mode.getLineConstraintsChoice().getSlopeConstraint().isSelected()){//TODO changer omegas
-				dmc.run(mode.getData().getX(), mode.getData().getY(), 2, new LinkedList<Double>(), Double.parseDouble(mode.getLineConstraintsChoice().getSlopeConstraintPanel().getSlope().getText()));
+			if (mode.getLineConstraintsChoice().getSlopeConstraint().isSelected()){
+				dmc.run(mode.getData().getX(), mode.getData().getY(), 2, mode.getPointConstraint().getOmegaDatas(), Double.parseDouble(mode.getLineConstraintsChoice().getSlopeConstraintPanel().getSlope().getText()));
 				infosLine = dmc.getInfosC2();
 			}
 			mode.getLineGraph().fill(mode.getData().getX(), mode.getData().getY());
 			currentInfos = infosLine;
 		}
-		//Plans 0/1/2 +++++
+		//TODO Plans 0/1/2 +++++
 		//2D : phi + datas
 		if (getOnglets().getSelectedIndex() == 1){
 			Nuages2D nuages2D = new Nuages2D();
@@ -97,6 +97,7 @@ public class MainWindow extends Observable {
 			nuages3D.run(mode.getData().getX(), mode.getData().getY(), mode.getData().getZ(), phiList, mode.getThreeDConstraints().getColumn(1), mode.getThreeDConstraints().getColumn(2), mode.getThreeDConstraints().getColumn(3), mode.getThreeDConstraints().getColumn(4), mode.getThreeDConstraints().getColumn(5), mode.getThreeDConstraints().getColumn(6));
 			currentInfos = nuages3D.getInfos();
 			mode.getThreeDCalculatedFunction().setFunctionCalculated(nuages3D.getFunction());
+			//TODO mode.getD3Graph().update(nuages3D.getFunction());
 		}
 		InfosWindowFrame.getCurrent().setInfos(currentInfos);
 		setChanged();

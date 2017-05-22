@@ -24,9 +24,9 @@ import org.jfree.ui.ApplicationFrame;
 @SuppressWarnings("serial")
 public class LineGraph extends ApplicationFrame {
 
-	private XYDataset dataset;
     private JFreeChart freeChart;
 	private ChartPanel chartPanel;
+	private XYSeriesCollection dataset;
 
 	/**
      * Creates a new demo.
@@ -52,16 +52,14 @@ public class LineGraph extends ApplicationFrame {
      * 
      * @return a sample dataset.
      */
-	private XYDataset createDataset(LinkedList<Double> xList, LinkedList<Double> yList) {
-        
+	private void createDataset(LinkedList<Double> xList, LinkedList<Double> yList) {
+        dataset.removeAllSeries();
         final XYSeries series1 = new XYSeries("First");
         for (int i=0; i<xList.size(); i++){
         	series1.add(xList.get(i), yList.get(i));
         }
 
-        final XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series1);
-        return dataset;
         
     }
     

@@ -78,16 +78,15 @@ public class CalculatedFunction extends Observable {
 	
 	public void eval(){
 		String completeFunction = functionCalculated.getText();
-		if (completeFunction.contains("(")){
-			completeFunction = completeFunction.replace("(", "");
+		String pointTemp = point.getText();
+		if (pointTemp.contains("(")){
+			pointTemp = pointTemp.replace("(", "");
 		}
-		if (completeFunction.contains(")")){
-			completeFunction = completeFunction.replace(")", "");
+		if (pointTemp.contains(")")){
+			pointTemp = pointTemp.replace(")", "");
 		}
-		System.out.println("point "+point.getText());
-		String[] pointParsed = point.getText().split(";");
-		System.out.println("1 "+pointParsed[0]);
-		//System.out.println("2 "+pointParsed[1]);
+		System.out.println("pointTemp "+pointTemp);
+		String[] pointParsed = pointTemp.split(";");
 		if (parameters.contains("y0")){
 			completeFunction = completeFunction.replace("y", pointParsed[1]);
 			System.out.println("after y "+completeFunction);

@@ -31,9 +31,26 @@ public class Nuages3D extends XcasProg {
 		this.listUx = listUx;
 		this.listUy = listUy;
 		this.listPhi = listPhi;
+		print(listXi, "listXi");
+		print(listYi, "listYi");
+		print(listZi, "listZi");
+		print(listPhi, "listPhi");
+		print(listXomega, "listXomega");
+		print(listYomega, "listYomega");
+		print(listZomega, "listZomega");
+		print(listOrdreDerivation, "listOrdreDerivation");
+		print(listUx, "listUx");
+		print(listUy, "listUy");
 		putArguments(listXi, listYi, listZi, listPhi, listXomega, listYomega, listZomega, listOrdreDerivation, listUx, listUy);
 	}
 	
+	private <E> void print(LinkedList<E> list, String functionName) {
+		System.out.println("print de "+ functionName);
+		for (int i=0; i<list.size(); i++){
+			System.out.println(list.get(i));
+		}
+	}
+
 	protected void putArguments(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Double> listZomega, LinkedList<Integer> listOrdreDerivation, LinkedList<Double> listUx, LinkedList<Double> listUy) {
 		algo = algo.substring(4, algo.length()-1);
 		algo = algo.replace("%10", getListForXcas(listUy));
@@ -41,15 +58,35 @@ public class Nuages3D extends XcasProg {
 		algo = algo.replace("%2", getListForXcas(listYi));
 		algo = algo.replace("%3", getListForXcas(listZi));
 		algo = algo.replace("%4", getListForXcas(listPhi));
-		//System.out.println(getListForXcas(listPhi));
 		algo = algo.replace("%5", getListForXcas(listXomega));
 		algo = algo.replace("%6", getListForXcas(listYomega));
-		algo = algo.replace("%7", getListForXcas(listZomega));
+		algo = algo.replaceAll("%7", getListForXcas(listZomega).toString());
 		algo = algo.replace("%8", getListForXcas(listOrdreDerivation));
 		algo = algo.replace("%9", getListForXcas(listUx));
+		System.out.println("uy");
+		System.out.println(getListForXcas(listUy));
+		System.out.println("xi");
+		System.out.println(getListForXcas(listXi));
+		System.out.println("yi");
+		System.out.println(getListForXcas(listYi));
+		System.out.println("zi");
+		System.out.println(getListForXcas(listZi));
+		System.out.println("phi");
+		System.out.println(getListForXcas(listPhi));
+		System.out.println("xomega");
+		System.out.println(getListForXcas(listXomega));
+		System.out.println("yomega");
+		System.out.println(getListForXcas(listYomega));
+		System.out.println("zomega");
+		System.out.println(getListForXcas(listZomega));
+		System.out.println("deriv");
+		System.out.println(getListForXcas(listOrdreDerivation));
+		System.out.println("ux");
+		System.out.println(getListForXcas(listUx));
 		context c = new context();
 		gen g = new gen(algo, c);
 		res = g.eval(1, c).print(c);
+		System.out.println(res);
 	}
 	
 	public StringBuilder getInfos(){

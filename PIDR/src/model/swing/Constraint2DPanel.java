@@ -12,13 +12,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import view.panels.Data2DPanel;
-
+@SuppressWarnings("serial")
 public class Constraint2DPanel extends JPanel {
 	
 	private Table2DConstraintCustomModel modele;
 	private JTable tableau;
 
+	@SuppressWarnings("static-access")
 	public Constraint2DPanel (Table2DConstraintCustomModel modele){
 		super();
 		this.setLayout(new GridBagLayout());
@@ -35,7 +35,7 @@ public class Constraint2DPanel extends JPanel {
 		tableau.setAutoCreateRowSorter(true);
 		tableau.getColumnModel().getColumn(0).setMaxWidth(50);
 		JScrollPane scrollPane = new JScrollPane(tableau);
-		scrollPane.setMinimumSize(new Dimension(300, 1000));
+		scrollPane.setMinimumSize(new Dimension(400, 200));
 		add(scrollPane, gbc);
 
 		JPanel boutons = new JPanel();

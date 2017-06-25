@@ -81,7 +81,14 @@ public class MainWindow extends Observable {
 			for (int i=0; i<phi.length; i++){
 				phiList.add(phi[i]);
 			}
-			nuages2D.run(mode.getData().getX(), mode.getData().getY(), phiList, mode.getTwoDConstraints().getColumn(1), mode.getTwoDConstraints().getColumn(2), mode.getTwoDConstraints().getColumn(3));
+			LinkedList<Integer> tmpDerivationOrderInt = new LinkedList<Integer>();
+			LinkedList<Double> tmpDerivationOrderDouble = new LinkedList<Double>();
+			for (int i=0;i<tmpDerivationOrderDouble.size();i++)
+			{
+				tmpDerivationOrderInt.add(tmpDerivationOrderDouble.get(i).intValue());
+			}
+			//Y avait ça a la fin de run : mode.getTwoDConstraints().getColumn(3)
+			nuages2D.run(mode.getData().getX(), mode.getData().getY(), phiList, mode.getTwoDConstraints().getColumn(1), mode.getTwoDConstraints().getColumn(2), tmpDerivationOrderInt);
 			currentInfos = nuages2D.getInfos();
 			mode.getTwoDCalculatedFunction().setFunctionCalculated(nuages2D.getFunction());
 		}

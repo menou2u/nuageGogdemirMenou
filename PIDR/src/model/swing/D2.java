@@ -27,8 +27,9 @@ public class D2 implements Updatable{
 
 	private TableCustom2DModel twoDDatasModel;
 	private Data2DPanel twoDDatasPane;
-	private Constraints twoDConstraints;
-	private ConstraintsPanel twoDConstraintsPane;
+	private Table2DConstraintCustomModel constraint2DModel;
+	//private Constraints twoDConstraints;
+	private Constraint2DPanel twoDConstraintsPane;
 	private TestFunction twoDTestFunction;
 	private TestFunctionPanel twoDTestFunctionPane;
 	private MathShortcuts twoDMathShortcuts;
@@ -49,8 +50,9 @@ public class D2 implements Updatable{
 		twoDTransformedDatasModel = new TableCustom2DModel(new String[]{"n°","Xi=tx(xi)","Yi=ty(yi)"});
 		twoDTransformedDatasPane = new Data2DPanel(twoDTransformedDatasModel);
 		//Contraintes
-		twoDConstraints = new Constraints(new String[]{"N°","Xw","Valeur contrainte","Ordre de dérivation"});
-		twoDConstraintsPane = new ConstraintsPanel(twoDConstraints);
+		constraint2DModel = new Table2DConstraintCustomModel(new String[]{"N°","Xw","Valeur contrainte","Ordre de dérivation"});
+		//twoDConstraints = new Constraints(new String[]{"N°","Xw","Valeur contrainte","Ordre de dérivation"});
+		twoDConstraintsPane = new Constraint2DPanel(constraint2DModel);
 		//Fonction de Test
 		twoDTestFunction = new TestFunction("(x)");
 		twoDTestFunctionPane = new TestFunctionPanel(twoDTestFunction);
@@ -109,14 +111,14 @@ public class D2 implements Updatable{
 	/**
 	 * @return the twoDConstraints
 	 */
-	public Constraints getTwoDConstraints() {
-		return twoDConstraints;
+	public Table2DConstraintCustomModel getTwoDConstraints() {
+		return constraint2DModel;
 	}
 
 	/**
 	 * @return the twoDConstraintsPane
 	 */
-	public ConstraintsPanel getTwoDConstraintsPane() {
+	public Constraint2DPanel getTwoDConstraintsPane() {
 		return twoDConstraintsPane;
 	}
 

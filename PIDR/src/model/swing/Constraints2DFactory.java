@@ -125,7 +125,7 @@ public class Constraints2DFactory {
 	}
 	
 	public LinkedList<Double> getDerivationOrder() {
-		return xw;
+		return derivationOrder;
 	}
 
 	public void setDerivationOrder(LinkedList<Double> derivOrder) {

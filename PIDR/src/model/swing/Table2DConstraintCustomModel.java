@@ -51,6 +51,7 @@ public class Table2DConstraintCustomModel extends AbstractTableModel{
 		setTable(mainWindow,file.getPath());
 	}
 	
+	//Weird ça non?
 	public void setTable(MainWindow mainWindow,String fileName){
 		setTable(new Table2DConstraintCustomModel(mainWindow,fileName,entetes));
 		fireTableChanged(new TableModelEvent(this));
@@ -136,6 +137,19 @@ public class Table2DConstraintCustomModel extends AbstractTableModel{
 			return constraints.get(rowIndex).getDerivationOrder();
 		default:
 			return null; // Ne devrait jamais arriver
+		}
+	}
+	
+	public LinkedList<Double> getColumn(int i){
+		switch (i) {
+		case 1:
+			return xw;
+		case 2:
+			return constraintValue;
+		case 3:
+			return derivationOrder;
+		default:
+			return null;
 		}
 	}
 	

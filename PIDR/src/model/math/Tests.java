@@ -11,7 +11,8 @@ public class Tests {
 		//plan0Contrainte();
 		//plan1Contrainte();
 		//test3D();
-		test2D();
+		//test2D();
+		testPourPisula();
 	}
 	
 	public static void test2D() {
@@ -198,5 +199,48 @@ public class Tests {
 		constraints.add(0.0);
 		dmc.run(listXi, listYi, 0, constraints, 0);
 		System.out.println(dmc.getInfosC0orC1());
+	}
+	
+	public static void testPourPisula(){
+		Nuages2D n = new Nuages2D();
+		LinkedList<Double> listXi = new LinkedList<Double>();
+		listXi.add(0.02213);
+		listXi.add(0.02459);
+		listXi.add(0.0273);
+		listXi.add(0.02976);
+		listXi.add(0.03274);
+		listXi.add(0.03597);
+		listXi.add(0.03897);
+		listXi.add(0.04155);
+		listXi.add(0.04418);
+		listXi.add(0.045);
+		LinkedList<Double> listYi = new LinkedList<Double>();
+		listYi.add(-0.00358);
+		listYi.add(-0.01456);
+		listYi.add(0.15953);
+		listYi.add(1.04196);
+		listYi.add(1.52963);
+		listYi.add(1.27626);
+		listYi.add(0.85025);
+		listYi.add(0.36468);
+		listYi.add(0.06704);
+		listYi.add(0.04898);
+		LinkedList<String> listPhi = new LinkedList<>();
+		listPhi.add("x^3");
+		listPhi.add("x^2");
+		listPhi.add("x");
+		listPhi.add("1");
+		LinkedList<Double> listXomega = new LinkedList<>();
+		listXomega.add(0.02213);
+		listXomega.add(0.045);
+		LinkedList<Double> listYomega = new LinkedList<>();
+		listYomega.add(-0.00358);
+		listYomega.add(0.04898);
+		LinkedList<Integer> listOrdreDerivation = new LinkedList<>();
+		listOrdreDerivation.add(0);
+		listOrdreDerivation.add(0);
+		
+		n.run(listXi, listYi, listPhi, listXomega, listYomega, listOrdreDerivation);
+		System.out.println(n.getInfos());
 	}
 }

@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import controller.ExecuteButtonListener;
 import controller.ImportButtonListener;
 import controller.InfosButtonListener;
+import controller.OpenButtonListener;
 import controller.PreviewButtonListener;
 import controller.PrintButtonListener;
 import controller.SaveAsButtonListener;
@@ -50,7 +51,7 @@ public class Tools extends Observable {
 	private String lastOpened[];
 	private DefaultMenuModelHandler openModel;
 	private MenuOpenerButton menuOpener;
-	private ImportFileChooser importFileChooser; 
+	private ImportFileChooser importFileChooser;
 	private MainWindow mainWindow;
 
 	public Tools(MainWindow mainWindow) {
@@ -63,6 +64,7 @@ public class Tools extends Observable {
 		lastOpened = new String[6];
 		// open.addItem(openButton);
 		open = new JButton("Ouvrir");
+		open.addActionListener(new OpenButtonListener(this));
 		openModel = new DefaultMenuModelHandler();
 		openModel.setModel(new RotativeMenuModel<SimpleMenuModelItem>(openModel));
 		openModel.setCommonConstraint(new FileItemRendererConstraint(20, 7)); //TODO : Check size
@@ -283,7 +285,6 @@ public class Tools extends Observable {
 	public MainWindow getMainWindow() {
 		return mainWindow;
 	}
-	
 		
 
 }

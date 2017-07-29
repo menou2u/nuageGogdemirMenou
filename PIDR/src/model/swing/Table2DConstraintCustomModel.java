@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
+@SuppressWarnings("serial")
 public class Table2DConstraintCustomModel extends AbstractTableModel{
 
 	private final LinkedList<Constraint2D> constraints = new LinkedList<Constraint2D>();
@@ -163,7 +164,6 @@ public class Table2DConstraintCustomModel extends AbstractTableModel{
     		switch (columnIndex) {
     		case 1:
     			constraint.setXw((Double)val);
-    			break;
     		case 2:
     			constraint.setConstraintValue((Double)val);
     		case 3:

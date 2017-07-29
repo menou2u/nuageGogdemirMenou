@@ -11,7 +11,7 @@ public class Nuages3D extends XcasProg {
 	private LinkedList<Double> listXomega;
 	private LinkedList<Double> listYomega;
 	private LinkedList<Double> listZomega;
-	private LinkedList<Integer> listOrdreDerivation;
+	private LinkedList<Double> listOrdreDerivation;
 	private LinkedList<Double> listUx;
 	private LinkedList<Double> listUy;
 	private LinkedList<String> listPhi;
@@ -21,7 +21,7 @@ public class Nuages3D extends XcasProg {
 		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Nuages3D\\nuages3D.cas");
 	}
 	
-	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Double> listZomega, LinkedList<Integer> listOrdreDerivation, LinkedList<Double> listUx, LinkedList<Double> listUy){
+	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Double> listZomega, LinkedList<Double> listOrdreDerivation, LinkedList<Double> listUx, LinkedList<Double> listUy){
 		parsingProg(path);
 		nbElements = listXi.size();
 		this.listXomega = listXomega;
@@ -51,7 +51,7 @@ public class Nuages3D extends XcasProg {
 		}
 	}
 
-	protected void putArguments(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Double> listZomega, LinkedList<Integer> listOrdreDerivation, LinkedList<Double> listUx, LinkedList<Double> listUy) {
+	protected void putArguments(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Double> listZomega, LinkedList<Double> listOrdreDerivation, LinkedList<Double> listUx, LinkedList<Double> listUy) {
 		algo = algo.substring(4, algo.length()-1);
 		algo = algo.replace("%10", getListForXcas(listUy));
 		algo = algo.replace("%1", getListForXcas(listXi));

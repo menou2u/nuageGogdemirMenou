@@ -119,8 +119,12 @@ public class TableCustom2DModel extends TableCustomModel {
 
 	public void removePoint(int rowIndex) {
 		points.remove(rowIndex);
-
 		fireTableRowsDeleted(rowIndex, rowIndex);
+	}
+	
+	public void removePoint(int begin, int end, int ratio)
+	{
+		
 	}
 
 	@Override

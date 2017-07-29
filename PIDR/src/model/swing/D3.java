@@ -27,8 +27,10 @@ public class D3 implements Updatable {
 
 	private TableCustom3DModel threeDDatas;
 	private Data3DPanel threeDDatasPane;
-	private Constraints threeDConstraints;
-	private ConstraintsPanel threeDConstraintsPane;
+	//private Constraints threeDConstraints;
+	//private ConstraintsPanel threeDConstraintsPane;
+	private Table3DConstraintCustomModel threeDConstraints;
+	private Constraint3DPanel threeDConstraintsPane;
 	private TestFunction threeDTestFunction;
 	private TestFunctionPanel threeDTestFunctionPane;
 	private MathShortcuts threeDMathShortcuts;
@@ -44,8 +46,10 @@ public class D3 implements Updatable {
 		threeDDatas = new TableCustom3DModel(new String[]{"N°","Xi","Yi","Zi"});
 		threeDDatasPane = new Data3DPanel(threeDDatas);
 		//Contraintes
-		threeDConstraints = new Constraints(new String[]{"N°","Xw","Yw","Valeur contrainte","Ordre de dérivation","Ux","Uy"});
-		threeDConstraintsPane = new ConstraintsPanel(threeDConstraints);
+		threeDConstraints = new Table3DConstraintCustomModel(new String[]{"N°","Xw","Yw","Constraint Value","Derivation Order","Ux","Uy"});
+		threeDConstraintsPane = new Constraint3DPanel(threeDConstraints);
+		// //threeDConstraints = new Constraints(new String[]{"N°","Xw","Yw","Valeur contrainte","Ordre de dérivation","Ux","Uy"});
+		// //threeDConstraintsPane = new ConstraintsPanel(threeDConstraints);
 		//Fonction de Test
 		threeDTestFunction = new TestFunction("(x;y)");
 		threeDTestFunctionPane = new TestFunctionPanel(threeDTestFunction);
@@ -104,14 +108,14 @@ public class D3 implements Updatable {
 	/**
 	 * @return the threeDConstraints
 	 */
-	public Constraints getThreeDConstraints() {
+	public Table3DConstraintCustomModel getThreeDConstraints() {
 		return threeDConstraints;
 	}
 
 	/**
 	 * @return the threeDConstraintsPane
 	 */
-	public ConstraintsPanel getThreeDConstraintsPane() {
+	public Constraint3DPanel getThreeDConstraintsPane() {
 		return threeDConstraintsPane;
 	}
 

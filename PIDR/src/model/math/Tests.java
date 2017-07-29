@@ -135,8 +135,8 @@ public class Tests {
 		listYomega.add(4.0);
 		LinkedList<Double> listZomega = new LinkedList<Double>();
 		listZomega.add(2.0);
-		LinkedList<Integer> listOrdreDerivation = new LinkedList<Integer>();
-		listOrdreDerivation.add(0);
+		LinkedList<Double> listOrdreDerivation = new LinkedList<Double>();
+		listOrdreDerivation.add(0.0);
 		LinkedList<Double> listUx = new LinkedList<Double>();
 		LinkedList<Double> listUy = new LinkedList<Double>();
 		troisD.run(listXi, listYi, listZi, listPhi, listXomega, listYomega, listZomega, listOrdreDerivation, listUx, listUy);

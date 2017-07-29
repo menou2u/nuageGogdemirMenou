@@ -37,7 +37,13 @@ public class TestFunction extends Observable {
 	//TODO ne pas insérer des fonctions au milieu de fonctions, e.g : tan() => cos()tan() ou tan()cos() ou tan(cos()) mais c'est tout.
 	//text.getCaretPosition() permet de récupérer la position du curseur
 	public void warnMainWindowFrame(String content) {
-		if (value.equals("")){
+		if (text.getText()==null){
+			text.setText("");
+		}
+		else{
+			text.setText(text.getText().substring(0, text.getCaretPosition())+content+"()"+text.getText().substring(text.getCaretPosition(), text.getText().length()));
+		}
+		/*if (value.equals("")){
 			value = (content) + "()";
 			text.setText(value);
 		}
@@ -46,7 +52,7 @@ public class TestFunction extends Observable {
 			formula = formula + content + "()";
 			value = formula;
 			text.setText(value);
-		}
+		}*/
 		setChanged();
 		notifyObservers();
 	}

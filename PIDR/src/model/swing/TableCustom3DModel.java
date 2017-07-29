@@ -198,6 +198,18 @@ public class TableCustom3DModel extends TableCustomModel {
 	
 	@Override
 	public boolean isEmpty(){
+		if (x == null || y == null || z==null){
+			x = new LinkedList<Double>();
+			y = new LinkedList<Double>();
+			z = new LinkedList<Double>();
+			for (int i =0;i<points.size();i++)
+			{
+				x.add(points.get(i).getX());
+				y.add(points.get(i).getY());
+				z.add(points.get(i).getZ());
+			}
+		}
 		return x.isEmpty()&&y.isEmpty()&&z.isEmpty();
 	}
+	
 }

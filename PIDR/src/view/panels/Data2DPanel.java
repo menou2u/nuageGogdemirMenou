@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -39,6 +41,20 @@ public class Data2DPanel extends JPanel {
 		tableau = new JTable(modele);
 		tableau.setAutoCreateRowSorter(true);
 		tableau.getColumnModel().getColumn(0).setMaxWidth(50);
+		tableau.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				modele.fireTableDataChanged();
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		JScrollPane scrollPane = new JScrollPane(tableau);
 		scrollPane.setMinimumSize(new Dimension(300, 1000));
 		add(scrollPane, gbc);

@@ -113,7 +113,6 @@ public class TableCustom2DModel extends TableCustomModel {
 
 	public void addPoint(Point2D point) {
 		points.add(point);
-
 		fireTableRowsInserted(points.size() - 1, points.size() - 1);
 	}
 
@@ -159,6 +158,7 @@ public class TableCustom2DModel extends TableCustomModel {
     			break;
 			}
     	}
+    	fireTableCellUpdated(rowIndex,columnIndex);
     }
 	
 	@Override
@@ -192,6 +192,15 @@ public class TableCustom2DModel extends TableCustomModel {
 	
 	@Override
 	public boolean isEmpty(){
+		if (x == null || y == null){
+			x = new LinkedList<Double>();
+			y = new LinkedList<Double>();
+			for (int i =0;i<points.size();i++)
+			{
+				x.add(points.get(i).getX());
+				y.add(points.get(i).getY());
+			}
+		}
 		return x.isEmpty()&&y.isEmpty();
 	}
 

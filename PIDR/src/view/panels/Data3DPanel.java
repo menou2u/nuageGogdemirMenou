@@ -60,6 +60,20 @@ public class Data3DPanel extends JPanel {
 		gbc.anchor = gbc.WEST;
 		gbc.gridx=2;
 		add(new JButton(new RemoveAction()),gbc);
+		
+		gbc.anchor = gbc.EAST;
+		gbc.gridy=4;
+		gbc.gridx=0;
+		add(new JButton(new RemoveTwoAction()),gbc);
+		
+		gbc.gridx+=1;
+		add(new JButton(new RemoveThreeAction()),gbc);
+		
+		gbc.gridx+=1;
+		add(new JButton(new RemoveFiveAction()),gbc);
+		
+		gbc.gridx+=1;
+		add(new JButton(new RemoveTenAction()),gbc);
 	}
 
 	public static void main(String[] args) {
@@ -81,6 +95,52 @@ public class Data3DPanel extends JPanel {
 		}
 	}
 
+	private class RemoveTwoAction extends AbstractAction{
+		private RemoveTwoAction(){
+			super("Supprimer 1/2");
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int[] selection = tableau.getSelectedRows();
+			modele.removePoint(selection[0],selection[selection.length-1],2);
+		}
+	}
+	
+	private class RemoveThreeAction extends AbstractAction{
+		private RemoveThreeAction(){
+			super("Supprimer 1/3");
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int[] selection = tableau.getSelectedRows();
+			modele.removePoint(selection[0],selection[selection.length-1],3);
+		}
+		
+	}
+	
+	private class RemoveFiveAction extends AbstractAction{
+		private RemoveFiveAction(){
+			super("Supprimer 1/5");
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int[] selection = tableau.getSelectedRows();
+			modele.removePoint(selection[0],selection[selection.length-1],5);
+		}
+		
+	}
+	
+	private class RemoveTenAction extends AbstractAction{
+		private RemoveTenAction(){
+			super("Supprimer 1/10");
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int[] selection = tableau.getSelectedRows();
+			modele.removePoint(selection[0],selection[selection.length-1],10);
+		}
+	}
+	
 	private class RemoveAction extends AbstractAction {
 		private RemoveAction() {
 			super("Supprimer");

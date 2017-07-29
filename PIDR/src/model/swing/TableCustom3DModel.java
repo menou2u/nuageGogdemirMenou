@@ -82,6 +82,16 @@ public class TableCustom3DModel extends TableCustomModel {
 
 	}
 	
+	public void removePoint(int begin, int end, int ratio)
+	{
+		int nbPointsToRemove = (end-begin)/ratio;
+		int firstToRemove = begin + ratio*nbPointsToRemove;
+		for (int i = 0; i<=nbPointsToRemove; i++)
+		{
+			removePoint(firstToRemove-(i*ratio));
+		}
+	}
+	
 	public int getRowCount() {
 		return points.size();
 	}

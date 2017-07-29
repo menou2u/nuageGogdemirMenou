@@ -122,9 +122,15 @@ public class TableCustom2DModel extends TableCustomModel {
 		fireTableRowsDeleted(rowIndex, rowIndex);
 	}
 	
+	//REMOVE MUCH POINTS IN ONE BLOW
 	public void removePoint(int begin, int end, int ratio)
 	{
-		
+		int nbPointsToRemove = (end-begin)/ratio;
+		int firstToRemove = begin + ratio*nbPointsToRemove;
+		for (int i = 0; i<=nbPointsToRemove; i++)
+		{
+			removePoint(firstToRemove-(i*ratio));
+		}
 	}
 
 	@Override

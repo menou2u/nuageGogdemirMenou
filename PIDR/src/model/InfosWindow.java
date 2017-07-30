@@ -1,4 +1,4 @@
-package model.swing;
+package model;
 
 import java.awt.Dimension;
 import java.awt.Font;

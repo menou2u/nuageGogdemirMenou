@@ -104,4 +104,11 @@ public class DataPlanePanel extends JPanel {
 			System.out.println(modele.getRowCount());
 		}
 	}
+	
+	/**
+	 * @return the tc3dmTrans
+	 */
+	public TableCustom3DModel getTc3dmTrans() {
+		return tc3dmTrans;
+	}
 }

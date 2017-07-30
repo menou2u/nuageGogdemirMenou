@@ -1,15 +1,14 @@
-package model.swing;
+package filesChoosers;
 
 import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import model.swing.Updatable;
+
+@SuppressWarnings("serial")
 public class OpenFileChooser extends JFileChooser {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3389930082272123374L;
 	private File directory;
 	
 	public OpenFileChooser(Updatable mode) {

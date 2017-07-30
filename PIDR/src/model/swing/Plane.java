@@ -25,6 +25,7 @@ import view.panels.TransformationsPlanePanel;
 public class Plane implements Updatable {
 	
 	private TransformationsPlanePanel transformationPlanePanel;
+	private TransformationsPlane transformationPlane;
 	private MathShortcuts mathShortcutsPlane;
 	private MathShortcutsPanel mathShortcutsPlanePanel;
 	private TableCustom3DModel planeData;
@@ -39,7 +40,8 @@ public class Plane implements Updatable {
 	public Plane() {
 		testFunctionPlane = new TestFunction("(x;y)");
 		mathShortcutsPlane = new MathShortcuts(testFunctionPlane);
-		transformationPlanePanel = new TransformationsPlanePanel(new TransformationsPlane());
+		transformationPlane = new TransformationsPlane();
+		transformationPlanePanel = new TransformationsPlanePanel(transformationPlane);
 		mathShortcutsPlanePanel = new MathShortcutsPanel(mathShortcutsPlane);
 		
 		planeData = new TableCustom3DModel(new String[]{"n°", "Xi", "Yi", "Zi"});
@@ -148,15 +150,23 @@ public class Plane implements Updatable {
 	public TestFunction getTestFunctionPlane() {
 		return testFunctionPlane;
 	}
+	
+	public TransformationsPlane getTransformationsPlane() {
+		return transformationPlane;
+	}
 
 	@Override
 	public TransformX getTransformX() {
-		return null;
+		return transformationPlane.getTransformX();
 	}
 
 	@Override
 	public TransformY getTransformY() {
-		return null;
+		return transformationPlane.getTransformY();
+	}
+	
+	public TransformZ getTransformZ() {
+		return transformationPlane.getTransformZ();
 	}
 
 	@Override

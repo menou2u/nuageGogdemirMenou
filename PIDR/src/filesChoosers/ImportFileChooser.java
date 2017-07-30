@@ -1,4 +1,4 @@
-package model.swing;
+package filesChoosers;
 
 import java.io.File;
 

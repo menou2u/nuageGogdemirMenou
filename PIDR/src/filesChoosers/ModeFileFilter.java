@@ -1,8 +1,14 @@
-package model.swing;
+package filesChoosers;
 
 import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
+
+import model.swing.D2;
+import model.swing.D3;
+import model.swing.Line;
+import model.swing.Plane;
+import model.swing.Updatable;
 
 public class ModeFileFilter extends FileFilter {
 

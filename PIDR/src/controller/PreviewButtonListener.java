@@ -3,7 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.swing.InfosWindow;
+import model.InfosWindow;
 import model.swing.Tools;
 
 public class PreviewButtonListener implements ActionListener {

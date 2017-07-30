@@ -6,7 +6,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import model.swing.OpenFileChooser;
+import filesChoosers.OpenFileChooser;
 import model.swing.Tools;
 import model.swing.Updatable;
 
@@ -23,9 +23,9 @@ public class OpenButtonListener implements ActionListener {
 		Updatable mode = toolsReference.getMainWindow().getMode();
 		OpenFileChooser openFileChooser = new OpenFileChooser(mode);
 		int returnVal = openFileChooser.showOpenDialog(null);
-		
 		if (returnVal == JFileChooser.APPROVE_OPTION){
 			File file = openFileChooser.getSelectedFile();
+			toolsReference.getMainWindow().setCurrentFile(file);
 			toolsReference.getMainWindow().readFile(file);
 		}
 	}

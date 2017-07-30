@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
+import com.sun.org.apache.bcel.internal.generic.LLOAD;
+
 @SuppressWarnings("serial")
 public class Table3DConstraintCustomModel extends AbstractTableModel{
 
@@ -98,14 +100,26 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 	public void fillConstraints(LinkedList<Double> xw, LinkedList<Double> yw, LinkedList<Double> constraintValue, LinkedList<Integer> derivationOrderList, LinkedList<Double> ux, LinkedList<Double> uy) {
 		eraseTable();
 		LinkedList<Double> newPoint = new LinkedList<Double>();
+		this.xw = new LinkedList<>();
+		this.yw = new LinkedList<>();
+		this.constraintValue = new LinkedList<>();
+		this.derivationOrder = new LinkedList<>();
+		this.ux = new LinkedList<>();
+		this.uy = new LinkedList<>();
 		for (int i=0; i<xw.size(); i++) {
 			newPoint.add(i+1.0);
-			newPoint.add((Double)xw.get(i));
+			newPoint.add(xw.get(i));
+			this.xw.add(xw.get(i));
 			newPoint.add((Double)yw.get(i));
+			this.yw.add(yw.get(i));
 			newPoint.add((Double)constraintValue.get(i));
+			this.constraintValue.add(constraintValue.get(i));
 			newPoint.add(derivationOrderList.get(i) + 0.0);
+			this.derivationOrder.add(derivationOrderList.get(i) + 0.0);
 			newPoint.add((Double)ux.get(i));
+			this.ux.add(ux.get(i) + 0.0);
 			newPoint.add((Double)uy.get(i));
+			this.uy.add(uy.get(i) + 0.0);
 			addConstraint(new Constraint3D(newPoint));
 			newPoint = new LinkedList<Double>();
 		}

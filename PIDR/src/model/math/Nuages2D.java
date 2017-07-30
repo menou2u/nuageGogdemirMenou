@@ -15,7 +15,7 @@ public class Nuages2D extends XcasProg {
 	private String function;
 
 	public Nuages2D() {
-		setPath("C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Algo\\Nuages2D\\nuages2D.cas");
+		setPath("C:\\Users\\Bichette\\git\\pidr\\nuageGogdemirMenou\\Algo\\Nuages2D\\nuages2D.cas");
 	}
 	
 	/*COUCOU
@@ -47,14 +47,19 @@ public class Nuages2D extends XcasProg {
 	protected void putArguments(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Integer> listOrdreDerivation) {
 		algo = algo.substring(4, algo.length()-1);
 		algo = algo.replace("%1", getListForXcas(listXi));
+		System.out.println("xi size " + listXi.size());
 		algo = algo.replace("%2", getListForXcas(listYi));
+		System.out.println("yi size " + listYi.size());
 		algo = algo.replace("%3", getListForXcas(listPhi));
 		for (int i=0; i<listPhi.size();i++){
 			System.out.println(listPhi.get(i));
 		}
 		algo = algo.replace("%4", getListForXcas(listXomega));
+		System.out.println("xomeage size " + listXomega.size());
 		algo = algo.replace("%5", getListForXcas(listYomega));
+		System.out.println("yomeage size " + listYomega.size());
 		algo = algo.replace("%6", getListForXcas(listOrdreDerivation));
+		System.out.println("derivation size " + listOrdreDerivation.size());
 		context c = new context();
 		gen g = new gen(algo, c);
 		res = g.eval(1, c).print(c);

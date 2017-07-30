@@ -23,4 +23,8 @@ public class TransformZ extends Observable{
 		return transformZLabel;
 	}
 	
+	public void setTransformZ(String newFunction) {
+		transformZ.setText(newFunction);
+	}
+	
 }

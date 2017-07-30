@@ -9,7 +9,7 @@ public class ModeFileFilter extends FileFilter {
 	public final static String gd = "gd";
 	public final static String g2d = "g2d";
 	public final static String g3d = "g3d";
-	public final static String gp = "gp";
+	public final static String gp = "gpd";
 	private Updatable mode;
 	
 	public ModeFileFilter(Updatable mode) {
@@ -59,7 +59,7 @@ public class ModeFileFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return ".gd, .g2d, .g3d, .gp";
+		return ".gd, .g2d, .g3d, .gpd";
 	}
 	
 	public static String getExtension(File f) {

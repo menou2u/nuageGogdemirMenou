@@ -23,5 +23,8 @@ public class TransformY extends Observable{
 		return transformYLabel;
 	}
 
+	public void setTransformY(String newFunction) {
+		transformY.setText(newFunction);
+	}
 	
 }

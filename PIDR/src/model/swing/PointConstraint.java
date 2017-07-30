@@ -74,5 +74,23 @@ public class PointConstraint {
 	public JLabel getyWTreatedLabel() {
 		return yWTreatedLabel;
 	}
+
+	public void setxWTrueText(String xWTrue) {
+		this.xWTrue.setText(xWTrue);
+	}
+
+	public void setxWTreatedText(String xWTreated) {
+		this.xWTreated.setText(xWTreated);
+	}
+	
+	public void setyWTrueText(String yWTrue) {
+		this.yWTrue.setText(yWTrue);
+	}
+	
+	public void setyWTreatedText(String yWTreated) {
+		this.yWTreated.setText(yWTreated);
+	}
+	
+	
 	
 }

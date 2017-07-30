@@ -1,8 +1,12 @@
 package model.swing;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Observable;
+import java.util.Scanner;
 
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
@@ -42,6 +46,221 @@ public class MainWindow extends Observable {
 	public void sendNewFile(MainWindow mainWindow,File file) {
 		getMode().getData().warnView(mainWindow,file);
 	}
+	
+	public void readFile(File file) {
+		FileReader fileReader;
+		BufferedReader bufferedReader;
+		String line, item;
+		Scanner scanner;
+		LinkedList<Double> listXi = new LinkedList<Double>();
+		LinkedList<Double> listYi = new LinkedList<Double>();
+		LinkedList<Double> listZi = new LinkedList<Double>();
+		LinkedList<Double> listXiTraité = new LinkedList<Double>();
+		LinkedList<Double> listYiTraité = new LinkedList<Double>();
+		LinkedList<Double> listZiTraité = new LinkedList<Double>();
+		LinkedList<Double> xwList = new LinkedList<Double>();
+		LinkedList<Double> ywList = new LinkedList<Double>();
+		LinkedList<Double> constraintValueList = new LinkedList<Double>();
+		LinkedList<Integer> derivationOrderList = new LinkedList<Integer>();
+		LinkedList<Double> uxList = new LinkedList<Double>();
+		LinkedList<Double> uyList = new LinkedList<Double>();
+		String xTreatment = "", yTreatment = "", zTreatment = "";
+		Double xwbrut = null, ywbrut = null, xwtraité = null, ywtraité = null, pente = null;
+		String textBoxFx = "";
+		String textBoxCompoFx = "";
+		String mode, scanResult;
+		try {
+			fileReader = new FileReader(file.getAbsolutePath());
+			bufferedReader = new BufferedReader(fileReader);
+			line = bufferedReader.readLine();
+			mode = line;
+			while (line != null) {
+				scanner = new Scanner(line);
+				scanner.useDelimiter(";");
+				item = scanner.next();
+				//System.out.println("ITEM "+ item);
+				if (item.equals("DB")) {
+					int index;
+					index = Integer.parseInt(scanner.next()) - 1;
+					if (index > listXi.size() - 1) {
+						listXi.add(Double.parseDouble(scanner.next()));
+					} else {
+						listXi.add(index, Double.parseDouble(scanner.next()));
+					}
+					if (index > listYi.size() - 1) {
+						listYi.add(Double.parseDouble(scanner.next()));
+					} else {
+						listYi.add(index, Double.parseDouble(scanner.next()));
+					}
+					if (mode.equals("3DKC") || mode.equals("2PLMC")) {
+						if (index > listZi.size() - 1) {
+							listZi.add(Double.parseDouble(scanner.next()));
+						} else {
+							listZi.add(index, Double.parseDouble(scanner.next()));
+						}
+					}
+				}
+				if (item.equals("DT")) {
+					int index;
+					index = Integer.parseInt(scanner.next()) - 1;
+					if (index > listXiTraité.size() - 1) {
+						listXiTraité.add(Double.parseDouble(scanner.next()));
+					} else {
+						listXiTraité.add(index, Double.parseDouble(scanner.next()));
+					}
+					if (index > listYiTraité.size() - 1) {
+						listYiTraité.add(Double.parseDouble(scanner.next()));
+					} else {
+						listYiTraité.add(index, Double.parseDouble(scanner.next()));
+					}
+					if (mode.equals("3DKC") || mode.equals("2PLMC")) {
+						if (index > listZiTraité.size() - 1) {
+							listZiTraité.add(Double.parseDouble(scanner.next()));
+						} else {
+							listZiTraité.add(index, Double.parseDouble(scanner.next()));
+						}
+					}
+				}
+				if (item.trim().equals("Contrainte:")) {
+					int index;
+					index = Integer.parseInt(scanner.next()) - 1;
+					if (index > xwList.size() - 1) {
+						xwList.add(Double.parseDouble(scanner.next()));
+					} else {
+						xwList.add(index, Double.parseDouble(scanner.next()));
+					}
+					if (mode.equals("3DKC")) {
+						if (index > ywList.size() - 1) {
+							ywList.add(Double.parseDouble(scanner.next()));
+						} else {
+							ywList.add(Double.parseDouble(scanner.next()));
+						}
+					}
+					if (index > constraintValueList.size() - 1) {
+						constraintValueList.add(Double.parseDouble(scanner.next()));
+					} else {
+						constraintValueList.add(index, Double.parseDouble(scanner.next()));
+					}
+					if (index > derivationOrderList.size() - 1) {
+						derivationOrderList.add(Integer.parseInt(scanner.next()));
+					} else {
+						derivationOrderList.add(Integer.parseInt(scanner.next()));
+					}
+					if (mode.equals("3DKC")) {
+						scanResult = scanner.next();
+						if (!scanResult.isEmpty()) {
+							if (index > uxList.size() - 1) {
+								uxList.add(Double.parseDouble(scanResult));
+							} else {
+								uxList.add(index, Double.parseDouble(scanResult));
+							}
+						}
+						scanResult = scanner.next();
+						if (!scanResult.isEmpty()) {
+							if (index > uyList.size() - 1) {
+								uyList.add(Double.parseDouble(scanner.next()));
+							} else {
+								uyList.add(index, Double.parseDouble(scanner.next()));
+							}
+						}
+					}
+				}
+				if (item.equals("X=tx(x)") && scanner.hasNext()) {
+					xTreatment = scanner.next();
+				}
+				if (item.equals("Y=ty(y)") && scanner.hasNext()) {
+					yTreatment = scanner.next();
+				}
+				if (item.equals("Z=tz(z)") && scanner.hasNext()) {
+					zTreatment = scanner.next();
+				}
+				if (item.equals("xw brut") && scanner.hasNext()) {
+					xwbrut = Double.parseDouble(scanner.next());
+				}
+				if (item.equals("yw brut") && scanner.hasNext()) {
+					ywbrut = Double.parseDouble(scanner.next());
+				}
+				if (item.equals("xw traité") && scanner.hasNext()) {
+					String s = scanner.next();
+					System.out.println("?? " + s);
+					xwtraité = Double.parseDouble(s);
+				}
+				if (item.equals("yw traité") && scanner.hasNext()) {
+					ywtraité = Double.parseDouble(scanner.next());
+				}
+				if (item.equals("pente") && scanner.hasNext()) {
+					pente = Double.parseDouble(scanner.next());
+				}
+				if (item.equals("TextBoxfx :") && scanner.hasNext()) {
+					textBoxFx = scanner.next();
+				}
+				if (item.equals("TextBoxCompoFx :") && scanner.hasNext()) {
+					textBoxCompoFx = scanner.next();
+				}
+				line = bufferedReader.readLine();
+			}
+			bufferedReader.close();
+			fileReader.close();
+		} catch (IOException e) {}
+		System.out.println("listXi "+listXi);
+		System.out.println("listYi "+listYi);
+		System.out.println("listZi "+listZi);
+		System.out.println("listXiTraité "+listXiTraité);
+		System.out.println("listYiTraité "+listYiTraité);
+		System.out.println("listZiTraité "+listZiTraité);
+		System.out.println("xwList "+xwList);
+		System.out.println("yxList "+ywList);
+		System.out.println("constraintValueList "+constraintValueList);
+		System.out.println("derivationOrderList "+derivationOrderList);
+		System.out.println("uxList "+uxList);
+		System.out.println("uyList "+uyList);
+		System.out.println("xTreatment "+xTreatment);
+		System.out.println("yTreatment "+yTreatment);
+		System.out.println("zTreatment "+zTreatment);
+		System.out.println("xwbrut "+xwbrut);
+		System.out.println("ywbrut "+ywbrut);
+		System.out.println("xwtraité "+xwtraité);
+		System.out.println("ywtraité "+ywtraité);
+		System.out.println("pente "+pente);
+		System.out.println("textBoxFx "+textBoxFx);
+		System.out.println("textBoxCompoFx "+textBoxCompoFx);
+		
+		switch (getOnglets().getSelectedIndex()) {
+		case 0:
+			Line lineMode = (Line) getMode();
+			//lineMode.getData().
+			lineMode.getData().fillPoints(listXi, listYi, null);
+			lineMode.getTransformX().setTransformX(xTreatment);
+			lineMode.getTransformY().setTransformY(yTreatment);
+			lineMode.getDataLinePanel().getTc2dmTrans().fillPoints(listXiTraité, listYiTraité, null);
+			// TODO gérer les données traitées
+			if (pente != null) {
+				lineMode.getLineConstraintsChoice().getSlopeConstraints().setSlopeText(""+pente);
+			}
+			if (xwbrut != null) {
+				lineMode.getLineConstraintsChoice().getPointConstraint().setxWTrueText(""+xwbrut);
+			}
+			if (ywbrut != null) {
+				lineMode.getLineConstraintsChoice().getPointConstraint().setyWTrueText(""+ywbrut);
+			}
+			if (xwtraité != null) {
+				lineMode.getLineConstraintsChoice().getPointConstraint().setxWTreatedText(""+xwtraité);
+			}
+			if (ywtraité != null) {
+				lineMode.getLineConstraintsChoice().getPointConstraint().setyWTreatedText(""+ywtraité);
+			}
+			break;
+		case 1:
+			D2 d2Mode = (D2) getMode();
+			d2Mode.getData().fillPoints(listXi, listYi, null);
+			d2Mode.getTestFunction().setValue(textBoxFx);
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+	}
 
 	public void runMath() {
 		//Droite 0/1/2 + data (via cdv)
@@ -56,16 +275,16 @@ public class MainWindow extends Observable {
 			if (!tY.equals("")){
 				
 			}
-			if (mode.getLineConstraintsChoice().getNoConstraint().isSelected()){
+			if (mode.getLineConstraintsChoice().getNoConstraintButton().isSelected()){
 				dmc.run(mode.getData().getX(), mode.getData().getY(), 0, new LinkedList<Double>(), 0);
 				infosLine = dmc.getInfosC0orC1();
 			}
-			if (mode.getLineConstraintsChoice().getPointConstraint().isSelected()){
-				dmc.run(mode.getData().getX(), mode.getData().getY(), 1, mode.getPointConstraint().getOmegaDatas(), 0);
+			if (mode.getLineConstraintsChoice().getPointConstraintButton().isSelected()){
+				dmc.run(mode.getData().getX(), mode.getData().getY(), 1, mode.getLineConstraintsChoice().getPointConstraint().getOmegaDatas(), 0);
 				infosLine = dmc.getInfosC0orC1();
 			}
-			if (mode.getLineConstraintsChoice().getSlopeConstraint().isSelected()){
-				dmc.run(mode.getData().getX(), mode.getData().getY(), 2, mode.getPointConstraint().getOmegaDatas(), Double.parseDouble(mode.getLineConstraintsChoice().getSlopeConstraintPanel().getSlope().getText()));
+			if (mode.getLineConstraintsChoice().getSlopeConstraintButton().isSelected()){
+				dmc.run(mode.getData().getX(), mode.getData().getY(), 2, mode.getLineConstraintsChoice().getPointConstraint().getOmegaDatas(), Double.parseDouble(mode.getLineConstraintsChoice().getSlopeConstraints().getSlope().getText()));
 				infosLine = dmc.getInfosC2();
 			}
 			mode.getLineGraph().fill(mode.getData().getX(), mode.getData().getY());
@@ -160,8 +379,7 @@ public class MainWindow extends Observable {
 	 */
 	public JTabbedPane getOnglets() {
 		return onglets;
-	}
-	
+	}	
 	
 
 }

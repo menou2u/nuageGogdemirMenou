@@ -4,9 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  * Quand on a choisi une contrainte de type "pente".
@@ -16,10 +14,8 @@ import javax.swing.JTextField;
  */
 @SuppressWarnings("serial")
 public class SlopeConstraintPanel extends JPanel {
-	
-	private JTextField slope;
 
-	public SlopeConstraintPanel() {
+	public SlopeConstraintPanel(SlopeConstraints slopeConstraints) {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
@@ -29,29 +25,15 @@ public class SlopeConstraintPanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		slope = new JTextField(8);
-		JLabel slopeLabel = new JLabel("Pente = ");
-
-		this.add(slopeLabel,gbc);
+		this.add(slopeConstraints.getSlopeLabel(),gbc);
 		gbc.gridx+=gbc.gridwidth;
-		this.add(slope,gbc);
+		this.add(slopeConstraints.getSlope(),gbc);
 	}
-	
-	
-
-	/**
-	 * @return the slope
-	 */
-	public JTextField getSlope() {
-		return slope;
-	}
-
-
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("PointConstraint");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SlopeConstraintPanel newContentPane = new SlopeConstraintPanel();
+		SlopeConstraintPanel newContentPane = new SlopeConstraintPanel(new SlopeConstraints());
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.pack();

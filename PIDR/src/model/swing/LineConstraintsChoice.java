@@ -18,29 +18,33 @@ public class LineConstraintsChoice extends Observable {
 	private JPanel chosenPanel;
 	private CardLayout cl;
 	private JPanel noConstraintPanel;
+	private PointConstraint pointConstraint;
+	private SlopeConstraints slopeConstraints;
 	private PointConstraintPanel pointConstraintPanel;
 	private SlopeConstraintPanel slopeConstraintPanel;
 	private JPanel selectionPanel;
 	private ButtonModel bm;
 	private ButtonGroup bG;
-	private JRadioButton noConstraint;
-    private JRadioButton pointConstraint;
-    private JRadioButton slopeConstraint;
+	private JRadioButton noConstraintButton;
+    private JRadioButton pointConstraintButton;
+    private JRadioButton slopeConstraintButton;
     private int commutateur;
     
     public LineConstraintsChoice() {
     	selectionPanel = new JPanel(new GridLayout(3,1));
         bG = new ButtonGroup();
-        noConstraint = new JRadioButton("Sans contrainte");
-        pointConstraint = new JRadioButton("Droite passe par (Xw;Yw)");
-        slopeConstraint = new JRadioButton("Fixer la pente de la droite");
+        noConstraintButton = new JRadioButton("Sans contrainte");
+        pointConstraintButton = new JRadioButton("Droite passe par (Xw;Yw)");
+        slopeConstraintButton = new JRadioButton("Fixer la pente de la droite");
         
 		cl = new CardLayout();
 		chosenPanel = new JPanel(cl);
 		
 		noConstraintPanel = new JPanel();
-		pointConstraintPanel = new PointConstraintPanel(new PointConstraint());
-		slopeConstraintPanel = new SlopeConstraintPanel();
+		pointConstraint = new PointConstraint();
+		slopeConstraints = new SlopeConstraints();
+		pointConstraintPanel = new PointConstraintPanel(pointConstraint);
+		slopeConstraintPanel = new SlopeConstraintPanel(slopeConstraints);
 		
 		chosenPanel.add(noConstraintPanel,"Pas de contrainte");
 		chosenPanel.add(pointConstraintPanel,"Contrainte sur un point");
@@ -48,19 +52,19 @@ public class LineConstraintsChoice extends Observable {
 		
 		cl.first(chosenPanel);
 		
-        bG.add(noConstraint);
-        bG.add(pointConstraint);
-        bG.add(slopeConstraint);
-        noConstraint.setSelected(true);
+        bG.add(noConstraintButton);
+        bG.add(pointConstraintButton);
+        bG.add(slopeConstraintButton);
+        noConstraintButton.setSelected(true);
         bm = bG.getSelection();
         
-        selectionPanel.add(noConstraint);
-        selectionPanel.add(pointConstraint);
-        selectionPanel.add(slopeConstraint);
+        selectionPanel.add(noConstraintButton);
+        selectionPanel.add(pointConstraintButton);
+        selectionPanel.add(slopeConstraintButton);
         
-        addCustomListener(noConstraint);   
-        addCustomListener(pointConstraint);
-        addCustomListener(slopeConstraint);
+        addCustomListener(noConstraintButton);   
+        addCustomListener(pointConstraintButton);
+        addCustomListener(slopeConstraintButton);
 	}
     
     public void addCustomListener(JRadioButton bouton){
@@ -71,16 +75,16 @@ public class LineConstraintsChoice extends Observable {
         		super.mouseClicked(e);
         		if (!bm.equals(bG.getSelection())){
         			bm = bG.getSelection();
-        			if (bm.equals(noConstraint.getModel()))
+        			if (bm.equals(noConstraintButton.getModel()))
         			{
         				commutateur = 0;
         				cl.first(chosenPanel);
         			}
-        			if (bm.equals(pointConstraint.getModel())){
+        			if (bm.equals(pointConstraintButton.getModel())){
         				commutateur = 1;
         				cl.show(chosenPanel, "Contrainte sur un point");
         			}
-        			if (bm.equals(slopeConstraint.getModel())){
+        			if (bm.equals(slopeConstraintButton.getModel())){
         				commutateur = 2;
         				cl.show(chosenPanel,"Contrainte sur la pente");
         			}
@@ -89,7 +93,43 @@ public class LineConstraintsChoice extends Observable {
         	}
         });
     }
+    
     /**
+	 * @return the slopeConstraints
+	 */
+	public SlopeConstraints getSlopeConstraints() {
+		return slopeConstraints;
+	}
+
+	/**
+	 * @return the noConstraintButton
+	 */
+	public JRadioButton getNoConstraintButton() {
+		return noConstraintButton;
+	}
+
+	/**
+	 * @return the pointConstraint
+	 */
+	public PointConstraint getPointConstraint() {
+		return pointConstraint;
+	}
+
+	/**
+	 * @return the pointConstraintButton
+	 */
+	public JRadioButton getPointConstraintButton() {
+		return pointConstraintButton;
+	}
+
+	/**
+	 * @return the slopeConstraintButton
+	 */
+	public JRadioButton getSlopeConstraintButton() {
+		return slopeConstraintButton;
+	}
+
+	/**
 	 * @return the commutateur
 	 */
 	public int getCommutateur() {
@@ -155,27 +195,5 @@ public class LineConstraintsChoice extends Observable {
 	public ButtonGroup getbG() {
 		return bG;
 	}
-
-	/**
-	 * @return the noConstraint
-	 */
-	public JRadioButton getNoConstraint() {
-		return noConstraint;
-	}
-
-	/**
-	 * @return the pointConstraint
-	 */
-	public JRadioButton getPointConstraint() {
-		return pointConstraint;
-	}
-
-	/**
-	 * @return the slopeConstraint
-	 */
-	public JRadioButton getSlopeConstraint() {
-		return slopeConstraint;
-	}
-	
     
 }

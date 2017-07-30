@@ -23,4 +23,8 @@ public class TransformX extends Observable{
 		return transformXLabel;
 	}
 	
+	public void setTransformX(String newFunction) {
+		transformX.setText(newFunction);
+	}
+	
 }

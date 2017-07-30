@@ -135,4 +135,13 @@ public class DataLinePanel extends JPanel {
 			System.out.println(modele.getRowCount());
 		}
 	}
+
+	/**
+	 * @return the tc2dmTrans
+	 */
+	public TableCustom2DModel getTc2dmTrans() {
+		return tc2dmTrans;
+	}
+	
+	
 }

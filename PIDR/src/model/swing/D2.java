@@ -16,10 +16,8 @@ import org.jzy3d.plot3d.primitives.Shape;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
 
 import view.panels.CalculatedFunctionPanel;
-import view.panels.ConstraintsPanel;
-import view.panels.DataPanel;
-import view.panels.DisplaySettingsPanel;
 import view.panels.Data2DPanel;
+import view.panels.DisplaySettingsPanel;
 import view.panels.MathShortcutsPanel;
 import view.panels.TestFunctionPanel;
 
@@ -28,7 +26,6 @@ public class D2 implements Updatable{
 	private TableCustom2DModel twoDDatasModel;
 	private Data2DPanel twoDDatasPane;
 	private Table2DConstraintCustomModel constraint2DModel;
-	//private Constraints twoDConstraints;
 	private Constraint2DPanel twoDConstraintsPane;
 	private TestFunction twoDTestFunction;
 	private TestFunctionPanel twoDTestFunctionPane;
@@ -199,7 +196,6 @@ public class D2 implements Updatable{
 
 	@Override
 	public TableCustomModel getData() {
-		// TODO Auto-generated method stub
 		return getDataModel();
 	}
 

@@ -21,7 +21,6 @@ public class Line implements Updatable {
 	private DisplaySettingsPanel displayPanel;
 	private TransformationsLinePanel transformationsLinePanel;
 	private JPanel noConstraint;
-	private PointConstraint pointConstraint;
 	private SlopeConstraintPanel slopeConstraint;
 	private LineConstraintsChoicePanel chosenPanel;
 	private TransformationsLine transformationsLine;
@@ -38,7 +37,6 @@ public class Line implements Updatable {
 
 		transformationsLine = new TransformationsLine();
 		transformationsLinePanel = new TransformationsLinePanel(transformationsLine);
-
 		
 		dataModel = new TableCustom2DModel(new String[]{"n°","xi","yi"});
 		dataLinePanel = new DataLinePanel(dataModel,"","");
@@ -52,8 +50,6 @@ public class Line implements Updatable {
 		
 		lineGraph = new LineGraph("Représentation graphique");
 		displayPanel = new DisplaySettingsPanel(display);
-		transformationsLine = new TransformationsLine();
-		lineConstraintsChoice = new LineConstraintsChoice();
 	}
 
 	/**
@@ -134,13 +130,6 @@ public class Line implements Updatable {
 	}
 
 	/**
-	 * @return the pointConstraint
-	 */
-	public PointConstraint getPointConstraint() {
-		return pointConstraint;
-	}
-
-	/**
 	 * @return the slopeConstraint
 	 */
 	public SlopeConstraintPanel getSlopeConstraint() {
@@ -184,7 +173,6 @@ public class Line implements Updatable {
 
 	@Override
 	public TableCustom2DModel getData() {
-		// TODO Auto-generated method stub
 		return getDataModel();
 	}
 

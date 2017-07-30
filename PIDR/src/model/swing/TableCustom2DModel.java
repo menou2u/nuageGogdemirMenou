@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.swing.event.TableModelEvent;
-import javax.swing.table.AbstractTableModel;
 
 import controller.Datas2DFactory;
 
@@ -14,7 +13,6 @@ import controller.Datas2DFactory;
 public class TableCustom2DModel extends TableCustomModel {
 	private final ArrayList<Point2D> points = new ArrayList<Point2D>();
 	private final String[] entetes;
-	private TableCustom2DModel transformedData;
 	private LinkedList<Double> x;
 	private LinkedList<Double> y;
 	private MainWindow mainWin;
@@ -77,6 +75,22 @@ public class TableCustom2DModel extends TableCustomModel {
 			points.add(new Point2D(point));
 			point = new LinkedList<Double>();
 		}
+	}
+	
+	public void fillPoints(LinkedList<Double> x, LinkedList<Double> y, LinkedList<Double> z) {
+		eraseTable();
+		LinkedList<Double> newPoint = new LinkedList<Double>();
+		for (int i=0; i<x.size(); i++) {
+			newPoint.add(i+1.0);
+			newPoint.add((Double)x.get(i));
+			newPoint.add((Double)y.get(i));
+			addPoint(new Point2D(newPoint));
+			newPoint = new LinkedList<Double>();
+		}
+	}
+	
+	public void eraseTable() {
+		points.clear();
 	}
 	
 	public int getRowCount() {

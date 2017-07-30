@@ -26,7 +26,7 @@ public class OpenButtonListener implements ActionListener {
 		
 		if (returnVal == JFileChooser.APPROVE_OPTION){
 			File file = openFileChooser.getSelectedFile();
-			toolsReference.getMainWindow().sendNewFile(toolsReference.getMainWindow(),file);
+			toolsReference.getMainWindow().readFile(file);
 		}
 	}
 

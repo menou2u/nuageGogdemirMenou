@@ -13,7 +13,6 @@ import controller.Datas3DFactory;
 public class TableCustom3DModel extends TableCustomModel {
 	private final ArrayList<Point3D> points = new ArrayList<Point3D>();
 	private final String[] entetes;
-	private TableCustom3DModel transformedData;
 	private LinkedList<Double> x ;
 	private LinkedList<Double> y ;
 	private LinkedList<Double> z ;
@@ -82,6 +81,12 @@ public class TableCustom3DModel extends TableCustomModel {
 			point = new LinkedList<Double>();
 		}
 
+	}
+
+	@Override
+	public void fillPoints(LinkedList<Double> x, LinkedList<Double> y, LinkedList<Double> z) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	public void removePoint(int begin, int end, int ratio)

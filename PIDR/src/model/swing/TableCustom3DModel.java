@@ -21,6 +21,7 @@ public class TableCustom3DModel extends TableCustomModel {
 	
 	public TableCustom3DModel(MainWindow mainWindow,String fileName,String[] entetes) {
 		super();
+		mainWin = mainWindow;
 		this.entetes = entetes;
 		fillPoints(fileName);
 		//"C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx"
@@ -57,6 +58,7 @@ public class TableCustom3DModel extends TableCustomModel {
 	
 	public void setTable(MainWindow mainWindow,String fileName){
 		setTable(new TableCustom3DModel(mainWindow,fileName,entetes));
+		fireTableChanged(new TableModelEvent(this));
 	}
 	
 	public void fillPoints(String fileName){
@@ -178,6 +180,7 @@ public class TableCustom3DModel extends TableCustomModel {
     			break;
 			}
     	}
+    	fireTableCellUpdated(rowIndex,columnIndex);
     }
 	
 	@Override

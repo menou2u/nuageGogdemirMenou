@@ -51,6 +51,7 @@ public class TableCustom2DModel extends TableCustomModel {
 	public void warnView(MainWindow mainWindow,File file)
 	{
 		setTable(mainWindow,file.getPath());
+		fireTableChanged(new TableModelEvent(this));
 	}
 	
 	public void setTable(MainWindow mainWindow,String fileName){

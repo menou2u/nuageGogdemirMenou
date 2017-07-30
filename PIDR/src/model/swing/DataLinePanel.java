@@ -30,14 +30,14 @@ public class DataLinePanel extends JPanel {
 	public DataLinePanel(TableCustom2DModel modele,String tx,String ty)
 	{
 		super();
-		this.tx = tx;
-		this.ty = ty;
+		this.setTx(tx);
+		this.setTy(ty);
 		
 		tc2dmDatas = modele;
 		tc2dmTrans = applyChanges(modele);
 		
-		d2dpDatas = new Data2DPanel(modele);
-		d2dpTrans = new Data2DPanel(tc2dmTrans);
+		setD2dpDatas(new Data2DPanel(modele));
+		setD2dpTrans(new Data2DPanel(tc2dmTrans));
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -48,9 +48,9 @@ public class DataLinePanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		add(d2dpDatas = new Data2DPanel(tc2dmDatas));
+		add(setD2dpDatas(new Data2DPanel(tc2dmDatas)));
 		gbc.gridx=1;
-		add(d2dpTrans = new Data2DPanel(tc2dmTrans));
+		add(setD2dpTrans(new Data2DPanel(tc2dmTrans)));
 	}
 
 	private TableCustom2DModel applyChanges(TableCustom2DModel modele2) {
@@ -69,6 +69,40 @@ public class DataLinePanel extends JPanel {
 		frame.setContentPane(new Data2DPanel(mod));
 		frame.pack();
 		frame.setVisible(true);
+	}
+
+	public Data2DPanel getD2dpDatas() {
+		return d2dpDatas;
+	}
+
+	public Data2DPanel setD2dpDatas(Data2DPanel d2dpDatas) {
+		this.d2dpDatas = d2dpDatas;
+		return d2dpDatas;
+	}
+
+	public Data2DPanel getD2dpTrans() {
+		return d2dpTrans;
+	}
+
+	public Data2DPanel setD2dpTrans(Data2DPanel d2dpTrans) {
+		this.d2dpTrans = d2dpTrans;
+		return d2dpTrans;
+	}
+
+	public String getTx() {
+		return tx;
+	}
+
+	public void setTx(String tx) {
+		this.tx = tx;
+	}
+
+	public String getTy() {
+		return ty;
+	}
+
+	public void setTy(String ty) {
+		this.ty = ty;
 	}
 
 	private class AddAction extends AbstractAction {

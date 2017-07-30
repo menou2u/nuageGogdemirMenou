@@ -80,6 +80,23 @@ public class Table2DConstraintCustomModel extends AbstractTableModel{
 		}
 	}
 	
+	public void fillConstraints(LinkedList<Double> xw, LinkedList<Double> constraintValue, LinkedList<Integer> derivationOrderList) {
+		eraseTable();
+		LinkedList<Double> newPoint = new LinkedList<Double>();
+		for (int i=0; i<xw.size(); i++) {
+			newPoint.add(i+1.0);
+			newPoint.add((Double)xw.get(i));
+			newPoint.add((Double)constraintValue.get(i));
+			newPoint.add(derivationOrderList.get(i) + 0.0);
+			addConstraint(new Constraint2D(newPoint));
+			newPoint = new LinkedList<Double>();
+		}
+	}
+	
+	public void eraseTable() {
+		constraints.clear();
+	}
+	
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub

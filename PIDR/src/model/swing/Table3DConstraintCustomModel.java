@@ -95,6 +95,26 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 		}
 	}
 	
+	public void fillConstraints(LinkedList<Double> xw, LinkedList<Double> yw, LinkedList<Double> constraintValue, LinkedList<Integer> derivationOrderList, LinkedList<Double> ux, LinkedList<Double> uy) {
+		eraseTable();
+		LinkedList<Double> newPoint = new LinkedList<Double>();
+		for (int i=0; i<xw.size(); i++) {
+			newPoint.add(i+1.0);
+			newPoint.add((Double)xw.get(i));
+			newPoint.add((Double)yw.get(i));
+			newPoint.add((Double)constraintValue.get(i));
+			newPoint.add(derivationOrderList.get(i) + 0.0);
+			newPoint.add((Double)ux.get(i));
+			newPoint.add((Double)uy.get(i));
+			addConstraint(new Constraint3D(newPoint));
+			newPoint = new LinkedList<Double>();
+		}
+	}
+	
+	public void eraseTable() {
+		constraints.clear();
+	}
+	
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
@@ -115,7 +135,6 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return entetes.length;
 	}
 

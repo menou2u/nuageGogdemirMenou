@@ -148,7 +148,14 @@ public class MainWindow extends Observable {
 					}
 					if (mode.equals("3DKC")) {
 						scanResult = scanner.next();
-						if (!scanResult.isEmpty()) {
+						if (scanResult.isEmpty()) {
+							if (index > uxList.size() - 1) {
+								uxList.add(0.0);
+							} else {
+								uxList.add(index, 0.0);
+							}
+						}
+						else {
 							if (index > uxList.size() - 1) {
 								uxList.add(Double.parseDouble(scanResult));
 							} else {
@@ -156,11 +163,18 @@ public class MainWindow extends Observable {
 							}
 						}
 						scanResult = scanner.next();
-						if (!scanResult.isEmpty()) {
+						if (scanResult.isEmpty()) {
 							if (index > uyList.size() - 1) {
-								uyList.add(Double.parseDouble(scanner.next()));
+								uyList.add(0.0);
 							} else {
-								uyList.add(index, Double.parseDouble(scanner.next()));
+								uyList.add(index, 0.0);
+							}
+						}
+						else {
+							if (index > uyList.size() - 1) {
+								uyList.add(Double.parseDouble(scanResult));
+							} else {
+								uyList.add(index, Double.parseDouble(scanResult));
 							}
 						}
 					}
@@ -181,9 +195,7 @@ public class MainWindow extends Observable {
 					ywbrut = Double.parseDouble(scanner.next());
 				}
 				if (item.equals("xw traité") && scanner.hasNext()) {
-					String s = scanner.next();
-					System.out.println("?? " + s);
-					xwtraité = Double.parseDouble(s);
+					xwtraité = Double.parseDouble(scanner.next());
 				}
 				if (item.equals("yw traité") && scanner.hasNext()) {
 					ywtraité = Double.parseDouble(scanner.next());
@@ -233,7 +245,6 @@ public class MainWindow extends Observable {
 			lineMode.getTransformX().setTransformX(xTreatment);
 			lineMode.getTransformY().setTransformY(yTreatment);
 			lineMode.getDataLinePanel().getTc2dmTrans().fillPoints(listXiTraité, listYiTraité, null);
-			// TODO gérer les données traitées
 			if (pente != null) {
 				lineMode.getLineConstraintsChoice().getSlopeConstraints().setSlopeText(""+pente);
 			}
@@ -253,11 +264,19 @@ public class MainWindow extends Observable {
 		case 1:
 			D2 d2Mode = (D2) getMode();
 			d2Mode.getData().fillPoints(listXi, listYi, null);
-			d2Mode.getTestFunction().setValue(textBoxFx);
+			d2Mode.getTestFunction().getText().setText(textBoxFx);
+			d2Mode.getTwoDCalculatedFunction().getFunctionCalculated().setText(textBoxCompoFx);
+			d2Mode.getTwoDConstraints().fillConstraints(xwList, constraintValueList, derivationOrderList);
 			break;
 		case 2:
+			//Plane plan = (Plane) getMode();
 			break;
 		case 3:
+			D3 d3Mode = (D3) getMode();
+			d3Mode.getData().fillPoints(listXi, listYi, listZi);
+			d3Mode.getTestFunction().getText().setText(textBoxFx);
+			d3Mode.getThreeDCalculatedFunction().getFunctionCalculated().setText(textBoxCompoFx);
+			d3Mode.getThreeDConstraints().fillConstraints(xwList, ywList, constraintValueList, derivationOrderList, uxList, uyList);
 			break;
 		}
 	}

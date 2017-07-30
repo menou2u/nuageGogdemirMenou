@@ -85,8 +85,20 @@ public class TableCustom3DModel extends TableCustomModel {
 
 	@Override
 	public void fillPoints(LinkedList<Double> x, LinkedList<Double> y, LinkedList<Double> z) {
-		// TODO Auto-generated method stub
-		
+		eraseTable();
+		LinkedList<Double> newPoint = new LinkedList<Double>();
+		for (int i=0; i<x.size(); i++) {
+			newPoint.add(i+1.0);
+			newPoint.add((Double)x.get(i));
+			newPoint.add((Double)y.get(i));
+			newPoint.add((Double)z.get(i));
+			addPoint(new Point3D(newPoint));
+			newPoint = new LinkedList<Double>();
+		}
+	}
+	
+	public void eraseTable() {
+		points.clear();
 	}
 	
 	public void removePoint(int begin, int end, int ratio)

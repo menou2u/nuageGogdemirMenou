@@ -16,9 +16,7 @@ import org.jzy3d.plot3d.primitives.Shape;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
 
 import view.panels.CalculatedFunctionPanel;
-import view.panels.ConstraintsPanel;
 import view.panels.Data3DPanel;
-import view.panels.DataPanel;
 import view.panels.DisplaySettingsPanel;
 import view.panels.MathShortcutsPanel;
 import view.panels.TestFunctionPanel;

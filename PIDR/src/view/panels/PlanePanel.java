@@ -7,7 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import model.swing.Plane;
+import model.swing.mode.Plane;
 
 @SuppressWarnings("serial")
 public class PlanePanel extends JPanel implements Observer, UpdatablePanel {

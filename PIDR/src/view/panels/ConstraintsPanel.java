@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.Constraints;
+import model.swing.datas.constraints.Constraints;
 
 
 //Ajouter un bouton pour ajouter des contraintes :)

@@ -9,8 +9,9 @@ import javax.swing.JPanel;
 import com.liferay.faces.util.lang.Observable;
 import com.liferay.faces.util.lang.Observer;
 
-import model.swing.PointConstraint;
+import model.swing.datas.constraints.PointConstraint;
 
+@SuppressWarnings("serial")
 public class PointConstraintPanel extends JPanel implements Observer{
 
 	

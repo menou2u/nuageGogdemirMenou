@@ -5,9 +5,8 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import model.swing.TransformY;
+import model.swing.datas.TransformY;
 
 @SuppressWarnings("serial")
 public class TransformYPanel extends JPanel {

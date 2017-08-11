@@ -6,9 +6,9 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import filesChoosers.OpenFileChooser;
+import model.filesChoosers.OpenFileChooser;
 import model.swing.Tools;
-import model.swing.Updatable;
+import model.swing.mode.Updatable;
 
 public class OpenButtonListener implements ActionListener {
 

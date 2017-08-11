@@ -15,23 +15,9 @@ public class Nuages2D extends XcasProg {
 	private String function;
 
 	public Nuages2D() {
-		setPath("C:\\Users\\Bichette\\git\\pidr\\nuageGogdemirMenou\\Algo\\Nuages2D\\nuages2D.cas");
+		setPath("Algo\\Nuages2D\\nuages2D.cas");
 	}
 	
-	/*COUCOU
-	Les contraintes et datas sont structurées d'une façon très identique.
-	Elles ont des objets dédiés et quelques classes.
-	Je détaille les contraintes :
-	Il y a (pour 3D par exemple :)
-	- Constraint3D => Il s'agit de l'objet dédié. Constitué de plusieurs champs, un par info : N°, Xw, Yw, Valeur contrainte, Ordre de dérivation, Ux, Uy
-	- Constraint3DPanel (Pas bien, je sais... :/) => Le panel qui sera intégré à la window par la suite.
-	- Table3DConstraintCustomModel => La partie back end des contraintes, c'est l'intérieur du tableau si on veut.
-	- Constraints3DFactory => Initialisation des contraintes 3D à partir d'un xls par exemple.
-	
-	Pour les datas, même principe donc, avec des noms similaires, il y a juste pas contraint dans le nom. Si tu as des questions, feel free de sms, je reste debout tard.
-	Tchou.
-	
-	*/
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Integer> listOrdreDerivation){
 		parsingProg(path);
 		size = listXi.size();

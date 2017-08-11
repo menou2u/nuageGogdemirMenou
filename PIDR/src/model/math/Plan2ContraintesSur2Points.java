@@ -8,7 +8,7 @@ import javagiac.gen;
 public class Plan2ContraintesSur2Points extends XcasProg {
 
 	public Plan2ContraintesSur2Points() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Plans\\plan 2 contraintes sur 2 points.cas");
+		setPath("Algo\\Plans\\plan 2 contraintes sur 2 points.cas");
 	}
 	
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, double xw1, double yw1, double zw1, double xw2, double yw2, double zw2){
@@ -32,10 +32,6 @@ public class Plan2ContraintesSur2Points extends XcasProg {
 		res = g.eval(1, c).print(c);
 	}
 	
-	public StringBuilder getInfos(){
-		StringBuilder infos = new StringBuilder();
-		
-		return infos;
-	}
+	// TODO: create getInfos()
 	
 }

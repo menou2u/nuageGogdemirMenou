@@ -8,7 +8,7 @@ import javagiac.gen;
 public class Plan1ContrainteVecteurZOX extends XcasProg {
 
 	public Plan1ContrainteVecteurZOX() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Plans\\plan 1 contraintes sur vecteur zox.cas");
+		setPath("Algo\\Plans\\plan 1 contraintes sur vecteur zox.cas");
 	}
 	
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, double vecteurDzOXZ, double vecteurDzOXX, double penteZOX){
@@ -29,4 +29,5 @@ public class Plan1ContrainteVecteurZOX extends XcasProg {
 		res = g.eval(1, c).print(c);
 	}
 	
+	// TODO: create getInfos()
 }

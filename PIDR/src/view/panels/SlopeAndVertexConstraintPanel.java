@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import model.swing.SlopeAndVertexConstraint;
+import model.swing.datas.constraints.SlopeAndVertexConstraint;
 
 @SuppressWarnings("serial")
 public class SlopeAndVertexConstraintPanel extends JPanel {

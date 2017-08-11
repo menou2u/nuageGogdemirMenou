@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import model.swing.CoordAndVertexConstraints;
+import model.swing.datas.constraints.CoordAndVertexConstraints;
 
 @SuppressWarnings("serial")
 public class CoordAndVertexConstraintPanel extends JPanel{
@@ -90,7 +90,6 @@ public class CoordAndVertexConstraintPanel extends JPanel{
     public static void main(String[] args) {
         JFrame frame = new JFrame("ConstraintsPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        @SuppressWarnings("unused")
         CoordAndVertexConstraints coordAndVertexConstraints = new CoordAndVertexConstraints();
         CoordAndVertexConstraintPanel newContentPane = new CoordAndVertexConstraintPanel(coordAndVertexConstraints);
         newContentPane.setOpaque(true);

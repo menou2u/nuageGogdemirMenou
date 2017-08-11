@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import model.swing.TestFunction;
+import model.swing.datas.TestFunction;
 
 @SuppressWarnings("serial")
 public class TestFunctionPanel extends JPanel {

@@ -3,7 +3,7 @@ package controller;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
-import model.swing.TestFunction;
+import model.swing.datas.TestFunction;
 
 public class CursorForFunctionListener implements CaretListener {
 

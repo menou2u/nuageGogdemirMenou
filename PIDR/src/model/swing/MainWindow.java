@@ -11,11 +11,14 @@ import java.util.Scanner;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
-import com.sun.org.apache.bcel.internal.generic.LLOAD;
-
 import model.math.DroiteMoindreCarres;
 import model.math.Nuages2D;
 import model.math.Nuages3D;
+import model.swing.mode.D2;
+import model.swing.mode.D3;
+import model.swing.mode.Line;
+import model.swing.mode.Plane;
+import model.swing.mode.Updatable;
 import view.panels.UpdatablePanel;
 import view.window.InfosWindowFrame;
 
@@ -29,9 +32,6 @@ public class MainWindow extends Observable {
 	private JTabbedPane onglets;
 
 	private StringBuilder infosLine;
-	private StringBuilder infosPlane;
-	private StringBuilder infos2D;
-	private StringBuilder infos3D;
 	private StringBuilder currentInfos;
 	
 	private File currentFile = null;

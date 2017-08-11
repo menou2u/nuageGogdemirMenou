@@ -5,6 +5,7 @@ import java.util.Observable;
 import javax.swing.JButton;
 
 import controller.CalculatorListener;
+import model.swing.datas.TestFunction;
 
 public class MathShortcuts extends Observable {
 

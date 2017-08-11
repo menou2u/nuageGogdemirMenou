@@ -7,7 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import model.swing.D3;
+import model.swing.mode.D3;
 
 @SuppressWarnings("serial")
 public class D3Panel extends JPanel implements Observer, UpdatablePanel {

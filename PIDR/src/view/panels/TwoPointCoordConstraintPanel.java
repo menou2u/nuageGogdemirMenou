@@ -6,7 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.TwoPointCoordConstraint;
+import model.swing.datas.constraints.TwoPointCoordConstraint;
 
 @SuppressWarnings("serial")
 public class TwoPointCoordConstraintPanel extends JPanel{

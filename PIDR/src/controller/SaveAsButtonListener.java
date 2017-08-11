@@ -6,7 +6,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import filesChoosers.SaveFileChooser;
+import model.filesChoosers.SaveFileChooser;
 import model.swing.Tools;
 
 public class SaveAsButtonListener implements ActionListener {

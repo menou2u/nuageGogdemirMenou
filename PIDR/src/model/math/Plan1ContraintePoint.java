@@ -12,7 +12,7 @@ public class Plan1ContraintePoint extends XcasProg {
 	private LinkedList<Double> listZomega;
 	
 	public Plan1ContraintePoint() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Plans\\plans 1 contraintes sur point.cas");
+		setPath("Algo\\Plans\\plans 1 contraintes sur point.cas");
 	}
 	
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, LinkedList<Double> listXomegaBT, LinkedList<Double> listYomegaBT, LinkedList<Double> listZomegaBT){

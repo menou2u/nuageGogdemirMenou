@@ -1,6 +1,5 @@
 package view.panels;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import model.swing.Point2D;
-import model.swing.TableCustom2DModel;
+import model.swing.datas.tables.Point2D;
+import model.swing.datas.tables.TableCustom2DModel;
 
 public class Data2DTransformedPanel extends JPanel {
 	/**
@@ -50,10 +49,10 @@ public class Data2DTransformedPanel extends JPanel {
 		gbc.gridy=3;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
-		gbc.anchor = gbc.EAST;
+		gbc.anchor = GridBagConstraints.EAST;
 		add(new JButton(new AddAction()),gbc);
 		
-		gbc.anchor = gbc.WEST;
+		gbc.anchor = GridBagConstraints.WEST;
 		gbc.gridx=2;
 		add(new JButton(new RemoveAction()),gbc);
 	}
@@ -66,6 +65,7 @@ public class Data2DTransformedPanel extends JPanel {
 		frame.setVisible(true);
 	}
 
+	@SuppressWarnings("serial")
 	private class AddAction extends AbstractAction {
 		private AddAction() {
 			super("Ajouter ligne");
@@ -77,6 +77,7 @@ public class Data2DTransformedPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private class RemoveAction extends AbstractAction {
 		private RemoveAction() {
 			super("Supprimer");

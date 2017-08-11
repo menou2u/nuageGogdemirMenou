@@ -8,8 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+@SuppressWarnings("serial")
 public class SimpleTableDemo extends JPanel {
-    private boolean DEBUG = false;
+    @SuppressWarnings("unused")
+	private boolean DEBUG = false;
 
     public SimpleTableDemo() {
         super(new GridLayout(1,0));

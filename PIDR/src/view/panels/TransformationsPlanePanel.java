@@ -6,8 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.TransformX;
-import model.swing.TransformationsPlane;
+import model.swing.datas.TransformationsPlane;
 
 @SuppressWarnings("serial")
 public class TransformationsPlanePanel extends JPanel{

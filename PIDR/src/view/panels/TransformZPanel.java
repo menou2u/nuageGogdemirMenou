@@ -6,7 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.TransformZ;
+import model.swing.datas.TransformZ;
 
 @SuppressWarnings("serial")
 public class TransformZPanel extends JPanel{

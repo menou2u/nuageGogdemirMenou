@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.swing.Data;
+import model.swing.datas.Data;
 
 @SuppressWarnings("serial")
 public class DataPanel extends JPanel {
@@ -36,14 +36,14 @@ public class DataPanel extends JPanel {
     {
     	super(new GridBagLayout());
     	GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = gbc.BOTH;
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.gridx=0;
         gbc.gridy=0;
         gbc.weightx=0;
         gbc.weighty=0;
         gbc.gridheight=1;
         gbc.gridwidth=1;
-        gbc.anchor = gbc.CENTER;
+        gbc.anchor = GridBagConstraints.CENTER;
     	
     	add(new JLabel("            Données brutes             "),gbc);
     	gbc.gridx=1;

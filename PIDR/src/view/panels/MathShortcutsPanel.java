@@ -1,16 +1,14 @@
 package view.panels;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.swing.MathShortcuts;
-import model.swing.TestFunction;
+import model.swing.datas.TestFunction;
 
 @SuppressWarnings("serial")
 public class MathShortcutsPanel extends JPanel{

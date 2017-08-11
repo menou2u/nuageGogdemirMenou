@@ -8,7 +8,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.PlaneConstraintsChoice;
+import model.swing.datas.constraints.PlaneConstraintsChoice;
 
 @SuppressWarnings("serial")
 public class PlaneConstraintsChoicePanel extends JPanel implements Observer {

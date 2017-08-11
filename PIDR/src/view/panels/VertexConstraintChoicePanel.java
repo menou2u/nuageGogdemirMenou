@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import model.swing.VertexConstraintChoice;
+import model.swing.datas.constraints.VertexConstraintChoice;
 
 @SuppressWarnings("serial")
 public class VertexConstraintChoicePanel extends JPanel{

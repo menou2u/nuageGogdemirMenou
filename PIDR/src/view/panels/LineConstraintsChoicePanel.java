@@ -8,7 +8,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.LineConstraintsChoice;
+import model.swing.datas.constraints.LineConstraintsChoice;
 
 
 //Ajouter un bouton pour ajouter des contraintes :)

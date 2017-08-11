@@ -18,7 +18,7 @@ public class Nuages3D extends XcasProg {
 	private String function;
 
 	public Nuages3D() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Nuages3D\\nuages3D.cas");
+		setPath("Algo\\Nuages3D\\nuages3D.cas");
 	}
 	
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, LinkedList<String> listPhi, LinkedList<Double> listXomega, LinkedList<Double> listYomega, LinkedList<Double> listZomega, LinkedList<Integer> listOrdreDerivation, LinkedList<Double> listUx, LinkedList<Double> listUy){
@@ -100,8 +100,11 @@ public class Nuages3D extends XcasProg {
 			infos.append("Contraintes\n");
 			for (int i=0; i<listXomega.size(); i++){
 				infos.append("xw : "+listXomega.get(i)+", yw : "+listYomega.get(i)+", zw : "+listZomega.get(i)+", ordre dérivation : "+listOrdreDerivation.get(i));
-				if (listUx.get(i) == null && listUy.get(i) == null){
-					infos.append(", ux : "+listUx.get(i)+", uy : "+listUy.get(i));
+				if (listUx.size() > i && listUx.get(i) != null) { 
+					infos.append(", ux : "+listUx.get(i));
+				}
+				if (listUy.size() > i && listUy.get(i) == null){
+					infos.append(", uy : "+listUy.get(i));
 				}
 				infos.append("\n");
 			}

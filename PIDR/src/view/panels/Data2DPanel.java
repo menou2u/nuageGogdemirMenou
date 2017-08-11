@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -14,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import model.swing.Point2D;
-import model.swing.TableCustom2DModel;
+import model.swing.datas.tables.Point2D;
+import model.swing.datas.tables.TableCustom2DModel;
 
 public class Data2DPanel extends JPanel {
 	/**
@@ -44,8 +42,6 @@ public class Data2DPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(tableau);
 		scrollPane.setMinimumSize(new Dimension(300, 1000));
 		add(scrollPane, gbc);
-
-		JPanel boutons = new JPanel();
 		
 		gbc.weightx=1;
 		gbc.weighty=0;
@@ -53,14 +49,14 @@ public class Data2DPanel extends JPanel {
 		gbc.gridy=3;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
-		gbc.anchor = gbc.EAST;
+		gbc.anchor = GridBagConstraints.EAST;
 		
 		add(new JButton(new AddAction()),gbc);
-		gbc.anchor = gbc.WEST;
+		gbc.anchor = GridBagConstraints.WEST;
 		gbc.gridx=2;
 		add(new JButton(new RemoveAction()),gbc);
 		
-		gbc.anchor = gbc.EAST;
+		gbc.anchor = GridBagConstraints.EAST;
 		gbc.gridy=4;
 		gbc.gridx=0;
 		add(new JButton(new RemoveTwoAction()),gbc);
@@ -75,6 +71,7 @@ public class Data2DPanel extends JPanel {
 		add(new JButton(new RemoveTenAction()),gbc);
 	}
 	
+	@SuppressWarnings("serial")
 	private class RemoveTwoAction extends AbstractAction{
 		private RemoveTwoAction(){
 			super("Supprimer 1/2");
@@ -86,6 +83,7 @@ public class Data2DPanel extends JPanel {
 		}
 	}
 	
+	@SuppressWarnings("serial")
 	private class RemoveThreeAction extends AbstractAction{
 		private RemoveThreeAction(){
 			super("Supprimer 1/3");
@@ -98,6 +96,7 @@ public class Data2DPanel extends JPanel {
 		
 	}
 	
+	@SuppressWarnings("serial")
 	private class RemoveFiveAction extends AbstractAction{
 		private RemoveFiveAction(){
 			super("Supprimer 1/5");
@@ -110,6 +109,7 @@ public class Data2DPanel extends JPanel {
 		
 	}
 	
+	@SuppressWarnings("serial")
 	private class RemoveTenAction extends AbstractAction{
 		private RemoveTenAction(){
 			super("Supprimer 1/10");
@@ -130,6 +130,7 @@ public class Data2DPanel extends JPanel {
 		frame.setVisible(true);
 	}
 
+	@SuppressWarnings("serial")
 	private class AddAction extends AbstractAction {
 		private AddAction() {
 			super("Ajouter ligne");
@@ -141,6 +142,7 @@ public class Data2DPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private class RemoveAction extends AbstractAction {
 		private RemoveAction() {
 			super("Supprimer");

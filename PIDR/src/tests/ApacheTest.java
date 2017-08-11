@@ -55,6 +55,7 @@ public class ApacheTest {
 		return res;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static boolean isNumericCell(XSSFCell cell)
 	{
 		boolean value = false;

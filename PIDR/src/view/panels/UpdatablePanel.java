@@ -1,6 +1,6 @@
 package view.panels;
 
-import model.swing.Updatable;
+import model.swing.mode.Updatable;
 
 public interface UpdatablePanel {
 

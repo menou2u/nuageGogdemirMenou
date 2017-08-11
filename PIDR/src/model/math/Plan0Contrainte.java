@@ -8,7 +8,7 @@ import javagiac.gen;
 public class Plan0Contrainte extends XcasProg {
 
 	public Plan0Contrainte() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Plans\\plan 0 contrainte.cas");
+		setPath("Algo\\Plans\\plan 0 contrainte.cas");
 	}
 	
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi){

@@ -12,7 +12,7 @@ public class DroiteMoindreCarres extends XcasProg {
 	private int commutateur;
 	
 	public DroiteMoindreCarres() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\DMC\\droite des moindres carres.cas");
+		setPath("Algo\\DMC\\droite des moindres carres.cas");
 	}
 
 	protected void putArguments(LinkedList<Double> listXi, LinkedList<Double> listYi, int commutateur, LinkedList<Double> omegaDatas, double p1) {

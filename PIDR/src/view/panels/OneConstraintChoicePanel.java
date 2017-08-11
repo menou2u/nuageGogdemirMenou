@@ -7,14 +7,12 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
-import model.swing.OneConstraintChoice;
+import model.swing.datas.constraints.OneConstraintChoice;
 
 @SuppressWarnings("serial")
 public class OneConstraintChoicePanel extends JPanel {

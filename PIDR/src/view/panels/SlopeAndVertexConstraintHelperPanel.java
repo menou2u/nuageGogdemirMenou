@@ -6,7 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.swing.SlopeAndVertexConstraintHelper;
+import model.swing.datas.constraints.SlopeAndVertexConstraintHelper;
 
 @SuppressWarnings("serial")
 public class SlopeAndVertexConstraintHelperPanel extends JPanel{

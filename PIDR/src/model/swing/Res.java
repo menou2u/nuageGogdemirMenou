@@ -2,10 +2,8 @@ package model.swing;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.util.Observable;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import org.jzy3d.chart.AWTChart;
 import org.jzy3d.colors.Color;
@@ -57,6 +55,7 @@ public class Res  {
 		}
 
 		// Create a drawable scatter with a colormap
+		@SuppressWarnings("unused")
 		ScatterMultiColor scatter = new ScatterMultiColor(points, new ColorMapper(new ColorMapRainbow(), -0.5f, 0.5f));
 
 		// Create a chart and add scatter

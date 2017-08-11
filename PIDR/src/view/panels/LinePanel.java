@@ -7,7 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import model.swing.Line;
+import model.swing.mode.Line;
 
 @SuppressWarnings("serial")
 public class LinePanel extends JPanel implements Observer, UpdatablePanel {

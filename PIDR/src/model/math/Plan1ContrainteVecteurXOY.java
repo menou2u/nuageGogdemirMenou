@@ -8,7 +8,7 @@ import javagiac.gen;
 public class Plan1ContrainteVecteurXOY extends XcasProg {
 
 	public Plan1ContrainteVecteurXOY() {
-		setPath("C:\\Users\\Bichette\\git\\nuageGogdemirMenou\\Algo\\Plans\\plan 1 contraintes sur vecteur xoy.cas");
+		setPath("Algo\\Plans\\plan 1 contraintes sur vecteur xoy.cas");
 	}
 	
 	public void run(LinkedList<Double> listXi, LinkedList<Double> listYi, LinkedList<Double> listZi, double vecteurDxOYX, double vecteurDxOYY, double penteXOY){
@@ -28,5 +28,7 @@ public class Plan1ContrainteVecteurXOY extends XcasProg {
 		gen g = new gen(algo, c);
 		res = g.eval(1, c).print(c);
 	}
+	
+	// TODO: create getInfos()
 	
 }

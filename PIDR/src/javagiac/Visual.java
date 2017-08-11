@@ -116,6 +116,7 @@ class Stack{
 }
 	
 
+@SuppressWarnings("rawtypes")
 public class Visual extends JFrame 
 	implements KeyListener, AdjustmentListener, 
 			   Runnable, WindowListener, ActionListener,
@@ -233,6 +234,7 @@ public class Visual extends JFrame
 	 * Constructor for main frame.
 	 * Create visual components and build the swing interface
 	 */
+	@SuppressWarnings("unchecked")
 	public Visual(){
 		super("Java GIAC");
 		

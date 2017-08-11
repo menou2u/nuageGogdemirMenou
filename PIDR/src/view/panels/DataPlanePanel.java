@@ -9,9 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
-import model.swing.Point3D;
-import model.swing.TableCustom2DModel;
-import model.swing.TableCustom3DModel;
+import model.swing.datas.tables.Point3D;
+import model.swing.datas.tables.TableCustom2DModel;
+import model.swing.datas.tables.TableCustom3DModel;
 
 
 public class DataPlanePanel extends JPanel {
@@ -21,26 +21,15 @@ public class DataPlanePanel extends JPanel {
 	private static final long serialVersionUID = 5696106447554694086L;
 	private TableCustom3DModel modele;
 	private JTable tableauDatas;
-	private String tx;
-	private String ty;
-	private String tz;
 	private TableCustom3DModel tc3dmDatas;
 	private TableCustom3DModel tc3dmTrans;
-	private Data3DPanel d3dpDatas;
-	private Data3DPanel d3dpTrans;
 
 	public DataPlanePanel(TableCustom3DModel modele,String tx,String ty,String tz)
 	{
 		super();
-		this.tx = tx;
-		this.ty = ty;
-		this.tz = tz;
 		
 		tc3dmDatas = modele;
 		tc3dmTrans = applyChanges(modele);
-		
-		d3dpDatas = new Data3DPanel(modele);
-		d3dpTrans = new Data3DPanel(tc3dmTrans);
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -51,9 +40,9 @@ public class DataPlanePanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		add(d3dpDatas = new Data3DPanel(tc3dmDatas));
+		add(new Data3DPanel(tc3dmDatas));
 		gbc.gridx=1;
-		add(d3dpTrans = new Data3DPanel(tc3dmTrans));
+		add(new Data3DPanel(tc3dmTrans));
 	}
 
 	private TableCustom3DModel applyChanges(TableCustom3DModel modele2) {
@@ -74,6 +63,7 @@ public class DataPlanePanel extends JPanel {
 		frame.setVisible(true);
 	}
 
+	@SuppressWarnings({ "unused", "serial" })
 	private class AddAction extends AbstractAction {
 		private AddAction() {
 			super("Ajouter ligne");
@@ -85,6 +75,7 @@ public class DataPlanePanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings({ "unused", "serial" })
 	private class RemoveAction extends AbstractAction {
 		private RemoveAction() {
 			super("Supprimer");

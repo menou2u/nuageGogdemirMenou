@@ -16,7 +16,7 @@ import controller.PreviewButtonListener;
 import controller.PrintButtonListener;
 import controller.SaveAsButtonListener;
 import controller.SaveButtonListener;
-import filesChoosers.ImportFileChooser;
+import model.filesChoosers.ImportFileChooser;
 import pidr.mag.sample.api.DefaultMenuModelHandler;
 import pidr.mag.sample.api.MenuOpenerButton;
 import pidr.mag.sample.api.RotativeMenuModel;

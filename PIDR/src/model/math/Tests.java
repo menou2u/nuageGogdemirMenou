@@ -9,10 +9,10 @@ public class Tests {
 		//dmcC1();
 		//dmcC2();
 		//plan0Contrainte();
-		//plan1Contrainte();
+		plan1Contrainte();
 		//test3D();
 		//test2D();
-		testPourPisula();
+		//testPourPisula();
 	}
 	
 	public static void test2D() {
@@ -104,8 +104,8 @@ public class Tests {
 		listZomegaBT.add(2.0);
 		listZomegaBT.add(2.0);
 		plan.run(listXi, listYi, listZi, listXomegaBT, listYomegaBT, listZomegaBT);
-		System.out.println(plan.getRes());
-		//System.out.println(plan.getInfos());
+		//System.out.println(plan.getRes());
+		System.out.println(plan.getInfos());
 	}
 	
 	public static void test3D(){

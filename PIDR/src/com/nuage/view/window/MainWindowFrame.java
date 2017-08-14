@@ -13,6 +13,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.nuage.Nuage;
 import com.nuage.model.swing.MainWindow;
 import com.nuage.view.panels.D2Panel;
 import com.nuage.view.panels.D3Panel;
@@ -35,8 +36,8 @@ public class MainWindowFrame extends JFrame implements Observer {
 	/**
 	 * @param mainWindow
 	 */
-	@SuppressWarnings("static-access")
 	public MainWindowFrame(MainWindow mainWindow) {
+		Nuage.setFrame(this);
 		this.setMainWindow(mainWindow);
 		mainWindow.addObserver(this);
 
@@ -45,17 +46,17 @@ public class MainWindowFrame extends JFrame implements Observer {
 		d2Panel = new D2Panel(mainWindow.getD2());
 		d3Panel = new D3Panel(mainWindow.getD3());
 		toolsPanel = new ToolsPanel(mainWindow.getTools());
-		
+
 		setLayout(new BorderLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		
+
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weighty=0;
-		gbc.gridx=0;
-		gbc.gridy=0;
-		gbc.gridheight=1;
-		gbc.gridwidth=1;
-		
+		gbc.weighty = 0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
+
 		JPanel contentPanel = new JPanel(new GridBagLayout());
 
 		mainWindow.getOnglets().addTab("Droites", linePanel);
@@ -68,8 +69,8 @@ public class MainWindowFrame extends JFrame implements Observer {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				//@TODO : Gérer ce la sauvegarde à la fermeture
-				//mainWindow.getTools().saveHistoric();
+				// @TODO : Gérer ce la sauvegarde à la fermeture
+				// mainWindow.getTools().saveHistoric();
 			}
 		});
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -79,18 +80,18 @@ public class MainWindowFrame extends JFrame implements Observer {
 		mainWindow.getOnglets().setOpaque(true);
 
 		// Panneau des outils
-		//gbc.gridwidth = 4;
-		//gbc.weighty = 0;
-		//linePanel.add(mainWindow.getToolsPanel(), gbc);
-		
-		contentPanel.add(toolsPanel,gbc);
-		
-		gbc.gridy+=gbc.gridheight;
-		gbc.weighty=1;
-		gbc.weightx=1;
-		contentPanel.add(mainWindow.getOnglets(),gbc);
-		
-		add(contentPanel);  //TODO add un autre gbc
+		// gbc.gridwidth = 4;
+		// gbc.weighty = 0;
+		// linePanel.add(mainWindow.getToolsPanel(), gbc);
+
+		contentPanel.add(toolsPanel, gbc);
+
+		gbc.gridy += gbc.gridheight;
+		gbc.weighty = 1;
+		gbc.weightx = 1;
+		contentPanel.add(mainWindow.getOnglets(), gbc);
+
+		add(contentPanel); // TODO add un autre gbc
 		setPreferredSize(frameSize);
 		setTitle("Nuage de points");
 		setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
@@ -100,7 +101,7 @@ public class MainWindowFrame extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+
 	}
 
 	public static void main(String[] args) {

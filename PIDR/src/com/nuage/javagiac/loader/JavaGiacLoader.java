@@ -26,8 +26,8 @@ public class JavaGiacLoader extends ProgressMonitor {
 	}
 
 	/**
-	 * extract and load the javagiac lib and display a JDialog with progress status
-	 * if frame is null display status in console
+	 * extract and load the javagiac lib and display a JDialog with progress
+	 * status if frame is null display status in console
 	 * 
 	 * @param frame
 	 * @throws IOException
@@ -60,7 +60,10 @@ public class JavaGiacLoader extends ProgressMonitor {
 			copyLibGccIfNeeded(folder);
 			copyLibStdCppIfNeeded(folder);
 			File libJavaGiac = copyLibJavaGiacIfNeeded(folder);
-			System.load(libJavaGiac.getCanonicalPath());
+			// System.load(libJavaGiac.getCanonicalPath());
+			System.setProperty("java.library.path",
+					System.getProperty("java.library.path") + ";" + libJavaGiac.getParent());
+			System.loadLibrary("javagiac");
 			setProgressToDial(5);
 		} else {
 			throw new IOException("Unable to create folder " + new File(DllProvider.FOLDERPAH).getCanonicalPath());

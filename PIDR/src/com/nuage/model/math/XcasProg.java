@@ -1,8 +1,6 @@
 package com.nuage.model.math;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
@@ -20,13 +18,11 @@ public abstract class XcasProg {
 	protected String path;
 	protected StringBuilder infos;
 
-	protected void parsingProg(String path) {
+	protected void parsingProg(InputStream ips) {
 		JavaGiacLoader.loadJavaGiac(Nuage.getFrame());
 		// Récupération du code Xcas
 		algo = null;
-		File f = new File(path);
 		try {
-			InputStream ips = new FileInputStream(f);
 			InputStreamReader ipsr = new InputStreamReader(ips);
 			BufferedReader br = new BufferedReader(ipsr);
 			String ligne;

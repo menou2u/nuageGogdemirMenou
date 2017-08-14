@@ -14,7 +14,9 @@ public interface ItemRenderer {
 	 * @param text
 	 *            the text to be display in the component
 	 * @param constraint
-	 *            the {@link RendererConstraints} that contain s the element for the renderer can be extended if you need but check that your {@link ItemRenderer} support the extension
+	 *            the {@link RendererConstraints} that contain s the element for the
+	 *            renderer can be extended if you need but check that your
+	 *            {@link ItemRenderer} support the extension
 	 * @return the component that should be display in the {@link JDynamicPopupMenu}
 	 */
 	public JComponent getComponent(String text, RendererConstraints constraint);
@@ -25,7 +27,8 @@ public interface ItemRenderer {
 	public int getItemMargin();
 
 	/**
-	 * @return the preferred height of the generated component most of the time static for an {@link ItemRenderer}
+	 * @return the preferred height of the generated component most of the time
+	 *         static for an {@link ItemRenderer}
 	 */
 	public int getPreferedItemHeight();
 

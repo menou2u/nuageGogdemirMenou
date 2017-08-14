@@ -13,10 +13,10 @@ public class FocusConserver extends FocusAdapter {
 	public static void appendToLastComponent() {
 		if (lastFocusRecever == null)
 			return;
-		if(lastFocusRecever instanceof JTextArea){
-			
-		}else if(lastFocusRecever instanceof JTextField){
-			
+		if (lastFocusRecever instanceof JTextArea) {
+
+		} else if (lastFocusRecever instanceof JTextField) {
+
 		}
 	}
 

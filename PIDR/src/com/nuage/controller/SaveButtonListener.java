@@ -13,7 +13,7 @@ import com.nuage.model.swing.Tools;
 public class SaveButtonListener implements ActionListener {
 
 	private Tools toolsReference;
-	
+
 	public SaveButtonListener(InfosWindow infosWindow) {
 		// TODO When want to save via Info window
 	}

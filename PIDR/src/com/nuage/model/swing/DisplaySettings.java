@@ -18,34 +18,34 @@ public class DisplaySettings extends Observable {
 	private JTextArea absText;
 	private JTextArea ordText;
 	private JTextArea heiText;
-	
-	public DisplaySettings(){
-		
+
+	public DisplaySettings() {
+
 		pointCloud = new JCheckBox("Nuage de points");
-		
+
 		constraintPoints = new JCheckBox("Point(s) contraint(s)");
-		
+
 		function = new JCheckBox[5];
 		function[0] = new JCheckBox("f(x,y)");
-		
+
 		limited = new JCheckBox("Limité");
-		
+
 		abs = new JLabel("Abscisses : ");
-		
+
 		absText = new JTextArea("x");
 		absText.setColumns(8);
-		
+
 		ord = new JLabel("Ordonnées : ");
-		
+
 		ordText = new JTextArea("y");
-		
+
 		ordText.setColumns(8);
-		
+
 		hei = new JLabel("Cote : ");
-		
+
 		heiText = new JTextArea("z");
 		heiText.setColumns(8);
-		
+
 	}
 
 	public JCheckBox getPointCloud() {
@@ -86,6 +86,6 @@ public class DisplaySettings extends Observable {
 
 	public JTextArea getHeiText() {
 		return heiText;
-	}	
-	
+	}
+
 }

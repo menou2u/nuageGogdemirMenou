@@ -6,17 +6,17 @@ public class Constraint2D {
 
 	private LinkedList<Double> constraint = new LinkedList<Double>();
 
-	public Constraint2D(LinkedList<Double> list){
-			constraint = list;
-		}
+	public Constraint2D(LinkedList<Double> list) {
+		constraint = list;
+	}
 
 	public Constraint2D(Double d, Double e, Double f, Double g) {
-			constraint = new LinkedList<Double>();
-			constraint.add(d);
-			constraint.add(e);
-			constraint.add(f);
-			constraint.add(g);
-		}
+		constraint = new LinkedList<Double>();
+		constraint.add(d);
+		constraint.add(e);
+		constraint.add(f);
+		constraint.add(g);
+	}
 
 	public Double getNum() {
 		return constraint.get(0);
@@ -33,8 +33,8 @@ public class Constraint2D {
 	public Double getConstraintValue() {
 		return constraint.get(2);
 	}
-	
-	public Double getDerivationOrder(){
+
+	public Double getDerivationOrder() {
 		return constraint.get(3);
 	}
 
@@ -45,9 +45,9 @@ public class Constraint2D {
 	public void setConstraintValue(Double constraintValue) {
 		constraint.set(2, constraintValue);
 	}
-	
-	public void setDerivationOrder(Double derivationOrder){
-		constraint.set(3,derivationOrder);
+
+	public void setDerivationOrder(Double derivationOrder) {
+		constraint.set(3, derivationOrder);
 	}
 
 }

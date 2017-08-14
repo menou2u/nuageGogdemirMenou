@@ -24,10 +24,10 @@ public class SlopeConstraintPanel extends JPanel {
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
-		this.add(slopeConstraints.getSlopeLabel(),gbc);
-		gbc.gridx+=gbc.gridwidth;
-		this.add(slopeConstraints.getSlope(),gbc);
+
+		this.add(slopeConstraints.getSlopeLabel(), gbc);
+		gbc.gridx += gbc.gridwidth;
+		this.add(slopeConstraints.getSlope(), gbc);
 	}
 
 	public static void main(String[] args) {

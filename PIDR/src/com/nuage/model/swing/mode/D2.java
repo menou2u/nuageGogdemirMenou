@@ -31,7 +31,7 @@ import com.nuage.view.panels.DisplaySettingsPanel;
 import com.nuage.view.panels.MathShortcutsPanel;
 import com.nuage.view.panels.TestFunctionPanel;
 
-public class D2 implements Updatable{
+public class D2 implements Updatable {
 
 	private TableCustom2DModel twoDDatasModel;
 	private Data2DPanel twoDDatasPane;
@@ -48,71 +48,75 @@ public class D2 implements Updatable{
 	private D2Graph d2Graph;
 	private TableCustom2DModel twoDTransformedDatasModel;
 	private Data2DPanel twoDTransformedDatasPane;
-	
+
 	public D2() {
 		// Datas
-		twoDDatasModel = new TableCustom2DModel(new String[]{"n°","Xi","Yi"});
+		twoDDatasModel = new TableCustom2DModel(new String[] { "n°", "Xi", "Yi" });
 		twoDDatasPane = new Data2DPanel(twoDDatasModel);
-		//TransformedDatas
-		twoDTransformedDatasModel = new TableCustom2DModel(new String[]{"n°","Xi=tx(xi)","Yi=ty(yi)"});
+		// TransformedDatas
+		twoDTransformedDatasModel = new TableCustom2DModel(new String[] { "n°", "Xi=tx(xi)", "Yi=ty(yi)" });
 		twoDTransformedDatasPane = new Data2DPanel(twoDTransformedDatasModel);
-		//Contraintes
-		constraint2DModel = new Table2DConstraintCustomModel(new String[]{"N°","Xw","Valeur contrainte","Ordre de dérivation"});
-		//twoDConstraints = new Constraints(new String[]{"N°","Xw","Valeur contrainte","Ordre de dérivation"});
+		// Contraintes
+		constraint2DModel = new Table2DConstraintCustomModel(
+				new String[] { "N°", "Xw", "Valeur contrainte", "Ordre de dérivation" });
+		// twoDConstraints = new Constraints(new String[]{"N°","Xw","Valeur
+		// contrainte","Ordre de dérivation"});
 		twoDConstraintsPane = new Constraint2DPanel(constraint2DModel);
-		//Fonction de Test
+		// Fonction de Test
 		twoDTestFunction = new TestFunction("(x)");
 		twoDTestFunctionPane = new TestFunctionPanel(twoDTestFunction);
-		//Calculette
+		// Calculette
 		twoDMathShortcuts = new MathShortcuts(twoDTestFunction);
 		twoDMathShortcutsPane = new MathShortcutsPanel(twoDMathShortcuts);
-		//Fonction calculée
+		// Fonction calculée
 		twoDCalculatedFunction = new CalculatedFunction(" f(x) =   ", "x0");
 		twoDCalculatedFunctionPane = new CalculatedFunctionPanel(twoDCalculatedFunction);
-		//Partie display
+		// Partie display
 		twoDDisplaySettings = new DisplaySettings();
 		twoDDisplaySettingsPane = new DisplaySettingsPanel(twoDDisplaySettings);
 		d2Graph = new D2Graph();
 	}
-	
+
 	public Component getVisualisationPanel() {
 		// Define a function to plot
-        Mapper mapper = new Mapper() {
-            @Override
-            public double f(double x, double y) {
-                //return x * Math.sin(x * y);
-            	return 0;
-            }
-        };
+		Mapper mapper = new Mapper() {
+			@Override
+			public double f(double x, double y) {
+				// return x * Math.sin(x * y);
+				return 0;
+			}
+		};
 
-        // Define range and precision for the function to plot
-        Range range = new Range(1, 5);
-        int steps = 80;
+		// Define range and precision for the function to plot
+		Range range = new Range(1, 5);
+		int steps = 80;
 
-        // Create the object to represent the function over the given range.
-        final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
-        surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(), surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
-        surface.setFaceDisplayed(true);
-        surface.setWireframeDisplayed(false);
+		// Create the object to represent the function over the given range.
+		final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
+		surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(),
+				surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
+		surface.setFaceDisplayed(true);
+		surface.setWireframeDisplayed(false);
 
-        // Create a chart
-        Chart chart = new Chart();
-        chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
-        chart.getScene().getGraph().add(surface);
-        
-        chart.addMouseCameraController();
-        chart.addMousePickingController(2);
-        /*AWTCameraMouseController controller = new AWTCameraMouseController(chart);
+		// Create a chart
+		Chart chart = new Chart();
+		chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
+		chart.getScene().getGraph().add(surface);
 
-		addMouseListener(controller);
-		addMouseMotionListener(controller);
-		addMouseWheelListener(controller);*/
+		chart.addMouseCameraController();
+		chart.addMousePickingController(2);
+		/*
+		 * AWTCameraMouseController controller = new AWTCameraMouseController(chart);
+		 * 
+		 * addMouseListener(controller); addMouseMotionListener(controller);
+		 * addMouseWheelListener(controller);
+		 */
 		Component canvas = (Component) chart.getCanvas();
-		
-		//JPanel panel = new JPanel();
-		//panel.add(canvas, BorderLayout.CENTER);
+
+		// JPanel panel = new JPanel();
+		// panel.add(canvas, BorderLayout.CENTER);
 		return canvas;
-		//return new JPanel(); 
+		// return new JPanel();
 	}
 
 	/**
@@ -237,7 +241,5 @@ public class D2 implements Updatable{
 	public Data2DPanel getTwoDTransformedDatasPane() {
 		return twoDTransformedDatasPane;
 	}
-	
-	
-	
+
 }

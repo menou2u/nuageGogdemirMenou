@@ -25,12 +25,14 @@ public class FilePopupMenuOpener extends DefaultPopupMenuOpener {
 	public FilePopupMenuOpener(MenuModelHandler model) {
 		super(model);
 		if (!(model.getCommonConstraint() instanceof LayoutRendererConstraints)) {
-			throw new IllegalArgumentException("Can't use a ButtonPopupMenuOpener without a LayoutRendererConstraints in the model");
+			throw new IllegalArgumentException(
+					"Can't use a ButtonPopupMenuOpener without a LayoutRendererConstraints in the model");
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.DefaultPopupMenuOpener#getItemCount()
 	 */
 	@Override
@@ -40,7 +42,9 @@ public class FilePopupMenuOpener extends DefaultPopupMenuOpener {
 
 	/*
 	 * (non-Javadoc)
-	 * @see pidr.mag.sample.api.DefaultPopupMenuOpener#getPopupMenu(java.awt.Dimension)
+	 * 
+	 * @see
+	 * pidr.mag.sample.api.DefaultPopupMenuOpener#getPopupMenu(java.awt.Dimension)
 	 */
 	@Override
 	public JPopupMenu getPopupMenu(Dimension dim) {
@@ -48,12 +52,13 @@ public class FilePopupMenuOpener extends DefaultPopupMenuOpener {
 		model.getCommonConstraint().setPreferedWidth(dim.width);
 		JPopupMenu popup = new JPopupMenu();
 		popup.setLayout(((LayoutRendererConstraints) model.getCommonConstraint()).getLayoutManager());
-		//On définit le max d'items dans la liste
+		// On définit le max d'items dans la liste
 		int max = ((LayoutRendererConstraints) model.getCommonConstraint()).getMaxItemCount();
 		int i = 1;
 		model.reinitCommonConstraints();
 		for (JMenuItem item : model) {
-			Object constraint = ((LayoutRendererConstraints) model.getCommonConstraint()).getInferedlayoutConstraintToNextElements();
+			Object constraint = ((LayoutRendererConstraints) model.getCommonConstraint())
+					.getInferedlayoutConstraintToNextElements();
 			popup.add(item, constraint);
 			if (++i > max)
 				break;

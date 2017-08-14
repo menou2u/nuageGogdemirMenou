@@ -7,22 +7,23 @@ import javax.swing.JTextField;
 
 /**
  * Quand on a choisi une contrainte de type "point".
+ * 
  * @author Romain
  *
  */
 public class PointConstraint {
-	
+
 	private JTextField xWTrue;
 	private JTextField xWTreated;
 	private JTextField yWTrue;
 	private JTextField yWTreated;
-	
+
 	private JLabel xWTrueLabel;
 	private JLabel yWTrueLabel;
 	private JLabel xWTreatedLabel;
 	private JLabel yWTreatedLabel;
 
-	public PointConstraint(){
+	public PointConstraint() {
 		xWTrue = new JTextField(8);
 		xWTreated = new JTextField(8);
 		yWTrue = new JTextField(8);
@@ -32,8 +33,8 @@ public class PointConstraint {
 		xWTreatedLabel = new JLabel("Xw traité = ");
 		yWTreatedLabel = new JLabel("Yw traité = ");
 	}
-	
-	public LinkedList<Double> getOmegaDatas(){
+
+	public LinkedList<Double> getOmegaDatas() {
 		LinkedList<Double> omegaDatas = new LinkedList<Double>();
 		omegaDatas.add(Double.parseDouble(xWTrue.getText()));
 		omegaDatas.add(Double.parseDouble(yWTrue.getText()));
@@ -81,15 +82,13 @@ public class PointConstraint {
 	public void setxWTreatedText(String xWTreated) {
 		this.xWTreated.setText(xWTreated);
 	}
-	
+
 	public void setyWTrueText(String yWTrue) {
 		this.yWTrue.setText(yWTrue);
 	}
-	
+
 	public void setyWTreatedText(String yWTreated) {
 		this.yWTreated.setText(yWTreated);
 	}
-	
-	
-	
+
 }

@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class CoordAndVertexConstraints extends Observable{
+public class CoordAndVertexConstraints extends Observable {
 
 	private JTextField xij;
 	private JTextField yij;
@@ -30,11 +30,11 @@ public class CoordAndVertexConstraints extends Observable{
 	private JLabel xjkLab;
 	private JLabel yjkLab;
 	private JLabel zjkLab;
-	
+
 	private JRadioButton vertexIJ;
 	private JRadioButton vertexKI;
 	private JRadioButton vertexJK;
-	
+
 	private JPanel vertexVij;
 	private JTextField vertexVXIJ;
 	private JTextField vertexVYIJ;
@@ -46,46 +46,46 @@ public class CoordAndVertexConstraints extends Observable{
 	private JTextField vertexVYJK;
 	private ButtonGroup bG;
 
-	public CoordAndVertexConstraints(){
+	public CoordAndVertexConstraints() {
 		initPanelDatas();
 	}
-	
+
 	private void initPanelDatas() {
 		vertexIJ = new JRadioButton("Vecteur Vij (xoy)");
 		vertexKI = new JRadioButton("Vecteur Vki (zox)");
 		vertexJK = new JRadioButton("Vecteur Vjk (yoz)");
-		
+
 		bG = new ButtonGroup();
-		
+
 		bG.add(vertexIJ);
 		bG.add(vertexKI);
 		bG.add(vertexJK);
-		
+
 		vertexIJ.setSelected(true);
-		
+
 		xij = new JTextField(8);
 		yij = new JTextField(8);
 		zij = new JTextField(8);
 		xijLab = new JLabel("Xw1 brut = ");
 		yijLab = new JLabel("Yw1 brut = ");
 		zijLab = new JLabel("Zw1 brut = ");
-		
+
 		xki = new JTextField(8);
 		yki = new JTextField(8);
 		zki = new JTextField(8);
 		xkiLab = new JLabel("Xw1 brut = ");
 		ykiLab = new JLabel("Yw1 brut = ");
 		zkiLab = new JLabel("Zw1 brut = ");
-		
+
 		xjk = new JTextField(8);
 		yjk = new JTextField(8);
 		zjk = new JTextField(8);
 		xjkLab = new JLabel("Xw1 brut = ");
 		yjkLab = new JLabel("Yw1 brut = ");
 		zjkLab = new JLabel("Zw1 brut = ");
-		
+
 		vertexVij = new JPanel(new GridBagLayout());
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
 		gbc.weighty = 1;
@@ -93,116 +93,112 @@ public class CoordAndVertexConstraints extends Observable{
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		vertexVXIJ = new JTextField(8);
 		vertexVYIJ = new JTextField(8);
-		
-		vertexVij.add(xijLab,gbc);
-		gbc.gridx=1;
-		vertexVij.add(xij,gbc);
-		
-		gbc.gridx=2;
-		vertexVij.add(new JLabel("Vxij = "),gbc);
-		gbc.gridx=3;
-		vertexVij.add(vertexVXIJ,gbc);
-		
-		gbc.gridy=1;
-		gbc.gridx=0;
-		vertexVij.add(yijLab,gbc);
-		gbc.gridx=1;
-		vertexVij.add(yij,gbc);
-		
-		gbc.gridx=2;
-		vertexVij.add(new JLabel("Vyij = "),gbc);
-		gbc.gridx=3;
-		vertexVij.add(vertexVYIJ,gbc);
-		
-		gbc.gridy=2;
-		gbc.gridx=0;
-		vertexVij.add(zijLab,gbc);
-		gbc.gridx=1;
-		vertexVij.add(zij,gbc);
-		
 
-		
-		
+		vertexVij.add(xijLab, gbc);
+		gbc.gridx = 1;
+		vertexVij.add(xij, gbc);
+
+		gbc.gridx = 2;
+		vertexVij.add(new JLabel("Vxij = "), gbc);
+		gbc.gridx = 3;
+		vertexVij.add(vertexVXIJ, gbc);
+
+		gbc.gridy = 1;
+		gbc.gridx = 0;
+		vertexVij.add(yijLab, gbc);
+		gbc.gridx = 1;
+		vertexVij.add(yij, gbc);
+
+		gbc.gridx = 2;
+		vertexVij.add(new JLabel("Vyij = "), gbc);
+		gbc.gridx = 3;
+		vertexVij.add(vertexVYIJ, gbc);
+
+		gbc.gridy = 2;
+		gbc.gridx = 0;
+		vertexVij.add(zijLab, gbc);
+		gbc.gridx = 1;
+		vertexVij.add(zij, gbc);
+
 		vertexVki = new JPanel(new GridBagLayout());
-		
+
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		vertexVXKI = new JTextField(8);
 		vertexVYKI = new JTextField(8);
-		
-		vertexVki.add(xkiLab,gbc);
-		gbc.gridx=1;
-		vertexVki.add(xki,gbc);
-		
-		gbc.gridx=2;
-		vertexVki.add(new JLabel("Vxki = "),gbc);
-		gbc.gridx=3;
-		vertexVki.add(vertexVXKI,gbc);
-		
-		gbc.gridx=0;
-		gbc.gridy=1;
-		vertexVki.add(ykiLab,gbc);
-		gbc.gridx=1;
-		vertexVki.add(yki,gbc);
-		
-		gbc.gridx=2;
-		vertexVki.add(new JLabel("Vyki = "),gbc);
-		gbc.gridx=3;
-		vertexVki.add(vertexVYKI,gbc);
 
-		gbc.gridy=2;
-		gbc.gridx=0;
-		vertexVki.add(zkiLab,gbc);
-		gbc.gridx=1;
-		vertexVki.add(zki,gbc);
-		
-		
+		vertexVki.add(xkiLab, gbc);
+		gbc.gridx = 1;
+		vertexVki.add(xki, gbc);
+
+		gbc.gridx = 2;
+		vertexVki.add(new JLabel("Vxki = "), gbc);
+		gbc.gridx = 3;
+		vertexVki.add(vertexVXKI, gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		vertexVki.add(ykiLab, gbc);
+		gbc.gridx = 1;
+		vertexVki.add(yki, gbc);
+
+		gbc.gridx = 2;
+		vertexVki.add(new JLabel("Vyki = "), gbc);
+		gbc.gridx = 3;
+		vertexVki.add(vertexVYKI, gbc);
+
+		gbc.gridy = 2;
+		gbc.gridx = 0;
+		vertexVki.add(zkiLab, gbc);
+		gbc.gridx = 1;
+		vertexVki.add(zki, gbc);
+
 		vertexVjk = new JPanel(new GridBagLayout());
-		
+
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		vertexVXJK = new JTextField(8);
 		vertexVYJK = new JTextField(8);
 
-		vertexVjk.add(xjkLab,gbc);
-		gbc.gridx=1;
-		vertexVjk.add(xjk,gbc);
-		
-		gbc.gridx=2;
-		vertexVjk.add(new JLabel("Vxjk = "),gbc);
-		gbc.gridx=3;
-		vertexVjk.add(vertexVXJK,gbc);
-		
-		gbc.gridy=1;
-		gbc.gridx=0;
-		vertexVjk.add(yjkLab,gbc);
-		gbc.gridx=1;
-		vertexVjk.add(yjk,gbc);
-		
-		gbc.gridx=2;
-		vertexVjk.add(new JLabel("Vyjk = "),gbc);
-		gbc.gridx=3;
-		vertexVjk.add(vertexVYJK,gbc);
+		vertexVjk.add(xjkLab, gbc);
+		gbc.gridx = 1;
+		vertexVjk.add(xjk, gbc);
 
-		gbc.gridy=2;
-		gbc.gridx=0;
-		vertexVjk.add(zjkLab,gbc);
-		gbc.gridx=1;
-		vertexVjk.add(zjk,gbc);
-		
+		gbc.gridx = 2;
+		vertexVjk.add(new JLabel("Vxjk = "), gbc);
+		gbc.gridx = 3;
+		vertexVjk.add(vertexVXJK, gbc);
+
+		gbc.gridy = 1;
+		gbc.gridx = 0;
+		vertexVjk.add(yjkLab, gbc);
+		gbc.gridx = 1;
+		vertexVjk.add(yjk, gbc);
+
+		gbc.gridx = 2;
+		vertexVjk.add(new JLabel("Vyjk = "), gbc);
+		gbc.gridx = 3;
+		vertexVjk.add(vertexVYJK, gbc);
+
+		gbc.gridy = 2;
+		gbc.gridx = 0;
+		vertexVjk.add(zjkLab, gbc);
+		gbc.gridx = 1;
+		vertexVjk.add(zjk, gbc);
+
 	}
 
 	public JTextField getXij() {
@@ -328,6 +324,5 @@ public class CoordAndVertexConstraints extends Observable{
 	public ButtonGroup getbG() {
 		return bG;
 	}
-	
-	
+
 }

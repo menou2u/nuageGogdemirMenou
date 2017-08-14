@@ -12,7 +12,9 @@ public class DefaultItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
-	 * @see pidr.mag.sample.api.ItemRenderer#getComponent(java.lang.String, pidr.mag.sample.api.RendererConstraints)
+	 * 
+	 * @see pidr.mag.sample.api.ItemRenderer#getComponent(java.lang.String,
+	 * pidr.mag.sample.api.RendererConstraints)
 	 */
 	@Override
 	public JComponent getComponent(String key, RendererConstraints constrain) {
@@ -22,6 +24,7 @@ public class DefaultItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.ItemRenderer#getItemMargin()
 	 */
 	@Override
@@ -31,6 +34,7 @@ public class DefaultItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.ItemRenderer#getPreferedItemHeight()
 	 */
 	@Override
@@ -40,6 +44,7 @@ public class DefaultItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.ItemRenderer#setItemMargin(int)
 	 */
 	@Override
@@ -49,6 +54,7 @@ public class DefaultItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.ItemRenderer#setPreferedItemHeight(int)
 	 */
 	@Override

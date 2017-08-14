@@ -3,8 +3,9 @@ package com.nuage.javagiac.lib;
 
 // This example illustrates how giac can be used from Java using SWIG.
 // On linux type java runme, on mac os x with giac 32 bits, java -d32 runme
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class runme {
 	static {
@@ -37,16 +38,15 @@ public class runme {
 		/*
 		 * System.out.println( "Created gen of type : "+g.getType()); if
 		 * (g.getType()==gen_unary_types._SYMB.swigValue()){ System.out.println(
-			"g operator is "+g.operator_at(0,C).print(C)); System.out.println(
+		 * "g operator is "+g.operator_at(0,C).print(C)); System.out.println(
 		 * "g has "+giac._size(g,C).getVal()+" arguments"); System.out.println(
 		 * "First argument of g is "+g.operator_at(1,C).print(C)); }
 		 */
-		System.out.println(
-				"g operator is "+g.operator_at(0,C).print(C));
+		System.out.println("g operator is " + g.operator_at(0, C).print(C));
 		gen h = giac._factor(g, C);
 
 		// System.out.println("res " + g);
-		 System.out.println( "Value of h: " + h.print(C) );
+		System.out.println("Value of h: " + h.print(C));
 
 		/*
 		 * System.out.println( "Value of double h: " + h.DOUBLE_val() );

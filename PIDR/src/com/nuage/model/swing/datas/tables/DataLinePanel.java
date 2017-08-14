@@ -11,7 +11,6 @@ import javax.swing.JTable;
 
 import com.nuage.view.panels.Data2DPanel;
 
-
 public class DataLinePanel extends JPanel {
 	/**
 	 * 
@@ -26,18 +25,17 @@ public class DataLinePanel extends JPanel {
 	private Data2DPanel d2dpDatas;
 	private Data2DPanel d2dpTrans;
 
-	public DataLinePanel(TableCustom2DModel modele,String tx,String ty)
-	{
+	public DataLinePanel(TableCustom2DModel modele, String tx, String ty) {
 		super();
 		this.setTx(tx);
 		this.setTy(ty);
-		
+
 		tc2dmDatas = modele;
 		tc2dmTrans = applyChanges(modele);
-		
+
 		setD2dpDatas(new Data2DPanel(modele));
 		setD2dpTrans(new Data2DPanel(tc2dmTrans));
-		
+
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
@@ -46,17 +44,17 @@ public class DataLinePanel extends JPanel {
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		add(setD2dpDatas(new Data2DPanel(tc2dmDatas)));
-		gbc.gridx=1;
+		gbc.gridx = 1;
 		add(setD2dpTrans(new Data2DPanel(tc2dmTrans)));
 	}
 
 	private TableCustom2DModel applyChanges(TableCustom2DModel modele2) {
 		// TODO Auto-generated method stub
-		TableCustom2DModel model = new TableCustom2DModel(new String[]{"n°","Xi = tx(xi)","Yi = ty(yi)"});
+		TableCustom2DModel model = new TableCustom2DModel(new String[] { "n°", "Xi = tx(xi)", "Yi = ty(yi)" });
 		model.getPoints().clear();
-		for (Point2D p : modele2.getPoints()){
+		for (Point2D p : modele2.getPoints()) {
 			model.addPoint(p);
 		}
 		return model;
@@ -64,7 +62,7 @@ public class DataLinePanel extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		TableCustom2DModel mod = new TableCustom2DModel(new String[]{"n°","Xi","Yi"});
+		TableCustom2DModel mod = new TableCustom2DModel(new String[] { "n°", "Xi", "Yi" });
 		frame.setContentPane(new Data2DPanel(mod));
 		frame.pack();
 		frame.setVisible(true);
@@ -112,7 +110,7 @@ public class DataLinePanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			modele.addPoint(new Point2D(modele.getRowCount() + 1.0,0.0,0.0));
+			modele.addPoint(new Point2D(modele.getRowCount() + 1.0, 0.0, 0.0));
 		}
 	}
 
@@ -130,8 +128,8 @@ public class DataLinePanel extends JPanel {
 			}
 			for (int i = 0; i < modele.getRowCount(); i++) {
 				modele.setValueAt(i + 1.0, i, 0);
-				System.out.println(modele.getValueAt(i,1));
-				System.out.println(i+1.0);
+				System.out.println(modele.getValueAt(i, 1));
+				System.out.println(i + 1.0);
 			}
 			System.out.println(modele.getRowCount());
 		}
@@ -143,6 +141,5 @@ public class DataLinePanel extends JPanel {
 	public TableCustom2DModel getTc2dmTrans() {
 		return tc2dmTrans;
 	}
-	
-	
+
 }

@@ -8,17 +8,16 @@ import com.nuage.model.swing.Tools;
 public class ExecuteButtonListener implements ActionListener {
 
 	Tools toolsReference;
-	
+
 	public ExecuteButtonListener(Tools tools) {
 		toolsReference = tools;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if (toolsReference.getMainWindow().getMode().getData().isEmpty()){
-			//new PopUp(this);
-		}
-		else {
+		if (toolsReference.getMainWindow().getMode().getData().isEmpty()) {
+			// new PopUp(this);
+		} else {
 			toolsReference.getMainWindow().runMath();
 		}
 	}

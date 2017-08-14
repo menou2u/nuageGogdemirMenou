@@ -10,13 +10,13 @@ import com.nuage.model.swing.datas.tables.TableCustomModel;
 public interface Updatable {
 
 	TableCustomModel getData();
-	
+
 	TestFunction getTestFunction();
-	
+
 	TransformX getTransformX();
-	
+
 	TransformY getTransformY();
-	
+
 	AbstractTableModel getDataModel();
-	
+
 }

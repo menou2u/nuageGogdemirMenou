@@ -7,8 +7,8 @@ public class TransformationsLine {
 	private TransformX transformX;
 	private TransformY transformY;
 	private JButton validation;
-	
-	public TransformationsLine(){
+
+	public TransformationsLine() {
 		transformX = new TransformX();
 		transformY = new TransformY();
 		validation = new JButton("Validation des données");
@@ -21,8 +21,8 @@ public class TransformationsLine {
 	public TransformY getTransformY() {
 		return transformY;
 	}
-	
-	public JButton getValidation(){
+
+	public JButton getValidation() {
 		return validation;
 	}
 }

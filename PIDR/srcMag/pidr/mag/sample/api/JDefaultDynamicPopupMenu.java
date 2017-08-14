@@ -22,6 +22,7 @@ public class JDefaultDynamicPopupMenu extends JDynamicPopupMenu {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.JDynamicPopupMenu#refresh()
 	 */
 	@Override

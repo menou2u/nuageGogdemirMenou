@@ -24,7 +24,8 @@ public class MenuOpenerButton extends JButton {
 	private ActionListener openAction;
 
 	/**
-	 * Construct a {@link MenuOpenerButton} using a {@link DefaultPopupMenuOpener} or any clas that extends
+	 * Construct a {@link MenuOpenerButton} using a {@link DefaultPopupMenuOpener}
+	 * or any clas that extends
 	 * 
 	 * @param popupMenuOpener
 	 *            the PopupMenuOpener (containing the model)
@@ -61,7 +62,9 @@ public class MenuOpenerButton extends JButton {
 
 	/*
 	 * (non-Javadoc)
-	 * @see javax.swing.AbstractButton#addActionListener(java.awt.event.ActionListener)
+	 * 
+	 * @see
+	 * javax.swing.AbstractButton#addActionListener(java.awt.event.ActionListener)
 	 */
 	@Override
 	public void addActionListener(ActionListener l) {
@@ -72,7 +75,8 @@ public class MenuOpenerButton extends JButton {
 
 	/**
 	 * @param dimension
-	 *            the {@link Dimension} used to update the {@link RendererConstraints}
+	 *            the {@link Dimension} used to update the
+	 *            {@link RendererConstraints}
 	 * @return the {@link JPopupMenu} to be display
 	 */
 	public JPopupMenu getPopupMenu(Dimension dimension) {
@@ -81,7 +85,9 @@ public class MenuOpenerButton extends JButton {
 
 	/*
 	 * (non-Javadoc)
-	 * @see javax.swing.AbstractButton#removeActionListener(java.awt.event.ActionListener)
+	 * 
+	 * @see javax.swing.AbstractButton#removeActionListener(java.awt.event.
+	 * ActionListener)
 	 */
 	@Override
 	public void removeActionListener(ActionListener l) {

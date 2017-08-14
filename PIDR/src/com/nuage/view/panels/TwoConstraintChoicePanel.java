@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import com.nuage.model.swing.datas.constraints.TwoConstraintChoice;
 
 @SuppressWarnings("serial")
-public class TwoConstraintChoicePanel extends JPanel{
-		
-	public TwoConstraintChoicePanel(TwoConstraintChoice twoConstraintChoice){
+public class TwoConstraintChoicePanel extends JPanel {
+
+	public TwoConstraintChoicePanel(TwoConstraintChoice twoConstraintChoice) {
 		super(new GridBagLayout());
 
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -22,22 +22,22 @@ public class TwoConstraintChoicePanel extends JPanel{
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
-		add(twoConstraintChoice.getConstraintChoice(),gbc);
-		gbc.gridx=1;
-		gbc.weightx=1;
-		add(twoConstraintChoice.getConstraintData(),gbc);
+
+		add(twoConstraintChoice.getConstraintChoice(), gbc);
+		gbc.gridx = 1;
+		gbc.weightx = 1;
+		add(twoConstraintChoice.getConstraintData(), gbc);
 	}
-	
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("ConstraintsPanel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        TwoConstraintChoice twoConstraintChoice = new TwoConstraintChoice();
-        TwoConstraintChoicePanel newContentPane = new TwoConstraintChoicePanel(twoConstraintChoice);
-        newContentPane.setOpaque(true);
-        frame.setContentPane(newContentPane);
-        frame.pack();
-        frame.setVisible(true);
-    }
-	
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("ConstraintsPanel");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		TwoConstraintChoice twoConstraintChoice = new TwoConstraintChoice();
+		TwoConstraintChoicePanel newContentPane = new TwoConstraintChoicePanel(twoConstraintChoice);
+		newContentPane.setOpaque(true);
+		frame.setContentPane(newContentPane);
+		frame.pack();
+		frame.setVisible(true);
+	}
+
 }

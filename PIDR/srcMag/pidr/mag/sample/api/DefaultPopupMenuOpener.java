@@ -43,7 +43,8 @@ public class DefaultPopupMenuOpener {
 
 	/**
 	 * @param dimension
-	 *            the {@link Dimension} used to update the {@link RendererConstraints}
+	 *            the {@link Dimension} used to update the
+	 *            {@link RendererConstraints}
 	 * @return the {@link JPopupMenu} to be display
 	 */
 	public JPopupMenu getPopupMenu(Dimension dimension) {
@@ -57,7 +58,8 @@ public class DefaultPopupMenuOpener {
 	}
 
 	/**
-	 * Compute the size of the popup menu using ItemCount, PreferedItemHeightand ItemMargin
+	 * Compute the size of the popup menu using ItemCount, PreferedItemHeightand
+	 * ItemMargin
 	 * 
 	 * @return the height of the popup menu
 	 */

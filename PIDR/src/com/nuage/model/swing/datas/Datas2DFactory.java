@@ -87,15 +87,15 @@ public class Datas2DFactory {
 		return value;
 	}
 
-	public void completeDatas(){
+	public void completeDatas() {
 		datas = new Object[Math.max(getY().size(), getX().size())][3];
-		for (int i=0;i<getY().size();i++){
+		for (int i = 0; i < getY().size(); i++) {
 			System.out.println(datas.length);
 			System.out.println(datas[0].length);
 			datas[i][2] = getY().get(i);
 			datas[i][0] = i;
 		}
-		for (int j=0;j<getX().size();j++){
+		for (int j = 0; j < getX().size(); j++) {
 			datas[j][1] = getX().get(j);
 		}
 	}
@@ -126,8 +126,8 @@ public class Datas2DFactory {
 		Integer numRow = row.getRowNum();
 		dic.put(numRow, correct);
 	}
-	
-	public Object[][] getDatas(){
+
+	public Object[][] getDatas() {
 		return datas;
 	}
 

@@ -17,10 +17,12 @@ public class FileItemRendererConstraint extends LayoutRendererConstraints {
 	private GridBagConstraints c;
 
 	/**
-	 * construct a {@link LayoutRendererConstraints} with a {@link GridBagLayout} and no limit size
+	 * construct a {@link LayoutRendererConstraints} with a {@link GridBagLayout}
+	 * and no limit size
 	 * 
 	 * @param preferedheight
-	 *            the preferred height of element inherit {@link RendererConstraints}
+	 *            the preferred height of element inherit
+	 *            {@link RendererConstraints}
 	 */
 	public FileItemRendererConstraint(int preferedheight) {
 		this(preferedheight, Integer.MAX_VALUE);
@@ -30,7 +32,8 @@ public class FileItemRendererConstraint extends LayoutRendererConstraints {
 	 * construct a {@link LayoutRendererConstraints} with a {@link GridBagLayout}
 	 * 
 	 * @param preferedheight
-	 *            the preferred height of element inherit {@link RendererConstraints}
+	 *            the preferred height of element inherit
+	 *            {@link RendererConstraints}
 	 * @param maxItemCount
 	 *            the number of displayed Item
 	 * 
@@ -44,7 +47,9 @@ public class FileItemRendererConstraint extends LayoutRendererConstraints {
 
 	/*
 	 * (non-Javadoc)
-	 * @see pidr.mag.sample.api.LayoutRendererConstraints#getInferedlayoutConstraintToNextElements()
+	 * 
+	 * @see pidr.mag.sample.api.LayoutRendererConstraints#
+	 * getInferedlayoutConstraintToNextElements()
 	 */
 	@Override
 	public Object getInferedlayoutConstraintToNextElements() {
@@ -54,6 +59,7 @@ public class FileItemRendererConstraint extends LayoutRendererConstraints {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.RendererConstraints#reinit()
 	 */
 	@Override

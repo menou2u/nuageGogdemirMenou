@@ -32,7 +32,7 @@ import com.nuage.view.panels.PlaneConstraintsChoicePanel;
 import com.nuage.view.panels.TransformationsPlanePanel;
 
 public class Plane implements Updatable {
-	
+
 	private TransformationsPlanePanel transformationPlanePanel;
 	private TransformationsPlane transformationPlane;
 	private MathShortcuts mathShortcutsPlane;
@@ -45,61 +45,63 @@ public class Plane implements Updatable {
 	private TestFunction testFunctionPlane;
 	private PlaneGraph planeGraph;
 	private DataPlanePanel dataPlanePanel;
-	
+
 	public Plane() {
 		testFunctionPlane = new TestFunction("(x;y)");
 		mathShortcutsPlane = new MathShortcuts(testFunctionPlane);
 		transformationPlane = new TransformationsPlane();
 		transformationPlanePanel = new TransformationsPlanePanel(transformationPlane);
 		mathShortcutsPlanePanel = new MathShortcutsPanel(mathShortcutsPlane);
-		
-		planeData = new TableCustom3DModel(new String[]{"n°", "Xi", "Yi", "Zi"});
-		dataPlanePanel = new DataPlanePanel(planeData,"","","");
-		
+
+		planeData = new TableCustom3DModel(new String[] { "n°", "Xi", "Yi", "Zi" });
+		dataPlanePanel = new DataPlanePanel(planeData, "", "", "");
+
 		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel(new PlaneConstraintsChoice());
 		planeDisplay = new DisplaySettings();
 		displayPlanePanel = new DisplaySettingsPanel(planeDisplay);
 		planeGraph = new PlaneGraph();
 	}
-	
+
 	public Component getVisualisationPanel() {
 		// Define a function to plot
-        Mapper mapper = new Mapper() {
-            @Override
-            public double f(double x, double y) {
-                //return x * Math.sin(x * y);
-            	return 0;
-            }
-        };
+		Mapper mapper = new Mapper() {
+			@Override
+			public double f(double x, double y) {
+				// return x * Math.sin(x * y);
+				return 0;
+			}
+		};
 
-        // Define range and precision for the function to plot
-        Range range = new Range(1, 5);
-        int steps = 80;
+		// Define range and precision for the function to plot
+		Range range = new Range(1, 5);
+		int steps = 80;
 
-        // Create the object to represent the function over the given range.
-        final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
-        surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(), surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
-        surface.setFaceDisplayed(true);
-        surface.setWireframeDisplayed(false);
+		// Create the object to represent the function over the given range.
+		final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
+		surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(),
+				surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
+		surface.setFaceDisplayed(true);
+		surface.setWireframeDisplayed(false);
 
-        // Create a chart
-        Chart chart = new Chart();
-        chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
-        chart.getScene().getGraph().add(surface);
-        
-        chart.addMouseCameraController();
-        chart.addMousePickingController(2);
-        /*AWTCameraMouseController controller = new AWTCameraMouseController(chart);
+		// Create a chart
+		Chart chart = new Chart();
+		chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
+		chart.getScene().getGraph().add(surface);
 
-		addMouseListener(controller);
-		addMouseMotionListener(controller);
-		addMouseWheelListener(controller);*/
+		chart.addMouseCameraController();
+		chart.addMousePickingController(2);
+		/*
+		 * AWTCameraMouseController controller = new AWTCameraMouseController(chart);
+		 * 
+		 * addMouseListener(controller); addMouseMotionListener(controller);
+		 * addMouseWheelListener(controller);
+		 */
 		Component canvas = (Component) chart.getCanvas();
-		
-		//JPanel panel = new JPanel();
-		//panel.add(canvas, BorderLayout.CENTER);
+
+		// JPanel panel = new JPanel();
+		// panel.add(canvas, BorderLayout.CENTER);
 		return canvas;
-		//return new JPanel(); 
+		// return new JPanel();
 	}
 
 	/**
@@ -123,14 +125,12 @@ public class Plane implements Updatable {
 		return mathShortcutsPlanePanel;
 	}
 
-
 	/**
 	 * @return the transformedPlaneData
 	 */
 	public Data getTransformedPlaneData() {
 		return transformedPlaneData;
 	}
-
 
 	/**
 	 * @return the planeConstraintsChoicePanel
@@ -159,7 +159,7 @@ public class Plane implements Updatable {
 	public TestFunction getTestFunctionPlane() {
 		return testFunctionPlane;
 	}
-	
+
 	public TransformationsPlane getTransformationsPlane() {
 		return transformationPlane;
 	}
@@ -173,7 +173,7 @@ public class Plane implements Updatable {
 	public TransformY getTransformY() {
 		return transformationPlane.getTransformY();
 	}
-	
+
 	public TransformZ getTransformZ() {
 		return transformationPlane.getTransformZ();
 	}
@@ -207,6 +207,5 @@ public class Plane implements Updatable {
 	public DataPlanePanel getDataPlanePanel() {
 		return dataPlanePanel;
 	}
-	
-	
+
 }

@@ -11,10 +11,9 @@ import com.liferay.faces.util.lang.Observer;
 import com.nuage.model.swing.datas.constraints.PointConstraint;
 
 @SuppressWarnings("serial")
-public class PointConstraintPanel extends JPanel implements Observer{
+public class PointConstraintPanel extends JPanel implements Observer {
 
-	
-	public PointConstraintPanel(PointConstraint pointConstraint){
+	public PointConstraintPanel(PointConstraint pointConstraint) {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
@@ -23,43 +22,43 @@ public class PointConstraintPanel extends JPanel implements Observer{
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
-		this.add(pointConstraint.getxWTrueLabel(),gbc);
-		gbc.gridx+=gbc.gridwidth;
-		this.add(pointConstraint.getxWTrue(),gbc);
-		
-		gbc.gridx+=gbc.gridwidth;
-		this.add(pointConstraint.getxWTreatedLabel(),gbc);
-		gbc.gridx+=gbc.gridwidth;
-		this.add(pointConstraint.getxWTreated(),gbc);
-		
-		gbc.gridx=0;
-		gbc.gridy+=gbc.gridheight;
-		this.add(pointConstraint.getyWTrueLabel(),gbc);
-		gbc.gridx+=gbc.gridwidth;
-		this.add(pointConstraint.getyWTrue(),gbc);
-		
-		gbc.gridx+=gbc.gridwidth;
-		this.add(pointConstraint.getyWTreatedLabel(),gbc);
-		gbc.gridx+=gbc.gridwidth;
-		this.add(pointConstraint.getyWTreated(),gbc);
+
+		this.add(pointConstraint.getxWTrueLabel(), gbc);
+		gbc.gridx += gbc.gridwidth;
+		this.add(pointConstraint.getxWTrue(), gbc);
+
+		gbc.gridx += gbc.gridwidth;
+		this.add(pointConstraint.getxWTreatedLabel(), gbc);
+		gbc.gridx += gbc.gridwidth;
+		this.add(pointConstraint.getxWTreated(), gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy += gbc.gridheight;
+		this.add(pointConstraint.getyWTrueLabel(), gbc);
+		gbc.gridx += gbc.gridwidth;
+		this.add(pointConstraint.getyWTrue(), gbc);
+
+		gbc.gridx += gbc.gridwidth;
+		this.add(pointConstraint.getyWTreatedLabel(), gbc);
+		gbc.gridx += gbc.gridwidth;
+		this.add(pointConstraint.getyWTreated(), gbc);
 	}
-	
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("PointConstraint");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        PointConstraint pointConstraint = new PointConstraint();
-        PointConstraintPanel newContentPane = new PointConstraintPanel(pointConstraint);
-        newContentPane.setOpaque(true);
-        frame.setContentPane(newContentPane);
-        frame.pack();
-        frame.setVisible(true);
-    }
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("PointConstraint");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		PointConstraint pointConstraint = new PointConstraint();
+		PointConstraintPanel newContentPane = new PointConstraintPanel(pointConstraint);
+		newContentPane.setOpaque(true);
+		frame.setContentPane(newContentPane);
+		frame.pack();
+		frame.setVisible(true);
+	}
 
 	@Override
 	public void receiveNotification(Observable arg0, Object... arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

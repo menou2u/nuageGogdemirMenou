@@ -10,7 +10,7 @@ public class CursorForFunctionListener implements CaretListener {
 	public CursorForFunctionListener(TestFunction testFunction) {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public void caretUpdate(CaretEvent arg0) {
 		// TODO Auto-generated method stub

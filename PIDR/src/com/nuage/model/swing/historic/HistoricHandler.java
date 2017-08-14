@@ -41,7 +41,7 @@ public class HistoricHandler {
 			JAXBContext jaxbContext = JAXBContext.newInstance(HistoricData.class);
 
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			
+
 			output = (HistoricData) jaxbUnmarshaller.unmarshal(file);
 		} catch (JAXBException e) {
 			e.printStackTrace();

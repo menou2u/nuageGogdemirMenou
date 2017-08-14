@@ -9,15 +9,14 @@ import javax.swing.JPanel;
 import com.nuage.model.swing.datas.constraints.TwoPointCoordConstraint;
 
 @SuppressWarnings("serial")
-public class TwoPointCoordConstraintPanel extends JPanel{
+public class TwoPointCoordConstraintPanel extends JPanel {
 
-	public TwoPointCoordConstraintPanel(TwoPointCoordConstraint twoPointCoordConstraint){
+	public TwoPointCoordConstraintPanel(TwoPointCoordConstraint twoPointCoordConstraint) {
 		super(new GridBagLayout());
 		fillWithComp(twoPointCoordConstraint);
 	}
-	
-	
-	public void fillWithComp(TwoPointCoordConstraint twoPointCoordConstraint){
+
+	public void fillWithComp(TwoPointCoordConstraint twoPointCoordConstraint) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0;
@@ -26,52 +25,52 @@ public class TwoPointCoordConstraintPanel extends JPanel{
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		add(twoPointCoordConstraint.getXw1Lab(),gbc);
-		
-		gbc.gridx=1;
-		add(twoPointCoordConstraint.getXw1(),gbc);
-		
-		gbc.gridx=2;
-		add(twoPointCoordConstraint.getXw2Lab(),gbc);
-		
-		gbc.gridx=3;
-		add(twoPointCoordConstraint.getXw2(),gbc);
+		add(twoPointCoordConstraint.getXw1Lab(), gbc);
 
-		gbc.gridy=1;
-		gbc.gridx=0;
-		add(twoPointCoordConstraint.getYw1Lab(),gbc);
-		
-		gbc.gridx=1;
-		add(twoPointCoordConstraint.getYw1(),gbc);
-		
-		gbc.gridx=2;
-		add(twoPointCoordConstraint.getYw2Lab(),gbc);
-		
-		gbc.gridx=3;
-		add(twoPointCoordConstraint.getYw2(),gbc);
-		
-		gbc.gridy=2;
-		gbc.gridx=0;
-		add(twoPointCoordConstraint.getZw1Lab(),gbc);
-		
-		gbc.gridx=1;
-		add(twoPointCoordConstraint.getZw1(),gbc);
-		
-		gbc.gridx=2;
-		add(twoPointCoordConstraint.getZw2Lab(),gbc);
-		
-		gbc.gridx=3;
-		add(twoPointCoordConstraint.getZw2(),gbc);
+		gbc.gridx = 1;
+		add(twoPointCoordConstraint.getXw1(), gbc);
+
+		gbc.gridx = 2;
+		add(twoPointCoordConstraint.getXw2Lab(), gbc);
+
+		gbc.gridx = 3;
+		add(twoPointCoordConstraint.getXw2(), gbc);
+
+		gbc.gridy = 1;
+		gbc.gridx = 0;
+		add(twoPointCoordConstraint.getYw1Lab(), gbc);
+
+		gbc.gridx = 1;
+		add(twoPointCoordConstraint.getYw1(), gbc);
+
+		gbc.gridx = 2;
+		add(twoPointCoordConstraint.getYw2Lab(), gbc);
+
+		gbc.gridx = 3;
+		add(twoPointCoordConstraint.getYw2(), gbc);
+
+		gbc.gridy = 2;
+		gbc.gridx = 0;
+		add(twoPointCoordConstraint.getZw1Lab(), gbc);
+
+		gbc.gridx = 1;
+		add(twoPointCoordConstraint.getZw1(), gbc);
+
+		gbc.gridx = 2;
+		add(twoPointCoordConstraint.getZw2Lab(), gbc);
+
+		gbc.gridx = 3;
+		add(twoPointCoordConstraint.getZw2(), gbc);
 	}
-	
+
 	public static void main(String[] args) {
-        JFrame frame = new JFrame("ConstraintsPanel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        TwoPointCoordConstraint twoPointCoordConstraint = new TwoPointCoordConstraint();
-        TwoPointCoordConstraintPanel newContentPane = new TwoPointCoordConstraintPanel(twoPointCoordConstraint);
-        newContentPane.setOpaque(true);
-        frame.setContentPane(newContentPane);
-        frame.pack();
-        frame.setVisible(true);
+		JFrame frame = new JFrame("ConstraintsPanel");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		TwoPointCoordConstraint twoPointCoordConstraint = new TwoPointCoordConstraint();
+		TwoPointCoordConstraintPanel newContentPane = new TwoPointCoordConstraintPanel(twoPointCoordConstraint);
+		newContentPane.setOpaque(true);
+		frame.setContentPane(newContentPane);
+		frame.pack();
+		frame.setVisible(true);
 	}
 }

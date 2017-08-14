@@ -52,7 +52,8 @@ public class Frame extends JFrame {
 		});
 		add(mainbutton, BorderLayout.CENTER);
 
-		// TODO normalement il n'y a que ces 6 lignes qui devrai vraiment t'interesser et ce qui en decoule
+		// TODO normalement il n'y a que ces 6 lignes qui devrai vraiment t'interesser
+		// et ce qui en decoule
 		model = new DefaultMenuModelHandler();
 		model.setModel(new RotativeMenuModel<SimpleMenuModelItem>(model));
 		model.setCommonConstraint(new FileItemRendererConstraint(30, 7));
@@ -80,12 +81,14 @@ public class Frame extends JFrame {
 				System.out.println("item 2");
 			}
 		});
-		model.add("C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\implementation\\FileItemRendererConstraint.java", new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("item 3");
-			}
-		});
+		model.add(
+				"C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\implementation\\FileItemRendererConstraint.java",
+				new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("item 3");
+					}
+				});
 		model.add("C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\TestFile.java", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

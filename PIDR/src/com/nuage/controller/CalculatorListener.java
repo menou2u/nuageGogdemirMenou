@@ -7,12 +7,12 @@ import javax.swing.JButton;
 
 import com.nuage.model.swing.MathShortcuts;
 
-public class CalculatorListener implements ActionListener{
+public class CalculatorListener implements ActionListener {
 
 	MathShortcuts calculatorReference;
 	String functionClicked;
-	
-	public CalculatorListener(MathShortcuts calculator, String function){
+
+	public CalculatorListener(MathShortcuts calculator, String function) {
 		calculatorReference = calculator;
 		functionClicked = function;
 	}
@@ -20,10 +20,9 @@ public class CalculatorListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String text;
-		if (!functionClicked.equals("")){
+		if (!functionClicked.equals("")) {
 			text = functionClicked;
-		}
-		else {
+		} else {
 			text = ((JButton) arg0.getSource()).getText();
 		}
 		calculatorReference.updatePhiJ(text);

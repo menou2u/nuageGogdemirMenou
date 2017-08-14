@@ -9,69 +9,69 @@
 package com.nuage.javagiac.lib;
 
 public class vectors {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+	private long swigCPtr;
+	protected boolean swigCMemOwn;
 
-  protected vectors(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+	protected vectors(long cPtr, boolean cMemoryOwn) {
+		swigCMemOwn = cMemoryOwn;
+		swigCPtr = cPtr;
+	}
 
-  protected static long getCPtr(vectors obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+	protected static long getCPtr(vectors obj) {
+		return (obj == null) ? 0 : obj.swigCPtr;
+	}
 
-  @Override
-protected void finalize() {
-    delete();
-  }
+	@Override
+	protected void finalize() {
+		delete();
+	}
 
-  public synchronized void delete() {
-    if(swigCPtr != 0 && swigCMemOwn) {
-      swigCMemOwn = false;
-      giacJNI.delete_vectors(swigCPtr);
-    }
-    swigCPtr = 0;
-  }
+	public synchronized void delete() {
+		if (swigCPtr != 0 && swigCMemOwn) {
+			swigCMemOwn = false;
+			giacJNI.delete_vectors(swigCPtr);
+		}
+		swigCPtr = 0;
+	}
 
-  public vectors() {
-    this(giacJNI.new_vectors__SWIG_0(), true);
-  }
+	public vectors() {
+		this(giacJNI.new_vectors__SWIG_0(), true);
+	}
 
-  public vectors(long n) {
-    this(giacJNI.new_vectors__SWIG_1(n), true);
-  }
+	public vectors(long n) {
+		this(giacJNI.new_vectors__SWIG_1(n), true);
+	}
 
-  public long size() {
-    return giacJNI.vectors_size(swigCPtr, this);
-  }
+	public long size() {
+		return giacJNI.vectors_size(swigCPtr, this);
+	}
 
-  public long capacity() {
-    return giacJNI.vectors_capacity(swigCPtr, this);
-  }
+	public long capacity() {
+		return giacJNI.vectors_capacity(swigCPtr, this);
+	}
 
-  public void reserve(long n) {
-    giacJNI.vectors_reserve(swigCPtr, this, n);
-  }
+	public void reserve(long n) {
+		giacJNI.vectors_reserve(swigCPtr, this, n);
+	}
 
-  public boolean isEmpty() {
-    return giacJNI.vectors_isEmpty(swigCPtr, this);
-  }
+	public boolean isEmpty() {
+		return giacJNI.vectors_isEmpty(swigCPtr, this);
+	}
 
-  public void clear() {
-    giacJNI.vectors_clear(swigCPtr, this);
-  }
+	public void clear() {
+		giacJNI.vectors_clear(swigCPtr, this);
+	}
 
-  public void add(String x) {
-    giacJNI.vectors_add(swigCPtr, this, x);
-  }
+	public void add(String x) {
+		giacJNI.vectors_add(swigCPtr, this, x);
+	}
 
-  public String get(int i) {
-    return giacJNI.vectors_get(swigCPtr, this, i);
-  }
+	public String get(int i) {
+		return giacJNI.vectors_get(swigCPtr, this, i);
+	}
 
-  public void set(int i, String x) {
-    giacJNI.vectors_set(swigCPtr, this, i, x);
-  }
+	public void set(int i, String x) {
+		giacJNI.vectors_set(swigCPtr, this, i, x);
+	}
 
 }

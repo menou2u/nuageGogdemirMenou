@@ -9,13 +9,11 @@ import javax.swing.JPanel;
 import com.nuage.model.swing.datas.constraints.SlopeAndVertexConstraintHelper;
 
 @SuppressWarnings("serial")
-public class SlopeAndVertexConstraintHelperPanel extends JPanel{
-	
-	@SuppressWarnings("static-access")
-	public SlopeAndVertexConstraintHelperPanel(SlopeAndVertexConstraintHelper slopeAndVertexConstraintHelper)
-	{
+public class SlopeAndVertexConstraintHelperPanel extends JPanel {
+
+	public SlopeAndVertexConstraintHelperPanel(SlopeAndVertexConstraintHelper slopeAndVertexConstraintHelper) {
 		super(new GridBagLayout());
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1;
@@ -24,38 +22,38 @@ public class SlopeAndVertexConstraintHelperPanel extends JPanel{
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
-		add(slopeAndVertexConstraintHelper.getV1xLab(),gbc);
-		gbc.gridx=1;
-		add(slopeAndVertexConstraintHelper.getV1x(),gbc);
-		
-		gbc.gridx=2;
-		add(slopeAndVertexConstraintHelper.getV2xLab(),gbc);
-		gbc.gridx=3;
-		add(slopeAndVertexConstraintHelper.getV2x(),gbc);
-		
-		gbc.gridy=1;
-		gbc.gridx=0;
-		add(slopeAndVertexConstraintHelper.getV1yLab(),gbc);
-		gbc.gridx=1;
-		add(slopeAndVertexConstraintHelper.getV1y(),gbc);
-		
-		gbc.gridx=2;
-		add(slopeAndVertexConstraintHelper.getV2yLab(),gbc);
-		gbc.gridx=3;
-		add(slopeAndVertexConstraintHelper.getV2y(),gbc);
+
+		add(slopeAndVertexConstraintHelper.getV1xLab(), gbc);
+		gbc.gridx = 1;
+		add(slopeAndVertexConstraintHelper.getV1x(), gbc);
+
+		gbc.gridx = 2;
+		add(slopeAndVertexConstraintHelper.getV2xLab(), gbc);
+		gbc.gridx = 3;
+		add(slopeAndVertexConstraintHelper.getV2x(), gbc);
+
+		gbc.gridy = 1;
+		gbc.gridx = 0;
+		add(slopeAndVertexConstraintHelper.getV1yLab(), gbc);
+		gbc.gridx = 1;
+		add(slopeAndVertexConstraintHelper.getV1y(), gbc);
+
+		gbc.gridx = 2;
+		add(slopeAndVertexConstraintHelper.getV2yLab(), gbc);
+		gbc.gridx = 3;
+		add(slopeAndVertexConstraintHelper.getV2y(), gbc);
 
 	}
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("ConstraintsPanel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        SlopeAndVertexConstraintHelper s = new SlopeAndVertexConstraintHelper("ij", "ij");
-        SlopeAndVertexConstraintHelperPanel newContentPane = new SlopeAndVertexConstraintHelperPanel(s);
-        newContentPane.setOpaque(true);
-        frame.setContentPane(newContentPane);
-        frame.pack();
-        frame.setVisible(true);
-    }
-	
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("ConstraintsPanel");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		SlopeAndVertexConstraintHelper s = new SlopeAndVertexConstraintHelper("ij", "ij");
+		SlopeAndVertexConstraintHelperPanel newContentPane = new SlopeAndVertexConstraintHelperPanel(s);
+		newContentPane.setOpaque(true);
+		frame.setContentPane(newContentPane);
+		frame.pack();
+		frame.setVisible(true);
+	}
+
 }

@@ -15,49 +15,46 @@ public class TestFunction extends Observable {
 	private JLabel function;
 	private JTextArea text;
 	private String param;
-	
-	public TestFunction(String s){
-		
+
+	public TestFunction(String s) {
+
 		param = s;
-		function = new JLabel("<html>&phi;j "+param+" = </html>", SwingConstants.CENTER);
-		//TODO : Gérer la taille en fonction de la fenêtre.
+		function = new JLabel("<html>&phi;j " + param + " = </html>", SwingConstants.CENTER);
+		// TODO : Gérer la taille en fonction de la fenêtre.
 		text = new JTextArea(value);
-		//Première valeur = largeur, deuxième = hauteur.
-		//Hauteur inutile...?
-//		text.setSize(800,400);
-		//3 colonnes de texte disponibles nativement, s'étend au besoin.
+		// Première valeur = largeur, deuxième = hauteur.
+		// Hauteur inutile...?
+		// text.setSize(800,400);
+		// 3 colonnes de texte disponibles nativement, s'étend au besoin.
 		text.setRows(2);
-		//Renvoie à la ligne si manque de place
+		// Renvoie à la ligne si manque de place
 		text.setLineWrap(true);
-		//Coloration
+		// Coloration
 		text.setBackground(Color.WHITE);
 		text.addCaretListener(new CursorForFunctionListener(this));
 	}
-	
-	//TODO ne pas ins�rer des fonctions au milieu de fonctions, e.g : tan() => cos()tan() ou tan()cos() ou tan(cos()) mais c'est tout.
-	//text.getCaretPosition() permet de r�cup�rer la position du curseur
+
+	// TODO ne pas ins�rer des fonctions au milieu de fonctions, e.g : tan() =>
+	// cos()tan() ou tan()cos() ou tan(cos()) mais c'est tout.
+	// text.getCaretPosition() permet de r�cup�rer la position du curseur
 	public void warnMainWindowFrame(String content) {
-		if (text.getText()==null){
+		if (text.getText() == null) {
 			text.setText("");
+		} else {
+			text.setText(text.getText().substring(0, text.getCaretPosition()) + content + "()"
+					+ text.getText().substring(text.getCaretPosition(), text.getText().length()));
 		}
-		else{
-			text.setText(text.getText().substring(0, text.getCaretPosition())+content+"()"+text.getText().substring(text.getCaretPosition(), text.getText().length()));
-		}
-		/*if (value.equals("")){
-			value = (content) + "()";
-			text.setText(value);
-		}
-		else {
-			String formula = value;
-			formula = formula + content + "()";
-			value = formula;
-			text.setText(value);
-		}*/
+		/*
+		 * if (value.equals("")){ value = (content) + "()"; text.setText(value); } else
+		 * { String formula = value; formula = formula + content + "()"; value =
+		 * formula; text.setText(value); }
+		 */
 		setChanged();
 		notifyObservers();
 	}
-	
-	//Un setter de la valeur à mettre dans la partie textuelle quand on clique sur les raccourcis.
+
+	// Un setter de la valeur à mettre dans la partie textuelle quand on clique sur
+	// les raccourcis.
 	public void setValue(String newValue) {
 		value = newValue;
 		setChanged();

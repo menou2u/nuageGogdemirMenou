@@ -26,8 +26,8 @@ public class JavaGiacLoader extends ProgressMonitor {
 	}
 
 	/**
-	 * extract and load the javagiac lib and display a JDialog with progress
-	 * status if frame is null display status in console
+	 * extract and load the javagiac lib and display a JDialog with progress status
+	 * if frame is null display status in console
 	 * 
 	 * @param frame
 	 * @throws IOException

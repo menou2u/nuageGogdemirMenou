@@ -10,15 +10,15 @@ import com.nuage.model.swing.mode.Updatable;
 public class OpenFileChooser extends JFileChooser {
 
 	private File directory;
-	
+
 	public OpenFileChooser(Updatable mode) {
 		directory = new File(".");
-			
+
 		setCurrentDirectory(directory);
-		
+
 		setAcceptAllFileFilterUsed(false);
 		setFileFilter(new ModeFileFilter(mode));
-		
+
 	}
-	
+
 }

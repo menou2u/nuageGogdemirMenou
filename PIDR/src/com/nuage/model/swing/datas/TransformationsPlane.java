@@ -8,8 +8,8 @@ public class TransformationsPlane {
 	private TransformY transformY;
 	private TransformZ transformZ;
 	private JButton validation;
-	
-	public TransformationsPlane(){
+
+	public TransformationsPlane() {
 		transformX = new TransformX();
 		transformY = new TransformY();
 		transformZ = new TransformZ();
@@ -31,5 +31,5 @@ public class TransformationsPlane {
 	public JButton getValidation() {
 		return validation;
 	}
-	
+
 }

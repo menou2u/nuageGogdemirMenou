@@ -13,32 +13,31 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class Constraints3DFactory {
 
 	private LinkedList<Double> xw = new LinkedList<Double>();
-	private LinkedList<Double> yw = new LinkedList<Double>();	
+	private LinkedList<Double> yw = new LinkedList<Double>();
 	private LinkedList<Double> constraintValue = new LinkedList<Double>();
 	private LinkedList<Double> derivationOrder = new LinkedList<Double>();
 	private LinkedList<Double> ux = new LinkedList<Double>();
 	private LinkedList<Double> uy = new LinkedList<Double>();
-	private HashMap<Integer,Boolean> dic = new HashMap<Integer,Boolean>();
+	private HashMap<Integer, Boolean> dic = new HashMap<Integer, Boolean>();
 	private Object[][] datas;
-	
-	public Constraints3DFactory(String fileName) throws IOException{
+
+	public Constraints3DFactory(String fileName) throws IOException {
 		FileInputStream fis = new FileInputStream(fileName);
-		try{
+		try {
 			XSSFWorkbook wb = readFile(fileName);
 			XSSFSheet sheet = wb.getSheetAt(0);
-			setXw(retrieveDatas(sheet,0));
-			setYw(retrieveDatas(sheet,1));
-			setConstraintValue(retrieveDatas(sheet,2));
-			setDerivationOrder(retrieveDatas(sheet,3));
-			setUx(retrieveDatas(sheet,4));
-			setUy(retrieveDatas(sheet,5));
-		}
-		finally{
+			setXw(retrieveDatas(sheet, 0));
+			setYw(retrieveDatas(sheet, 1));
+			setConstraintValue(retrieveDatas(sheet, 2));
+			setDerivationOrder(retrieveDatas(sheet, 3));
+			setUx(retrieveDatas(sheet, 4));
+			setUy(retrieveDatas(sheet, 5));
+		} finally {
 			fis.close();
 		}
 		completeDatas();
 	}
-	
+
 	private XSSFWorkbook readFile(String filename) throws IOException {
 		FileInputStream fis = new FileInputStream(filename);
 		try {
@@ -47,7 +46,7 @@ public class Constraints3DFactory {
 			fis.close();
 		}
 	}
-	
+
 	public LinkedList<Double> retrieveDatas(XSSFSheet sheet, int column) {
 		LinkedList<Double> res = new LinkedList<Double>();
 		int rows = sheet.getPhysicalNumberOfRows();
@@ -65,7 +64,6 @@ public class Constraints3DFactory {
 		return res;
 	}
 
-	
 	@SuppressWarnings("deprecation")
 	public boolean isNumericCell(XSSFCell cell) {
 		boolean value = false;
@@ -96,30 +94,30 @@ public class Constraints3DFactory {
 		}
 		return value;
 	}
-	
-	public void completeDatas(){
-		datas = new Object[Math.max(getUx().size(),Math.max(getUy().size(),Math.max(getYw().size(),Math.max(getConstraintValue().size(), Math.max(getDerivationOrder().size(),getXw().size())))))][7];
-		for (int i=0;i<getConstraintValue().size();i++){
+
+	public void completeDatas() {
+		datas = new Object[Math.max(getUx().size(), Math.max(getUy().size(), Math.max(getYw().size(),
+				Math.max(getConstraintValue().size(), Math.max(getDerivationOrder().size(), getXw().size())))))][7];
+		for (int i = 0; i < getConstraintValue().size(); i++) {
 			datas[i][3] = getConstraintValue().get(i);
 		}
-		for (int j=0;j<getXw().size();j++){
+		for (int j = 0; j < getXw().size(); j++) {
 			datas[j][1] = getXw().get(j);
 		}
-		for (int j=0;j<getYw().size();j++){
+		for (int j = 0; j < getYw().size(); j++) {
 			datas[j][2] = getYw().get(j);
 		}
-		for (int i=0;i<getDerivationOrder().size();i++){
+		for (int i = 0; i < getDerivationOrder().size(); i++) {
 			datas[i][4] = getDerivationOrder().get(i);
 		}
-		for (int j=0;j<getUx().size();j++){
+		for (int j = 0; j < getUx().size(); j++) {
 			datas[j][5] = getUx().get(j);
 		}
-		for (int j=0;j<getUy().size();j++){
+		for (int j = 0; j < getUy().size(); j++) {
 			datas[j][6] = getUy().get(j);
 		}
-		for (int i=0;i<datas.length;i++)
-		{
-			datas[i][0]=i;
+		for (int i = 0; i < datas.length; i++) {
+			datas[i][0] = i;
 		}
 	}
 
@@ -138,31 +136,31 @@ public class Constraints3DFactory {
 	public void setXw(LinkedList<Double> xw) {
 		this.xw = xw;
 	}
-	
+
 	public void setYw(LinkedList<Double> yw) {
 		this.yw = yw;
 	}
-	
+
 	public void setUx(LinkedList<Double> ux) {
 		this.ux = ux;
 	}
-	
+
 	public void setUy(LinkedList<Double> uy) {
 		this.uy = uy;
 	}
-	
-	public LinkedList<Double> getYw(){
+
+	public LinkedList<Double> getYw() {
 		return yw;
 	}
-	
-	public LinkedList<Double> getUx(){
+
+	public LinkedList<Double> getUx() {
 		return ux;
 	}
-	
-	public LinkedList<Double> getUy(){
+
+	public LinkedList<Double> getUy() {
 		return uy;
 	}
-	
+
 	public LinkedList<Double> getDerivationOrder() {
 		return derivationOrder;
 	}
@@ -181,9 +179,9 @@ public class Constraints3DFactory {
 		Integer numRow = row.getRowNum();
 		dic.put(numRow, correct);
 	}
-	
-	public Object[][] getDatas(){
+
+	public Object[][] getDatas() {
 		return datas;
 	}
-	
+
 }

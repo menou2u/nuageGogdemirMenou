@@ -152,7 +152,9 @@ public class DefaultMenuModelHandler implements MenuModelHandler {
 
 	/*
 	 * (non-Javadoc)
-	 * @see pidr.mag.sample.api.MenuOpenerModelHandler#setModel(java.util.Collection)
+	 * 
+	 * @see
+	 * pidr.mag.sample.api.MenuOpenerModelHandler#setModel(java.util.Collection)
 	 */
 	@Override
 	public synchronized void setModel(Collection<SimpleMenuModelItem> c) {

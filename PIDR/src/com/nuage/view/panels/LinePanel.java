@@ -16,11 +16,11 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 
 	public LinePanel(Line line) {
 		this.setLine(line);
-		
+
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
-		
+
 		// Fonctions de transformation
 		gbc.weightx = 0;
 		gbc.weighty = 0;
@@ -41,20 +41,20 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		// Panneau des données brutes
 		gbc.gridwidth = 1;
 		gbc.weighty = 1;
-		gbc.weightx =0;
+		gbc.weightx = 0;
 		gbc.gridy += gbc.gridheight;
 		gbc.gridheight = 5;
 		add(line.getDataLinePanel(), gbc);
 
 		// Panneau des contraintes selon choix
 		gbc.gridx += gbc.gridwidth;
-		gbc.gridy=0;
-		gbc.gridheight =3;
+		gbc.gridy = 0;
+		gbc.gridheight = 3;
 		gbc.gridwidth = 8;
 		gbc.weightx = 1;
-		gbc.weighty=0;
-		add(line.getChosenPanel(),gbc);
-		
+		gbc.weighty = 0;
+		add(line.getChosenPanel(), gbc);
+
 		// Panel de visualisation des params du graphe
 		gbc.gridx = 1;
 		gbc.gridy += gbc.gridheight;
@@ -63,19 +63,19 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		gbc.weighty = 1;
 		gbc.gridheight = 7;
 		add(line.getDisplaySettingsPanel(), gbc);
-		
-		//Panel de visualisation du graphe
+
+		// Panel de visualisation du graphe
 		gbc.gridx += gbc.gridwidth;
 		gbc.gridwidth = 7;
 		gbc.weightx = 15;
 		gbc.weighty = 1;
 		add(line.getLineGraph().getCanvas(), gbc);
 	}
-	
+
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -87,5 +87,4 @@ public class LinePanel extends JPanel implements Observer, UpdatablePanel {
 		this.line = line;
 	}
 
-	
 }

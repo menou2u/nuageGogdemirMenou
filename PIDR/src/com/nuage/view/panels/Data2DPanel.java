@@ -25,7 +25,7 @@ public class Data2DPanel extends JPanel {
 
 	public Data2DPanel(TableCustom2DModel modele) {
 		super();
-		
+
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
@@ -34,7 +34,7 @@ public class Data2DPanel extends JPanel {
 		gbc.gridheight = 3;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		this.modele = modele;
 		tableau = new JTable(modele);
 		tableau.setAutoCreateRowSorter(true);
@@ -42,89 +42,93 @@ public class Data2DPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(tableau);
 		scrollPane.setMinimumSize(new Dimension(300, 1000));
 		add(scrollPane, gbc);
-		
-		gbc.weightx=1;
-		gbc.weighty=0;
+
+		gbc.weightx = 1;
+		gbc.weighty = 0;
 		gbc.gridheight = 1;
-		gbc.gridy=3;
+		gbc.gridy = 3;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.EAST;
-		
-		add(new JButton(new AddAction()),gbc);
+
+		add(new JButton(new AddAction()), gbc);
 		gbc.anchor = GridBagConstraints.WEST;
-		gbc.gridx=2;
-		add(new JButton(new RemoveAction()),gbc);
-		
+		gbc.gridx = 2;
+		add(new JButton(new RemoveAction()), gbc);
+
 		gbc.anchor = GridBagConstraints.EAST;
-		gbc.gridy=4;
-		gbc.gridx=0;
-		add(new JButton(new RemoveTwoAction()),gbc);
-		
-		gbc.gridx+=1;
-		add(new JButton(new RemoveThreeAction()),gbc);
-		
-		gbc.gridx+=1;
-		add(new JButton(new RemoveFiveAction()),gbc);
-		
-		gbc.gridx+=1;
-		add(new JButton(new RemoveTenAction()),gbc);
+		gbc.gridy = 4;
+		gbc.gridx = 0;
+		add(new JButton(new RemoveTwoAction()), gbc);
+
+		gbc.gridx += 1;
+		add(new JButton(new RemoveThreeAction()), gbc);
+
+		gbc.gridx += 1;
+		add(new JButton(new RemoveFiveAction()), gbc);
+
+		gbc.gridx += 1;
+		add(new JButton(new RemoveTenAction()), gbc);
 	}
-	
+
 	@SuppressWarnings("serial")
-	private class RemoveTwoAction extends AbstractAction{
-		private RemoveTwoAction(){
+	private class RemoveTwoAction extends AbstractAction {
+		private RemoveTwoAction() {
 			super("Supprimer 1/2");
 		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int[] selection = tableau.getSelectedRows();
-			modele.removePoint(selection[0],selection[selection.length-1],2);
+			modele.removePoint(selection[0], selection[selection.length - 1], 2);
 		}
 	}
-	
+
 	@SuppressWarnings("serial")
-	private class RemoveThreeAction extends AbstractAction{
-		private RemoveThreeAction(){
+	private class RemoveThreeAction extends AbstractAction {
+		private RemoveThreeAction() {
 			super("Supprimer 1/3");
 		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int[] selection = tableau.getSelectedRows();
-			modele.removePoint(selection[0],selection[selection.length-1],3);
+			modele.removePoint(selection[0], selection[selection.length - 1], 3);
 		}
-		
+
 	}
-	
+
 	@SuppressWarnings("serial")
-	private class RemoveFiveAction extends AbstractAction{
-		private RemoveFiveAction(){
+	private class RemoveFiveAction extends AbstractAction {
+		private RemoveFiveAction() {
 			super("Supprimer 1/5");
 		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int[] selection = tableau.getSelectedRows();
-			modele.removePoint(selection[0],selection[selection.length-1],5);
+			modele.removePoint(selection[0], selection[selection.length - 1], 5);
 		}
-		
+
 	}
-	
+
 	@SuppressWarnings("serial")
-	private class RemoveTenAction extends AbstractAction{
-		private RemoveTenAction(){
+	private class RemoveTenAction extends AbstractAction {
+		private RemoveTenAction() {
 			super("Supprimer 1/10");
 		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int[] selection = tableau.getSelectedRows();
-			modele.removePoint(selection[0],selection[selection.length-1],10);
+			modele.removePoint(selection[0], selection[selection.length - 1], 10);
 		}
-		
+
 	}
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		TableCustom2DModel mod = new TableCustom2DModel(new String[]{"n°","Xi","Yi"});
+		TableCustom2DModel mod = new TableCustom2DModel(new String[] { "n°", "Xi", "Yi" });
 		frame.setContentPane(new Data2DPanel(mod));
 		frame.pack();
 		frame.setVisible(true);

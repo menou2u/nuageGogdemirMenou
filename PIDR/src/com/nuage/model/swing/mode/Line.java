@@ -42,23 +42,23 @@ public class Line implements Updatable {
 
 	public Line() {
 		testFunction = new TestFunction("(x)");
-		
+
 		mathShortcuts = new MathShortcuts(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 
 		transformationsLine = new TransformationsLine();
 		transformationsLinePanel = new TransformationsLinePanel(transformationsLine);
-		
-		dataModel = new TableCustom2DModel(new String[]{"n°","xi","yi"});
-		dataLinePanel = new DataLinePanel(dataModel,"","");
-	
+
+		dataModel = new TableCustom2DModel(new String[] { "n°", "xi", "yi" });
+		dataLinePanel = new DataLinePanel(dataModel, "", "");
+
 		lineConstraintsChoice = new LineConstraintsChoice();
 		chosenPanel = new LineConstraintsChoicePanel(lineConstraintsChoice);
 
 		display = new DisplaySettings();
-		
-		//transformedDataPanel = new DataPanel(transformedData);
-		
+
+		// transformedDataPanel = new DataPanel(transformedData);
+
 		lineGraph = new LineGraph("Représentation graphique");
 		displayPanel = new DisplaySettingsPanel(display);
 	}
@@ -202,6 +202,5 @@ public class Line implements Updatable {
 	public DataLinePanel getDataLinePanel() {
 		return dataLinePanel;
 	}
-
 
 }

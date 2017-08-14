@@ -23,7 +23,7 @@ import com.nuage.view.panels.UpdatablePanel;
 import com.nuage.view.window.InfosWindowFrame;
 
 public class MainWindow extends Observable {
-	
+
 	private Tools tools;
 	private Line line;
 	private Plane plane;
@@ -33,9 +33,9 @@ public class MainWindow extends Observable {
 
 	private StringBuilder infosLine;
 	private StringBuilder currentInfos;
-	
+
 	private File currentFile = null;
-	
+
 	public MainWindow() {
 		tools = new Tools(this);
 		line = new Line();
@@ -45,11 +45,11 @@ public class MainWindow extends Observable {
 		onglets = new JTabbedPane(SwingConstants.TOP);
 		currentInfos = new StringBuilder("");
 	}
-	
-	public void sendNewFile(MainWindow mainWindow,File file) {
-		getMode().getData().warnView(mainWindow,file);
+
+	public void sendNewFile(MainWindow mainWindow, File file) {
+		getMode().getData().warnView(mainWindow, file);
 	}
-	
+
 	public void readFile(File file) {
 		FileReader fileReader;
 		BufferedReader bufferedReader;
@@ -81,7 +81,7 @@ public class MainWindow extends Observable {
 				scanner = new Scanner(line);
 				scanner.useDelimiter(";");
 				item = scanner.next();
-				//System.out.println("ITEM "+ item);
+				// System.out.println("ITEM "+ item);
 				if (item.equals("DB")) {
 					int index;
 					index = Integer.parseInt(scanner.next()) - 1;
@@ -157,8 +157,7 @@ public class MainWindow extends Observable {
 							} else {
 								uxList.add(index, 0.0);
 							}
-						}
-						else {
+						} else {
 							if (index > uxList.size() - 1) {
 								uxList.add(Double.parseDouble(scanResult));
 							} else {
@@ -172,8 +171,7 @@ public class MainWindow extends Observable {
 							} else {
 								uyList.add(index, 0.0);
 							}
-						}
-						else {
+						} else {
 							if (index > uyList.size() - 1) {
 								uyList.add(Double.parseDouble(scanResult));
 							} else {
@@ -216,52 +214,50 @@ public class MainWindow extends Observable {
 			}
 			bufferedReader.close();
 			fileReader.close();
-		} catch (IOException e) {}
-		/*System.out.println("listXi "+listXi);
-		System.out.println("listYi "+listYi);
-		System.out.println("listZi "+listZi);
-		System.out.println("listXiTraité "+listXiTraité);
-		System.out.println("listYiTraité "+listYiTraité);
-		System.out.println("listZiTraité "+listZiTraité);
-		System.out.println("xwList "+xwList);
-		System.out.println("yxList "+ywList);
-		System.out.println("constraintValueList "+constraintValueList);
-		System.out.println("derivationOrderList "+derivationOrderList);
-		System.out.println("uxList "+uxList);
-		System.out.println("uyList "+uyList);
-		System.out.println("xTreatment "+xTreatment);
-		System.out.println("yTreatment "+yTreatment);
-		System.out.println("zTreatment "+zTreatment);
-		System.out.println("xwbrut "+xwbrut);
-		System.out.println("ywbrut "+ywbrut);
-		System.out.println("xwtraité "+xwtraité);
-		System.out.println("ywtraité "+ywtraité);
-		System.out.println("pente "+pente);
-		System.out.println("textBoxFx "+textBoxFx);
-		System.out.println("textBoxCompoFx "+textBoxCompoFx);*/
-		
+		} catch (IOException e) {
+		}
+		/*
+		 * System.out.println("listXi "+listXi); System.out.println("listYi "+listYi);
+		 * System.out.println("listZi "+listZi);
+		 * System.out.println("listXiTraité "+listXiTraité);
+		 * System.out.println("listYiTraité "+listYiTraité);
+		 * System.out.println("listZiTraité "+listZiTraité);
+		 * System.out.println("xwList "+xwList); System.out.println("yxList "+ywList);
+		 * System.out.println("constraintValueList "+constraintValueList);
+		 * System.out.println("derivationOrderList "+derivationOrderList);
+		 * System.out.println("uxList "+uxList); System.out.println("uyList "+uyList);
+		 * System.out.println("xTreatment "+xTreatment);
+		 * System.out.println("yTreatment "+yTreatment);
+		 * System.out.println("zTreatment "+zTreatment);
+		 * System.out.println("xwbrut "+xwbrut); System.out.println("ywbrut "+ywbrut);
+		 * System.out.println("xwtraité "+xwtraité);
+		 * System.out.println("ywtraité "+ywtraité); System.out.println("pente "+pente);
+		 * System.out.println("textBoxFx "+textBoxFx);
+		 * System.out.println("textBoxCompoFx "+textBoxCompoFx);
+		 */
+
 		switch (getOnglets().getSelectedIndex()) {
 		case 0:
 			Line lineMode = (Line) getMode();
-			//lineMode.getData().
+			// lineMode.getData().
 			lineMode.getData().fillPoints(listXi, listYi, null);
 			lineMode.getTransformX().setTransformX(xTreatment);
 			lineMode.getTransformY().setTransformY(yTreatment);
 			lineMode.getDataLinePanel().getTc2dmTrans().fillPoints(listXiTraité, listYiTraité, null);
 			if (pente != null) {
-				lineMode.getLineConstraintsChoice().getSlopeConstraints().setSlopeText(""+pente);
+				lineMode.getLineConstraintsChoice().getSlopeConstraints().setSlopeText("" + pente);
 			}
 			if (xwbrut != null) {
-				lineMode.getLineConstraintsChoice().getPointConstraint().setxWTrueText(""+xwbrut);
+				lineMode.getLineConstraintsChoice().getPointConstraint().setxWTrueText("" + xwbrut);
 			}
 			if (ywbrut != null) {
-				lineMode.getLineConstraintsChoice().getPointConstraint().setyWTrueText(""+ywbrut);
+				lineMode.getLineConstraintsChoice().getPointConstraint().setyWTrueText("" + ywbrut);
 			}
 			if (xwtraité != null) {
-				lineMode.getLineConstraintsChoice().getPointConstraint().setxWTreatedText(""+xwtraité);
+				lineMode.getLineConstraintsChoice().getPointConstraint().setxWTreatedText("" + xwtraité);
 			}
 			if (ywtraité != null) {
-				lineMode.getLineConstraintsChoice().getPointConstraint().setyWTreatedText(""+ywtraité);
+				lineMode.getLineConstraintsChoice().getPointConstraint().setyWTreatedText("" + ywtraité);
 			}
 			break;
 		case 1:
@@ -284,77 +280,85 @@ public class MainWindow extends Observable {
 			d3Mode.getData().fillPoints(listXi, listYi, listZi);
 			d3Mode.getTestFunction().getText().setText(textBoxFx);
 			d3Mode.getThreeDCalculatedFunction().getFunctionCalculated().setText(textBoxCompoFx);
-			d3Mode.getThreeDConstraints().fillConstraints(xwList, ywList, constraintValueList, derivationOrderList, uxList, uyList);
+			d3Mode.getThreeDConstraints().fillConstraints(xwList, ywList, constraintValueList, derivationOrderList,
+					uxList, uyList);
 			break;
 		}
 	}
 
 	public void runMath() {
-		//Droite 0/1/2 + data (via cdv)
-		if (getOnglets().getSelectedIndex() == 0){
+		// Droite 0/1/2 + data (via cdv)
+		if (getOnglets().getSelectedIndex() == 0) {
 			DroiteMoindreCarres dmc = new DroiteMoindreCarres();
 			Line mode = (Line) getMode();
 			String tX = mode.getTransformX().getTransformX().getText();
 			String tY = mode.getTransformY().getTransformY().getText();
-			if (!tX.equals("")){
-				
+			if (!tX.equals("")) {
+
 			}
-			if (!tY.equals("")){
-				
+			if (!tY.equals("")) {
+
 			}
-			if (mode.getLineConstraintsChoice().getNoConstraintButton().isSelected()){
+			if (mode.getLineConstraintsChoice().getNoConstraintButton().isSelected()) {
 				dmc.run(mode.getData().getX(), mode.getData().getY(), 0, new LinkedList<Double>(), 0);
 				infosLine = dmc.getInfosC0orC1();
 			}
-			if (mode.getLineConstraintsChoice().getPointConstraintButton().isSelected()){
-				dmc.run(mode.getData().getX(), mode.getData().getY(), 1, mode.getLineConstraintsChoice().getPointConstraint().getOmegaDatas(), 0);
+			if (mode.getLineConstraintsChoice().getPointConstraintButton().isSelected()) {
+				dmc.run(mode.getData().getX(), mode.getData().getY(), 1,
+						mode.getLineConstraintsChoice().getPointConstraint().getOmegaDatas(), 0);
 				infosLine = dmc.getInfosC0orC1();
 			}
-			if (mode.getLineConstraintsChoice().getSlopeConstraintButton().isSelected()){
-				dmc.run(mode.getData().getX(), mode.getData().getY(), 2, mode.getLineConstraintsChoice().getPointConstraint().getOmegaDatas(), Double.parseDouble(mode.getLineConstraintsChoice().getSlopeConstraints().getSlope().getText()));
+			if (mode.getLineConstraintsChoice().getSlopeConstraintButton().isSelected()) {
+				dmc.run(mode.getData().getX(), mode.getData().getY(), 2,
+						mode.getLineConstraintsChoice().getPointConstraint().getOmegaDatas(),
+						Double.parseDouble(mode.getLineConstraintsChoice().getSlopeConstraints().getSlope().getText()));
 				infosLine = dmc.getInfosC2();
 			}
 			mode.getLineGraph().fill(mode.getData().getX(), mode.getData().getY());
 			currentInfos = infosLine;
 		}
-		//TODO Plans 0/1/2 +++++
-		//2D : phi + datas
-		if (getOnglets().getSelectedIndex() == 1){
+		// TODO Plans 0/1/2 +++++
+		// 2D : phi + datas
+		if (getOnglets().getSelectedIndex() == 1) {
 			Nuages2D nuages2D = new Nuages2D();
 			D2 mode = (D2) getMode();
 			String[] phi = mode.getTestFunction().getText().getText().split(",");
 			LinkedList<String> phiList = new LinkedList<>();
-			for (int i=0; i<phi.length; i++){
+			for (int i = 0; i < phi.length; i++) {
 				phiList.add(phi[i]);
 			}
 			LinkedList<Integer> derivationList = new LinkedList<>();
 			LinkedList<Double> oldDerivationList = mode.getTwoDConstraints().getDerivationOrder();
-			for (int i=0; i<oldDerivationList.size(); i++) {
-				derivationList.add(Integer.parseInt(""+oldDerivationList.get(i).intValue()));
+			for (int i = 0; i < oldDerivationList.size(); i++) {
+				derivationList.add(Integer.parseInt("" + oldDerivationList.get(i).intValue()));
 			}
-			//Y avait ça a la fin de run : mode.getTwoDConstraints().getColumn(3)
-			nuages2D.run(mode.getData().getX(), mode.getData().getY(), phiList, mode.getTwoDConstraints().getXw(), mode.getTwoDConstraints().getConstraintValue(), derivationList);
+			// Y avait ça a la fin de run : mode.getTwoDConstraints().getColumn(3)
+			nuages2D.run(mode.getData().getX(), mode.getData().getY(), phiList, mode.getTwoDConstraints().getXw(),
+					mode.getTwoDConstraints().getConstraintValue(), derivationList);
 			currentInfos = nuages2D.getInfos();
 			mode.getTwoDCalculatedFunction().setFunctionCalculated(nuages2D.getFunction());
 		}
-		//3D : phi + datas
-		if (getOnglets().getSelectedIndex() == 3){
+		// 3D : phi + datas
+		if (getOnglets().getSelectedIndex() == 3) {
 			Nuages3D nuages3D = new Nuages3D();
 			D3 mode = (D3) getMode();
 			String[] phi = mode.getTestFunction().getText().getText().split(",");
 			LinkedList<String> phiList = new LinkedList<>();
-			for (int i=0; i<phi.length; i++){
+			for (int i = 0; i < phi.length; i++) {
 				phiList.add(phi[i]);
 			}
 			LinkedList<Integer> derivationList = new LinkedList<>();
 			LinkedList<Double> oldDerivationList = mode.getThreeDConstraints().getDerivationOrder();
-			for (int i=0; i<oldDerivationList.size(); i++) {
-				derivationList.add(Integer.parseInt(""+oldDerivationList.get(i).intValue()));
+			for (int i = 0; i < oldDerivationList.size(); i++) {
+				derivationList.add(Integer.parseInt("" + oldDerivationList.get(i).intValue()));
 			}
-			nuages3D.run(mode.getData().getX(), mode.getData().getY(), mode.getData().getZ(), phiList, mode.getThreeDConstraints().getXw(), mode.getThreeDConstraints().getYw(), mode.getThreeDConstraints().getConstraintValue(), derivationList, mode.getThreeDConstraints().getUx(), mode.getThreeDConstraints().getUy());
+			nuages3D.run(mode.getData().getX(), mode.getData().getY(), mode.getData().getZ(), phiList,
+					mode.getThreeDConstraints().getXw(), mode.getThreeDConstraints().getYw(),
+					mode.getThreeDConstraints().getConstraintValue(), derivationList,
+					mode.getThreeDConstraints().getUx(), mode.getThreeDConstraints().getUy());
 			currentInfos = nuages3D.getInfos();
 			mode.getThreeDCalculatedFunction().setFunctionCalculated(nuages3D.getFunction());
-			//TODO mode.getD3Graph().update(nuages3D.getFunction());
+			// TODO mode.getD3Graph().update(nuages3D.getFunction());
 		}
 		InfosWindowFrame.getCurrent().setInfos(currentInfos);
 		setChanged();
@@ -366,8 +370,8 @@ public class MainWindow extends Observable {
 		setChanged();
 		notifyObservers("infos");
 	}
-	
-	public Updatable getMode(){
+
+	public Updatable getMode() {
 		UpdatablePanel modePanel = (UpdatablePanel) onglets.getSelectedComponent();
 		Updatable onglet = modePanel.getOnglet();
 		return onglet;
@@ -376,11 +380,11 @@ public class MainWindow extends Observable {
 	public Tools getTools() {
 		return tools;
 	}
-	
+
 	public void setCurrentFile(File file) {
-		currentFile = file;		
-	}	
-	
+		currentFile = file;
+	}
+
 	public File getCurrentFile() {
 		return currentFile;
 	}
@@ -422,18 +426,17 @@ public class MainWindow extends Observable {
 
 	public void saveInFile(File file) {
 		if (getMode() instanceof Line) {
-			
+
 		}
 		if (getMode() instanceof Plane) {
-	
+
 		}
 		if (getMode() instanceof D2) {
-			
+
 		}
 		if (getMode() instanceof D3) {
-			
+
 		}
 	}
-	
 
 }

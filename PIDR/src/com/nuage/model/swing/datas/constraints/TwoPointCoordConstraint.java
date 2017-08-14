@@ -5,7 +5,7 @@ import java.util.Observable;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class TwoPointCoordConstraint extends Observable{
+public class TwoPointCoordConstraint extends Observable {
 
 	private JTextField xw1;
 	private JTextField yw1;
@@ -13,15 +13,15 @@ public class TwoPointCoordConstraint extends Observable{
 	private JTextField xw2;
 	private JTextField yw2;
 	private JTextField zw2;
-	
+
 	private JLabel xw1Lab;
 	private JLabel yw1Lab;
 	private JLabel zw1Lab;
 	private JLabel xw2Lab;
 	private JLabel yw2Lab;
 	private JLabel zw2Lab;
-	
-	public TwoPointCoordConstraint(){
+
+	public TwoPointCoordConstraint() {
 		xw1 = new JTextField(8);
 		yw1 = new JTextField(8);
 		zw1 = new JTextField(8);
@@ -35,7 +35,7 @@ public class TwoPointCoordConstraint extends Observable{
 		yw2Lab = new JLabel("Yw2 brut = ");
 		zw2Lab = new JLabel("Zw2 brut = ");
 	}
-	
+
 	public JTextField getXw1() {
 		return xw1;
 	}

@@ -10,7 +10,8 @@ import java.util.LinkedList;
  * @author Arnault Le Prévost-Corvellec
  *
  */
-public class DefaultMenuModel<SimpleMenuModelItemF> extends LinkedList<SimpleMenuModelItem> implements Collection<SimpleMenuModelItem> {
+public class DefaultMenuModel<SimpleMenuModelItemF> extends LinkedList<SimpleMenuModelItem>
+		implements Collection<SimpleMenuModelItem> {
 
 	/**
 	 * 

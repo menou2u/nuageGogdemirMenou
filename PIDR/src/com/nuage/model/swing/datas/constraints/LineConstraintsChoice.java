@@ -26,75 +26,74 @@ public class LineConstraintsChoice extends Observable {
 	private ButtonModel bm;
 	private ButtonGroup bG;
 	private JRadioButton noConstraintButton;
-    private JRadioButton pointConstraintButton;
-    private JRadioButton slopeConstraintButton;
-    private int commutateur;
-    
-    public LineConstraintsChoice() {
-    	selectionPanel = new JPanel(new GridLayout(3,1));
-        bG = new ButtonGroup();
-        noConstraintButton = new JRadioButton("Sans contrainte");
-        pointConstraintButton = new JRadioButton("Droite passe par (Xw;Yw)");
-        slopeConstraintButton = new JRadioButton("Fixer la pente de la droite");
-        
+	private JRadioButton pointConstraintButton;
+	private JRadioButton slopeConstraintButton;
+	private int commutateur;
+
+	public LineConstraintsChoice() {
+		selectionPanel = new JPanel(new GridLayout(3, 1));
+		bG = new ButtonGroup();
+		noConstraintButton = new JRadioButton("Sans contrainte");
+		pointConstraintButton = new JRadioButton("Droite passe par (Xw;Yw)");
+		slopeConstraintButton = new JRadioButton("Fixer la pente de la droite");
+
 		cl = new CardLayout();
 		chosenPanel = new JPanel(cl);
-		
+
 		noConstraintPanel = new JPanel();
 		pointConstraint = new PointConstraint();
 		slopeConstraints = new SlopeConstraints();
 		pointConstraintPanel = new PointConstraintPanel(pointConstraint);
 		slopeConstraintPanel = new SlopeConstraintPanel(slopeConstraints);
-		
-		chosenPanel.add(noConstraintPanel,"Pas de contrainte");
-		chosenPanel.add(pointConstraintPanel,"Contrainte sur un point");
-		chosenPanel.add(slopeConstraintPanel,"Contrainte sur la pente");
-		
+
+		chosenPanel.add(noConstraintPanel, "Pas de contrainte");
+		chosenPanel.add(pointConstraintPanel, "Contrainte sur un point");
+		chosenPanel.add(slopeConstraintPanel, "Contrainte sur la pente");
+
 		cl.first(chosenPanel);
-		
-        bG.add(noConstraintButton);
-        bG.add(pointConstraintButton);
-        bG.add(slopeConstraintButton);
-        noConstraintButton.setSelected(true);
-        bm = bG.getSelection();
-        
-        selectionPanel.add(noConstraintButton);
-        selectionPanel.add(pointConstraintButton);
-        selectionPanel.add(slopeConstraintButton);
-        
-        addCustomListener(noConstraintButton);   
-        addCustomListener(pointConstraintButton);
-        addCustomListener(slopeConstraintButton);
+
+		bG.add(noConstraintButton);
+		bG.add(pointConstraintButton);
+		bG.add(slopeConstraintButton);
+		noConstraintButton.setSelected(true);
+		bm = bG.getSelection();
+
+		selectionPanel.add(noConstraintButton);
+		selectionPanel.add(pointConstraintButton);
+		selectionPanel.add(slopeConstraintButton);
+
+		addCustomListener(noConstraintButton);
+		addCustomListener(pointConstraintButton);
+		addCustomListener(slopeConstraintButton);
 	}
-    
-    public void addCustomListener(JRadioButton bouton){
-    	bouton.addMouseListener(new MouseAdapter(){
+
+	public void addCustomListener(JRadioButton bouton) {
+		bouton.addMouseListener(new MouseAdapter() {
 
 			@Override
-        	public void mouseClicked(MouseEvent e) {
-        		super.mouseClicked(e);
-        		if (!bm.equals(bG.getSelection())){
-        			bm = bG.getSelection();
-        			if (bm.equals(noConstraintButton.getModel()))
-        			{
-        				commutateur = 0;
-        				cl.first(chosenPanel);
-        			}
-        			if (bm.equals(pointConstraintButton.getModel())){
-        				commutateur = 1;
-        				cl.show(chosenPanel, "Contrainte sur un point");
-        			}
-        			if (bm.equals(slopeConstraintButton.getModel())){
-        				commutateur = 2;
-        				cl.show(chosenPanel,"Contrainte sur la pente");
-        			}
-        		}
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				if (!bm.equals(bG.getSelection())) {
+					bm = bG.getSelection();
+					if (bm.equals(noConstraintButton.getModel())) {
+						commutateur = 0;
+						cl.first(chosenPanel);
+					}
+					if (bm.equals(pointConstraintButton.getModel())) {
+						commutateur = 1;
+						cl.show(chosenPanel, "Contrainte sur un point");
+					}
+					if (bm.equals(slopeConstraintButton.getModel())) {
+						commutateur = 2;
+						cl.show(chosenPanel, "Contrainte sur la pente");
+					}
+				}
 
-        	}
-        });
-    }
-    
-    /**
+			}
+		});
+	}
+
+	/**
 	 * @return the slopeConstraints
 	 */
 	public SlopeConstraints getSlopeConstraints() {
@@ -136,9 +135,9 @@ public class LineConstraintsChoice extends Observable {
 		return commutateur;
 	}
 
-	public ButtonModel getBM(){
-    	return bm;
-    }
+	public ButtonModel getBM() {
+		return bm;
+	}
 
 	/**
 	 * @return the chosenPanel
@@ -195,5 +194,5 @@ public class LineConstraintsChoice extends Observable {
 	public ButtonGroup getbG() {
 		return bG;
 	}
-    
+
 }

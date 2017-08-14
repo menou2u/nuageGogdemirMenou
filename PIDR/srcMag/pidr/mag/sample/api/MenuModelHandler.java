@@ -13,7 +13,8 @@ import javax.swing.JMenuItem;
 public interface MenuModelHandler extends Iterable<JMenuItem>, Serializable {
 
 	/**
-	 * @return the {@link RendererConstraints} Object used as parameter for the {@link ItemRenderer}
+	 * @return the {@link RendererConstraints} Object used as parameter for the
+	 *         {@link ItemRenderer}
 	 */
 	public RendererConstraints getCommonConstraint();
 
@@ -28,7 +29,8 @@ public interface MenuModelHandler extends Iterable<JMenuItem>, Serializable {
 	public int getItemMargin();
 
 	/**
-	 * @return the {@link ItemRenderer} that generate the graphical component in the popup
+	 * @return the {@link ItemRenderer} that generate the graphical component in the
+	 *         popup
 	 */
 	public ItemRenderer getItemRenderer();
 
@@ -43,12 +45,14 @@ public interface MenuModelHandler extends Iterable<JMenuItem>, Serializable {
 	public void refresh();
 
 	/**
-	 * Reinitialize the {@link RendererConstraints} (used before diplay a new {@link JDynamicPopupMenu})
+	 * Reinitialize the {@link RendererConstraints} (used before diplay a new
+	 * {@link JDynamicPopupMenu})
 	 */
 	public void reinitCommonConstraints();
 
 	/**
-	 * set the {@link RendererConstraints} Object used as parameter for the {@link ItemRenderer}
+	 * set the {@link RendererConstraints} Object used as parameter for the
+	 * {@link ItemRenderer}
 	 * 
 	 * @param constraints
 	 *            the constrains to set
@@ -64,7 +68,8 @@ public interface MenuModelHandler extends Iterable<JMenuItem>, Serializable {
 	public void setItemMargin(int margin);
 
 	/**
-	 * set the {@link ItemRenderer} that generate the graphical component in the popup
+	 * set the {@link ItemRenderer} that generate the graphical component in the
+	 * popup
 	 * 
 	 * @param itemrenderer
 	 *            the {@link ItemRenderer} to set

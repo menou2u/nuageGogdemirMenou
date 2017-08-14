@@ -5,16 +5,16 @@ import java.util.LinkedList;
 public class Tests {
 
 	public static void main(String[] args) {
-		//dmcC0();
-		//dmcC1();
-		//dmcC2();
-		//plan0Contrainte();
+		// dmcC0();
+		// dmcC1();
+		// dmcC2();
+		// plan0Contrainte();
 		plan1Contrainte();
-		//test3D();
-		//test2D();
-		//testPourPisula();
+		// test3D();
+		// test2D();
+		// testPourPisula();
 	}
-	
+
 	public static void test2D() {
 		Nuages2D nuages2d = new Nuages2D();
 		LinkedList<Double> listXi = new LinkedList<Double>();
@@ -51,12 +51,12 @@ public class Tests {
 		listYomega.add(0.16);
 		LinkedList<Integer> listOrdreDerivation = new LinkedList<>();
 		listOrdreDerivation.add(0);
-		
+
 		nuages2d.run(listXi, listYi, listPhi, listXomega, listYomega, listOrdreDerivation);
 		System.out.println(nuages2d.getInfos());
 	}
 
-	public static void plan0Contrainte(){
+	public static void plan0Contrainte() {
 		Plan0Contrainte plan = new Plan0Contrainte();
 		LinkedList<Double> listXi = new LinkedList<Double>();
 		listXi.add(-1.0);
@@ -76,8 +76,8 @@ public class Tests {
 		plan.run(listXi, listYi, listZi);
 		System.out.println(plan.getInfos());
 	}
-	
-	public static void plan1Contrainte(){
+
+	public static void plan1Contrainte() {
 		Plan1ContraintePoint plan = new Plan1ContraintePoint();
 		LinkedList<Double> listXi = new LinkedList<Double>();
 		listXi.add(-2.0);
@@ -104,11 +104,11 @@ public class Tests {
 		listZomegaBT.add(2.0);
 		listZomegaBT.add(2.0);
 		plan.run(listXi, listYi, listZi, listXomegaBT, listYomegaBT, listZomegaBT);
-		//System.out.println(plan.getRes());
+		// System.out.println(plan.getRes());
 		System.out.println(plan.getInfos());
 	}
-	
-	public static void test3D(){
+
+	public static void test3D() {
 		Nuages3D troisD = new Nuages3D();
 		LinkedList<Double> listXi = new LinkedList<Double>();
 		listXi.add(-2.0);
@@ -139,12 +139,12 @@ public class Tests {
 		listOrdreDerivation.add(0);
 		LinkedList<Double> listUx = new LinkedList<Double>();
 		LinkedList<Double> listUy = new LinkedList<Double>();
-		troisD.run(listXi, listYi, listZi, listPhi, listXomega, listYomega, listZomega, listOrdreDerivation, listUx, listUy);
-		System.out.println(troisD.getInfos());	
+		troisD.run(listXi, listYi, listZi, listPhi, listXomega, listYomega, listZomega, listOrdreDerivation, listUx,
+				listUy);
+		System.out.println(troisD.getInfos());
 	}
-	
-	
-	public static void dmcC2(){
+
+	public static void dmcC2() {
 		DroiteMoindreCarres dmc = new DroiteMoindreCarres();
 		LinkedList<Double> listXi = new LinkedList<Double>();
 		listXi.add(-1.0);
@@ -162,8 +162,8 @@ public class Tests {
 		dmc.run(listXi, listYi, 2, constraints, 2);
 		System.out.println(dmc.getInfosC2());
 	}
-	
-	public static void dmcC1(){
+
+	public static void dmcC1() {
 		DroiteMoindreCarres dmc = new DroiteMoindreCarres();
 		LinkedList<Double> listXi = new LinkedList<Double>();
 		listXi.add(-1.0);
@@ -181,8 +181,8 @@ public class Tests {
 		dmc.run(listXi, listYi, 1, constraints, 0);
 		System.out.println(dmc.getInfosC0orC1());
 	}
-	
-	public static void dmcC0(){
+
+	public static void dmcC0() {
 		DroiteMoindreCarres dmc = new DroiteMoindreCarres();
 		LinkedList<Double> listXi = new LinkedList<Double>();
 		listXi.add(1.0);
@@ -200,8 +200,8 @@ public class Tests {
 		dmc.run(listXi, listYi, 0, constraints, 0);
 		System.out.println(dmc.getInfosC0orC1());
 	}
-	
-	public static void testPourPisula(){
+
+	public static void testPourPisula() {
 		Nuages2D n = new Nuages2D();
 		LinkedList<Double> listXi = new LinkedList<Double>();
 		listXi.add(0.02213);
@@ -239,7 +239,7 @@ public class Tests {
 		LinkedList<Integer> listOrdreDerivation = new LinkedList<>();
 		listOrdreDerivation.add(0);
 		listOrdreDerivation.add(0);
-		
+
 		n.run(listXi, listYi, listPhi, listXomega, listYomega, listOrdreDerivation);
 		System.out.println(n.getInfos());
 	}

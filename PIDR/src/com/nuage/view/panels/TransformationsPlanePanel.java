@@ -9,32 +9,32 @@ import javax.swing.JPanel;
 import com.nuage.model.swing.datas.TransformationsPlane;
 
 @SuppressWarnings("serial")
-public class TransformationsPlanePanel extends JPanel{
-	
-	public TransformationsPlanePanel(TransformationsPlane transformationsPlane){
+public class TransformationsPlanePanel extends JPanel {
+
+	public TransformationsPlanePanel(TransformationsPlane transformationsPlane) {
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
-		
-		gbc.gridx=0;
-		gbc.gridy=0;
-		gbc.gridheight=1;
-		gbc.gridwidth=1;
+
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
 		this.setLayout(gbl);
-		this.add(new TransformXPanel(transformationsPlane.getTransformX()),gbc);
-		
-		gbc.gridy+=gbc.gridheight;
-		this.add(new TransformYPanel(transformationsPlane.getTransformY()),gbc);
-		
-		gbc.gridy+=gbc.gridheight;
-		this.add(new TransformZPanel(transformationsPlane.getTransformZ()),gbc);
-		
-		gbc.gridy=0;
-		gbc.gridx=1;
-		gbc.gridheight=3;
-		this.add(transformationsPlane.getValidation(),gbc);
-		
+		this.add(new TransformXPanel(transformationsPlane.getTransformX()), gbc);
+
+		gbc.gridy += gbc.gridheight;
+		this.add(new TransformYPanel(transformationsPlane.getTransformY()), gbc);
+
+		gbc.gridy += gbc.gridheight;
+		this.add(new TransformZPanel(transformationsPlane.getTransformZ()), gbc);
+
+		gbc.gridy = 0;
+		gbc.gridx = 1;
+		gbc.gridheight = 3;
+		this.add(transformationsPlane.getValidation(), gbc);
+
 	}
-	
+
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Transforms");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -18,14 +18,14 @@ public class TableCustom2DModel extends TableCustomModel {
 	private LinkedList<Double> x;
 	private LinkedList<Double> y;
 
-	public TableCustom2DModel(MainWindow mainWindow,String fileName,String[] entetes) {
+	public TableCustom2DModel(MainWindow mainWindow, String fileName, String[] entetes) {
 		super();
 		this.entetes = entetes;
 		fillPoints(fileName);
-		//"C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx"
+		// "C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx"
 	}
-	
-	public TableCustom2DModel(String[] entetes){
+
+	public TableCustom2DModel(String[] entetes) {
 		super();
 		this.entetes = entetes;
 		LinkedList<Double> point = new LinkedList<Double>();
@@ -35,30 +35,28 @@ public class TableCustom2DModel extends TableCustomModel {
 		points.add(new Point2D(point));
 	}
 
-	public void setTable(TableCustom2DModel table){
+	public void setTable(TableCustom2DModel table) {
 		x = table.getX();
 		y = table.getY();
 		points.clear();
-		for (int i=0;i<x.size();i++)
-		{
-			points.add(new Point2D(i+0.0,x.get(i),y.get(i)));
+		for (int i = 0; i < x.size(); i++) {
+			points.add(new Point2D(i + 0.0, x.get(i), y.get(i)));
 		}
 	}
-	
+
 	@Override
-	public void warnView(MainWindow mainWindow,File file)
-	{
-		setTable(mainWindow,file.getPath());
+	public void warnView(MainWindow mainWindow, File file) {
+		setTable(mainWindow, file.getPath());
 		fireTableChanged(new TableModelEvent(this));
 	}
-	
-	public void setTable(MainWindow mainWindow,String fileName){
-		setTable(new TableCustom2DModel(mainWindow,fileName,entetes));
+
+	public void setTable(MainWindow mainWindow, String fileName) {
+		setTable(new TableCustom2DModel(mainWindow, fileName, entetes));
 		fireTableChanged(new TableModelEvent(this));
 	}
-	
-	public void fillPoints(String fileName){
-		LinkedList<Double> point=new LinkedList<Double>();
+
+	public void fillPoints(String fileName) {
+		LinkedList<Double> point = new LinkedList<Double>();
 		Datas2DFactory fact = null;
 		try {
 			fact = new Datas2DFactory(fileName);
@@ -68,47 +66,47 @@ public class TableCustom2DModel extends TableCustomModel {
 		}
 		x = fact.getX();
 		y = fact.getY();
-		for (int i=0;i<x.size();i++){
-			point.add(i+1.0);
+		for (int i = 0; i < x.size(); i++) {
+			point.add(i + 1.0);
 			point.add(x.get(i));
 			point.add(y.get(i));
 			points.add(new Point2D(point));
 			point = new LinkedList<Double>();
 		}
 	}
-	
+
 	@Override
 	public void fillPoints(LinkedList<Double> x, LinkedList<Double> y, LinkedList<Double> z) {
 		eraseTable();
 		LinkedList<Double> newPoint = new LinkedList<Double>();
-		for (int i=0; i<x.size(); i++) {
-			newPoint.add(i+1.0);
+		for (int i = 0; i < x.size(); i++) {
+			newPoint.add(i + 1.0);
 			newPoint.add(x.get(i));
 			newPoint.add(y.get(i));
 			addPoint(new Point2D(newPoint));
 			newPoint = new LinkedList<Double>();
 		}
 	}
-	
+
 	public void eraseTable() {
 		points.clear();
 	}
-	
+
 	@Override
 	public int getRowCount() {
 		return points.size();
 	}
 
 	@Override
-	public LinkedList<Double> getX(){
-		 return x;
+	public LinkedList<Double> getX() {
+		return x;
 	}
-	
+
 	@Override
-	public LinkedList<Double> getY(){
-		 return y;
+	public LinkedList<Double> getY() {
+		return y;
 	}
-	
+
 	@Override
 	public int getColumnCount() {
 		return entetes.length;
@@ -123,7 +121,7 @@ public class TableCustom2DModel extends TableCustomModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return rowIndex+1;
+			return rowIndex + 1;
 		case 1:
 			return points.get(rowIndex).getX();
 		case 2:
@@ -142,15 +140,13 @@ public class TableCustom2DModel extends TableCustomModel {
 		points.remove(rowIndex);
 		fireTableRowsDeleted(rowIndex, rowIndex);
 	}
-	
-	//REMOVE MUCH POINTS IN ONE BLOW
-	public void removePoint(int begin, int end, int ratio)
-	{
-		int nbPointsToRemove = (end-begin)/ratio;
-		int firstToRemove = begin + ratio*nbPointsToRemove;
-		for (int i = 0; i<=nbPointsToRemove; i++)
-		{
-			removePoint(firstToRemove-(i*ratio));
+
+	// REMOVE MUCH POINTS IN ONE BLOW
+	public void removePoint(int begin, int end, int ratio) {
+		int nbPointsToRemove = (end - begin) / ratio;
+		int firstToRemove = begin + ratio * nbPointsToRemove;
+		for (int i = 0; i <= nbPointsToRemove; i++) {
+			removePoint(firstToRemove - (i * ratio));
 		}
 	}
 
@@ -163,34 +159,34 @@ public class TableCustom2DModel extends TableCustomModel {
 	}
 
 	@Override
-    public void setValueAt(Object val, int rowIndex, int columnIndex){
-    	if (!isCellEditable(rowIndex,columnIndex))
-    	{
-    		return;
-    	}
-    	if (val != null){
-    		Point2D point = points.get(rowIndex);
-    		switch (columnIndex) {
-    		case 1:
-    			point.setX((Double)val);
-    			break;
-    		case 2:
-    			point.setY((Double)val);
-    		default:
-    			break;
+	public void setValueAt(Object val, int rowIndex, int columnIndex) {
+		if (!isCellEditable(rowIndex, columnIndex)) {
+			return;
+		}
+		if (val != null) {
+			Point2D point = points.get(rowIndex);
+			switch (columnIndex) {
+			case 1:
+				point.setX((Double) val);
+				break;
+			case 2:
+				point.setY((Double) val);
+			default:
+				break;
 			}
-    	}
-    	fireTableCellUpdated(rowIndex,columnIndex);
-    }
-	
+		}
+		fireTableCellUpdated(rowIndex, columnIndex);
+	}
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public Class getColumnClass(int columnIndex){
+	public Class getColumnClass(int columnIndex) {
 		return Double.class;
 	}
-	
-	public void applyTransfo(){
-		//TODO : Quand on clique le bouton Validation du transformationsPanel, Ca devra appeler cette méthode pour changer la partie des TransformedDatas
+
+	public void applyTransfo() {
+		// TODO : Quand on clique le bouton Validation du transformationsPanel, Ca devra
+		// appeler cette méthode pour changer la partie des TransformedDatas
 	}
 
 	public ArrayList<Point2D> getPoints() {
@@ -202,29 +198,27 @@ public class TableCustom2DModel extends TableCustomModel {
 		// TODO Auto-generated method stub
 		return entetes;
 	}
-	
+
 	public Data toData() {
-		Data d = new Data("n°","x","y");
-		for (Point2D p : points)
-		{
+		Data d = new Data("n°", "x", "y");
+		for (Point2D p : points) {
 			d.getX().add(p.getX());
 			d.getY().add(p.getY());
 		}
 		return d;
 	}
-	
+
 	@Override
-	public boolean isEmpty(){
-		if (x == null || y == null){
+	public boolean isEmpty() {
+		if (x == null || y == null) {
 			x = new LinkedList<Double>();
 			y = new LinkedList<Double>();
-			for (int i =0;i<points.size();i++)
-			{
+			for (int i = 0; i < points.size(); i++) {
 				x.add(points.get(i).getX());
 				y.add(points.get(i).getY());
 			}
 		}
-		return x.isEmpty()&&y.isEmpty();
+		return x.isEmpty() && y.isEmpty();
 	}
 
 	@Override
@@ -232,6 +226,5 @@ public class TableCustom2DModel extends TableCustomModel {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
 }

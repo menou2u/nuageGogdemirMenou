@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 import com.nuage.model.swing.MainWindow;
 
 @SuppressWarnings("serial")
-public class Table3DConstraintCustomModel extends AbstractTableModel{
+public class Table3DConstraintCustomModel extends AbstractTableModel {
 
 	private final LinkedList<Constraint3D> constraints = new LinkedList<Constraint3D>();
 	private final String[] entetes;
@@ -20,14 +20,14 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 	private LinkedList<Double> derivationOrder;
 	private LinkedList<Double> ux;
 	private LinkedList<Double> uy;
-	
-	public Table3DConstraintCustomModel(MainWindow mainWindow,String fileName, String[] entetes) {
+
+	public Table3DConstraintCustomModel(MainWindow mainWindow, String fileName, String[] entetes) {
 		super();
-		this.entetes=entetes;
+		this.entetes = entetes;
 		fillConstraints(fileName);
 	}
-	
-	public Table3DConstraintCustomModel(String[] entetes){
+
+	public Table3DConstraintCustomModel(String[] entetes) {
 		super();
 		this.entetes = entetes;
 		LinkedList<Double> constraint = new LinkedList<Double>();
@@ -40,8 +40,8 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 		constraint.add(0.0);
 		constraints.add(new Constraint3D(constraint));
 	}
-	
-	public void setTable(Table3DConstraintCustomModel table){
+
+	public void setTable(Table3DConstraintCustomModel table) {
 		xw = table.getXw();
 		yw = table.getYw();
 		constraintValue = table.getConstraintValue();
@@ -49,30 +49,28 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 		ux = table.getUx();
 		uy = table.getUy();
 		constraints.clear();
-		for (int i=0;i<xw.size();i++)
-		{
-			constraints.add(new Constraint3D(i+0.0,xw.get(i),yw.get(i),constraintValue.get(i),derivationOrder.get(i),ux.get(i),uy.get(i)));
+		for (int i = 0; i < xw.size(); i++) {
+			constraints.add(new Constraint3D(i + 0.0, xw.get(i), yw.get(i), constraintValue.get(i),
+					derivationOrder.get(i), ux.get(i), uy.get(i)));
 		}
 	}
-	
-	public void warnView(MainWindow mainWindow, File file)
-	{
-		setTable(mainWindow,file.getPath());
+
+	public void warnView(MainWindow mainWindow, File file) {
+		setTable(mainWindow, file.getPath());
 	}
-	
-	//Weird ça non?
-	public void setTable(MainWindow mainWindow,String fileName){
-		setTable(new Table3DConstraintCustomModel(mainWindow,fileName,entetes));
+
+	// Weird ça non?
+	public void setTable(MainWindow mainWindow, String fileName) {
+		setTable(new Table3DConstraintCustomModel(mainWindow, fileName, entetes));
 		fireTableChanged(new TableModelEvent(this));
 	}
-	
-	public void fillConstraints(String fileName){
+
+	public void fillConstraints(String fileName) {
 		LinkedList<Double> constraint = new LinkedList<Double>();
 		Constraints3DFactory fact = null;
-		try{
+		try {
 			fact = new Constraints3DFactory(fileName);
-		}
-		catch(IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		xw = fact.getXw();
@@ -81,8 +79,8 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 		derivationOrder = fact.getDerivationOrder();
 		ux = fact.getUx();
 		uy = fact.getUy();
-		for (int i=0;i<xw.size();i++){
-			constraint.add(i+1.0);
+		for (int i = 0; i < xw.size(); i++) {
+			constraint.add(i + 1.0);
 			constraint.add(xw.get(i));
 			constraint.add(yw.get(i));
 			constraint.add(constraintValue.get(i));
@@ -93,8 +91,9 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 			constraint.clear();
 		}
 	}
-	
-	public void fillConstraints(LinkedList<Double> xw, LinkedList<Double> yw, LinkedList<Double> constraintValue, LinkedList<Integer> derivationOrderList, LinkedList<Double> ux, LinkedList<Double> uy) {
+
+	public void fillConstraints(LinkedList<Double> xw, LinkedList<Double> yw, LinkedList<Double> constraintValue,
+			LinkedList<Integer> derivationOrderList, LinkedList<Double> ux, LinkedList<Double> uy) {
 		eraseTable();
 		LinkedList<Double> newPoint = new LinkedList<Double>();
 		this.xw = new LinkedList<>();
@@ -103,8 +102,8 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 		this.derivationOrder = new LinkedList<>();
 		this.ux = new LinkedList<>();
 		this.uy = new LinkedList<>();
-		for (int i=0; i<xw.size(); i++) {
-			newPoint.add(i+1.0);
+		for (int i = 0; i < xw.size(); i++) {
+			newPoint.add(i + 1.0);
 			newPoint.add(xw.get(i));
 			this.xw.add(xw.get(i));
 			newPoint.add(yw.get(i));
@@ -121,26 +120,26 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 			newPoint = new LinkedList<Double>();
 		}
 	}
-	
+
 	public void eraseTable() {
 		constraints.clear();
 	}
-	
+
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
 		return constraints.size();
 	}
-	
-	public LinkedList<Double> getConstraintValue(){
+
+	public LinkedList<Double> getConstraintValue() {
 		return constraintValue;
 	}
-	
-	public LinkedList<Double> getDerivationOrder(){
+
+	public LinkedList<Double> getDerivationOrder() {
 		return derivationOrder;
 	}
-	
-	public LinkedList<Double> getXw(){
+
+	public LinkedList<Double> getXw() {
 		return xw;
 	}
 
@@ -153,17 +152,17 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 	public String getColumnName(int columnIndex) {
 		return entetes[columnIndex];
 	}
-	
-	public void addConstraint(Constraint3D constraint){
+
+	public void addConstraint(Constraint3D constraint) {
 		constraints.add(constraint);
-		fireTableRowsInserted(constraints.size()-1,constraints.size()-1);
+		fireTableRowsInserted(constraints.size() - 1, constraints.size() - 1);
 	}
-	
-	public void removeConstraint(int rowIndex){
+
+	public void removeConstraint(int rowIndex) {
 		constraints.remove(rowIndex);
-		fireTableRowsDeleted(rowIndex,rowIndex);
+		fireTableRowsDeleted(rowIndex, rowIndex);
 	}
-	
+
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		if (columnIndex == 0) {
@@ -171,12 +170,12 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 		}
 		return true;
 	}
-	
+
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return rowIndex+1;
+			return rowIndex + 1;
 		case 1:
 			return constraints.get(rowIndex).getXw();
 		case 2:
@@ -193,8 +192,8 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 			return null; // Ne devrait jamais arriver
 		}
 	}
-	
-	public LinkedList<Double> getColumn(int i){
+
+	public LinkedList<Double> getColumn(int i) {
 		switch (i) {
 		case 1:
 			return xw;
@@ -212,51 +211,51 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 			return null;
 		}
 	}
-	
-    @Override
-	public void setValueAt(Object val, int rowIndex, int columnIndex){
-    	if (!isCellEditable(rowIndex,columnIndex))
-    	{
-    		return;
-    	}
-    	if (val != null){
-    		Constraint3D constraint = constraints.get(rowIndex);
-    		switch (columnIndex) {
-    		case 1:
-    			constraint.setXw((Double)val);
-    		case 2:
-    			constraint.setYw((Double)val);
-    		case 3:
-    			constraint.setConstraintValue((Double)val);
-    		case 4:
-    			constraint.setDerivationOrder((Double)val);
-    		case 5:
-    			constraint.setUx((Double)val);
-    		case 6:
-    			constraint.setUy((Double)val);
-    		default:
-    			break;
+
+	@Override
+	public void setValueAt(Object val, int rowIndex, int columnIndex) {
+		if (!isCellEditable(rowIndex, columnIndex)) {
+			return;
+		}
+		if (val != null) {
+			Constraint3D constraint = constraints.get(rowIndex);
+			switch (columnIndex) {
+			case 1:
+				constraint.setXw((Double) val);
+			case 2:
+				constraint.setYw((Double) val);
+			case 3:
+				constraint.setConstraintValue((Double) val);
+			case 4:
+				constraint.setDerivationOrder((Double) val);
+			case 5:
+				constraint.setUx((Double) val);
+			case 6:
+				constraint.setUy((Double) val);
+			default:
+				break;
 			}
-    	}
-    }
-    
-    @Override
+		}
+	}
+
+	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Class getColumnClass(int columnIndex){
-    	return Double.class;
-    }
-    
-    public LinkedList<Constraint3D> getConstraints(){
-    	return constraints;
-    }
-    
-    public String[] getEntetes(){
-    	return entetes;
-    }
-    
-    public boolean isEmpty(){
-    	return yw.isEmpty()&&ux.isEmpty()&&uy.isEmpty()&&xw.isEmpty()&&constraintValue.isEmpty()&&derivationOrder.isEmpty();
-    }
+	public Class getColumnClass(int columnIndex) {
+		return Double.class;
+	}
+
+	public LinkedList<Constraint3D> getConstraints() {
+		return constraints;
+	}
+
+	public String[] getEntetes() {
+		return entetes;
+	}
+
+	public boolean isEmpty() {
+		return yw.isEmpty() && ux.isEmpty() && uy.isEmpty() && xw.isEmpty() && constraintValue.isEmpty()
+				&& derivationOrder.isEmpty();
+	}
 
 	/**
 	 * @return the ux
@@ -266,7 +265,8 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 	}
 
 	/**
-	 * @param ux the ux to set
+	 * @param ux
+	 *            the ux to set
 	 */
 	public void setUx(LinkedList<Double> ux) {
 		this.ux = ux;
@@ -280,7 +280,8 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 	}
 
 	/**
-	 * @param uy the uy to set
+	 * @param uy
+	 *            the uy to set
 	 */
 	public void setUy(LinkedList<Double> uy) {
 		this.uy = uy;
@@ -292,5 +293,5 @@ public class Table3DConstraintCustomModel extends AbstractTableModel{
 	public LinkedList<Double> getYw() {
 		return yw;
 	}
-	
+
 }

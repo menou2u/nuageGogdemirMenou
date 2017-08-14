@@ -13,7 +13,6 @@ import com.nuage.model.swing.datas.tables.Point3D;
 import com.nuage.model.swing.datas.tables.TableCustom2DModel;
 import com.nuage.model.swing.datas.tables.TableCustom3DModel;
 
-
 public class DataPlanePanel extends JPanel {
 	/**
 	 * 
@@ -24,13 +23,12 @@ public class DataPlanePanel extends JPanel {
 	private TableCustom3DModel tc3dmDatas;
 	private TableCustom3DModel tc3dmTrans;
 
-	public DataPlanePanel(TableCustom3DModel modele,String tx,String ty,String tz)
-	{
+	public DataPlanePanel(TableCustom3DModel modele, String tx, String ty, String tz) {
 		super();
-		
+
 		tc3dmDatas = modele;
 		tc3dmTrans = applyChanges(modele);
-		
+
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
@@ -39,17 +37,18 @@ public class DataPlanePanel extends JPanel {
 		gbc.gridheight = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		add(new Data3DPanel(tc3dmDatas));
-		gbc.gridx=1;
+		gbc.gridx = 1;
 		add(new Data3DPanel(tc3dmTrans));
 	}
 
 	private TableCustom3DModel applyChanges(TableCustom3DModel modele2) {
 		// TODO Auto-generated method stub
-		TableCustom3DModel model = new TableCustom3DModel(new String[]{"n°","Xi = tx(xi)","Yi = ty(yi)","Zi = tz(zi)"});
+		TableCustom3DModel model = new TableCustom3DModel(
+				new String[] { "n°", "Xi = tx(xi)", "Yi = ty(yi)", "Zi = tz(zi)" });
 		model.getPoints().clear();
-		for (Point3D p : modele2.getPoints()){
+		for (Point3D p : modele2.getPoints()) {
 			model.addPoint(p);
 		}
 		return model;
@@ -57,7 +56,7 @@ public class DataPlanePanel extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		TableCustom2DModel mod = new TableCustom2DModel(new String[]{"n°","Xi","Yi"});
+		TableCustom2DModel mod = new TableCustom2DModel(new String[] { "n°", "Xi", "Yi" });
 		frame.setContentPane(new Data2DPanel(mod));
 		frame.pack();
 		frame.setVisible(true);
@@ -71,7 +70,7 @@ public class DataPlanePanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			modele.addPoint(new Point3D(modele.getRowCount() + 1.0, 0.0, 0.0,0.0));
+			modele.addPoint(new Point3D(modele.getRowCount() + 1.0, 0.0, 0.0, 0.0));
 		}
 	}
 
@@ -89,13 +88,13 @@ public class DataPlanePanel extends JPanel {
 			}
 			for (int i = 0; i < modele.getRowCount(); i++) {
 				modele.setValueAt(i + 1.0, i, 0);
-				System.out.println(modele.getValueAt(i,1));
-				System.out.println(i+1.0);
+				System.out.println(modele.getValueAt(i, 1));
+				System.out.println(i + 1.0);
 			}
 			System.out.println(modele.getRowCount());
 		}
 	}
-	
+
 	/**
 	 * @return the tc3dmTrans
 	 */

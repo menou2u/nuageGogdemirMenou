@@ -13,12 +13,17 @@ public abstract class LayoutRendererConstraints extends RendererConstraints {
 	private Constructor<?> layout;
 
 	/**
-	 * construct a {@link LayoutRendererConstraints}, that has the same feature than a {@link RendererConstraints} except that he can get a layout manager for the Popup Menu
+	 * construct a {@link LayoutRendererConstraints}, that has the same feature than
+	 * a {@link RendererConstraints} except that he can get a layout manager for the
+	 * Popup Menu
 	 * 
 	 * @param preferedheight
-	 *            the preferred height of element inherit {@link RendererConstraints}
+	 *            the preferred height of element inherit
+	 *            {@link RendererConstraints}
 	 * @param layout
-	 *            the class of the {@link LayoutManager} it will construct by his default constructor any {@link LayoutManager} that didn't satisfy this condition will throw an {@link IllegalArgumentException}
+	 *            the class of the {@link LayoutManager} it will construct by his
+	 *            default constructor any {@link LayoutManager} that didn't satisfy
+	 *            this condition will throw an {@link IllegalArgumentException}
 	 * 
 	 */
 	public LayoutRendererConstraints(int preferedheight, Class<?> layout) {
@@ -50,7 +55,9 @@ public abstract class LayoutRendererConstraints extends RendererConstraints {
 	 * set the layout Manager that will be used to display element in the Menu
 	 * 
 	 * @param layout
-	 *            the class of the {@link LayoutManager} it will construct by his default constructor any {@link LayoutManager} that didn't satisfy this condition will throw an {@link IllegalArgumentException}
+	 *            the class of the {@link LayoutManager} it will construct by his
+	 *            default constructor any {@link LayoutManager} that didn't satisfy
+	 *            this condition will throw an {@link IllegalArgumentException}
 	 */
 
 	public void setLayoutManager(Class<?> layout) {

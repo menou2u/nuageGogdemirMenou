@@ -13,5 +13,4 @@ public class MyRenderer implements ListCellRenderer<String> {
 		return null;
 	}
 
-
 }

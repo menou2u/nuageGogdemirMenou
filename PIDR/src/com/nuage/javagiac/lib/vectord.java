@@ -9,69 +9,69 @@
 package com.nuage.javagiac.lib;
 
 public class vectord {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+	private long swigCPtr;
+	protected boolean swigCMemOwn;
 
-  protected vectord(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+	protected vectord(long cPtr, boolean cMemoryOwn) {
+		swigCMemOwn = cMemoryOwn;
+		swigCPtr = cPtr;
+	}
 
-  protected static long getCPtr(vectord obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+	protected static long getCPtr(vectord obj) {
+		return (obj == null) ? 0 : obj.swigCPtr;
+	}
 
-  @Override
-protected void finalize() {
-    delete();
-  }
+	@Override
+	protected void finalize() {
+		delete();
+	}
 
-  public synchronized void delete() {
-    if(swigCPtr != 0 && swigCMemOwn) {
-      swigCMemOwn = false;
-      giacJNI.delete_vectord(swigCPtr);
-    }
-    swigCPtr = 0;
-  }
+	public synchronized void delete() {
+		if (swigCPtr != 0 && swigCMemOwn) {
+			swigCMemOwn = false;
+			giacJNI.delete_vectord(swigCPtr);
+		}
+		swigCPtr = 0;
+	}
 
-  public vectord() {
-    this(giacJNI.new_vectord__SWIG_0(), true);
-  }
+	public vectord() {
+		this(giacJNI.new_vectord__SWIG_0(), true);
+	}
 
-  public vectord(long n) {
-    this(giacJNI.new_vectord__SWIG_1(n), true);
-  }
+	public vectord(long n) {
+		this(giacJNI.new_vectord__SWIG_1(n), true);
+	}
 
-  public long size() {
-    return giacJNI.vectord_size(swigCPtr, this);
-  }
+	public long size() {
+		return giacJNI.vectord_size(swigCPtr, this);
+	}
 
-  public long capacity() {
-    return giacJNI.vectord_capacity(swigCPtr, this);
-  }
+	public long capacity() {
+		return giacJNI.vectord_capacity(swigCPtr, this);
+	}
 
-  public void reserve(long n) {
-    giacJNI.vectord_reserve(swigCPtr, this, n);
-  }
+	public void reserve(long n) {
+		giacJNI.vectord_reserve(swigCPtr, this, n);
+	}
 
-  public boolean isEmpty() {
-    return giacJNI.vectord_isEmpty(swigCPtr, this);
-  }
+	public boolean isEmpty() {
+		return giacJNI.vectord_isEmpty(swigCPtr, this);
+	}
 
-  public void clear() {
-    giacJNI.vectord_clear(swigCPtr, this);
-  }
+	public void clear() {
+		giacJNI.vectord_clear(swigCPtr, this);
+	}
 
-  public void add(double x) {
-    giacJNI.vectord_add(swigCPtr, this, x);
-  }
+	public void add(double x) {
+		giacJNI.vectord_add(swigCPtr, this, x);
+	}
 
-  public double get(int i) {
-    return giacJNI.vectord_get(swigCPtr, this, i);
-  }
+	public double get(int i) {
+		return giacJNI.vectord_get(swigCPtr, this, i);
+	}
 
-  public void set(int i, double x) {
-    giacJNI.vectord_set(swigCPtr, this, i, x);
-  }
+	public void set(int i, double x) {
+		giacJNI.vectord_set(swigCPtr, this, i, x);
+	}
 
 }

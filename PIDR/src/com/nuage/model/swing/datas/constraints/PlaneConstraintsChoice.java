@@ -21,15 +21,15 @@ public class PlaneConstraintsChoice extends Observable {
 	private JRadioButton noConstraint;
 	private JRadioButton oneConstraint;
 	private JRadioButton twoConstraint;
-	
+
 	private JPanel constraintChoice;
 	private JPanel constraintData;
 	private JPanel noConstraintPane;
 	private OneConstraintChoicePanel oneConstraintPane;
 	private TwoConstraintChoicePanel twoConstraintPane;
-	
+
 	private CardLayout cl;
-	
+
 	public PlaneConstraintsChoice() {
 		bG = new ButtonGroup();
 		noConstraint = new JRadioButton("Aucune contrainte");
@@ -40,49 +40,48 @@ public class PlaneConstraintsChoice extends Observable {
 		bG.add(twoConstraint);
 		noConstraint.setSelected(true);
 		bm = bG.getSelection();
-		
-		constraintChoice = new JPanel(new GridLayout(3,1));
-		constraintChoice.add(noConstraint,"noConstraint");
-		constraintChoice.add(oneConstraint,"oneConstraint");
-		constraintChoice.add(twoConstraint,"twoConstraint");
-		
+
+		constraintChoice = new JPanel(new GridLayout(3, 1));
+		constraintChoice.add(noConstraint, "noConstraint");
+		constraintChoice.add(oneConstraint, "oneConstraint");
+		constraintChoice.add(twoConstraint, "twoConstraint");
+
 		addCustomListener(noConstraint);
 		addCustomListener(oneConstraint);
 		addCustomListener(twoConstraint);
-		
+
 		cl = new CardLayout();
-		
+
 		constraintData = new JPanel(cl);
 		noConstraintPane = new JPanel();
 		oneConstraintPane = new OneConstraintChoicePanel(new OneConstraintChoice());
 		twoConstraintPane = new TwoConstraintChoicePanel(new TwoConstraintChoice());
-		
-		constraintData.add(noConstraintPane,"noConstraint");
-		constraintData.add(oneConstraintPane,"oneConstraint");
-		constraintData.add(twoConstraintPane,"twoConstraint");
-	}
-	
-	private void addCustomListener(JRadioButton bouton) {
-		bouton.addMouseListener(new MouseAdapter(){
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		super.mouseClicked(e);
-        		if (!bm.equals(bG.getSelection())){
-        			bm = bG.getSelection();
-        			if (bm.equals(noConstraint.getModel()))
-        			{
-        				cl.show(constraintData,"noConstraint");
-        			}
-        			if (bm.equals(oneConstraint.getModel())){
-        				cl.show(constraintData, "oneConstraint");
-        			}
-        			if (bm.equals(twoConstraint.getModel())){
-        				cl.show(constraintData,"twoConstraint");
-        			}
-        		}
 
-        	}
-        });
+		constraintData.add(noConstraintPane, "noConstraint");
+		constraintData.add(oneConstraintPane, "oneConstraint");
+		constraintData.add(twoConstraintPane, "twoConstraint");
+	}
+
+	private void addCustomListener(JRadioButton bouton) {
+		bouton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				if (!bm.equals(bG.getSelection())) {
+					bm = bG.getSelection();
+					if (bm.equals(noConstraint.getModel())) {
+						cl.show(constraintData, "noConstraint");
+					}
+					if (bm.equals(oneConstraint.getModel())) {
+						cl.show(constraintData, "oneConstraint");
+					}
+					if (bm.equals(twoConstraint.getModel())) {
+						cl.show(constraintData, "twoConstraint");
+					}
+				}
+
+			}
+		});
 	}
 
 	/**
@@ -161,9 +160,5 @@ public class PlaneConstraintsChoice extends Observable {
 	public CardLayout getCl() {
 		return cl;
 	}
-	
-	
-	
-	
-	
+
 }

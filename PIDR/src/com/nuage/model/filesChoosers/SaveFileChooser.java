@@ -13,11 +13,11 @@ public class SaveFileChooser extends JFileChooser {
 
 	public SaveFileChooser(Updatable mode) {
 		directory = new File(".");
-		
+
 		setCurrentDirectory(directory);
-		
+
 		setAcceptAllFileFilterUsed(false);
 		setFileFilter(new ModeFileFilter(mode));
 	}
-	
+
 }

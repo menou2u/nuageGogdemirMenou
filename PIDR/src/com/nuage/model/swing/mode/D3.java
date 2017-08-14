@@ -34,8 +34,8 @@ public class D3 implements Updatable {
 
 	private TableCustom3DModel threeDDatas;
 	private Data3DPanel threeDDatasPane;
-	//private Constraints threeDConstraints;
-	//private ConstraintsPanel threeDConstraintsPane;
+	// private Constraints threeDConstraints;
+	// private ConstraintsPanel threeDConstraintsPane;
 	private Table3DConstraintCustomModel threeDConstraints;
 	private Constraint3DPanel threeDConstraintsPane;
 	private TestFunction threeDTestFunction;
@@ -47,70 +47,73 @@ public class D3 implements Updatable {
 	private DisplaySettings threeDDisplaySettings;
 	private DisplaySettingsPanel threeDDisplaySettingsPane;
 	private D3Graph d3Graph;
-	
+
 	public D3() {
 		// Datas
-		threeDDatas = new TableCustom3DModel(new String[]{"N°","Xi","Yi","Zi"});
+		threeDDatas = new TableCustom3DModel(new String[] { "N°", "Xi", "Yi", "Zi" });
 		threeDDatasPane = new Data3DPanel(threeDDatas);
-		//Contraintes
-		threeDConstraints = new Table3DConstraintCustomModel(new String[]{"N°","Xw","Yw","Constraint Value","Derivation Order","Ux","Uy"});
+		// Contraintes
+		threeDConstraints = new Table3DConstraintCustomModel(
+				new String[] { "N°", "Xw", "Yw", "Constraint Value", "Derivation Order", "Ux", "Uy" });
 		threeDConstraintsPane = new Constraint3DPanel(threeDConstraints);
-		// //threeDConstraints = new Constraints(new String[]{"N°","Xw","Yw","Valeur contrainte","Ordre de dérivation","Ux","Uy"});
+		// //threeDConstraints = new Constraints(new String[]{"N°","Xw","Yw","Valeur
+		// contrainte","Ordre de dérivation","Ux","Uy"});
 		// //threeDConstraintsPane = new ConstraintsPanel(threeDConstraints);
-		//Fonction de Test
+		// Fonction de Test
 		threeDTestFunction = new TestFunction("(x;y)");
 		threeDTestFunctionPane = new TestFunctionPanel(threeDTestFunction);
-		//Calculette
+		// Calculette
 		threeDMathShortcuts = new MathShortcuts(threeDTestFunction);
 		threeDMathShortcutsPane = new MathShortcutsPanel(threeDMathShortcuts);
-		//Fonction calculée
+		// Fonction calculée
 		threeDCalculatedFunction = new CalculatedFunction("f(x;y) = ", "x0;y0");
 		threeDCalculatedFunctionPane = new CalculatedFunctionPanel(threeDCalculatedFunction);
-		//Partie display
+		// Partie display
 		threeDDisplaySettings = new DisplaySettings();
 		threeDDisplaySettingsPane = new DisplaySettingsPanel(threeDDisplaySettings);
 		d3Graph = new D3Graph();
 	}
-	
+
 	public Component getVisualisationPanel() {
 		// Define a function to plot
-        Mapper mapper = new Mapper() {
-            @Override
-            public double f(double x, double y) {
-                //return x * Math.sin(x * y);
-            	return 0;
-            }
-        };
+		Mapper mapper = new Mapper() {
+			@Override
+			public double f(double x, double y) {
+				// return x * Math.sin(x * y);
+				return 0;
+			}
+		};
 
-        // Define range and precision for the function to plot
-        Range range = new Range(1, 5);
-        int steps = 80;
+		// Define range and precision for the function to plot
+		Range range = new Range(1, 5);
+		int steps = 80;
 
-        // Create the object to represent the function over the given range.
-        final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
-        surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(), surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
-        surface.setFaceDisplayed(true);
-        surface.setWireframeDisplayed(false);
+		// Create the object to represent the function over the given range.
+		final Shape surface = Builder.buildOrthonormal(new OrthonormalGrid(range, steps, range, steps), mapper);
+		surface.setColorMapper(new ColorMapper(new ColorMapRainbow(), surface.getBounds().getZmin(),
+				surface.getBounds().getZmax(), new Color(1, 1, 1, .5f)));
+		surface.setFaceDisplayed(true);
+		surface.setWireframeDisplayed(false);
 
-        // Create a chart
-        Chart chart = new Chart();
-        chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
-        chart.getScene().getGraph().add(surface);
-        
-        chart.addMouseCameraController();
-        chart.addMousePickingController(2);
-        /*AWTCameraMouseController controller = new AWTCameraMouseController(chart);
+		// Create a chart
+		Chart chart = new Chart();
+		chart = AWTChartComponentFactory.chart(Quality.Advanced, IChartComponentFactory.Toolkit.swing);
+		chart.getScene().getGraph().add(surface);
 
-		addMouseMotionListener(controller);
-		addMouseWheelListener(controller);*/
+		chart.addMouseCameraController();
+		chart.addMousePickingController(2);
+		/*
+		 * AWTCameraMouseController controller = new AWTCameraMouseController(chart);
+		 * 
+		 * addMouseMotionListener(controller); addMouseWheelListener(controller);
+		 */
 		Component canvas = (Component) chart.getCanvas();
-		
-		//JPanel panel = new JPanel();
-		//panel.add(canvas, BorderLayout.CENTER);
-		return canvas;
-		//return new JPanel(); 
-	}
 
+		// JPanel panel = new JPanel();
+		// panel.add(canvas, BorderLayout.CENTER);
+		return canvas;
+		// return new JPanel();
+	}
 
 	/**
 	 * @return the threeDConstraints
@@ -220,7 +223,5 @@ public class D3 implements Updatable {
 	public TableCustom3DModel getData() {
 		return getDataModel();
 	}
-	
-	
-	
+
 }

@@ -32,7 +32,9 @@ public class HistoricData implements Iterable<String> {
 		return new File(paths.get(i));
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Iterable#iterator()
 	 */
 	@Override

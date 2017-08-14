@@ -69,7 +69,7 @@ public class Tools extends Observable {
 		open.addActionListener(new OpenButtonListener(this));
 		openModel = new DefaultMenuModelHandler();
 		openModel.setModel(new RotativeMenuModel<SimpleMenuModelItem>(openModel));
-		openModel.setCommonConstraint(new FileItemRendererConstraint(20, 7)); //TODO : Check size
+		openModel.setCommonConstraint(new FileItemRendererConstraint(20, 7)); // TODO : Check size
 		openModel.setItemRenderer(new FileItemRenderer());
 		generateInitialModel();
 		menuOpener = new MenuOpenerButton(new FilePopupMenuOpener(openModel), open);
@@ -95,10 +95,10 @@ public class Tools extends Observable {
 		preview.addActionListener(new PreviewButtonListener(this));
 
 		execute = new JButton("Exécuter");
-		execute.addActionListener(new ExecuteButtonListener(this));//, mainWindow.getOnglets()));
+		execute.addActionListener(new ExecuteButtonListener(this));// , mainWindow.getOnglets()));
 
 		infos = new JPanel();
-		
+
 		file = new JPanel();
 
 		datas = new JPanel();
@@ -116,9 +116,9 @@ public class Tools extends Observable {
 		namePrinting = new JLabel("Impression");
 
 		nameExecuting = new JLabel("Exécution");
-		
+
 		importFileChooser = new ImportFileChooser();
-		
+
 	}
 
 	private void generateInitialModel() {
@@ -135,12 +135,14 @@ public class Tools extends Observable {
 				System.out.println("item 2");
 			}
 		});
-		openModel.add("C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\implementation\\FileItemRendererConstraint.java", new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("item 3");
-			}
-		});
+		openModel.add(
+				"C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\implementation\\FileItemRendererConstraint.java",
+				new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("item 3");
+					}
+				});
 		openModel.add("C:\\Users\\arnau\\workspace\\MaG\\src\\pidr\\mag\\sample\\TestFile.java", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -152,10 +154,10 @@ public class Tools extends Observable {
 	public JButton getClose() {
 		return close;
 	}
+
 	public JPanel getDatas() {
 		return datas;
 	}
-	
 
 	public JButton getExecute() {
 		return execute;
@@ -274,6 +276,7 @@ public class Tools extends Observable {
 	public void setOpenModel(DefaultMenuModelHandler openModel) {
 		this.openModel = openModel;
 	}
+
 	/**
 	 * @return the importFileChooser
 	 */
@@ -287,6 +290,5 @@ public class Tools extends Observable {
 	public MainWindow getMainWindow() {
 		return mainWindow;
 	}
-		
 
 }

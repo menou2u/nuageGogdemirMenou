@@ -19,24 +19,24 @@ public class TwoConstraintChoice {
 	private TwoPointCoordConstraintPanel twoPointCoordPane;
 	private CoordAndVertexConstraintPanel coordAndVertexPane;
 	private SlopeAndVertexConstraintPanel slopeAndVertexPane;
-	
+
 	private JRadioButton twoPointCoord;
 	private JRadioButton coordAndVertex;
 	private JRadioButton slopeAndVertex;
-	
+
 	private ButtonModel bm;
 	private ButtonGroup bG;
-	
+
 	private JPanel constraintChoice;
 	private JPanel constraintData;
-	
+
 	private CardLayout cl;
 	private TwoPointCoordConstraint twoPointCoordConstraint;
-	
-	public TwoConstraintChoice(){
+
+	public TwoConstraintChoice() {
 		initPanel();
 	}
-	
+
 	private void initPanel() {
 		bG = new ButtonGroup();
 		twoPointCoord = new JRadioButton("Coordonnées de deux points");
@@ -47,52 +47,51 @@ public class TwoConstraintChoice {
 		bG.add(slopeAndVertex);
 		twoPointCoord.setSelected(true);
 		bm = bG.getSelection();
-		
-		constraintChoice = new JPanel(new GridLayout(3,1));
-		constraintChoice.add(twoPointCoord,"twoPointCoord");
-		constraintChoice.add(coordAndVertex,"coordAndVertex");
-		constraintChoice.add(slopeAndVertex,"slopeAndVertex");
-		
+
+		constraintChoice = new JPanel(new GridLayout(3, 1));
+		constraintChoice.add(twoPointCoord, "twoPointCoord");
+		constraintChoice.add(coordAndVertex, "coordAndVertex");
+		constraintChoice.add(slopeAndVertex, "slopeAndVertex");
+
 		addCustomListener(twoPointCoord);
 		addCustomListener(coordAndVertex);
 		addCustomListener(slopeAndVertex);
-		
+
 		cl = new CardLayout();
-		
+
 		twoPointCoordConstraint = new TwoPointCoordConstraint();
 		constraintData = new JPanel(cl);
 		twoPointCoordPane = new TwoPointCoordConstraintPanel(twoPointCoordConstraint);
 		coordAndVertexPane = new CoordAndVertexConstraintPanel(new CoordAndVertexConstraints());
 		slopeAndVertexPane = new SlopeAndVertexConstraintPanel(new SlopeAndVertexConstraint());
-		
-		constraintData.add(twoPointCoordPane,"twoPointCoord");
-		constraintData.add(coordAndVertexPane,"coordAndVertex");
-		constraintData.add(slopeAndVertexPane,"slopeAndVertex");		
-	}
-	
-	private void addCustomListener(JRadioButton bouton) {
-		bouton.addMouseListener(new MouseAdapter(){
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		super.mouseClicked(e);
-        		if (!bm.equals(bG.getSelection())){
-        			bm = bG.getSelection();
-        			if (bm.equals(twoPointCoord.getModel()))
-        			{
-        				cl.show(constraintData,"twoPointCoord");
-        			}
-        			if (bm.equals(coordAndVertex.getModel())){
-        				cl.show(constraintData, "coordAndVertex");
-        			}
-        			if (bm.equals(slopeAndVertex.getModel())){
-        				cl.show(constraintData,"slopeAndVertex");
-        			}
-        		}
 
-        	}
-        });
+		constraintData.add(twoPointCoordPane, "twoPointCoord");
+		constraintData.add(coordAndVertexPane, "coordAndVertex");
+		constraintData.add(slopeAndVertexPane, "slopeAndVertex");
 	}
-	
+
+	private void addCustomListener(JRadioButton bouton) {
+		bouton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				if (!bm.equals(bG.getSelection())) {
+					bm = bG.getSelection();
+					if (bm.equals(twoPointCoord.getModel())) {
+						cl.show(constraintData, "twoPointCoord");
+					}
+					if (bm.equals(coordAndVertex.getModel())) {
+						cl.show(constraintData, "coordAndVertex");
+					}
+					if (bm.equals(slopeAndVertex.getModel())) {
+						cl.show(constraintData, "slopeAndVertex");
+					}
+				}
+
+			}
+		});
+	}
+
 	public TwoPointCoordConstraintPanel getTwoPointCoordPane() {
 		return twoPointCoordPane;
 	}
@@ -140,5 +139,5 @@ public class TwoConstraintChoice {
 	public TwoPointCoordConstraint getTwoPointCoordConstraint() {
 		return twoPointCoordConstraint;
 	}
-	
+
 }

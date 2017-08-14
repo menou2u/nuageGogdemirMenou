@@ -28,6 +28,7 @@ public class RotativeMenuModel<T> extends LinkedList<T> {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.util.LinkedList#add(java.lang.Object)
 	 */
 	@Override

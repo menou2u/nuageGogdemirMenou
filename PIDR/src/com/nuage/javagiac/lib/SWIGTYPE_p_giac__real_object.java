@@ -9,18 +9,17 @@
 package com.nuage.javagiac.lib;
 
 public class SWIGTYPE_p_giac__real_object {
-  private long swigCPtr;
+	private long swigCPtr;
 
-  protected SWIGTYPE_p_giac__real_object(long cPtr, boolean futureUse) {
-    swigCPtr = cPtr;
-  }
+	protected SWIGTYPE_p_giac__real_object(long cPtr, boolean futureUse) {
+		swigCPtr = cPtr;
+	}
 
-  protected SWIGTYPE_p_giac__real_object() {
-    swigCPtr = 0;
-  }
+	protected SWIGTYPE_p_giac__real_object() {
+		swigCPtr = 0;
+	}
 
-  protected static long getCPtr(SWIGTYPE_p_giac__real_object obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+	protected static long getCPtr(SWIGTYPE_p_giac__real_object obj) {
+		return (obj == null) ? 0 : obj.swigCPtr;
+	}
 }
-

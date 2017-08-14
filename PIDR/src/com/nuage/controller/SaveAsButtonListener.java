@@ -12,7 +12,7 @@ import com.nuage.model.swing.Tools;
 public class SaveAsButtonListener implements ActionListener {
 
 	private Tools toolsReference;
-	
+
 	public SaveAsButtonListener(Tools tools) {
 		toolsReference = tools;
 	}

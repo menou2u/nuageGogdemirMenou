@@ -12,37 +12,37 @@ import javax.swing.JTextField;
 
 import com.nuage.view.panels.VertexConstraintChoicePanel;
 
-public class OneConstraintChoice extends Observable{
+public class OneConstraintChoice extends Observable {
 
 	private ButtonGroup bG;
 	private JRadioButton pointChoice;
 	private JRadioButton slopeChoice;
-	
+
 	private JPanel pointChosen;
 	private VertexConstraintChoicePanel vertexChosen;
-	
+
 	private JTextField x;
 	private JTextField y;
 	private JTextField z;
-	
-	public OneConstraintChoice(){
+
+	public OneConstraintChoice() {
 		initPanelDatas();
 	}
-	
-	public void initPanelDatas(){
+
+	public void initPanelDatas() {
 		pointChosen = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridx=0;
-		gbc.gridy=0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
-		
+
 		x = new JTextField(8);
 		y = new JTextField(8);
 		z = new JTextField(8);
-		
+
 		bG = new ButtonGroup();
 		pointChoice = new JRadioButton("Contraintes sur les coordonnées d'un point");
 		slopeChoice = new JRadioButton("Contraintes sur pente selon un vecteur d'un plan");
@@ -52,23 +52,22 @@ public class OneConstraintChoice extends Observable{
 
 		pointChoice.setSelected(true);
 
-		
-		pointChosen.add(new JLabel("Xw1 brut = "),gbc);
-		gbc.gridx+=gbc.gridwidth;
-		pointChosen.add(x,gbc);
-		gbc.gridy+=gbc.gridwidth;
-		gbc.gridx=0;
-		pointChosen.add(new JLabel("Yw1 brut = "),gbc);
-		gbc.gridx+=gbc.gridwidth;
-		pointChosen.add(y,gbc);
-		gbc.gridy+=gbc.gridheight;
-		gbc.gridx=0;
-		pointChosen.add(new JLabel("Zw1 brut = "),gbc);
-		gbc.gridx+=gbc.gridwidth;
-		pointChosen.add(z,gbc);
-		
+		pointChosen.add(new JLabel("Xw1 brut = "), gbc);
+		gbc.gridx += gbc.gridwidth;
+		pointChosen.add(x, gbc);
+		gbc.gridy += gbc.gridwidth;
+		gbc.gridx = 0;
+		pointChosen.add(new JLabel("Yw1 brut = "), gbc);
+		gbc.gridx += gbc.gridwidth;
+		pointChosen.add(y, gbc);
+		gbc.gridy += gbc.gridheight;
+		gbc.gridx = 0;
+		pointChosen.add(new JLabel("Zw1 brut = "), gbc);
+		gbc.gridx += gbc.gridwidth;
+		pointChosen.add(z, gbc);
+
 		vertexChosen = new VertexConstraintChoicePanel(new VertexConstraintChoice());
-		}
+	}
 
 	public ButtonGroup getbG() {
 		return bG;
@@ -101,5 +100,5 @@ public class OneConstraintChoice extends Observable{
 	public JTextField getZ() {
 		return z;
 	}
-		
+
 }

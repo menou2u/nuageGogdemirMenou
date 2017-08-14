@@ -48,13 +48,15 @@ public class FileItemRenderer implements ItemRenderer {
 		if (constraint != null) {
 			try {
 				String s = key.getText();
-				// on suppose que les path sont correct pour les test il faut commenter les 2 ligne qui suivent
+				// on suppose que les path sont correct pour les test il faut commenter les 2
+				// ligne qui suivent
 				File f = new File(s);
 				s = f.getAbsolutePath();
 				FontMetrics fm = key.getFontMetrics(key.getFont());
 				int maxLineSize = constraint.getPreferedWidth() - 4; // on se laisse 5 pixel de marge
 				String[] files = s.split(splitSeparator);
-				while (fm.stringWidth(s) > maxLineSize && files.length > 5) { // a partir de la on va essayer de reduire la taille du path
+				while (fm.stringWidth(s) > maxLineSize && files.length > 5) { // a partir de la on va essayer de reduire
+																				// la taille du path
 					s = reduceOne(files);
 					// System.out.println(s);
 					files = s.split(splitSeparator);
@@ -67,7 +69,9 @@ public class FileItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
-	 * @see pidr.mag.sample.api.ItemRenderer#getComponent(java.lang.String, pidr.mag.sample.api.RendererConstraints)
+	 * 
+	 * @see pidr.mag.sample.api.ItemRenderer#getComponent(java.lang.String,
+	 * pidr.mag.sample.api.RendererConstraints)
 	 */
 	@Override
 	public JComponent getComponent(String key, RendererConstraints constraint) {
@@ -90,6 +94,7 @@ public class FileItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.ItemRenderer#getItemMargin()
 	 */
 	@Override
@@ -99,6 +104,7 @@ public class FileItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.ItemRenderer#getPreferedItemHeight()
 	 */
 	@Override
@@ -141,6 +147,7 @@ public class FileItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.ItemRenderer#setItemMargin(int)
 	 */
 	@Override
@@ -150,6 +157,7 @@ public class FileItemRenderer implements ItemRenderer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see pidr.mag.sample.api.ItemRenderer#setPreferedItemHeight(int)
 	 */
 	@Override

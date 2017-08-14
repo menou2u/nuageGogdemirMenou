@@ -8,7 +8,7 @@ import com.nuage.model.swing.Tools;
 public class InfosButtonListener implements ActionListener {
 
 	private Tools toolsReference;
-	
+
 	public InfosButtonListener(Tools tools) {
 		toolsReference = tools;
 	}

@@ -11,13 +11,11 @@ import com.nuage.model.swing.datas.TransformY;
 @SuppressWarnings("serial")
 public class TransformYPanel extends JPanel {
 
-
-	
 	public TransformYPanel(TransformY transformY) {
 
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
-		
+
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.gridwidth = 1;
@@ -26,10 +24,10 @@ public class TransformYPanel extends JPanel {
 		gbc.gridy = 0;
 
 		this.setLayout(gbl);
-		this.add(transformY.getTransformYLabel(),gbc);
-		
-		gbc.gridx=1;
-		this.add(transformY.getTransformY(),gbc);
+		this.add(transformY.getTransformYLabel(), gbc);
+
+		gbc.gridx = 1;
+		this.add(transformY.getTransformY(), gbc);
 	}
 
 	public static void main(String[] args) {

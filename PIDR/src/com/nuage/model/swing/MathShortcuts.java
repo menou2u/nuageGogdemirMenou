@@ -32,78 +32,78 @@ public class MathShortcuts extends Observable {
 	private JButton sqrt;
 	private JButton integ;
 	private TestFunction function;
-	
-	public MathShortcuts(TestFunction function){
+
+	public MathShortcuts(TestFunction function) {
 		this.function = function;
-	
+
 		sin = new JButton("sin");
 		sin.addActionListener(new CalculatorListener(this, ""));
-		
+
 		cos = new JButton("cos");
 		cos.addActionListener(new CalculatorListener(this, ""));
-		
+
 		tan = new JButton("tan");
 		tan.addActionListener(new CalculatorListener(this, ""));
-		
+
 		sinh = new JButton("sinh");
 		sinh.addActionListener(new CalculatorListener(this, ""));
-		
+
 		cosh = new JButton("cosh");
 		cosh.addActionListener(new CalculatorListener(this, ""));
-		
+
 		tanh = new JButton("tanh");
 		tanh.addActionListener(new CalculatorListener(this, ""));
-		
+
 		asin = new JButton("asin");
 		asin.addActionListener(new CalculatorListener(this, ""));
-		
+
 		acos = new JButton("acos");
 		acos.addActionListener(new CalculatorListener(this, ""));
-		
+
 		atan = new JButton("atan");
 		atan.addActionListener(new CalculatorListener(this, ""));
-		
+
 		asinh = new JButton("asinh");
 		asinh.addActionListener(new CalculatorListener(this, ""));
-		
+
 		acosh = new JButton("acosh");
 		acosh.addActionListener(new CalculatorListener(this, ""));
-		
+
 		atanh = new JButton("atanh");
 		atanh.addActionListener(new CalculatorListener(this, ""));
-		
+
 		abs = new JButton("abs");
 		abs.addActionListener(new CalculatorListener(this, ""));
-		
+
 		pi = new JButton("pi");
 		pi.addActionListener(new CalculatorListener(this, ""));
-		
+
 		pow = new JButton("^");
 		pow.addActionListener(new CalculatorListener(this, ""));
-		
+
 		log10 = new JButton("log10");
 		log10.addActionListener(new CalculatorListener(this, ""));
-		
+
 		ln = new JButton("ln");
 		ln.addActionListener(new CalculatorListener(this, ""));
-		
+
 		exp = new JButton("exp");
 		exp.addActionListener(new CalculatorListener(this, ""));
-		
+
 		fact = new JButton("!");
 		fact.addActionListener(new CalculatorListener(this, "factorial"));
-		
+
 		inv = new JButton("1/f");
 		inv.addActionListener(new CalculatorListener(this, "1/"));
-		
+
 		sqrt = new JButton("sqrt");
 		sqrt.addActionListener(new CalculatorListener(this, ""));
-		
+
 		integ = new JButton("Ent.");
 		integ.addActionListener(new CalculatorListener(this, ""));
 	}
 
-	public void updatePhiJ(String content){
+	public void updatePhiJ(String content) {
 		function.warnMainWindowFrame(content);
 	}
 
@@ -194,7 +194,5 @@ public class MathShortcuts extends Observable {
 	public JButton getInteg() {
 		return integ;
 	}
-	
-	
-	
+
 }

@@ -76,12 +76,12 @@ public class ToolsPanel extends JPanel {
 		tools.getFile().add(tools.getNeww(), gbc);
 
 		gbc.gridx++;
-		gbc.ipadx=120;
+		gbc.ipadx = 120;
 		tools.getFile().add(tools.getOpen(), gbc);
 
 		gbc.gridx++;
 		gbc.weightx = 0;
-		gbc.ipadx=0;
+		gbc.ipadx = 0;
 		tools.getFile().add(tools.getMenuOpener(), gbc);
 
 		gbc.gridx++;

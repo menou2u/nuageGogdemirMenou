@@ -14,12 +14,11 @@ import javax.swing.JTable;
 
 @SuppressWarnings("serial")
 public class Constraint2DPanel extends JPanel {
-	
+
 	private Table2DConstraintCustomModel modele;
 	private JTable tableau;
 
-	@SuppressWarnings("static-access")
-	public Constraint2DPanel (Table2DConstraintCustomModel modele){
+	public Constraint2DPanel(Table2DConstraintCustomModel modele) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -29,7 +28,7 @@ public class Constraint2DPanel extends JPanel {
 		gbc.gridheight = 3;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		this.modele = modele;
 		tableau = new JTable(modele);
 		tableau.setAutoCreateRowSorter(true);
@@ -37,21 +36,21 @@ public class Constraint2DPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(tableau);
 		scrollPane.setMinimumSize(new Dimension(400, 200));
 		add(scrollPane, gbc);
-		
-		gbc.weightx=1;
-		gbc.weighty=0;
+
+		gbc.weightx = 1;
+		gbc.weighty = 0;
 		gbc.gridheight = 1;
-		gbc.gridy=3;
+		gbc.gridy = 3;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.EAST;
-		
-		add(new JButton(new AddAction()),gbc);
+
+		add(new JButton(new AddAction()), gbc);
 		gbc.anchor = GridBagConstraints.WEST;
-		gbc.gridx=2;
-		add(new JButton(new RemoveAction()),gbc);
+		gbc.gridx = 2;
+		add(new JButton(new RemoveAction()), gbc);
 	}
-	
+
 	private class AddAction extends AbstractAction {
 		private AddAction() {
 			super("Ajouter ligne");
@@ -59,7 +58,7 @@ public class Constraint2DPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			modele.addConstraint(new Constraint2D(modele.getRowCount() + 1.0, 0.0, 0.0,0.0));
+			modele.addConstraint(new Constraint2D(modele.getRowCount() + 1.0, 0.0, 0.0, 0.0));
 		}
 	}
 
@@ -79,10 +78,11 @@ public class Constraint2DPanel extends JPanel {
 			}
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		Table2DConstraintCustomModel mod = new Table2DConstraintCustomModel(new String[]{"n°","Xw","Constraint Value","Derivation Order"});
+		Table2DConstraintCustomModel mod = new Table2DConstraintCustomModel(
+				new String[] { "n°", "Xw", "Constraint Value", "Derivation Order" });
 		frame.setContentPane(new Constraint2DPanel(mod));
 		frame.pack();
 		frame.setVisible(true);

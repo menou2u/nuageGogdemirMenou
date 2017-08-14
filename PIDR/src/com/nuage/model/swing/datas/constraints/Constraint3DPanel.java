@@ -14,12 +14,11 @@ import javax.swing.JTable;
 
 @SuppressWarnings("serial")
 public class Constraint3DPanel extends JPanel {
-	
+
 	private Table3DConstraintCustomModel modele;
 	private JTable tableau;
 
-	@SuppressWarnings("static-access")
-	public Constraint3DPanel (Table3DConstraintCustomModel modele){
+	public Constraint3DPanel(Table3DConstraintCustomModel modele) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -29,7 +28,7 @@ public class Constraint3DPanel extends JPanel {
 		gbc.gridheight = 3;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		this.modele = modele;
 		tableau = new JTable(modele);
 		tableau.setAutoCreateRowSorter(true);
@@ -37,21 +36,21 @@ public class Constraint3DPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(tableau);
 		scrollPane.setMinimumSize(new Dimension(400, 200));
 		add(scrollPane, gbc);
-		
-		gbc.weightx=1;
-		gbc.weighty=0;
+
+		gbc.weightx = 1;
+		gbc.weighty = 0;
 		gbc.gridheight = 1;
-		gbc.gridy=3;
+		gbc.gridy = 3;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.EAST;
-		
-		add(new JButton(new AddAction()),gbc);
+
+		add(new JButton(new AddAction()), gbc);
 		gbc.anchor = GridBagConstraints.WEST;
-		gbc.gridx=2;
-		add(new JButton(new RemoveAction()),gbc);
+		gbc.gridx = 2;
+		add(new JButton(new RemoveAction()), gbc);
 	}
-	
+
 	private class AddAction extends AbstractAction {
 		private AddAction() {
 			super("Ajouter ligne");
@@ -59,7 +58,7 @@ public class Constraint3DPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			modele.addConstraint(new Constraint3D(modele.getRowCount() + 1.0, 0.0, 0.0,0.0,0.0,0.0,0.0));
+			modele.addConstraint(new Constraint3D(modele.getRowCount() + 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 		}
 	}
 
@@ -79,10 +78,11 @@ public class Constraint3DPanel extends JPanel {
 			}
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		Table3DConstraintCustomModel mod = new Table3DConstraintCustomModel(new String[]{"n°","Xw","Yw","Constraint Value","Derivation Order","Ux","Uy"});
+		Table3DConstraintCustomModel mod = new Table3DConstraintCustomModel(
+				new String[] { "n°", "Xw", "Yw", "Constraint Value", "Derivation Order", "Ux", "Uy" });
 		frame.setContentPane(new Constraint3DPanel(mod));
 		frame.pack();
 		frame.setVisible(true);

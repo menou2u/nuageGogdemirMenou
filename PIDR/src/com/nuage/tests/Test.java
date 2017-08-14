@@ -6,8 +6,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import com.nuage.javagiac.lib.context;
-import com.nuage.javagiac.lib.gen;
+import javagiac.context;
+import javagiac.gen;
 
 public class Test {
 

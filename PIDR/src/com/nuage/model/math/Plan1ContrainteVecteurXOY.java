@@ -2,9 +2,10 @@ package com.nuage.model.math;
 
 import java.util.LinkedList;
 
-import com.nuage.javagiac.lib.context;
-import com.nuage.javagiac.lib.gen;
 import com.nuage.javagiac.prog.ProgLoader;
+
+import javagiac.context;
+import javagiac.gen;
 
 public class Plan1ContrainteVecteurXOY extends XcasProg {
 

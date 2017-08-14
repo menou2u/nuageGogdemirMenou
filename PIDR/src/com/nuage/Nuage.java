@@ -24,6 +24,7 @@ public class Nuage {
 		 * File giac = new File(f.getAbsolutePath(), "\\Resources\\javagiac.dll");
 		 * System.out.println(""+f.getAbsolutePath()); System.load(giac.getPath());
 		 */
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {

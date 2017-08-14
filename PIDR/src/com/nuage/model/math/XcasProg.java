@@ -6,10 +6,11 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 
 import com.nuage.Nuage;
-import com.nuage.javagiac.lib.context;
-import com.nuage.javagiac.lib.gen;
-import com.nuage.javagiac.lib.giac;
 import com.nuage.javagiac.loader.JavaGiacLoader;
+
+import javagiac.context;
+import javagiac.gen;
+import javagiac.giac;
 
 public abstract class XcasProg {
 

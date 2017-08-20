@@ -37,7 +37,7 @@ public class Nuage {
 		return frame;
 	}
 
-	public static void setFrame(MainWindowFrame frame) {
-		Nuage.frame = frame;
+	public static void setFrame(MainWindowFrame frame1) {
+		frame = frame1;
 	}
 }

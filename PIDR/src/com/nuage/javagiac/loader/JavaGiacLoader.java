@@ -3,10 +3,8 @@ package com.nuage.javagiac.loader;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -42,8 +40,10 @@ public class JavaGiacLoader extends ProgressMonitor {
 			dial = null;
 		}
 		try {
+			LoaderMonitorer.monitor("starting loading libraries");
 			loadLib();
-		} catch (IOException e) {
+			LoaderMonitorer.monitor("ending loading libraries");
+		} catch (IOException | NullPointerException e) {
 			e.printStackTrace();
 			if (frame != null) {
 				JOptionPane.showMessageDialog(frame, "Fail to Load JavaGiac " + e.getMessage());
@@ -56,15 +56,16 @@ public class JavaGiacLoader extends ProgressMonitor {
 
 	private static void loadLib() throws IOException {
 		File folder;
+		LoaderMonitorer.monitor("Trying to create folder libNuage");
 		if ((folder = createFolderIfNeeded()) != null) {
+			LoaderMonitorer.monitor("Folder libNuage created");
 			copyLibGccIfNeeded(folder);
 			copyLibStdCppIfNeeded(folder);
 			File libJavaGiac = copyLibJavaGiacIfNeeded(folder);
 			System.load(libJavaGiac.getCanonicalPath());
-
-			// System.loadLibrary("javagiac");
 			setProgressToDial(5);
 		} else {
+			LoaderMonitorer.monitor("Fail to create Folder");
 			throw new IOException("Unable to create folder " + new File(DllProvider.FOLDERPAH).getCanonicalPath());
 		}
 	}
@@ -93,16 +94,17 @@ public class JavaGiacLoader extends ProgressMonitor {
 	}
 
 	private static void loadThisLib(File destination, InputStream input) throws IOException, FileNotFoundException {
+		LoaderMonitorer.monitor("starting copying lib : " + destination.getName());
 		if (!destination.exists()) {
 			if (!destination.createNewFile()) {
 				throw new IOException("Unable to create file " + destination.getName());
 			}
-			byte[] buffer = new byte[input.available()];
-			input.read(buffer);
-			OutputStream outStream = new FileOutputStream(destination);
-			outStream.write(buffer);
-			outStream.flush();
-			outStream.close();
+			LoaderMonitorer.monitor("copying lib : " + destination.getName());
+			InputStreamToFileApp.copy(input, destination);
+			LoaderMonitorer.monitor("ending copying lib : " + destination.getName());
+
+		} else {
+			LoaderMonitorer.monitor("The file " + destination.getName() + " already exists");
 		}
 	}
 
@@ -120,7 +122,7 @@ public class JavaGiacLoader extends ProgressMonitor {
 		if (dial != null) {
 			dial.setProgress(nv);
 		}
-		System.out.println("Progress Status : " + nv + "/" + MAX);
+		LoaderMonitorer.monitor("Progress Status : " + nv + "/" + MAX);
 	}
 
 	public static void main(String[] args) throws IOException {

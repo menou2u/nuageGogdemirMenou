@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.nuage.Nuage;
+import com.nuage.controller.OnCloseWindowListener;
 import com.nuage.model.swing.MainWindow;
 import com.nuage.view.panels.D2Panel;
 import com.nuage.view.panels.D3Panel;
@@ -65,14 +64,8 @@ public class MainWindowFrame extends JFrame implements Observer {
 		mainWindow.getOnglets().addTab("3D", d3Panel);
 
 		// Paramètres fenêtre
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// @TODO : Gérer ce la sauvegarde à la fermeture
-				// mainWindow.getTools().saveHistoric();
-			}
-		});
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new OnCloseWindowListener());
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = new Dimension((int) (screenSize.width * 0.9), (int) (screenSize.height * 0.9));
 

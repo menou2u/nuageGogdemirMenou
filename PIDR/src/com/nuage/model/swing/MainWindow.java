@@ -3,6 +3,7 @@ package com.nuage.model.swing;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Observable;
@@ -51,6 +52,7 @@ public class MainWindow extends Observable {
 	}
 
 	public void readFile(File file) {
+		reset();
 		FileReader fileReader;
 		BufferedReader bufferedReader;
 		String line, item;
@@ -81,7 +83,6 @@ public class MainWindow extends Observable {
 				scanner = new Scanner(line);
 				scanner.useDelimiter(";");
 				item = scanner.next();
-				// System.out.println("ITEM "+ item);
 				if (item.equals("DB")) {
 					int index;
 					index = Integer.parseInt(scanner.next()) - 1;
@@ -215,23 +216,30 @@ public class MainWindow extends Observable {
 			bufferedReader.close();
 			fileReader.close();
 		} catch (IOException e) {
+			System.out.println(
+					"La lecture de la sauvegarde a échoué. S'il ne s'agit pas d'une sauvegarde de l'ancien logiciel, merci de contacter les développeurs.");
 		}
 		/*
-		 * System.out.println("listXi "+listXi); System.out.println("listYi "+listYi);
+		 * System.out.println("listXi "+listXi);
+		 * System.out.println("listYi "+listYi);
 		 * System.out.println("listZi "+listZi);
 		 * System.out.println("listXiTraité "+listXiTraité);
 		 * System.out.println("listYiTraité "+listYiTraité);
 		 * System.out.println("listZiTraité "+listZiTraité);
-		 * System.out.println("xwList "+xwList); System.out.println("yxList "+ywList);
+		 * System.out.println("xwList "+xwList);
+		 * System.out.println("yxList "+ywList);
 		 * System.out.println("constraintValueList "+constraintValueList);
 		 * System.out.println("derivationOrderList "+derivationOrderList);
-		 * System.out.println("uxList "+uxList); System.out.println("uyList "+uyList);
+		 * System.out.println("uxList "+uxList);
+		 * System.out.println("uyList "+uyList);
 		 * System.out.println("xTreatment "+xTreatment);
 		 * System.out.println("yTreatment "+yTreatment);
 		 * System.out.println("zTreatment "+zTreatment);
-		 * System.out.println("xwbrut "+xwbrut); System.out.println("ywbrut "+ywbrut);
+		 * System.out.println("xwbrut "+xwbrut);
+		 * System.out.println("ywbrut "+ywbrut);
 		 * System.out.println("xwtraité "+xwtraité);
-		 * System.out.println("ywtraité "+ywtraité); System.out.println("pente "+pente);
+		 * System.out.println("ywtraité "+ywtraité);
+		 * System.out.println("pente "+pente);
 		 * System.out.println("textBoxFx "+textBoxFx);
 		 * System.out.println("textBoxCompoFx "+textBoxCompoFx);
 		 */
@@ -239,7 +247,6 @@ public class MainWindow extends Observable {
 		switch (getOnglets().getSelectedIndex()) {
 		case 0:
 			Line lineMode = (Line) getMode();
-			// lineMode.getData().
 			lineMode.getData().fillPoints(listXi, listYi, null);
 			lineMode.getTransformX().setTransformX(xTreatment);
 			lineMode.getTransformY().setTransformY(yTreatment);
@@ -283,6 +290,266 @@ public class MainWindow extends Observable {
 			d3Mode.getThreeDConstraints().fillConstraints(xwList, ywList, constraintValueList, derivationOrderList,
 					uxList, uyList);
 			break;
+		}
+	}
+
+	public void saveInFile(File file) {
+		currentFile = file;
+		Updatable mode = getMode();
+		if (mode instanceof Line) {
+			System.out.println("Hello");
+			LinkedList<Double> listXi = mode.getData().getX();
+			LinkedList<Double> listYi = mode.getData().getY();
+			LinkedList<Double> transformedListXi = ((Line) mode).getDataLinePanel().getTc2dmTrans().getX();
+			LinkedList<Double> transformedListYi = ((Line) mode).getDataLinePanel().getTc2dmTrans().getY();
+			String transformX = mode.getTransformX().getTransformX().getText();
+			String transformY = mode.getTransformY().getTransformY().getText();
+			String xwBrut = ((Line) mode).getLineConstraintsChoice().getPointConstraint().getxWTrue().getText();
+			String ywBrut = ((Line) mode).getLineConstraintsChoice().getPointConstraint().getyWTrue().getText();
+			String xwTraité = ((Line) mode).getLineConstraintsChoice().getPointConstraint().getxWTreated().getText();
+			String ywTraité = ((Line) mode).getLineConstraintsChoice().getPointConstraint().getyWTreated().getText();
+			String pente = ((Line) mode).getLineConstraintsChoice().getSlopeConstraints().getSlope().getText();
+			StringBuilder saveContent = new StringBuilder("");
+
+			saveContent.append("2DMC\n");
+			for (int i = 0; i < listXi.size(); i++) {
+				System.out.println("DB");
+				saveContent.append("DB;" + (i + 1) + ";" + listXi.get(i) + ";" + listYi.get(i) + "\n");
+			}
+			for (int i = 0; i < transformedListXi.size(); i++) {
+				System.out.println("DT");
+				saveContent.append(
+						"DT;" + (i + 1) + ";" + transformedListXi.get(i) + ";" + transformedListYi.get(i) + "\n");
+			}
+
+			// TODO ajout polygone ?
+
+			saveContent.append("X=tx(x);" + transformX + "\n");
+			saveContent.append("Y=ty(y);" + transformY + "\n");
+			saveContent.append("xw brut;" + xwBrut + "\n");
+			saveContent.append("yw brut;" + ywBrut + "\n");
+			saveContent.append("xw traité;" + xwTraité + "\n");
+			saveContent.append("yw traité;" + ywTraité + "\n");
+			saveContent.append("pente;" + pente + "\n");
+
+			try {
+				FileWriter fileWriter = new FileWriter(file);
+				fileWriter.write(saveContent.toString());
+				fileWriter.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			// Line lineMode = (Line) getMode();
+			// lineMode.getData().fillPoints(listXi, listYi, null);
+			// lineMode.getTransformX().setTransformX(xTreatment);
+			// lineMode.getTransformY().setTransformY(yTreatment);
+			// lineMode.getDataLinePanel().getTc2dmTrans().fillPoints(listXiTraité,
+			// listYiTraité, null);
+			// if (pente != null) {
+			// lineMode.getLineConstraintsChoice().getSlopeConstraints().setSlopeText(""
+			// + pente);
+			// }
+			// if (xwbrut != null) {
+			// lineMode.getLineConstraintsChoice().getPointConstraint().setxWTrueText(""
+			// + xwbrut);
+			// }
+			// if (ywbrut != null) {
+			// lineMode.getLineConstraintsChoice().getPointConstraint().setyWTrueText(""
+			// + ywbrut);
+			// }
+			// if (xwtraité != null) {
+			// lineMode.getLineConstraintsChoice().getPointConstraint().setxWTreatedText(""
+			// + xwtraité);
+			// }
+			// if (ywtraité != null) {
+			// lineMode.getLineConstraintsChoice().getPointConstraint().setyWTreatedText(""
+			// + ywtraité);
+			// }
+
+		}
+		if (mode instanceof Plane) {
+
+		}
+		if (mode instanceof D2) {
+
+		}
+		if (mode instanceof D3) {
+
+		}
+	}
+
+	public void reset() {
+		currentFile = null;
+		Updatable mode = getMode();
+		if (mode instanceof Line) {
+			mode.getTransformX().getTransformX().setText("");
+			mode.getTransformY().getTransformY().setText("");
+			((Line) mode).getLineConstraintsChoice().getPointConstraint().setxWTreatedText("");
+			((Line) mode).getLineConstraintsChoice().getPointConstraint().setyWTreatedText("");
+			((Line) mode).getLineConstraintsChoice().getPointConstraint().setxWTrueText("");
+			((Line) mode).getLineConstraintsChoice().getPointConstraint().setyWTrueText("");
+			((Line) mode).getLineConstraintsChoice().getSlopeConstraints().getSlope().setText("");
+			mode.getData().fillPoints(new LinkedList<Double>(), new LinkedList<Double>(), null);
+			mode.getData().fireTableDataChanged();
+			((Line) mode).getDataLinePanel().getTc2dmTrans().fillPoints(new LinkedList<Double>(),
+					new LinkedList<Double>(), null);
+			((Line) mode).getDataLinePanel().getTc2dmTrans().fireTableDataChanged();
+		}
+		if (mode instanceof Plane) {
+			mode.getTransformX().getTransformX().setText("");
+			mode.getTransformY().getTransformY().setText("");
+			((Plane) mode).getTransformZ().getTransformZ().setText("");
+			mode.getData().fillPoints(new LinkedList<Double>(), new LinkedList<Double>(), new LinkedList<Double>());
+			mode.getData().fireTableDataChanged();
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getX().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getY().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getZ().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexIJSlope().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexJKSlope().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexKISlope().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexVXIJ().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexVXJK().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexVXKI().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexVYIJ().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexVYJK().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexVYKI().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexIJSlope().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexJKSlope().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getVertexConstraintChoice()
+					.getVertexKISlope().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getTwoPointCoordConstraint().getXw1()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getTwoPointCoordConstraint().getXw2()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getTwoPointCoordConstraint().getYw1()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getTwoPointCoordConstraint().getYw2()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getTwoPointCoordConstraint().getZw1()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getTwoPointCoordConstraint().getZw2()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints()
+					.getVertexVXIJ().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints()
+					.getVertexVXJK().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints()
+					.getVertexVXKI().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints()
+					.getVertexVYIJ().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints()
+					.getVertexVYJK().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints()
+					.getVertexVYKI().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getXij()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getXjk()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getXki()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getYij()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getYjk()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getYki()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getZij()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getZjk()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getCoordAndVertexConstraints().getZki()
+					.setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2XoYModel().getV1x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2XoYModel().getV1y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2XoYModel().getV2x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2XoYModel().getV2y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2YoZModel().getV1x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2YoZModel().getV1y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2YoZModel().getV2x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2YoZModel().getV2y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2ZoXModel().getV1x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2ZoXModel().getV1y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2ZoXModel().getV2x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1XoYV2ZoXModel().getV2y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2YoZModel().getV1x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2YoZModel().getV1y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2YoZModel().getV2x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2YoZModel().getV2y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2ZoXModel().getV1x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2ZoXModel().getV1y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2ZoXModel().getV2x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2ZoXModel().getV2y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1ZoXV2ZoXModel().getV1x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1ZoXV2ZoXModel().getV1y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1ZoXV2ZoXModel().getV2x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1ZoXV2ZoXModel().getV2y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2ZoXModel().getV1x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2ZoXModel().getV1y().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2ZoXModel().getV2x().setText("");
+			((Plane) mode).getPlaneConstraintsChoice().getTwoConstraintChoice().getSlopeAndVertexConstraint()
+					.getV1YoZV2ZoXModel().getV2y().setText("");
+		}
+		if (mode instanceof D2) {
+			mode.getTestFunction().getText().setText("");
+			mode.getData().fillPoints(new LinkedList<Double>(), new LinkedList<Double>(), new LinkedList<Double>());
+			mode.getData().fireTableDataChanged();
+			((D2) mode).getTwoDConstraints().fillConstraints(new LinkedList<Double>(), new LinkedList<Double>(),
+					new LinkedList<Integer>());
+			((D2) mode).getTwoDConstraints().fireTableDataChanged();
+			mode.getTestFunction().setValue("");
+			((D2) mode).getTwoDCalculatedFunction().getCalculatedPoint().setText("");
+			((D2) mode).getTwoDCalculatedFunction().getFunctionCalculated().setText("");
+			((D2) mode).getTwoDCalculatedFunction().getPoint().setText("");
+		}
+		if (mode instanceof D3) {
+			mode.getTestFunction().getText().setText("");
+			mode.getData().fillPoints(new LinkedList<Double>(), new LinkedList<Double>(), new LinkedList<Double>());
+			mode.getData().fireTableDataChanged();
+			((D3) mode).getThreeDConstraints().fillConstraints(new LinkedList<Double>(), new LinkedList<Double>(),
+					new LinkedList<Double>(), new LinkedList<Integer>(), new LinkedList<Double>(),
+					new LinkedList<Double>());
+			((D3) mode).getThreeDConstraints().fireTableDataChanged();
+			((D3) mode).getThreeDCalculatedFunction().getCalculatedPoint().setText("");
+			((D3) mode).getThreeDCalculatedFunction().getFunctionCalculated().setText("");
+			((D3) mode).getThreeDCalculatedFunction().getPoint().setText("");
 		}
 	}
 
@@ -332,7 +599,8 @@ public class MainWindow extends Observable {
 			for (int i = 0; i < oldDerivationList.size(); i++) {
 				derivationList.add(Integer.parseInt("" + oldDerivationList.get(i).intValue()));
 			}
-			// Y avait ça a la fin de run : mode.getTwoDConstraints().getColumn(3)
+			// Y avait ça a la fin de run :
+			// mode.getTwoDConstraints().getColumn(3)
 			nuages2D.run(mode.getData().getX(), mode.getData().getY(), phiList, mode.getTwoDConstraints().getXw(),
 					mode.getTwoDConstraints().getConstraintValue(), derivationList);
 			currentInfos = nuages2D.getInfos();
@@ -422,21 +690,6 @@ public class MainWindow extends Observable {
 	 */
 	public JTabbedPane getOnglets() {
 		return onglets;
-	}
-
-	public void saveInFile(File file) {
-		if (getMode() instanceof Line) {
-
-		}
-		if (getMode() instanceof Plane) {
-
-		}
-		if (getMode() instanceof D2) {
-
-		}
-		if (getMode() instanceof D3) {
-
-		}
 	}
 
 }

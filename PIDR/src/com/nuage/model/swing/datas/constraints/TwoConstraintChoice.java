@@ -32,6 +32,8 @@ public class TwoConstraintChoice {
 
 	private CardLayout cl;
 	private TwoPointCoordConstraint twoPointCoordConstraint;
+	private CoordAndVertexConstraints coordAndVertexConstraints;
+	private SlopeAndVertexConstraint slopeAndVertexConstraint;
 
 	public TwoConstraintChoice() {
 		initPanel();
@@ -60,10 +62,12 @@ public class TwoConstraintChoice {
 		cl = new CardLayout();
 
 		twoPointCoordConstraint = new TwoPointCoordConstraint();
+		coordAndVertexConstraints = new CoordAndVertexConstraints();
+		slopeAndVertexConstraint = new SlopeAndVertexConstraint();
 		constraintData = new JPanel(cl);
 		twoPointCoordPane = new TwoPointCoordConstraintPanel(twoPointCoordConstraint);
-		coordAndVertexPane = new CoordAndVertexConstraintPanel(new CoordAndVertexConstraints());
-		slopeAndVertexPane = new SlopeAndVertexConstraintPanel(new SlopeAndVertexConstraint());
+		coordAndVertexPane = new CoordAndVertexConstraintPanel(coordAndVertexConstraints);
+		slopeAndVertexPane = new SlopeAndVertexConstraintPanel(slopeAndVertexConstraint);
 
 		constraintData.add(twoPointCoordPane, "twoPointCoord");
 		constraintData.add(coordAndVertexPane, "coordAndVertex");
@@ -94,6 +98,14 @@ public class TwoConstraintChoice {
 
 	public TwoPointCoordConstraintPanel getTwoPointCoordPane() {
 		return twoPointCoordPane;
+	}
+
+	public CoordAndVertexConstraints getCoordAndVertexConstraints() {
+		return coordAndVertexConstraints;
+	}
+
+	public SlopeAndVertexConstraint getSlopeAndVertexConstraint() {
+		return slopeAndVertexConstraint;
 	}
 
 	public CoordAndVertexConstraintPanel getCoordAndVertexPane() {

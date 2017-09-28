@@ -29,6 +29,8 @@ public class PlaneConstraintsChoice extends Observable {
 	private TwoConstraintChoicePanel twoConstraintPane;
 
 	private CardLayout cl;
+	private OneConstraintChoice oneConstraintChoice;
+	private TwoConstraintChoice twoConstraintChoice;
 
 	public PlaneConstraintsChoice() {
 		bG = new ButtonGroup();
@@ -54,8 +56,10 @@ public class PlaneConstraintsChoice extends Observable {
 
 		constraintData = new JPanel(cl);
 		noConstraintPane = new JPanel();
-		oneConstraintPane = new OneConstraintChoicePanel(new OneConstraintChoice());
-		twoConstraintPane = new TwoConstraintChoicePanel(new TwoConstraintChoice());
+		oneConstraintChoice = new OneConstraintChoice();
+		oneConstraintPane = new OneConstraintChoicePanel(oneConstraintChoice);
+		twoConstraintChoice = new TwoConstraintChoice();
+		twoConstraintPane = new TwoConstraintChoicePanel(twoConstraintChoice);
 
 		constraintData.add(noConstraintPane, "noConstraint");
 		constraintData.add(oneConstraintPane, "oneConstraint");
@@ -82,6 +86,14 @@ public class PlaneConstraintsChoice extends Observable {
 
 			}
 		});
+	}
+
+	public OneConstraintChoice getOneConstraintChoice() {
+		return oneConstraintChoice;
+	}
+
+	public TwoConstraintChoice getTwoConstraintChoice() {
+		return twoConstraintChoice;
 	}
 
 	/**

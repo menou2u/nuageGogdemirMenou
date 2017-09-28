@@ -45,6 +45,7 @@ public class Plane implements Updatable {
 	private TestFunction testFunctionPlane;
 	private PlaneGraph planeGraph;
 	private DataPlanePanel dataPlanePanel;
+	private PlaneConstraintsChoice planeConstraintsChoice;
 
 	public Plane() {
 		testFunctionPlane = new TestFunction("(x;y)");
@@ -56,7 +57,8 @@ public class Plane implements Updatable {
 		planeData = new TableCustom3DModel(new String[] { "n°", "Xi", "Yi", "Zi" });
 		dataPlanePanel = new DataPlanePanel(planeData, "", "", "");
 
-		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel(new PlaneConstraintsChoice());
+		planeConstraintsChoice = new PlaneConstraintsChoice();
+		planeConstraintsChoicePanel = new PlaneConstraintsChoicePanel(planeConstraintsChoice);
 		planeDisplay = new DisplaySettings();
 		displayPlanePanel = new DisplaySettingsPanel(planeDisplay);
 		planeGraph = new PlaneGraph();
@@ -91,7 +93,8 @@ public class Plane implements Updatable {
 		chart.addMouseCameraController();
 		chart.addMousePickingController(2);
 		/*
-		 * AWTCameraMouseController controller = new AWTCameraMouseController(chart);
+		 * AWTCameraMouseController controller = new
+		 * AWTCameraMouseController(chart);
 		 * 
 		 * addMouseListener(controller); addMouseMotionListener(controller);
 		 * addMouseWheelListener(controller);
@@ -102,6 +105,10 @@ public class Plane implements Updatable {
 		// panel.add(canvas, BorderLayout.CENTER);
 		return canvas;
 		// return new JPanel();
+	}
+
+	public PlaneConstraintsChoice getPlaneConstraintsChoice() {
+		return planeConstraintsChoice;
 	}
 
 	/**

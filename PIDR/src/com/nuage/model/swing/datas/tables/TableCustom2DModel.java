@@ -15,14 +15,15 @@ import com.nuage.model.swing.datas.Datas2DFactory;
 public class TableCustom2DModel extends TableCustomModel {
 	private final ArrayList<Point2D> points = new ArrayList<Point2D>();
 	private final String[] entetes;
-	private LinkedList<Double> x;
-	private LinkedList<Double> y;
+	private LinkedList<Double> x = new LinkedList<Double>();
+	private LinkedList<Double> y = new LinkedList<Double>();
 
 	public TableCustom2DModel(MainWindow mainWindow, String fileName, String[] entetes) {
 		super();
 		this.entetes = entetes;
 		fillPoints(fileName);
-		// "C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx"
+		// "C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test
+		// droite.xlsx"
 	}
 
 	public TableCustom2DModel(String[] entetes) {
@@ -61,7 +62,6 @@ public class TableCustom2DModel extends TableCustomModel {
 		try {
 			fact = new Datas2DFactory(fileName);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		x = fact.getX();
@@ -79,7 +79,11 @@ public class TableCustom2DModel extends TableCustomModel {
 	public void fillPoints(LinkedList<Double> x, LinkedList<Double> y, LinkedList<Double> z) {
 		eraseTable();
 		LinkedList<Double> newPoint = new LinkedList<Double>();
+		this.x = new LinkedList<Double>();
+		this.y = new LinkedList<Double>();
 		for (int i = 0; i < x.size(); i++) {
+			this.x.add(x.get(i));
+			this.y.add(y.get(i));
 			newPoint.add(i + 1.0);
 			newPoint.add(x.get(i));
 			newPoint.add(y.get(i));
@@ -185,7 +189,8 @@ public class TableCustom2DModel extends TableCustomModel {
 	}
 
 	public void applyTransfo() {
-		// TODO : Quand on clique le bouton Validation du transformationsPanel, Ca devra
+		// TODO : Quand on clique le bouton Validation du transformationsPanel,
+		// Ca devra
 		// appeler cette méthode pour changer la partie des TransformedDatas
 	}
 

@@ -27,7 +27,6 @@ public class ModeFileFilter extends FileFilter {
 		if (f.isDirectory()) {
 			return true;
 		}
-
 		String extension = getExtension(f);
 		if (extension != null) {
 			if (mode instanceof Line) {
@@ -56,13 +55,21 @@ public class ModeFileFilter extends FileFilter {
 				}
 			}
 		}
-
 		return false;
 	}
 
 	@Override
 	public String getDescription() {
-		return ".gd, .g2d, .g3d, .gpd";
+		if (mode instanceof Line) {
+			return ".gd";
+		}
+		if (mode instanceof Plane) {
+			return ".gpd";
+		}
+		if (mode instanceof D2) {
+			return ".g2d";
+		}
+		return ".g3d";
 	}
 
 	public static String getExtension(File f) {

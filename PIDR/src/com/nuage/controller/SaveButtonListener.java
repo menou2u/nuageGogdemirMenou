@@ -10,16 +10,14 @@ import com.nuage.model.InfosWindow;
 import com.nuage.model.filesChoosers.SaveFileChooser;
 import com.nuage.model.swing.Tools;
 
-public class SaveButtonListener implements ActionListener {
-
-	private Tools toolsReference;
-
-	public SaveButtonListener(InfosWindow infosWindow) {
-		// TODO When want to save via Info window
-	}
+public class SaveButtonListener extends AbstractSaveButtonListener implements ActionListener {
 
 	public SaveButtonListener(Tools tools) {
-		toolsReference = tools;
+		super(tools);
+	}
+
+	public SaveButtonListener(InfosWindow infosWindow) {
+		super(infosWindow);
 	}
 
 	@Override
@@ -31,11 +29,10 @@ public class SaveButtonListener implements ActionListener {
 			SaveFileChooser saveFileChooser = new SaveFileChooser(toolsReference.getMainWindow().getMode());
 			int returnVal = saveFileChooser.showSaveDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				file = saveFileChooser.getSelectedFile();
+				file = new File(saveFileChooser.getSelectedFile() + getDescription());
 				toolsReference.getMainWindow().setCurrentFile(file);
 				toolsReference.getMainWindow().saveInFile(file);
 			}
 		}
 	}
-
 }

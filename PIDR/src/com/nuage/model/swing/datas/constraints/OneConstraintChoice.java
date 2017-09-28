@@ -19,7 +19,8 @@ public class OneConstraintChoice extends Observable {
 	private JRadioButton slopeChoice;
 
 	private JPanel pointChosen;
-	private VertexConstraintChoicePanel vertexChosen;
+	private VertexConstraintChoice vertexConstraintChoice;
+	private VertexConstraintChoicePanel vertexChosenChoicePanel;
 
 	private JTextField x;
 	private JTextField y;
@@ -66,7 +67,16 @@ public class OneConstraintChoice extends Observable {
 		gbc.gridx += gbc.gridwidth;
 		pointChosen.add(z, gbc);
 
-		vertexChosen = new VertexConstraintChoicePanel(new VertexConstraintChoice());
+		vertexConstraintChoice = new VertexConstraintChoice();
+		vertexChosenChoicePanel = new VertexConstraintChoicePanel(vertexConstraintChoice);
+	}
+
+	public VertexConstraintChoice getVertexConstraintChoice() {
+		return vertexConstraintChoice;
+	}
+
+	public VertexConstraintChoicePanel getVertexChosenChoicePanel() {
+		return vertexChosenChoicePanel;
 	}
 
 	public ButtonGroup getbG() {
@@ -86,7 +96,7 @@ public class OneConstraintChoice extends Observable {
 	}
 
 	public VertexConstraintChoicePanel getVertexChosen() {
-		return vertexChosen;
+		return vertexChosenChoicePanel;
 	}
 
 	public JTextField getX() {

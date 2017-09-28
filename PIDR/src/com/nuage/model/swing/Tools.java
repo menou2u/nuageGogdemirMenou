@@ -8,9 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.nuage.controller.CloseButtonListener;
 import com.nuage.controller.ExecuteButtonListener;
 import com.nuage.controller.ImportButtonListener;
 import com.nuage.controller.InfosButtonListener;
+import com.nuage.controller.NewButtonListener;
 import com.nuage.controller.OpenButtonListener;
 import com.nuage.controller.PreviewButtonListener;
 import com.nuage.controller.PrintButtonListener;
@@ -60,8 +62,10 @@ public class Tools extends Observable {
 		this.mainWindow = mainWindow;
 
 		close = new JButton("Fermer");
+		close.addActionListener(new CloseButtonListener());
 
 		neww = new JButton("Nouveau");
+		neww.addActionListener(new NewButtonListener(this));
 
 		lastOpened = new String[6];
 		// open.addItem(openButton);
@@ -69,7 +73,10 @@ public class Tools extends Observable {
 		open.addActionListener(new OpenButtonListener(this));
 		openModel = new DefaultMenuModelHandler();
 		openModel.setModel(new RotativeMenuModel<SimpleMenuModelItem>(openModel));
-		openModel.setCommonConstraint(new FileItemRendererConstraint(20, 7)); // TODO : Check size
+		openModel.setCommonConstraint(new FileItemRendererConstraint(20, 7)); // TODO
+																				// :
+																				// Check
+																				// size
 		openModel.setItemRenderer(new FileItemRenderer());
 		generateInitialModel();
 		menuOpener = new MenuOpenerButton(new FilePopupMenuOpener(openModel), open);
@@ -95,7 +102,8 @@ public class Tools extends Observable {
 		preview.addActionListener(new PreviewButtonListener(this));
 
 		execute = new JButton("Exécuter");
-		execute.addActionListener(new ExecuteButtonListener(this));// , mainWindow.getOnglets()));
+		execute.addActionListener(new ExecuteButtonListener(this));// ,
+																	// mainWindow.getOnglets()));
 
 		infos = new JPanel();
 

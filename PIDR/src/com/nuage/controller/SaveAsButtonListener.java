@@ -9,12 +9,10 @@ import javax.swing.JFileChooser;
 import com.nuage.model.filesChoosers.SaveFileChooser;
 import com.nuage.model.swing.Tools;
 
-public class SaveAsButtonListener implements ActionListener {
-
-	private Tools toolsReference;
+public class SaveAsButtonListener extends AbstractSaveButtonListener implements ActionListener {
 
 	public SaveAsButtonListener(Tools tools) {
-		toolsReference = tools;
+		super(tools);
 	}
 
 	@Override
@@ -23,7 +21,7 @@ public class SaveAsButtonListener implements ActionListener {
 		SaveFileChooser saveFileChooser = new SaveFileChooser(toolsReference.getMainWindow().getMode());
 		int returnVal = saveFileChooser.showSaveDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			file = saveFileChooser.getSelectedFile();
+			file = new File(saveFileChooser.getSelectedFile() + getDescription());
 			toolsReference.getMainWindow().setCurrentFile(file);
 			toolsReference.getMainWindow().saveInFile(file);
 		}

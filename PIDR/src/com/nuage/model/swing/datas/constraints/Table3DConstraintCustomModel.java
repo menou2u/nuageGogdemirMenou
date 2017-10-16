@@ -30,15 +30,12 @@ public class Table3DConstraintCustomModel extends AbstractTableModel {
 	public Table3DConstraintCustomModel(String[] entetes) {
 		super();
 		this.entetes = entetes;
-		LinkedList<Double> constraint = new LinkedList<Double>();
-		constraint.add(1.0);
-		constraint.add(0.0);
-		constraint.add(0.0);
-		constraint.add(0.0);
-		constraint.add(0.0);
-		constraint.add(0.0);
-		constraint.add(0.0);
-		constraints.add(new Constraint3D(constraint));
+		/*
+		 * LinkedList<Double> constraint = new LinkedList<Double>();
+		 * constraint.add(1.0); constraint.add(0.0); constraint.add(0.0);
+		 * constraint.add(0.0); constraint.add(0.0); constraint.add(0.0);
+		 * constraint.add(0.0); constraints.add(new Constraint3D(constraint));
+		 */
 	}
 
 	public void setTable(Table3DConstraintCustomModel table) {

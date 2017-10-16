@@ -3,7 +3,6 @@ package com.nuage.view.panels;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.nuage.model.swing.datas.TransformationsLine;
@@ -32,15 +31,14 @@ public class TransformationsLinePanel extends JPanel {
 
 	}
 
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Transforms");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TransformationsLine transformationsLine = new TransformationsLine();
-		TransformationsLinePanel newContentPane = new TransformationsLinePanel(transformationsLine);
-		newContentPane.setOpaque(true);
-		frame.setContentPane(newContentPane);
-		frame.pack();
-		frame.setVisible(true);
-	}
+	/*
+	 * public static void main(String[] args) { JFrame frame = new
+	 * JFrame("Transforms");
+	 * frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); TransformationsLine
+	 * transformationsLine = new TransformationsLine(); TransformationsLinePanel
+	 * newContentPane = new TransformationsLinePanel(transformationsLine);
+	 * newContentPane.setOpaque(true); frame.setContentPane(newContentPane);
+	 * frame.pack(); frame.setVisible(true); }
+	 */
 
 }

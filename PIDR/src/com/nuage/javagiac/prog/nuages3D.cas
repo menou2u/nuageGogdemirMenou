@@ -1,5 +1,5 @@
 nuages3d():={
-
+cas_setup(0,0,0,1,0,1e-15,12,8,0);
 // Passage de parametres de windev à giac
   listxi:=list[%1];
   listyi:=list[%2];

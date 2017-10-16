@@ -107,6 +107,14 @@ public class Plane implements Updatable {
 		// return new JPanel();
 	}
 
+	public TransformationsPlane getTransformationPlane() {
+		return transformationPlane;
+	}
+
+	public TableCustom3DModel getPlaneData() {
+		return planeData;
+	}
+
 	public PlaneConstraintsChoice getPlaneConstraintsChoice() {
 		return planeConstraintsChoice;
 	}

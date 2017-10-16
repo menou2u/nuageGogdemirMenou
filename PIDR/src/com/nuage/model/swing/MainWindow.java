@@ -6,12 +6,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Scanner;
 
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
+import com.nuage.controller.PopUp;
 import com.nuage.model.math.DroiteMoindreCarres;
 import com.nuage.model.math.Nuages2D;
 import com.nuage.model.math.Nuages3D;
@@ -216,7 +218,8 @@ public class MainWindow extends Observable {
 			bufferedReader.close();
 			fileReader.close();
 		} catch (IOException e) {
-			System.out.println(
+		} catch (NoSuchElementException g) {
+			new PopUp(
 					"La lecture de la sauvegarde a échoué. S'il ne s'agit pas d'une sauvegarde de l'ancien logiciel, merci de contacter les développeurs.");
 		}
 		/*
@@ -276,7 +279,7 @@ public class MainWindow extends Observable {
 			break;
 		case 2:
 			Plane planeMode = (Plane) getMode();
-			planeMode.getData().fillPoints(listXi, listYi, null);
+			planeMode.getData().fillPoints(listXi, listYi, listZi);
 			planeMode.getTransformX().setTransformX(xTreatment);
 			planeMode.getTransformY().setTransformY(yTreatment);
 			planeMode.getTransformZ().setTransformZ(zTreatment);
@@ -400,6 +403,9 @@ public class MainWindow extends Observable {
 			mode.getTransformY().getTransformY().setText("");
 			((Plane) mode).getTransformZ().getTransformZ().setText("");
 			mode.getData().fillPoints(new LinkedList<Double>(), new LinkedList<Double>(), new LinkedList<Double>());
+			mode.getData().fireTableDataChanged();
+			((Plane) mode).getPlaneData().fillPoints(new LinkedList<Double>(), new LinkedList<Double>(),
+					new LinkedList<Double>());
 			mode.getData().fireTableDataChanged();
 			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getX().setText("");
 			((Plane) mode).getPlaneConstraintsChoice().getOneConstraintChoice().getY().setText("");

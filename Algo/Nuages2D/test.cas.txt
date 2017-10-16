@@ -1,5 +1,5 @@
 nuages2d():={
-cas_setup(0,0,0,1,0,1e-20,12,8,0);
+restart ;
   //  Passage des valeurs entre windev et Giac
  listxi:=list[%1]; 
  xMoyen := approx(moyenne(listxi)) ;
@@ -14,7 +14,7 @@ cas_setup(0,0,0,1,0,1e-20,12,8,0);
  listphi:=list[%3];
    
  listxomega:=list[%4];
- listyomega:=list[%5];
+ listyomega:=list[%5]
 //listyomega pour l'affichage des points contraints
  listcontraintes:=list[%5];
  listordrederivation:=list[%6];
@@ -86,7 +86,7 @@ label debut;
 
     if(delta0==0)
      {
-       return "calculs impossibles. Modifiez l'ordre des fonctions d'essai, en commenÃ§ant du cÃ´tÃ© droit, par exemple." ;
+       return "calculs impossibles. Modifiez l'ordre des fonctions d'essai, en commençant du côté droit, par exemple." ;
      }     
 
     matdeltat:=transpose(matdelta);       
@@ -156,7 +156,7 @@ label debut;
 
       }
     mata:=transpose(matat);
-//zÃ©ros listimage et mata 
+//zéros listimage et mata 
     for(r:=0;r<=n-1;r++)
       {
         for(t:=0;t<=k-1;t++)
@@ -286,7 +286,7 @@ label k1
 
     if(delta0==0)
       {
-        return "Calculs impossibles. Modifiez l'ordre des fonctions d'essais phi en commenÃ§ant par la droite." ;
+        return "Calculs impossibles. Modifiez l'ordre des fonctions d'essais phi en commençant par la droite." ;
       }  
 
     delta1:=listcontraintes[0];
@@ -376,7 +376,7 @@ label affichages;
        listordrederivation + ";" + xmaxgraph + ";" + xmingraph + ";" + ymaxgraph + ";" + ymingraph +";" + qualrep  + ";" + airesousfxromb + ";" + aire_sous_tendue  ;
 
 //-------------------------------------------------------------------------------------------------------------------------------
-//return " f(x)=" + f(x)  + " rÃ©sidumoyen= " + residumoyen + " mata= " + mata + " matimage= " + matimage;
+//return " f(x)=" + f(x)  + " résidumoyen= " + residumoyen + " mata= " + mata + " matimage= " + matimage;
 //-------------------------------------------------------------------------------------------------------------------------------
    
  }:;

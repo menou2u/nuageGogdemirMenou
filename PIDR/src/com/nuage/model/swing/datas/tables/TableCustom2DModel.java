@@ -22,18 +22,17 @@ public class TableCustom2DModel extends TableCustomModel {
 		super();
 		this.entetes = entetes;
 		fillPoints(fileName);
-		// "C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test
-		// droite.xlsx"
 	}
 
 	public TableCustom2DModel(String[] entetes) {
 		super();
 		this.entetes = entetes;
-		LinkedList<Double> point = new LinkedList<Double>();
-		point.add(1.0);
-		point.add(0.0);
-		point.add(0.0);
-		points.add(new Point2D(point));
+		// Removed because we want the tables to be empty
+		// LinkedList<Double> point = new LinkedList<Double>();
+		// point.add(1.0);
+		// point.add(0.0);
+		// point.add(0.0);
+		// points.add(new Point2D(point));
 	}
 
 	public void setTable(TableCustom2DModel table) {

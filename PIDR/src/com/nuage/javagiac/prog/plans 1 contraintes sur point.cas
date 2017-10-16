@@ -1,5 +1,6 @@
 plansmc1c_Cas1():={
   ClrIO;
+  cas_setup(0,0,0,1,0,1e-15,12,8,0);
   purge(n,k);
   listxi:=list[%1];
   listyi:=list[%2];

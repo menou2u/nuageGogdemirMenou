@@ -1,6 +1,7 @@
 droitesmc():={
  
   restart ;
+  cas_setup(0,0,0,1,0,1e-15,12,8,0);
   // 1 list des xi
   // 2 list des yi
   // 3 le commutateur 0:pas de contrainte , 1: 1 contrainte sur coordonnées , 2: 1 contrainte sur la pente

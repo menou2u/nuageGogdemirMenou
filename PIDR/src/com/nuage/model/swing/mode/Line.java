@@ -46,7 +46,7 @@ public class Line implements Updatable {
 		mathShortcuts = new MathShortcuts(testFunction);
 		mathShortcutsPanel = new MathShortcutsPanel(mathShortcuts);
 
-		transformationsLine = new TransformationsLine();
+		transformationsLine = new TransformationsLine(this);
 		transformationsLinePanel = new TransformationsLinePanel(transformationsLine);
 
 		dataModel = new TableCustom2DModel(new String[] { "n°", "xi", "yi" });

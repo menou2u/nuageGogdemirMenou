@@ -26,6 +26,17 @@ public class PopUp {
 				JOptionPane.WARNING_MESSAGE);
 	}
 
+	public PopUp(String string) {
+		JOptionPane.showMessageDialog(Frame.getFrames()[0], string, "Erreur lecture sauvegarde",
+				JOptionPane.WARNING_MESSAGE);
+	}
+
+	public PopUp(String formula, String variable) {
+		JOptionPane.showMessageDialog(Frame.getFrames()[0],
+				"La formule " + formula + " ne contient pas de variable " + variable, "Erreur changement de variable",
+				JOptionPane.WARNING_MESSAGE);
+	}
+
 	public int getAnswer() {
 		return answer;
 	}

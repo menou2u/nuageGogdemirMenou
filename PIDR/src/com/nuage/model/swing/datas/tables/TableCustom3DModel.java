@@ -23,18 +23,19 @@ public class TableCustom3DModel extends TableCustomModel {
 		super();
 		this.entetes = entetes;
 		fillPoints(fileName);
-		// "C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test droite.xlsx"
+		// "C:\\Users\\Romain\\git\\nuageGogdemirMenou\\Excel tests\\test
+		// droite.xlsx"
 	}
 
 	public TableCustom3DModel(String[] entetes) {
 		super();
 		this.entetes = entetes;
-		LinkedList<Double> point = new LinkedList<Double>();
-		point.add(1.0);
-		point.add(0.0);
-		point.add(0.0);
-		point.add(0.0);
-		points.add(new Point3D(point));
+		/*
+		 * LinkedList<Double> point = new LinkedList<Double>(); point.add(1.0);
+		 * point.add(0.0); point.add(0.0); point.add(0.0);
+		 *
+		 * points.add(new Point3D(point));
+		 */
 	}
 
 	public void setTable(TableCustom3DModel table) {
@@ -85,7 +86,14 @@ public class TableCustom3DModel extends TableCustomModel {
 	public void fillPoints(LinkedList<Double> x, LinkedList<Double> y, LinkedList<Double> z) {
 		eraseTable();
 		LinkedList<Double> newPoint = new LinkedList<Double>();
+		this.x = new LinkedList<Double>();
+		this.y = new LinkedList<Double>();
+		this.z = new LinkedList<Double>();
 		for (int i = 0; i < x.size(); i++) {
+			newPoint.add(i + 1.0);
+			this.x.add(x.get(i));
+			this.y.add(y.get(i));
+			this.z.add(z.get(i));
 			newPoint.add(i + 1.0);
 			newPoint.add(x.get(i));
 			newPoint.add(y.get(i));

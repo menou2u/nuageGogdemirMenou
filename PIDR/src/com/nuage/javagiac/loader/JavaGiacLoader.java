@@ -1,6 +1,5 @@
 package com.nuage.javagiac.loader;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,8 +23,8 @@ public class JavaGiacLoader extends ProgressMonitor {
 	}
 
 	/**
-	 * extract and load the javagiac lib and display a JDialog with progress status
-	 * if frame is null display status in console
+	 * extract and load the javagiac lib and display a JDialog with progress
+	 * status if frame is null display status in console
 	 * 
 	 * @param frame
 	 * @throws IOException
@@ -125,14 +124,4 @@ public class JavaGiacLoader extends ProgressMonitor {
 		LoaderMonitorer.monitor("Progress Status : " + nv + "/" + MAX);
 	}
 
-	public static void main(String[] args) throws IOException {
-		// loadJavaGiac(null);
-
-		JFrame f = new JFrame("");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setMinimumSize(new Dimension(200, 200));
-		f.pack();
-		f.setVisible(true);
-		loadJavaGiac(f);
-	}
 }
